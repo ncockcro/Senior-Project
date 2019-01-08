@@ -1,32 +1,75 @@
 #include "Oregon_Trail.h"
 
-
-
 Oregon_Trail::Oregon_Trail()
 {
 }
 
+/*
+Oregon_Trail::StartGame()
 
-Oregon_Trail::~Oregon_Trail()
-{
-}
+NAME
 
+	Oregon_Trail::StartGame - Runs the main game with a start menu and is the default process in between game sessions.
+
+SYNOPSIS
+
+	void Oregon_Trail::StartGame()
+
+DESCRIPTION
+
+	This function is the only function called by main and serves to be the main running of Oregon Trail. It will
+	show a title which is saved to a local file, and run in an infinite loop to prompt the user with options for
+	the game.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	10:24am 1/8/2019
+*/
 void Oregon_Trail::StartGame() {
 
 	ShowTitle();
 
 	while (1) {
-		cout << "     You may:" << endl;
-		cout << "\t 1. Travel the trail" << endl;
-		cout << "\t 2. Learn about the trail" << endl;
-		cout << "\t 3. See the Oregon Top Ten" << endl;
-		cout << "\t 4. Turn sound off" << endl;
-		cout << "\t 5. Choose management options" << endl;
-		cout << "\t 6. End" << endl;
+		ShowChoices();
 		PickDecision();
 	}
 }
 
+/*
+Oregon_Trail::ShowTitle()
+
+NAME
+
+	Oregon_Trail::ShowTitle - Shows a custom made title from an external txt file
+
+SYNOPSIS
+
+	void Oregon_Trail::ShowTitle()
+
+DESCRIPTION
+
+	This function is to open the "title.txt" file and output everything that is inside which is for the title of the game.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	11:10am 1/8/2019
+*/
 void Oregon_Trail::ShowTitle() {
 
 	ifstream file;
@@ -41,6 +84,71 @@ void Oregon_Trail::ShowTitle() {
 	cout << endl;
 }
 
+/*
+	Oregon_Trail::ShowChoices()
+
+NAME
+
+	Oregon_Trail::ShowChoices - Show the available menu options to the player.
+
+SYNOPSIS
+
+	void Oregon_Trail::ShowChoices()
+
+DESCRIPTION
+
+	This function will output the several menu choices to the console.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	11:24am 1/8/2019
+*/
+void Oregon_Trail::ShowChoices() {
+	cout << "     You may:" << endl;
+	cout << "\t 1. Travel the trail" << endl;
+	cout << "\t 2. Learn about the trail" << endl;
+	cout << "\t 3. See the Oregon Top Ten" << endl;
+	cout << "\t 4. Turn sound off" << endl;
+	cout << "\t 5. Choose management options" << endl;
+	cout << "\t 6. End" << endl;
+}
+
+/*
+Oregon_Trail::PickDecision()
+
+NAME
+
+	Oregon_Trail::PickDecision - Lets the user pick a decision from the start menu
+
+SYNOPSIS
+
+	void Oregon_Trail::PickDecision()
+
+DESCRIPTION
+
+	This function has the user enter in a decision for the start menu and will cycle through to find the choice that
+	they picked. If they didn't pick one of the choices, then an error message will be outputted
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	11:48am 1/8/2019
+*/
 void Oregon_Trail::PickDecision() {
 
 	string choice;
@@ -75,6 +183,33 @@ void Oregon_Trail::PickDecision() {
 	}
 }
 
+/*
+Oregon_Trail::ShowDescription
+
+NAME
+
+	Oregon_Trail::ShowDescription - When the user wants to see the description for the game, this will output it
+
+SYNOPSIS
+
+	void Oregon_Trail::ShowDescription()
+
+DESCRIPTION
+
+	This function will show the description of the game when the user picks the choice from the main menu
+
+RETURNS
+
+Void
+
+AUTHOR
+
+Nicholas Cockcroft
+
+Date
+
+10:24am 1/8/2019
+*/
 void Oregon_Trail::ShowDescription() {
 
 	cout << "\t Oregon trail is roughly a 2000 mile route from Independence, Missouri, to Oregon City, Oregon. " << endl;
