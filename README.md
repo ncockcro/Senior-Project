@@ -1,6 +1,6 @@
 # Senior-Project
 
-For my Computer Science capstone, I decided to recreate the popular educational game *Oregon Trail*! This is a semester long project where I am demonstrating a lot of the knowledge and information that I have gained during my time at Ramapo College of New Jersey. This game is written in C++ and was built using Visual Studio as the developing environment. 
+For my Computer Science capstone, I decided to recreate the popular educational game *Oregon Trail*! This is a semester long project where I am demonstrating the knowledge and information that I have gained during my time at Ramapo College of New Jersey. This game is written in C++ and was built using Visual Studio as the developing environment. 
 
 ### Oregon Trail
 
