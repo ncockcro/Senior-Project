@@ -6,7 +6,7 @@ DATE
 	1/9/2019
 
 CLASS
-	Oregon_Trail
+	Trail
 
 DESCRIPTION
 	The purpose of this class is to serve as an active game running in Oregon Trail. This is when the player is playing
@@ -17,6 +17,7 @@ DESCRIPTION
 
 #include <iostream>
 #include <string>
+#include <vector>
 #include "Error.h"
 
 using namespace std;
@@ -30,6 +31,13 @@ public:
 
 private:
 	void PromptPosition();
+	void PromptCharacterNames();
+
 	Error error = Error();
+	int playerMoney;
+	string playerPosition;
+
+	string wagonLeader;
+	string wagonParty[4];
 };
 

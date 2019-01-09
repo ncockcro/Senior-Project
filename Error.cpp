@@ -6,11 +6,6 @@ Error::Error()
 {
 }
 
-
-Error::~Error()
-{
-}
-
 void Error::DisplayError(string error) {
 
 	SetConsoleTextAttribute(hConsole, 12);

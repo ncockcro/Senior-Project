@@ -1,7 +1,4 @@
-#include <iostream>
 #include "Oregon_Trail.h"
-
-using namespace std;
 
 int main() {
 	
