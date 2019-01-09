@@ -17,6 +17,7 @@ DESCRIPTION
 
 #include <iostream>
 #include <string>
+#include "Error.h"
 
 using namespace std;
 
@@ -29,5 +30,6 @@ public:
 
 private:
 	void PromptPosition();
+	Error error = Error();
 };
 

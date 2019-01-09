@@ -150,7 +150,6 @@ Date
 void Oregon_Trail::PickDecision() {
 
 	string choice;
-	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 
 	cout << "\t What is your choice: ";
 	cin >> choice;
@@ -169,9 +168,7 @@ void Oregon_Trail::PickDecision() {
 	}
 	else {
 		system("cls");
-		SetConsoleTextAttribute(hConsole, 12);
-		cout << "\t That was an incorrect option" << endl;
-		SetConsoleTextAttribute(hConsole, 7);
+		error.DisplayError("\t That was an incorrect option.");
 	}
 }
 
