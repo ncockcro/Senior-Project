@@ -32,5 +32,6 @@ private:
 	void PickDecision();
 	void ShowTitle();
 	void ShowDescription();
+	void ShowLeaderBoard();
 };
 

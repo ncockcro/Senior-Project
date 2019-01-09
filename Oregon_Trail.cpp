@@ -116,9 +116,7 @@ void Oregon_Trail::ShowChoices() {
 	cout << "\t 1. Travel the trail" << endl;
 	cout << "\t 2. Learn about the trail" << endl;
 	cout << "\t 3. See the Oregon Top Ten" << endl;
-	cout << "\t 4. Turn sound off" << endl;
-	cout << "\t 5. Choose management options" << endl;
-	cout << "\t 6. End" << endl;
+	cout << "\t 4. End" << endl;
 }
 
 /*
@@ -164,15 +162,9 @@ void Oregon_Trail::PickDecision() {
 		ShowDescription();
 	}
 	else if (choice == "3") {
-		cout << "Seeing the leaderboards" << endl;
+		ShowLeaderBoard();
 	}
 	else if (choice == "4") {
-		cout << "There is no sound!" << endl;
-	}
-	else if (choice == "5") {
-		cout << "Checking options" << endl;
-	}
-	else if (choice == "6") {
 		exit(1);
 	}
 	else {
@@ -184,7 +176,7 @@ void Oregon_Trail::PickDecision() {
 }
 
 /*
-Oregon_Trail::ShowDescription
+Oregon_Trail::ShowDescription()
 
 NAME
 
@@ -200,15 +192,15 @@ DESCRIPTION
 
 RETURNS
 
-Void
+	Void
 
 AUTHOR
 
-Nicholas Cockcroft
+	Nicholas Cockcroft
 
 Date
 
-10:24am 1/8/2019
+	10:24am 1/8/2019
 */
 void Oregon_Trail::ShowDescription() {
 
@@ -220,5 +212,64 @@ void Oregon_Trail::ShowDescription() {
 	cout << "\t there will be more shops on the way, but will become scarcer the farther along the trail you are." << endl;
 	cout << "\t Will you make the Oregon trail?" << endl;
 	cout << "\t ";
+	system("pause");
+}
+
+/*
+Oregon_Trail::ShowLeaderboard()
+
+NAME
+
+	Oregon_Trail::ShowLeaderboard - When the user wants to see the leaderboards for the game
+
+SYNOPSIS
+
+	void Oregon_Trail::ShowLeaderboard()
+
+DESCRIPTION
+
+	This function will show the leaderboards from a text file. If there is no text file, this function will initialize it, otherwise,
+	it will be read from.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	9:45am 1/9/2019
+*/
+void Oregon_Trail::ShowLeaderBoard() {
+
+	system("cls");
+
+	fstream outputLeaderboardFile("leaderboard.txt");
+	string input;
+
+	// If there is no leaderboard file, this will initialize it
+	if (!outputLeaderboardFile) {
+		outputLeaderboardFile.open("leaderboard.txt", fstream::out);
+		
+		outputLeaderboardFile << "\t" << "Leaderboard" << endl;
+		for (int i = 0; i < 10; i++) {
+			outputLeaderboardFile << "\t" << i + 1 << "." << endl;
+		}
+	}
+
+	// After the leaderboard file was  initialized or if it already existed, this will output
+	// the contents of the file
+	ifstream inputLeaderboardFile;
+	inputLeaderboardFile.open("leaderboard.txt");
+	while (getline(inputLeaderboardFile, input)) {
+		cout << input << endl;
+	}
+	inputLeaderboardFile.close();
+
+	outputLeaderboardFile.close();
+
 	system("pause");
 }
