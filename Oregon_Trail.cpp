@@ -156,7 +156,7 @@ void Oregon_Trail::PickDecision() {
 	cin >> choice;
 
 	if (choice == "1") {
-		cout << "Playing game" << endl;
+		trailGame.ActiveGame();
 	}
 	else if (choice == "2") {
 		ShowDescription();

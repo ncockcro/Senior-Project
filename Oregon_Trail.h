@@ -18,6 +18,7 @@ DESCRIPTION
 #include <string>
 #include <fstream>
 #include <windows.h>
+#include "Trail.h"
 
 using namespace std;
 
@@ -33,5 +34,7 @@ private:
 	void ShowTitle();
 	void ShowDescription();
 	void ShowLeaderBoard();
+
+	Trail trailGame = Trail();
 };
 
