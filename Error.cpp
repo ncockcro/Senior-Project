@@ -6,9 +6,9 @@ Error::Error()
 {
 }
 
-void Error::DisplayError(string error) {
+void Error::DisplayError(string a_error) {
 
-	SetConsoleTextAttribute(hConsole, 12);
-	cout << error << endl;
-	SetConsoleTextAttribute(hConsole, 7);
+	SetConsoleTextAttribute(m_hConsole, 12);
+	cout << a_error << endl;
+	SetConsoleTextAttribute(m_hConsole, 7);
 }

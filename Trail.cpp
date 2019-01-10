@@ -177,7 +177,35 @@ void Trail::PromptCharacterNames() {
 	}
 }
 
-// 10:07am
+/*
+Trail::PromptStartingMonth()
+
+NAME
+
+	Oregon_Trail::PromptStartingMonth - Prompts the user for which month to start from
+
+SYNOPSIS
+
+	void Trail::PromptStartingMonth()
+
+DESCRIPTION
+
+	This function will prompt the user for the month to start from and will have an impact on how the game will play out.
+	If the user starts the game too early, there won't be any grass for the oxen to eat. If they start the game too late,
+	then they will be playing the game during winter.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	10:07am 1/10/2019
+*/
 void Trail::PromptStartingMonth() {
 
 	string choice;
@@ -194,9 +222,11 @@ void Trail::PromptStartingMonth() {
 		cout << "\t What is your choice? ";
 		cin >> choice;
 
+		// If they pick a valid choice, break out of the loop
 		if (choice == "1" || choice == "2" || choice == "3" || choice == "4" || choice == "5") {
 			break;
 		}
+		// If they want to see a description, print it out and still continue the loop
 		else if (choice == "6") {
 			cout << endl << "\t You attend a public meeting held for \"folks with the California - Oregon fever.\"" << endl;
 			cout << "\t You're told:" << endl << endl;
@@ -205,6 +235,7 @@ void Trail::PromptStartingMonth() {
 			cout << "\t leave at just the right time, there will be green grass and the weather " << endl;
 			cout << "\t will still be cool." << endl << endl;
 		}
+		// If it is anything else, output an error message and continure the loop
 		else {
 			m_error.DisplayError("Invalid option");
 		}
@@ -230,6 +261,33 @@ void Trail::PromptStartingMonth() {
 	}
 }
 
+/*
+Trail::LeavingMessage()
+
+NAME
+
+	Oregon_Trail::LeavingMessage - Outputs all of the dialougue for when the player is leaving Independence
+
+SYNOPSIS
+
+	void Trail::LeavingMessage()
+
+DESCRIPTION
+
+	This function will output all of the dialouge after they picked the month they are starting at.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	11:10am 1/10/2019
+*/
 void Trail::LeavingMessage() {
 	cout << endl << "\t Before leaving Independence you should buy equipment and supplies." << endl;
 	cout << "\t You have " << m_playerMoney << ".00 in cash, but you don't have to spend it all now" << endl << endl;

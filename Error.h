@@ -24,9 +24,9 @@ class Error
 {
 public:
 	Error();
-	void DisplayError(string error);
+	void DisplayError(string a_error);
 
 private:
-	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	HANDLE m_hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 };
 
