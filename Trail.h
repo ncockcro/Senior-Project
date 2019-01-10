@@ -32,12 +32,16 @@ public:
 private:
 	void PromptPosition();
 	void PromptCharacterNames();
+	void PromptStartingMonth();
+	void LeavingMessage();
 
-	Error error = Error();
-	int playerMoney;
-	string playerPosition;
+	Error m_error = Error();
+	int m_playerMoney;
+	string m_playerPosition;
 
-	string wagonLeader;
-	string wagonParty[4];
+	string m_wagonLeader;
+	string m_wagonParty[4];
+
+	string m_startingMonth;
 };
 

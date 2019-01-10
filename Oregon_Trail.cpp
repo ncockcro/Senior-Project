@@ -155,7 +155,7 @@ void Oregon_Trail::PickDecision() {
 	cin >> choice;
 
 	if (choice == "1") {
-		trailGame.ActiveGame();
+		m_trailGame.ActiveGame();
 	}
 	else if (choice == "2") {
 		ShowDescription();
@@ -168,7 +168,7 @@ void Oregon_Trail::PickDecision() {
 	}
 	else {
 		system("cls");
-		error.DisplayError("\t That was an incorrect option.");
+		m_error.DisplayError("\t That was an incorrect option.");
 	}
 }
 
@@ -201,13 +201,11 @@ Date
 */
 void Oregon_Trail::ShowDescription() {
 
-	cout << "\t Oregon trail is roughly a 2000 mile route from Independence, Missouri, to Oregon City, Oregon. " << endl;
-	cout << "\t The trail is riddled with disease, snakebites, hostile Native Americans, and various other dangers." << endl;
-	cout << "\t You can start as being a banker from Boston, a carpenter from Ohio, or a farmer from Illinois." << endl;
-	cout << "\t Each will determine the difficulty of the trail by the starting amount of money you will recieve." << endl;
-	cout << "\t At the start of the game, you will be able to purchase goods for your travels. As you move on the trail, " << endl;
-	cout << "\t there will be more shops on the way, but will become scarcer the farther along the trail you are." << endl;
-	cout << "\t Will you make the Oregon trail?" << endl;
+	cout << endl << "\t Try taking a journey by covered wagon across 2000" << endl;
+	cout << "\t miles of plains, rivers, and mountains. Try!" << endl;
+	cout << "\t On the plains, will you slosh your oxen through mud" << endl;
+	cout << "\t and water - filled ruts or will you plod through" << endl;
+	cout << "\t dust six inches deep?" << endl << endl;
 	cout << "\t ";
 	system("pause");
 }

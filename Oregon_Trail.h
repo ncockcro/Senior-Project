@@ -36,7 +36,7 @@ private:
 	void ShowDescription();
 	void ShowLeaderBoard();
 
-	Trail trailGame = Trail();
-	Error error = Error();
+	Trail m_trailGame = Trail();
+	Error m_error = Error();
 };
 
