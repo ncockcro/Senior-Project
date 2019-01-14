@@ -1,7 +1,33 @@
 #include "Store.h"
 
 
+/*
+	Store::Store()
 
+NAME
+
+	Store::Store - Default constructor
+
+SYNOPSIS
+
+	Store::Store()
+
+DESCRIPTION
+
+	This is the default constructor for the Store class. Sets default values for the member variables
+
+RETURNS
+
+	None
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	2:23pm 1/14/2019
+*/
 Store::Store()
 {
 	m_date = "December 31, 9999";
@@ -9,11 +35,35 @@ Store::Store()
 	m_color = 12;
 }
 
+/*
+	Store::DisplayStore()
 
-Store::~Store()
-{
-}
+NAME
 
+	Store::DisplayStore - Outputs to the console the items and prices of a store object
+
+SYNOPSIS
+
+	Store::DisplayStore()
+
+DESCRIPTION
+
+	The function is used for showing what is in a store object with the different items and prices.
+	When a user tpyes in a number for one of the items, the description of the items is displayed and
+	the user is able to purchase a certain amount of that item. 
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	2:41pm 1/14/2019
+*/
 void Store::DisplayStore() {
 
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);

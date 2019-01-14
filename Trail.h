@@ -19,6 +19,8 @@ DESCRIPTION
 #include <string>
 #include <vector>
 #include "Error.h"
+#include "Store.h"
+#include "Item.h"
 
 using namespace std;
 
@@ -34,6 +36,7 @@ private:
 	void PromptCharacterNames();
 	void PromptStartingMonth();
 	void LeavingMessage();
+	void DepartingStore();
 
 	Error m_error = Error();
 	int m_playerMoney;
@@ -43,5 +46,7 @@ private:
 	string m_wagonParty[4];
 
 	string m_startingMonth;
+
+	Store m_Store;
 };
 

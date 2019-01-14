@@ -1,9 +1,84 @@
 #include "Item.h"
 
+/*
+	Item::Item()
 
+NAME
 
-Item::Item()
-{
+	Item::Item - Default constructor
+
+SYNOPSIS
+
+	void Item::Item()
+
+DESCRIPTION
+
+	This function is the default constructor for Item class
+
+RETURNS
+
+	None
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	1:40pm 1/14/2019
+*/
+Item::Item() {
+	m_name = "NULL";
+	m_price = 0.0;
+	m_description = "NULL";
+}
+
+/*
+	Item::Item(string a_name, double a_price, string a_description)
+
+NAME
+
+	Item::Item - Overloaded constructor
+
+SYNOPSIS
+
+	void Item::Item(string a_name, double, a_price, string a_description)
+		a_name        --> the name of an object
+		a_price       --> the price of an object
+		a_description --> the description of an object
+
+DESCRIPTION
+
+	This function will set the name of an item object.
+
+RETURNS
+
+	None
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	2:15pm 1/14/2019
+*/
+Item::Item(string a_name, double a_price, string a_description) {
+
+	try {
+		m_name = a_name;
+		m_description = a_description;
+	}
+	catch (exception e) {
+		error.DisplayError("ERROR: in setting name/description in item constructor class.");
+	}
+
+	if (a_price > 0.0) {
+		m_price = a_price;
+	}
+	else {
+		error.DisplayError("ERROR: in setting price of item in item constructor.");
+	}
 }
 
 /*

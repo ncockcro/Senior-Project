@@ -23,7 +23,6 @@ using namespace std;
 class Error
 {
 public:
-	Error();
 	void DisplayError(string a_error);
 
 private:

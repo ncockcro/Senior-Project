@@ -26,7 +26,6 @@ class Store
 {
 public:
 	Store();
-	~Store();
 
 	void DisplayStore();
 	void SetItems(string a_items[]);

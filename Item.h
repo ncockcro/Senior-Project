@@ -25,6 +25,7 @@ class Item
 {
 public:
 	Item();
+	Item(string a_name, double a_price, string a_description);
 
 	string GetName();
 	void SetName(string a_name);

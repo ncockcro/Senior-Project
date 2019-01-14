@@ -45,6 +45,7 @@ void Trail::ActiveGame() {
 	PromptCharacterNames();
 	PromptStartingMonth();
 	LeavingMessage();
+	DepartingStore();
 }
 
 /*
@@ -340,4 +341,48 @@ void Trail::LeavingMessage() {
 	cout << endl << "\t \t - spare parts for your wagon" << endl;
 	cout << "\t ";
 	system("pause");
+}
+
+/*
+	Trail::DepartingStore()
+
+NAME
+
+	Oregon_Trail::DepartingStore - Initialize the store for the player when they are leaving Independence
+
+SYNOPSIS
+
+	void Trail::DepartingStore()
+
+DESCRIPTION
+
+	This function initializes the items and the store for when the player is departing from Independence, Missouri
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	3:32pm 1/14/2019
+*/
+void Trail::DepartingStore() {
+
+	vector<Item> storeItems;
+
+	storeItems.push_back(Item("Oxen", 40.0, "There are 2 oxen in a yoke; \n I recommend at least 3 yoke. \n I charge $40 a yoke."));
+	storeItems.push_back(Item("Food", 0.2, "I recommend you take at \n least 200 pounds of food \n for each person in your \n"
+		"family. I see that you have \n 5 people in all. You'll need \n flour, sugar, bacon,"
+		"and \n coffee. My price is 20 \n cents a pound."));
+	storeItems.push_back(Item("Clothing", 10.0, "You'll need warm clothing in \n the mountains. I recommend \n taking at least \n "
+		"2 sets of \n clothes per person. Each \n set is $10.00"));
+	storeItems.push_back(Item("Ammunition", 2.0, "I sell amunition in boxes \n of 20 bullets. Each box \n costs $2.00."));
+	storeItems.push_back(Item("Spare parts - wagon wheel", 10.0, "It's a good idea to have a \n few spare wheels for your \n wagon:"));
+	storeItems.push_back(Item("Spare parts - wagon axle", 10.0, "It's a good idea to have a \n few spare axles for your \n wagon:"));
+	storeItems.push_back(Item("Spare parts - wagon tongue", 10.0, "It's a good idea to have a \n few spare tongues for your \n wagon:"));
+
 }
