@@ -64,24 +64,24 @@ Date
 
 	2:41pm 1/14/2019
 */
-void Store::DisplayStore() {
+void Store::DisplayStore(vector<Item> a_items) {
 
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	string choice;
 
 	SetConsoleTextAttribute(hConsole, m_color);
-	cout << "----------------------------" << endl;
+	cout << "-----------------------------------------------" << endl;
 	SetConsoleTextAttribute(hConsole, 7);
-	cout << m_date << endl;
-	cout << m_location << endl;
+	cout << "\t     " << m_date << endl;
+	cout << "\t \t" << m_location << endl;
 	SetConsoleTextAttribute(hConsole, m_color);
-	cout << "----------------------------" << endl;
+	cout << "-----------------------------------------------" << endl;
 	SetConsoleTextAttribute(hConsole, 7);
-	for (int i = 0; i < m_items.size(); i++) {
-		cout << i << ". " << m_items[i] << "      " << CalculatePrice(m_items[i], m_itemQuantitys[i]) << endl;
+	for (int i = 0; i < a_items.size(); i++) {
+		cout << "\t " << i << ". " << a_items[i].GetName() << "      " << CalculatePrice(a_items[i]) << endl;
 	}
 	SetConsoleTextAttribute(hConsole, m_color);
-	cout << "----------------------------" << endl;
+	cout << "-----------------------------------------------" << endl;
 	SetConsoleTextAttribute(hConsole, 7);
 	cout << "\t \t Total bill: ";
 
@@ -91,10 +91,8 @@ void Store::DisplayStore() {
 	cin >> choice;
 }
 
-double Store::CalculatePrice(string a_item, int a_quantity) {
-	if (a_item == "Oxen") {
-		return 40 * a_quantity;
-	}
+double Store::CalculatePrice(Item a_item) {
+	return 0.0;
 }
 
 void Store::SetItems(string a_items[]) {

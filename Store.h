@@ -19,6 +19,7 @@ will serve as a template for all of the stores to share.
 #include <string>
 #include <vector>
 #include <Windows.h>
+#include "Item.h"
 
 using namespace std;
 
@@ -27,11 +28,11 @@ class Store
 public:
 	Store();
 
-	void DisplayStore();
+	void DisplayStore(vector<Item> a_items);
 	void SetItems(string a_items[]);
 
 private:
-	double CalculatePrice(string a_item, int a_quantity);
+	double CalculatePrice(Item a_item);
 	int m_color;
 	string m_date;
 	string m_location;

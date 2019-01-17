@@ -31,6 +31,7 @@ Item::Item() {
 	m_name = "NULL";
 	m_price = 0.0;
 	m_description = "NULL";
+	m_quantity = 0;
 }
 
 /*
@@ -79,6 +80,8 @@ Item::Item(string a_name, double a_price, string a_description) {
 	else {
 		error.DisplayError("ERROR: in setting price of item in item constructor.");
 	}
+
+	m_quantity = 0;
 }
 
 /*

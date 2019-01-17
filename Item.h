@@ -38,6 +38,7 @@ private:
 	string m_name;
 	double m_price;
 	string m_description;
+	int m_quantity;
 	Error error;
 };
 

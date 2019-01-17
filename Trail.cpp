@@ -385,4 +385,7 @@ void Trail::DepartingStore() {
 	storeItems.push_back(Item("Spare parts - wagon axle", 10.0, "It's a good idea to have a \n few spare axles for your \n wagon:"));
 	storeItems.push_back(Item("Spare parts - wagon tongue", 10.0, "It's a good idea to have a \n few spare tongues for your \n wagon:"));
 
+	Store departingStore = Store();
+	departingStore.DisplayStore(storeItems);
+
 }
