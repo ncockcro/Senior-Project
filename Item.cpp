@@ -289,3 +289,11 @@ void Item::SetDescription(string a_description) {
 		error.DisplayError("ERROR: The description of an item could not be set in item class.");
 	}
 }
+
+int Item::GetQuantity() {
+	return m_quantity;
+}
+
+void Item::SetQuantity(int a_quantity) {
+	m_quantity = a_quantity;
+}

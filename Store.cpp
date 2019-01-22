@@ -33,6 +33,8 @@ Store::Store()
 	m_date = "December 31, 9999";
 	m_location = "NULL, NULL";
 	m_color = 12;
+
+	m_choice = "1";
 }
 
 /*
@@ -66,35 +68,109 @@ Date
 */
 void Store::DisplayStore(vector<Item> a_items) {
 
+	m_items = a_items;
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	string choice;
 
-	SetConsoleTextAttribute(hConsole, m_color);
-	cout << "-----------------------------------------------" << endl;
-	SetConsoleTextAttribute(hConsole, 7);
-	cout << "\t     " << m_date << endl;
-	cout << "\t \t" << m_location << endl;
-	SetConsoleTextAttribute(hConsole, m_color);
-	cout << "-----------------------------------------------" << endl;
-	SetConsoleTextAttribute(hConsole, 7);
-	for (int i = 0; i < a_items.size(); i++) {
-		cout << "\t " << i << ". " << a_items[i].GetName() << "      " << CalculatePrice(a_items[i]) << endl;
+	while (stoi(m_choice) != a_items.size() + 1) {
+		SetConsoleTextAttribute(hConsole, m_color);
+		cout << "-----------------------------------------------" << endl;
+		SetConsoleTextAttribute(hConsole, 7);
+		cout << "\t        " << m_date << endl;
+		cout << "\t   " << m_location << endl;
+		SetConsoleTextAttribute(hConsole, m_color);
+		cout << "-----------------------------------------------" << endl;
+		SetConsoleTextAttribute(hConsole, 7);
+		for (int i = 0; i < a_items.size(); i++) {
+			cout << "\t " << i + 1 << ". " << a_items[i].GetName() << "      " << m_itemPrices[i] << endl;
+		}
+		cout << "\t " << a_items.size() + 1 << ". to leave the store." << endl;
+		SetConsoleTextAttribute(hConsole, m_color);
+		cout << "-----------------------------------------------" << endl;
+		SetConsoleTextAttribute(hConsole, 7);
+		cout << "\t \t Total bill: $" << CalculateTotal() << endl;
+
+		cout << "\t \t Amount you have: $" << m_playerMoney << ".00" << endl;
+
+		MakeChoice();
 	}
-	SetConsoleTextAttribute(hConsole, m_color);
-	cout << "-----------------------------------------------" << endl;
-	SetConsoleTextAttribute(hConsole, 7);
-	cout << "\t \t Total bill: ";
-
-	cout << "Amount you have: $" << m_playerMoney << ".00" << endl;
-
-	cout << "Which item would you like to buy? ";
-	cin >> choice;
 }
 
-double Store::CalculatePrice(Item a_item) {
-	return 0.0;
+/*
+	Store::MakeChoice(vector<Item> a_items)
+
+NAME
+
+	Store::MakeChoice - Prompts the user for the amount of items they want to buy
+
+SYNOPSIS
+
+	Store::MakeChoice()
+
+DESCRIPTION
+
+	This function is designed for prompting the user to make a choice from the list of items in the store.
+	Once an option has been selected, this will cycle through and make sure that the choice the user picks
+	is a valid one. It will then set the quantity of how much of an item a user wants and will calculate
+	the price to be shown on the main view of the store.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	6:31pm 1/22/2019
+*/
+void Store::MakeChoice() {
+
+	string amount;
+
+	cout << "Which item would you like to buy? ";
+	cin >> m_choice;
+
+	for (int i = 0; i < m_items.size(); i++) {
+		if ((stoi(m_choice) - 1) == i) {
+			cout << m_items[i].GetDescription() << endl;
+
+			cout << "How many would you like to buy? ";
+			cin >> amount;
+
+			m_itemQuantitys[i] = stoi(amount);
+			m_itemPrices[i] = stoi(amount) * m_items[i].GetPrice();
+
+		}
+	}
+
+}
+
+double Store::CalculateTotal() {
+
+	double total = 0;
+	
+	for (int i = 0; i < m_items.size(); i++) {
+		total += m_itemQuantitys[i];
+	}
+
+	return total;
 }
 
 void Store::SetItems(string a_items[]) {
 
+}
+
+void Store::SetDate(string a_date) {
+	m_date = a_date;
+}
+
+void Store::SetLocation(string a_location) {
+	m_location = a_location;
+}
+
+void Store::SetPlayerMoney(double a_money) {
+	m_playerMoney = a_money;
 }

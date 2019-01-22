@@ -328,7 +328,7 @@ void Trail::LeavingMessage() {
 	system("pause");
 
 	cout << endl << "\t You can buy whatever you need at" << endl;
-	cout << "Matt's General Store." << endl << endl;
+	cout << "\t Matt's General Store." << endl << endl;
 	cout << "\t ";
 	system("pause");
 
@@ -374,18 +374,22 @@ void Trail::DepartingStore() {
 
 	vector<Item> storeItems;
 
-	storeItems.push_back(Item("Oxen", 40.0, "There are 2 oxen in a yoke; \n I recommend at least 3 yoke. \n I charge $40 a yoke."));
-	storeItems.push_back(Item("Food", 0.2, "I recommend you take at \n least 200 pounds of food \n for each person in your \n"
-		"family. I see that you have \n 5 people in all. You'll need \n flour, sugar, bacon,"
-		"and \n coffee. My price is 20 \n cents a pound."));
-	storeItems.push_back(Item("Clothing", 10.0, "You'll need warm clothing in \n the mountains. I recommend \n taking at least \n "
-		"2 sets of \n clothes per person. Each \n set is $10.00"));
-	storeItems.push_back(Item("Ammunition", 2.0, "I sell amunition in boxes \n of 20 bullets. Each box \n costs $2.00."));
-	storeItems.push_back(Item("Spare parts - wagon wheel", 10.0, "It's a good idea to have a \n few spare wheels for your \n wagon:"));
-	storeItems.push_back(Item("Spare parts - wagon axle", 10.0, "It's a good idea to have a \n few spare axles for your \n wagon:"));
-	storeItems.push_back(Item("Spare parts - wagon tongue", 10.0, "It's a good idea to have a \n few spare tongues for your \n wagon:"));
+	storeItems.push_back(Item("Oxen", 40.0, "\t There are 2 oxen in a yoke; \n \t I recommend at least 3 yoke. \n \t I charge $40 a yoke."));
+	storeItems.push_back(Item("Food", 0.2, "\t I recommend you take at \n \t least 200 pounds of food \n \t for each person in your \n \t "
+		"family. I see that you have \n \t 5 people in all. You'll need \n \t flour, sugar, bacon,"
+		"and \n \t coffee. My price is 20 \n \t cents a pound."));
+	storeItems.push_back(Item("Clothing", 10.0, "\t You'll need warm clothing in \n \t the mountains. I recommend \n \t taking at least \n \t "
+		"2 sets of \n \t clothes per person. Each \n \t set is $10.00"));
+	storeItems.push_back(Item("Ammunition", 2.0, "\t I sell amunition in boxes \n \t of 20 bullets. Each box \n \t costs $2.00."));
+	storeItems.push_back(Item("Spare parts - wagon wheel", 10.0, "\t It's a good idea to have a \n \t few spare wheels for your \n \t wagon:"));
+	storeItems.push_back(Item("Spare parts - wagon axle", 10.0, "\t It's a good idea to have a \n \t few spare axles for your \n \t wagon:"));
+	storeItems.push_back(Item("Spare parts - wagon tongue", 10.0, "\t It's a good idea to have a \n \t few spare tongues for your \n \t wagon:"));
 
 	Store departingStore = Store();
+	departingStore.SetDate("March 1, 1848");
+	departingStore.SetLocation("Independence, Missouri");
+	departingStore.SetPlayerMoney(m_playerMoney);
 	departingStore.DisplayStore(storeItems);
+	
 
 }

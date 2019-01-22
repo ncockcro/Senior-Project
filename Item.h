@@ -33,6 +33,8 @@ public:
 	void SetPrice(double a_price);
 	string GetDescription();
 	void SetDescription(string a_description);
+	int GetQuantity();
+	void SetQuantity(int a_quantity);
 
 private:
 	string m_name;

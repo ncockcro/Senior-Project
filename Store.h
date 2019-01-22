@@ -30,15 +30,23 @@ public:
 
 	void DisplayStore(vector<Item> a_items);
 	void SetItems(string a_items[]);
+	void SetDate(string a_date);
+	void SetLocation(string a_location);
+	void SetPlayerMoney(double a_amount);
 
 private:
-	double CalculatePrice(Item a_item);
+	double CalculateTotal();
+	void MakeChoice();
+
+
 	int m_color;
 	string m_date;
 	string m_location;
-	vector<string> m_items;
+	vector<Item> m_items;
 	int m_itemQuantitys[20] = { 0 };
+	double m_itemPrices[20] = { 0.0 };
 	int m_playerMoney;
+	string m_choice;
 
 };
 
