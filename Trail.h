@@ -58,8 +58,8 @@ private:
 	Item m_partyClothing;
 	Item m_partyAmmunition;
 	Item m_partyExtraWheel;
-	Item m_partyExtraAxel;
-	Item m_partyExtraToungue;
+	Item m_partyExtraAxle;
+	Item m_partyExtraTongue;
 
 };
 

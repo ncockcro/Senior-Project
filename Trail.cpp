@@ -400,6 +400,13 @@ void Trail::DepartingStore() {
 	// Deduct the money that the player spent at the store
 	DeductMoney(departingStore.GetTotalPrice());
 
+	AddItemsFromStore(departingStore.GetItemQuantitys());
+
+	cout << "Player's price after store: " << m_playerMoney << endl;
+
+	cout << "Quantitys after the store:" << endl;
+	cout << m_partyOxen.GetQuantity();
+
 
 
 
@@ -438,11 +445,11 @@ void Trail::AddItemsFromStore(vector<Item> a_storeItems) {
 		else if (a_storeItems[i].GetName() == "Spare parts - wagon wheel") {
 			m_partyExtraWheel.AddToQuantity(a_storeItems[i].GetQuantity());
 		}
-		else if (a_storeItems[i].GetName() == "Spare parts - wagon axel") {
-			m_partyExtraAxel.AddToQuantity(a_storeItems[i].GetQuantity());
+		else if (a_storeItems[i].GetName() == "Spare parts - wagon axle") {
+			m_partyExtraAxle.AddToQuantity(a_storeItems[i].GetQuantity());
 		}
-		else if (a_storeItems[i].GetName() == "Spare parts - wagon toungue") {
-			m_partyExtraToungue.AddToQuantity(a_storeItems[i].GetQuantity());
+		else if (a_storeItems[i].GetName() == "Spare parts - wagon tongue") {
+			m_partyExtraTongue.AddToQuantity(a_storeItems[i].GetQuantity());
 		}
 		else {
 			m_utility.DisplayError("ERROR: There was an invalid item name from the store in trail class.");
@@ -451,32 +458,32 @@ void Trail::AddItemsFromStore(vector<Item> a_storeItems) {
 }
 
 void Trail::InitializePartyItems() {
-	m_partyOxen = Item("Oxen", 0.0, "\t There are 2 oxen in a yoke; \n \t I recommend at least 3 yoke. \n \t I charge $40 a yoke.",
+	m_partyOxen = Item("Oxen", 0.1, "\t There are 2 oxen in a yoke; \n \t I recommend at least 3 yoke. \n \t I charge $40 a yoke.",
 		"You can not bring more than 9 oxen with you.", 9);
 	m_partyOxen.SetQuantity(0);
 
-	m_partyFood = Item("Food", 0.0, "\t I recommend you take at \n \t least 200 pounds of food \n \t for each person in your \n \t "
+	m_partyFood = Item("Food", 0.1, "\t I recommend you take at \n \t least 200 pounds of food \n \t for each person in your \n \t "
 		"family. I see that you have \n \t 5 people in all. You'll need \n \t flour, sugar, bacon,"
 		"and \n \t coffee. My price is 20 \n \t cents a pound.",
 		"Your wagon may only carry \n \t 2000 pounds of food.", 2000);
 	m_partyFood.SetQuantity(0);
 
-	m_partyClothing = Item("Clothing", 0.0, "\t You'll need warm clothing in \n \t the mountains. I recommend \n \t taking at least \n \t "
+	m_partyClothing = Item("Clothing", 0.1, "\t You'll need warm clothing in \n \t the mountains. I recommend \n \t taking at least \n \t "
 		"2 sets of \n \t clothes per person. Each \n \t set is $10.00", "NULL", INT_MAX);
 	m_partyClothing.SetQuantity(0);
 
-	m_partyAmmunition = Item("Ammunition", 0.0, "\t I sell amunition in boxes \n \t of 20 bullets. Each box \n \t costs $2.00.", "NULL", INT_MAX);
+	m_partyAmmunition = Item("Ammunition", 0.1, "\t I sell amunition in boxes \n \t of 20 bullets. Each box \n \t costs $2.00.", "NULL", INT_MAX);
 	m_partyAmmunition.SetQuantity(0);
 
-	m_partyExtraWheel = Item("Spare parts - wagon wheel", 0.0, "\t It's a good idea to have a \n \t few spare wheels for your \n \t wagon:",
+	m_partyExtraWheel = Item("Spare parts - wagon wheel", 0.1, "\t It's a good idea to have a \n \t few spare wheels for your \n \t wagon:",
 		"Your wagon may only carry 3 \n \t wagon wheels.", 3);
 	m_partyExtraWheel.SetQuantity(0);
 
-	m_partyExtraAxel = Item("Spare parts - wagon axle", 0.0, "\t It's a good idea to have a \n \t few spare axles for your \n \t wagon:",
+	m_partyExtraAxle = Item("Spare parts - wagon axle", 0.1, "\t It's a good idea to have a \n \t few spare axles for your \n \t wagon:",
 		"Your wagon may only carry 3 \n \t wagon axles.", 3);
-	m_partyExtraWheel.SetQuantity(0);
+	m_partyExtraAxle.SetQuantity(0);
 
-	m_partyExtraToungue = Item("Spare parts - wagon tongue", 0.0, "\t It's a good idea to have a \n \t few spare tongues for your \n \t wagon:",
+	m_partyExtraTongue = Item("Spare parts - wagon tongue", 0.1, "\t It's a good idea to have a \n \t few spare tongues for your \n \t wagon:",
 		"Your wagon may only carry 3 \n \t wagon tongues", 3);
-	m_partyExtraToungue.SetQuantity(0);
+	m_partyExtraTongue.SetQuantity(0);
 }
