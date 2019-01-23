@@ -374,16 +374,21 @@ void Trail::DepartingStore() {
 
 	vector<Item> storeItems;
 
-	storeItems.push_back(Item("Oxen", 40.0, "\t There are 2 oxen in a yoke; \n \t I recommend at least 3 yoke. \n \t I charge $40 a yoke."));
+	storeItems.push_back(Item("Oxen", 40.0, "\t There are 2 oxen in a yoke; \n \t I recommend at least 3 yoke. \n \t I charge $40 a yoke.", 
+		"You can not bring more than 9 oxen with you.", 9));
 	storeItems.push_back(Item("Food", 0.2, "\t I recommend you take at \n \t least 200 pounds of food \n \t for each person in your \n \t "
 		"family. I see that you have \n \t 5 people in all. You'll need \n \t flour, sugar, bacon,"
-		"and \n \t coffee. My price is 20 \n \t cents a pound."));
+		"and \n \t coffee. My price is 20 \n \t cents a pound.",
+		"Your wagon may only carry \n \t 2000 pounds of food.", 2000));
 	storeItems.push_back(Item("Clothing", 10.0, "\t You'll need warm clothing in \n \t the mountains. I recommend \n \t taking at least \n \t "
-		"2 sets of \n \t clothes per person. Each \n \t set is $10.00"));
-	storeItems.push_back(Item("Ammunition", 2.0, "\t I sell amunition in boxes \n \t of 20 bullets. Each box \n \t costs $2.00."));
-	storeItems.push_back(Item("Spare parts - wagon wheel", 10.0, "\t It's a good idea to have a \n \t few spare wheels for your \n \t wagon:"));
-	storeItems.push_back(Item("Spare parts - wagon axle", 10.0, "\t It's a good idea to have a \n \t few spare axles for your \n \t wagon:"));
-	storeItems.push_back(Item("Spare parts - wagon tongue", 10.0, "\t It's a good idea to have a \n \t few spare tongues for your \n \t wagon:"));
+		"2 sets of \n \t clothes per person. Each \n \t set is $10.00", "NULL", INT_MAX));
+	storeItems.push_back(Item("Ammunition", 2.0, "\t I sell amunition in boxes \n \t of 20 bullets. Each box \n \t costs $2.00.", "NULL", INT_MAX));
+	storeItems.push_back(Item("Spare parts - wagon wheel", 10.0, "\t It's a good idea to have a \n \t few spare wheels for your \n \t wagon:", 
+		"Your wagon may only carry 3 \n \t wagon wheels.", 3));
+	storeItems.push_back(Item("Spare parts - wagon axle", 10.0, "\t It's a good idea to have a \n \t few spare axles for your \n \t wagon:", 
+		"Your wagon may only carry 3 \n \t wagon axles.", 3));
+	storeItems.push_back(Item("Spare parts - wagon tongue", 10.0, "\t It's a good idea to have a \n \t few spare tongues for your \n \t wagon:",
+		"Your wagon may only carry 3 \n \t wagon tongues", 3));
 
 	Store departingStore = Store();
 	departingStore.SetDate("March 1, 1848");

@@ -137,16 +137,30 @@ void Store::MakeChoice() {
 
 	for (size_t i = 0; i < m_items.size(); i++) {
 		try {
-			if (!m_utility.IsDigits(m_choice) && (stoi(m_choice) - 1) == i) {
+			if (m_utility.IsDigits(m_choice) && (stoi(m_choice) - 1) == i) {
 				cout << m_items[i].GetDescription() << endl;
 
-				cout << "How many would you like to buy? ";
-				cin >> amount;
+				while (1) {
+					cout << "How many would you like to buy? ";
+					cin >> amount;
 
-				m_itemQuantitys[i] = stoi(amount);
-				m_itemPrices[i] = stoi(amount) * m_items[i].GetPrice();
+					m_itemQuantitys[i] = stoi(amount);
+					m_itemPrices[i] = stoi(amount) * m_items[i].GetPrice();
 
-				validChoice = true;
+					// If the user tries to buy more than the limited amount...
+					if (stoi(amount) > m_items[i].GetCapNumber()) {
+						m_utility.DisplayError(m_items[i].GetCapDescription());
+					}
+					// If the user tries to buy more of a product than the amount of money they have...
+					else if (m_itemPrices[i] > m_playerMoney) {
+						m_utility.DisplayError("You don't have enough money for that.");
+					}
+					// Otherwise everything is good
+					else {
+						validChoice = true;
+						break;
+					}
+				}
 			}
 		}
 		catch (exception e) {

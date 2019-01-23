@@ -25,7 +25,7 @@ class Item
 {
 public:
 	Item();
-	Item(string a_name, double a_price, string a_description);
+	Item(string a_name, double a_price, string a_description, string a_capDescription, int a_capNumber);
 
 	string GetName();
 	void SetName(string a_name);
@@ -33,6 +33,10 @@ public:
 	void SetPrice(double a_price);
 	string GetDescription();
 	void SetDescription(string a_description);
+	string GetCapDescription();
+	void SetCapDescription(string a_capDescription);
+	int GetCapNumber();
+	void SetCapNumber(int a_capNumber);
 	int GetQuantity();
 	void SetQuantity(int a_quantity);
 
@@ -40,6 +44,8 @@ private:
 	string m_name;
 	double m_price;
 	string m_description;
+	string m_capDescription;
+	int m_capNumber;
 	int m_quantity;
 	Utility m_utility;
 };
