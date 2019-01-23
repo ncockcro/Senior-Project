@@ -167,7 +167,7 @@ void Oregon_Trail::PickDecision() {
 		exit(1);
 	}
 	else {
-		m_utility.DisplayError("\t That was an incorrect option.");
+		m_utility.DisplayError("That was an incorrect option.");
 	}
 }
 

@@ -32,15 +32,17 @@ Date
 void Utility::DisplayError(string a_error) {
 
 	SetConsoleTextAttribute(m_hConsole, 12);
-	cout << a_error << endl;
+	cout << "\t " << a_error << endl;
 	SetConsoleTextAttribute(m_hConsole, 7);
 }
 
 void Utility::Wait() {
 
-	cin.clear();
 	cout << "Press enter to continue...";
-	cin.ignore();
-	fflush(stdin);
-	cin.get();
+	_getch();
+	cout << endl;
+}
+
+bool Utility::IsDigits(string &a_input) {
+	return all_of(a_input.begin(), a_input.end(), ::isdigit);
 }

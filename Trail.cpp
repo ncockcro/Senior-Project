@@ -103,7 +103,7 @@ void Trail::PromptPosition() {
 			cout << "\t and the banker earns the least." << endl << endl;
 		}
 		else {
-			m_utility.DisplayError("\t That is an incorrect option.");
+			m_utility.DisplayError("That is an incorrect option.");
 		}
 	}
 

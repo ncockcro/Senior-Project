@@ -81,8 +81,9 @@ void Store::DisplayStore(vector<Item> a_items) {
 		SetConsoleTextAttribute(hConsole, m_color);
 		cout << "-----------------------------------------------" << endl;
 		SetConsoleTextAttribute(hConsole, 7);
+
 		for (size_t i = 0; i < a_items.size(); i++) {
-			cout << "\t " << i + 1 << ". " << a_items[i].GetName() << "      " << m_itemPrices[i] << endl;
+			cout << "\t " << i + 1 << ". " << a_items[i].GetName() << m_itemPrices[i] << endl;
 		}
 		cout << "\t " << a_items.size() + 1 << ". to leave the store." << endl;
 		SetConsoleTextAttribute(hConsole, m_color);
@@ -129,34 +130,45 @@ Date
 void Store::MakeChoice() {
 
 	string amount;
+	bool validChoice = false;
 
 	cout << "Which item would you like to buy? ";
 	cin >> m_choice;
 
 	for (size_t i = 0; i < m_items.size(); i++) {
-		if ((stoi(m_choice) - 1) == i) {
-			cout << m_items[i].GetDescription() << endl;
+		try {
+			if (!m_utility.IsDigits(m_choice) && (stoi(m_choice) - 1) == i) {
+				cout << m_items[i].GetDescription() << endl;
 
-			cout << "How many would you like to buy? ";
-			cin >> amount;
+				cout << "How many would you like to buy? ";
+				cin >> amount;
 
-			m_itemQuantitys[i] = stoi(amount);
-			m_itemPrices[i] = stoi(amount) * m_items[i].GetPrice();
+				m_itemQuantitys[i] = stoi(amount);
+				m_itemPrices[i] = stoi(amount) * m_items[i].GetPrice();
 
+				validChoice = true;
+			}
 		}
+		catch (exception e) {
+			m_utility.DisplayError("Invalid Option");
+			m_choice = "0";
+			return;
+		}
+	}
+
+	if (!validChoice) {
+		m_utility.DisplayError("Invalid Option!");
 	}
 
 }
 
 double Store::CalculateTotal() {
-
-	double total = 0;
 	
 	for (size_t i = 0; i < m_items.size(); i++) {
-		total += m_itemQuantitys[i];
+		m_totalPrice += m_itemPrices[i];
 	}
 
-	return total;
+	return m_totalPrice;
 }
 
 void Store::SetItems(string a_items[]) {
@@ -173,4 +185,8 @@ void Store::SetLocation(string a_location) {
 
 void Store::SetPlayerMoney(double a_money) {
 	m_playerMoney = a_money;
+}
+
+double Store::GetTotalPrice() {
+	return m_totalPrice;
 }

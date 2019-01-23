@@ -18,6 +18,7 @@ will serve as a template for all of the stores to share.
 #include <iostream>
 #include <string>
 #include <vector>
+#include <iomanip>
 #include <Windows.h>
 #include "Item.h"
 
@@ -33,6 +34,9 @@ public:
 	void SetDate(string a_date);
 	void SetLocation(string a_location);
 	void SetPlayerMoney(double a_amount);
+	double GetTotalPrice();
+
+	
 
 private:
 	double CalculateTotal();
@@ -47,6 +51,8 @@ private:
 	double m_itemPrices[20] = { 0.0 };
 	double m_playerMoney;
 	string m_choice;
+	double m_totalPrice;
+	Utility m_utility;
 
 };
 

@@ -17,7 +17,9 @@ accross all other classes in Oregon Trail for displaying errors and anything els
 #include <iostream>
 #include <string>
 #include <limits>
+#include <algorithm>
 #include <Windows.h>
+#include <conio.h>
 
 using namespace std;
 
@@ -26,6 +28,7 @@ class Utility
 public:
 	void DisplayError(string a_error);
 	void Wait();
+	bool IsDigits(string &a_input);
 
 private:
 	HANDLE m_hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
