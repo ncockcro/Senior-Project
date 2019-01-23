@@ -39,6 +39,7 @@ public:
 	void SetCapNumber(int a_capNumber);
 	int GetQuantity();
 	void SetQuantity(int a_quantity);
+	void AddToQuantity(int a_quantity);
 
 private:
 	string m_name;

@@ -328,3 +328,7 @@ int Item::GetQuantity() {
 void Item::SetQuantity(int a_quantity) {
 	m_quantity = a_quantity;
 }
+
+void Item::AddToQuantity(int a_quantity) {
+	m_quantity += a_quantity;
+}

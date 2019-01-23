@@ -37,9 +37,12 @@ private:
 	void PromptStartingMonth();
 	void LeavingMessage();
 	void DepartingStore();
+	void DeductMoney(double a_money);
+	void InitializePartyItems();
+	void AddItemsFromStore(vector<Item> a_storeItems);
 
 	Utility m_utility = Utility();
-	int m_playerMoney;
+	double m_playerMoney;
 	string m_playerPosition;
 
 	string m_wagonLeader;
@@ -48,5 +51,15 @@ private:
 	string m_startingMonth;
 
 	Store m_Store;
+
+	// Player's items during the playthrough
+	Item m_partyOxen;
+	Item m_partyFood;
+	Item m_partyClothing;
+	Item m_partyAmmunition;
+	Item m_partyExtraWheel;
+	Item m_partyExtraAxel;
+	Item m_partyExtraToungue;
+
 };
 

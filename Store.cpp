@@ -68,7 +68,7 @@ Date
 */
 void Store::DisplayStore(vector<Item> a_items) {
 
-	m_items = a_items;
+	m_userItems = a_items;
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	string choice;
 
@@ -135,21 +135,21 @@ void Store::MakeChoice() {
 	cout << "Which item would you like to buy? ";
 	cin >> m_choice;
 
-	for (size_t i = 0; i < m_items.size(); i++) {
+	for (size_t i = 0; i < m_userItems.size(); i++) {
 		try {
 			if (m_utility.IsDigits(m_choice) && (stoi(m_choice) - 1) == i) {
-				cout << m_items[i].GetDescription() << endl;
+				cout << m_userItems[i].GetDescription() << endl;
 
 				while (1) {
 					cout << "How many would you like to buy? ";
 					cin >> amount;
 
-					m_itemQuantitys[i] = stoi(amount);
-					m_itemPrices[i] = stoi(amount) * m_items[i].GetPrice();
+					m_userItems[i].SetQuantity(stoi(amount));
+					m_itemPrices[i] = stoi(amount) * m_userItems[i].GetPrice();
 
 					// If the user tries to buy more than the limited amount...
-					if (stoi(amount) > m_items[i].GetCapNumber()) {
-						m_utility.DisplayError(m_items[i].GetCapDescription());
+					if (stoi(amount) > m_userItems[i].GetCapNumber()) {
+						m_utility.DisplayError(m_userItems[i].GetCapDescription());
 					}
 					// If the user tries to buy more of a product than the amount of money they have...
 					else if (m_itemPrices[i] > m_playerMoney) {
@@ -161,6 +161,10 @@ void Store::MakeChoice() {
 						break;
 					}
 				}
+			}
+
+			if (stoi(m_choice) == m_userItems.size() + 1) {
+				validChoice = true;
 			}
 		}
 		catch (exception e) {
@@ -178,7 +182,7 @@ void Store::MakeChoice() {
 
 double Store::CalculateTotal() {
 	
-	for (size_t i = 0; i < m_items.size(); i++) {
+	for (size_t i = 0; i < m_userItems.size(); i++) {
 		m_totalPrice += m_itemPrices[i];
 	}
 
@@ -203,4 +207,8 @@ void Store::SetPlayerMoney(double a_money) {
 
 double Store::GetTotalPrice() {
 	return m_totalPrice;
+}
+
+vector<Item> Store::GetItemQuantitys() {
+	return m_userItems;
 }

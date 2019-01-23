@@ -35,6 +35,7 @@ public:
 	void SetLocation(string a_location);
 	void SetPlayerMoney(double a_amount);
 	double GetTotalPrice();
+	vector<Item> GetItemQuantitys();
 
 	
 
@@ -46,7 +47,7 @@ private:
 	int m_color;
 	string m_date;
 	string m_location;
-	vector<Item> m_items;
+	vector<Item> m_userItems;
 	int m_itemQuantitys[20] = { 0 };
 	double m_itemPrices[20] = { 0.0 };
 	double m_playerMoney;
