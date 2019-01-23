@@ -71,14 +71,14 @@ Item::Item(string a_name, double a_price, string a_description) {
 		m_description = a_description;
 	}
 	catch (exception e) {
-		error.DisplayError("ERROR: in setting name/description in item constructor class.");
+		m_utility.DisplayError("ERROR: in setting name/description in item constructor class.");
 	}
 
 	if (a_price > 0.0) {
 		m_price = a_price;
 	}
 	else {
-		error.DisplayError("ERROR: in setting price of item in item constructor.");
+		m_utility.DisplayError("ERROR: in setting price of item in item constructor.");
 	}
 
 	m_quantity = 0;
@@ -148,7 +148,7 @@ void Item::SetName(string a_name) {
 		m_name = a_name;
 	}
 	catch (exception e) {
-		error.DisplayError("ERROR: Could not set the name of an object in the item class.");
+		m_utility.DisplayError("ERROR: Could not set the name of an object in the item class.");
 	}
 }
 
@@ -218,7 +218,7 @@ void Item::SetPrice(double a_price) {
 		m_price = a_price;
 	}
 	else {
-		error.DisplayError("ERROR: The price of the item was negative and could not be set in item class.");
+		m_utility.DisplayError("ERROR: The price of the item was negative and could not be set in item class.");
 	}
 }
 
@@ -286,7 +286,7 @@ void Item::SetDescription(string a_description) {
 		m_description = a_description;
 	}
 	catch (exception e) {
-		error.DisplayError("ERROR: The description of an item could not be set in item class.");
+		m_utility.DisplayError("ERROR: The description of an item could not be set in item class.");
 	}
 }
 

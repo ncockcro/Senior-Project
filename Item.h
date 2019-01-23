@@ -17,7 +17,7 @@ oxen, food, clothing, ammunition, and many more. Item objects will be the basis 
 
 #include <iostream>
 #include <string>
-#include "Error.h"
+#include "Utility.h"
 
 using namespace std;
 
@@ -41,6 +41,6 @@ private:
 	double m_price;
 	string m_description;
 	int m_quantity;
-	Error error;
+	Utility m_utility;
 };
 

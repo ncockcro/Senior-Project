@@ -81,7 +81,7 @@ void Store::DisplayStore(vector<Item> a_items) {
 		SetConsoleTextAttribute(hConsole, m_color);
 		cout << "-----------------------------------------------" << endl;
 		SetConsoleTextAttribute(hConsole, 7);
-		for (int i = 0; i < a_items.size(); i++) {
+		for (size_t i = 0; i < a_items.size(); i++) {
 			cout << "\t " << i + 1 << ". " << a_items[i].GetName() << "      " << m_itemPrices[i] << endl;
 		}
 		cout << "\t " << a_items.size() + 1 << ". to leave the store." << endl;
@@ -133,7 +133,7 @@ void Store::MakeChoice() {
 	cout << "Which item would you like to buy? ";
 	cin >> m_choice;
 
-	for (int i = 0; i < m_items.size(); i++) {
+	for (size_t i = 0; i < m_items.size(); i++) {
 		if ((stoi(m_choice) - 1) == i) {
 			cout << m_items[i].GetDescription() << endl;
 
@@ -152,7 +152,7 @@ double Store::CalculateTotal() {
 
 	double total = 0;
 	
-	for (int i = 0; i < m_items.size(); i++) {
+	for (size_t i = 0; i < m_items.size(); i++) {
 		total += m_itemQuantitys[i];
 	}
 

@@ -19,7 +19,7 @@ DESCRIPTION
 #include <fstream>
 #include <windows.h>
 #include "Trail.h"
-#include "Error.h"
+#include "Utility.h"
 
 using namespace std;
 
@@ -37,6 +37,6 @@ private:
 	void ShowLeaderBoard();
 
 	Trail m_trailGame = Trail();
-	Error m_error = Error();
+	Utility m_utility = Utility();
 };
 

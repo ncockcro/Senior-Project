@@ -45,7 +45,7 @@ private:
 	vector<Item> m_items;
 	int m_itemQuantitys[20] = { 0 };
 	double m_itemPrices[20] = { 0.0 };
-	int m_playerMoney;
+	double m_playerMoney;
 	string m_choice;
 
 };

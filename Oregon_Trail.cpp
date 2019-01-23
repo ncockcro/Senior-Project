@@ -167,8 +167,7 @@ void Oregon_Trail::PickDecision() {
 		exit(1);
 	}
 	else {
-		system("cls");
-		m_error.DisplayError("\t That was an incorrect option.");
+		m_utility.DisplayError("\t That was an incorrect option.");
 	}
 }
 
@@ -207,7 +206,7 @@ void Oregon_Trail::ShowDescription() {
 	cout << "\t and water - filled ruts or will you plod through" << endl;
 	cout << "\t dust six inches deep?" << endl << endl;
 	cout << "\t ";
-	system("pause");
+	m_utility.Wait();
 }
 
 /*
@@ -266,5 +265,6 @@ void Oregon_Trail::ShowLeaderBoard() {
 
 	outputLeaderboardFile.close();
 
-	system("pause");
+	m_utility.Wait();
+	system("cls");
 }

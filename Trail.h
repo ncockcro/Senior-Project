@@ -18,7 +18,7 @@ DESCRIPTION
 #include <iostream>
 #include <string>
 #include <vector>
-#include "Error.h"
+#include "Utility.h"
 #include "Store.h"
 #include "Item.h"
 
@@ -38,7 +38,7 @@ private:
 	void LeavingMessage();
 	void DepartingStore();
 
-	Error m_error = Error();
+	Utility m_utility = Utility();
 	int m_playerMoney;
 	string m_playerPosition;
 

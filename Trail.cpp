@@ -103,7 +103,7 @@ void Trail::PromptPosition() {
 			cout << "\t and the banker earns the least." << endl << endl;
 		}
 		else {
-			m_error.DisplayError("\t That is an incorrect option.");
+			m_utility.DisplayError("\t That is an incorrect option.");
 		}
 	}
 
@@ -120,7 +120,7 @@ void Trail::PromptPosition() {
 		m_playerPosition = "Farmer";
 	}
 	else {
-		m_error.DisplayError("ERROR: Trail class did not know which position the player chose!");
+		m_utility.DisplayError("ERROR: Trail class did not know which position the player chose!");
 	}
 	
 }
@@ -238,7 +238,7 @@ void Trail::PromptStartingMonth() {
 		}
 		// If it is anything else, output an error message and continure the loop
 		else {
-			m_error.DisplayError("Invalid option");
+			m_utility.DisplayError("Invalid option");
 		}
 	}
 
@@ -258,7 +258,7 @@ void Trail::PromptStartingMonth() {
 		m_startingMonth == "July";
 	}
 	else {
-		m_error.DisplayError("ERROR: Trail class doesn't know which month is starting!");
+		m_utility.DisplayError("ERROR: Trail class doesn't know which month is starting!");
 	}
 }
 
@@ -293,20 +293,20 @@ void Trail::LeavingMessage() {
 	cout << endl << "\t Before leaving Independence you should buy equipment and supplies." << endl;
 	cout << "\t You have " << m_playerMoney << ".00 in cash, but you don't have to spend it all now" << endl << endl;
 	cout << "\t ";
-	system("pause");
+	m_utility.Wait();
 
 	cout << endl << "\t How will you cross the rivers? If you have money, " << endl;
 	cout << "\t you might take a ferry (if there is a ferry)." << endl;
 	cout << "\t Or, you can ford the river and hope you and your" << endl;
 	cout << "\t wagon aren't swallowed alive!" << endl << endl;
 	cout << "\t ";
-	system("pause");
+	m_utility.Wait();
 
 	cout << endl << "\t What about supplies? Well, if" << endl;
 	cout << "\t you're low on food you can hunt. You might get a buffalo..." << endl;
 	cout << "\t you might. And there are bear in the mountains." << endl << endl;
 	cout << "\t ";
-	system("pause");
+	m_utility.Wait();
 
 	cout << endl << "\t At the Dalles, you can try" << endl;
 	cout << "\t navigating the Columbia River," << endl;
@@ -314,7 +314,7 @@ void Trail::LeavingMessage() {
 	cout << "\t a makeshift raph makes you queasy," << endl;
 	cout << "\t better take the Barlow Road." << endl << endl;
 	cout << "\t ";
-	system("pause");
+	m_utility.Wait();
 
 	cout << endl << "\t If for some reason you don't" << endl;
 	cout << "\t survive -- your wagon burns," << endl;
@@ -325,12 +325,12 @@ void Trail::LeavingMessage() {
 	cout << "\t until your name is up with the others" << endl;
 	cout << "\t on the Oregon Top Ten." << endl << endl;
 	cout << "\t ";
-	system("pause");
+	m_utility.Wait();
 
 	cout << endl << "\t You can buy whatever you need at" << endl;
 	cout << "\t Matt's General Store." << endl << endl;
 	cout << "\t ";
-	system("pause");
+	m_utility.Wait();
 
 	cout << endl << "\t Hello I'm Matt. So you're going" << endl;
 	cout << "\t to Oregon! I can fix you up with what you need:" << endl;
@@ -340,7 +340,7 @@ void Trail::LeavingMessage() {
 	cout << endl << "\t \t - ammunition for your rifles" << endl;
 	cout << endl << "\t \t - spare parts for your wagon" << endl;
 	cout << "\t ";
-	system("pause");
+	m_utility.Wait();
 }
 
 /*
