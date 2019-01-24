@@ -466,6 +466,35 @@ void Trail::DepartingStore() {
 
 }
 
+/*
+	Trail::DeductMoney(double a_money)
+
+NAME
+
+	Oregon_Trail::DepartingStore - Deduct money that is passed in from the player's cash stack
+
+SYNOPSIS
+
+	void Trail::DepartingStore(double a_money)
+	a_money --> money to deduct
+
+DESCRIPTION
+
+	This function will deduct the amount of money passed in from the money the player has in a game of
+	Oregon Trail.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	8:18pm 1/24/2019
+*/
 void Trail::DeductMoney(double a_money) {
 
 	// If the player's money subtracted with what was passed in was greater than 0, subtract the money
@@ -478,8 +507,65 @@ void Trail::DeductMoney(double a_money) {
 	}
 }
 
+/*
+Trail::DepartingStore()
+
+NAME
+
+Oregon_Trail::DepartingStore - Initialize the store for the player when they are leaving Independence
+
+SYNOPSIS
+
+void Trail::DepartingStore()
+
+DESCRIPTION
+
+This function initializes the items and the store for when the player is departing from Independence, Missouri
+
+RETURNS
+
+Void
+
+AUTHOR
+
+Nicholas Cockcroft
+
+Date
+
+3:32pm 1/14/2019
+*//*
+	Trail::AddItemsFromStore(vector<Item> a_storeItems)
+
+NAME
+
+	Oregon_Trail::AddItemsFromStore - Add the items the player bought from a store to their inventory
+
+SYNOPSIS
+
+	void Trail::AddItemsFromStore(vector<Item> a_storeItems)
+
+	a_storeItems --> items from a store the player purchased
+
+DESCRIPTION
+
+	This function will cycle through all of the items in game and add to the player's pile if they bought
+	any from the store.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	8:22pm 1/23/2019
+*/
 void Trail::AddItemsFromStore(vector<Item> a_storeItems) {
 	
+	// Cycling through each of the items and adding them to the player's pile
 	for (size_t i = 0; i < a_storeItems.size(); i++) {
 
 		if (a_storeItems[i].GetName() == "Oxen") {
@@ -509,6 +595,34 @@ void Trail::AddItemsFromStore(vector<Item> a_storeItems) {
 	}
 }
 
+/*
+	Trail::IntializePartyItems()
+
+NAME
+
+	Oregon_Trail::InitializePartyItems - Initialize the items in the player's inventory
+
+SYNOPSIS
+
+	void Trail::InitializePartyItems
+
+DESCRIPTION
+
+	This function initializes the player's items by setting each item's name, description, default price, default
+	cap price, and cap price description. This initializes all of the items in the game for the player.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	8:25pm 1/23/2019
+*/
 void Trail::InitializePartyItems() {
 	m_partyOxen = Item("Oxen", 0.1, "\t There are 2 oxen in a yoke; \n \t I recommend at least 3 yoke. \n \t I charge $40 a yoke.",
 		"You can not bring more than 9 oxen with you.", 9);

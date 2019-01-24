@@ -73,6 +73,8 @@ void Store::DisplayStore(vector<Item> a_items) {
 	string choice;
 
 	while (stoi(m_choice) != a_items.size() + 1) {
+
+		// Printing the date and location of the store
 		SetConsoleTextAttribute(hConsole, m_color);
 		cout << "-----------------------------------------------" << endl;
 		SetConsoleTextAttribute(hConsole, 7);
@@ -82,6 +84,7 @@ void Store::DisplayStore(vector<Item> a_items) {
 		cout << "-----------------------------------------------" << endl;
 		SetConsoleTextAttribute(hConsole, 7);
 
+		// Printing out the items that are being sold in the store
 		for (size_t i = 0; i < a_items.size(); i++) {
 			cout << "\t " << i + 1 << ". " << a_items[i].GetName() << "      " << fixed << setprecision(2) << m_itemPrices[i] << endl;
 		}
@@ -98,7 +101,7 @@ void Store::DisplayStore(vector<Item> a_items) {
 }
 
 /*
-	Store::MakeChoice(vector<Item> a_items)
+	Store::MakeChoice()
 
 NAME
 
@@ -135,9 +138,11 @@ void Store::MakeChoice() {
 	cout << "Which item would you like to buy? ";
 	cin >> m_choice;
 
+	// Cycle through the list of items being sold to find which one the user selected...
 	for (size_t i = 0; i < m_userItems.size(); i++) {
 		try {
-			if (m_utility.IsDigits(m_choice) && (stoi(m_choice) - 1) == i) {
+			// If the user chose a valid item, then show the description and prompt for how many they want to buy
+			if ((stoi(m_choice) - 1) == i) {
 				cout << m_userItems[i].GetDescription() << endl;
 
 				while (1) {
@@ -163,10 +168,14 @@ void Store::MakeChoice() {
 				}
 			}
 
+			// If the user wanted to exit the store, this will set validChoice to true so it does not
+			// trigger an invalid option error
 			if (stoi(m_choice) == m_userItems.size() + 1) {
 				validChoice = true;
 			}
 		}
+		// If the user typed in something other then a number, this will catch the exception thrown by
+		// stoi and display an invalid option error
 		catch (exception e) {
 			m_utility.DisplayError("Invalid Option");
 			m_choice = "0";
@@ -174,12 +183,42 @@ void Store::MakeChoice() {
 		}
 	}
 
+	// If the user typed in a number other than the ones listed for items, this will output
+	// an invalid option error
 	if (!validChoice) {
 		m_utility.DisplayError("Invalid Option!");
 	}
 
 }
 
+/*
+	Store::CalculateTotal()
+
+NAME
+
+	Store::CalculateTotal - Calculates the total cost of an item with the quantity
+
+SYNOPSIS
+
+	Store::CalculateTotal()
+
+DESCRIPTION
+
+	This function will take the cost of all of the items that the user has selected at the store
+	and add them together to return the total price of everything the user is trying to buy.
+
+RETURNS
+
+	Double
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	6:31pm 1/22/2019
+*/
 double Store::CalculateTotal() {
 	
 	for (size_t i = 0; i < m_userItems.size(); i++) {
@@ -187,10 +226,6 @@ double Store::CalculateTotal() {
 	}
 
 	return m_totalPrice;
-}
-
-void Store::SetItems(string a_items[]) {
-
 }
 
 void Store::SetDate(string a_date) {
