@@ -113,10 +113,10 @@ Date
 */
 void Oregon_Trail::ShowChoices() {
 	cout << "     You may:" << endl;
-	cout << "\t 1. Travel the trail" << endl;
-	cout << "\t 2. Learn about the trail" << endl;
-	cout << "\t 3. See the Oregon Top Ten" << endl;
-	cout << "\t 4. End" << endl;
+	m_utility.OutputMessage("1. Travel the trail");
+	m_utility.OutputMessage("2. Learn about the trail");
+	m_utility.OutputMessage("3. See the Oregon Top Ten");
+	m_utility.OutputMessage("4. End");
 }
 
 /*
@@ -154,15 +154,19 @@ void Oregon_Trail::PickDecision() {
 	cout << "\t What is your choice: ";
 	cin >> choice;
 
+	// Play the actual game
 	if (choice == "1") {
 		m_trailGame.ActiveGame();
 	}
+	// Show the description of what the game is about
 	else if (choice == "2") {
 		ShowDescription();
 	}
+	// Show the leaderboards
 	else if (choice == "3") {
 		ShowLeaderBoard();
 	}
+	// Exit out of the game
 	else if (choice == "4") {
 		exit(1);
 	}
@@ -200,11 +204,13 @@ Date
 */
 void Oregon_Trail::ShowDescription() {
 
-	cout << endl << "\t Try taking a journey by covered wagon across 2000" << endl;
-	cout << "\t miles of plains, rivers, and mountains. Try!" << endl;
-	cout << "\t On the plains, will you slosh your oxen through mud" << endl;
-	cout << "\t and water - filled ruts or will you plod through" << endl;
-	cout << "\t dust six inches deep?" << endl << endl;
+	cout << endl;
+	m_utility.OutputMessage("Try taking a journey by covered wagon across 2000");
+	m_utility.OutputMessage("miles of plains, rivers, and mountains. Try!");
+	m_utility.OutputMessage("On the plains, will you slosh your oxen through mud");
+	m_utility.OutputMessage("and water - filled ruts or will you plod through");
+	m_utility.OutputMessage("dust six inches deep?");
+	cout << endl;
 	cout << "\t ";
 	m_utility.Wait();
 }

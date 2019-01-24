@@ -83,7 +83,7 @@ void Store::DisplayStore(vector<Item> a_items) {
 		SetConsoleTextAttribute(hConsole, 7);
 
 		for (size_t i = 0; i < a_items.size(); i++) {
-			cout << "\t " << i + 1 << ". " << a_items[i].GetName() << m_itemPrices[i] << endl;
+			cout << "\t " << i + 1 << ". " << a_items[i].GetName() << "      " << fixed << setprecision(2) << m_itemPrices[i] << endl;
 		}
 		cout << "\t " << a_items.size() + 1 << ". to leave the store." << endl;
 		SetConsoleTextAttribute(hConsole, m_color);
@@ -91,7 +91,7 @@ void Store::DisplayStore(vector<Item> a_items) {
 		SetConsoleTextAttribute(hConsole, 7);
 		cout << "\t \t Total bill: $" << CalculateTotal() << endl;
 
-		cout << "\t \t Amount you have: $" << m_playerMoney << ".00" << endl;
+		cout << "\t \t Amount you have: $" << m_playerMoney << endl;
 
 		MakeChoice();
 	}

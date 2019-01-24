@@ -1,15 +1,37 @@
 #include "Trail.h"
 
 
+/*
+	Trail()
 
+NAME
+
+	Trail - Default constructor
+
+SYNOPSIS
+
+	Trail()
+
+DESCRIPTION
+
+	This is the default constructor for the Trail class. Anything that needs to be intialized at the start
+	of an active game will be done so here.
+
+RETURNS
+
+	None
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	11:00am 1/9/2019
+*/
 Trail::Trail()
 {
 	InitializePartyItems();
-}
-
-
-Trail::~Trail()
-{
 }
 
 /*
@@ -81,15 +103,18 @@ void Trail::PromptPosition() {
 	
 	string positionChoice;
 
-	cout << endl << "\t Many kinds of people made the trip to Oregon." << endl;
-	cout << "\t You may:" << endl;
+	cout << endl;
+	m_utility.OutputMessage("Many kinds of people made the trip to Oregon.");
+	m_utility.OutputMessage("You may:");
 
+	// keep looping through this menu until the user enters a correct option
 	while (1) {
 
-		cout << "\t 1. Be a banker from Boston" << endl;
-		cout << "\t 2. Be a carpenter from Ohio" << endl;
-		cout << "\t 3. Be a farmer from Illinois" << endl;
-		cout << "\t 4. Find out the differences between these choices" << endl << endl;
+		m_utility.OutputMessage("1. Be a banker from Boston");
+		m_utility.OutputMessage("2. Be a carpenter from Ohio");
+		m_utility.OutputMessage("3. Be a farmer from Illinois");
+		m_utility.OutputMessage("4. Find out the differences between these choices");
+		cout << endl;
 		cout << "\t What is your choice? ";
 		cin >> positionChoice;
 
@@ -97,25 +122,30 @@ void Trail::PromptPosition() {
 			break;
 		}
 		else if (positionChoice == "4") {
-			cout << endl << "\t Traveling to Oregon isn't easy! But if you're a banker, " << endl;
-			cout << "\t you'll have more money for supplies than a carpenter or a farmer." << endl << endl;
-			cout << "\t However, the harder you have to try, the more points you deserve!" << endl;
-			cout << "\t Therefore, the farmer earns the greatest number of points " << endl;
-			cout << "\t and the banker earns the least." << endl << endl;
+			cout << endl;
+			m_utility.OutputMessage("Traveling to Oregon isn't easy! But if you're a banker,");
+			m_utility.OutputMessage("you'll have more money for supplies than a carpenter or a farmer.");
+			m_utility.OutputMessage("However, the harder you have to try, the more points you deserve!");
+			m_utility.OutputMessage("Therefore, the farmer earns the greatest number of points");
+			m_utility.OutputMessage("and the banker earns the least.");
+			cout << endl;
 		}
 		else {
 			m_utility.DisplayError("That is an incorrect option.");
 		}
 	}
 
+	// Player chose to be a banker
 	if (positionChoice == "1") {
 		m_playerMoney = 1600;
 		m_playerPosition = "Banker";
 	}
+	// Player chose to be a carpenter
 	else if (positionChoice == "2") {
 		m_playerMoney = 800;
 		m_playerPosition = "Carpenter";
 	}
+	// Player chose to be a farmer
 	else if (positionChoice == "3") {
 		m_playerMoney = 400;
 		m_playerPosition = "Farmer";
@@ -161,7 +191,7 @@ void Trail::PromptCharacterNames() {
 		cout << "\t What is the first name of the wagon leader? ";
 		cin >> m_wagonLeader;
 
-		cout << "\t What are the names of the four other members?" << endl;
+		m_utility.OutputMessage("What are the names of the four other members?");
 
 		string temp;
 		// Cycling through four times to get the names of the four other members of the wagon party
@@ -213,16 +243,18 @@ void Trail::PromptStartingMonth() {
 	string choice;
 
 	while (1) {
-		cout << endl << "\t It is 1848. Your jumping off place for Oregon Independence, Missouri. You must " << endl;
-		cout << "\t decide which month to leave Independence." << endl;
-		cout << "\t 1. March" << endl;
-		cout << "\t 2. April" << endl;
-		cout << "\t 3. May" << endl;
-		cout << "\t 4. June" << endl;
-		cout << "\t 5. July" << endl;
-		cout << "\t 6. Ask for advice" << endl << endl;
+		m_utility.OutputMessage("It is 1848. Your jumping off place for Oregon Independence, Missouri. You must");
+		m_utility.OutputMessage("decide which month to leave Independence.");
+		m_utility.OutputMessage("1. March");
+		m_utility.OutputMessage("2. April");
+		m_utility.OutputMessage("3. May");
+		m_utility.OutputMessage("4. June");
+		m_utility.OutputMessage("5. July");
+		m_utility.OutputMessage("6. Ask for advice");
+		cout << endl;
 		cout << "\t What is your choice? ";
 		cin >> choice;
+		cout << endl;
 
 		// If they pick a valid choice, break out of the loop
 		if (choice == "1" || choice == "2" || choice == "3" || choice == "4" || choice == "5") {
@@ -230,12 +262,15 @@ void Trail::PromptStartingMonth() {
 		}
 		// If they want to see a description, print it out and still continue the loop
 		else if (choice == "6") {
-			cout << endl << "\t You attend a public meeting held for \"folks with the California - Oregon fever.\"" << endl;
-			cout << "\t You're told:" << endl << endl;
-			cout << "\t If you leave too early, there won't be any grass for your oxen to eat. If you leave " << endl;
-			cout << "\t too late, you may not get to Oregon before winter comes. If you " << endl;
-			cout << "\t leave at just the right time, there will be green grass and the weather " << endl;
-			cout << "\t will still be cool." << endl << endl;
+			cout << endl;
+			m_utility.OutputMessage("You attend a public meeting held for \"folks with the California - Oregon fever.\"");
+			m_utility.OutputMessage("You're told:");
+			cout << endl;
+			m_utility.OutputMessage("If you leave too early, there won't be any grass for your oxen to eat. If you leave");
+			m_utility.OutputMessage("too late, you may not get to Oregon before winter comes. If you");
+			m_utility.OutputMessage("leave at just the right time, there will be green grass and the weather ");
+			m_utility.OutputMessage("will still be cool.");
+			cout << endl;
 		}
 		// If it is anything else, output an error message and continure the loop
 		else {
@@ -291,50 +326,62 @@ Date
 	11:10am 1/10/2019
 */
 void Trail::LeavingMessage() {
-	cout << endl << "\t Before leaving Independence you should buy equipment and supplies." << endl;
+
+	m_utility.OutputMessage("Before leaving Independence you should buy equipment and supplies.");
 	cout << "\t You have " << m_playerMoney << ".00 in cash, but you don't have to spend it all now" << endl << endl;
 	cout << "\t ";
 	m_utility.Wait();
 
-	cout << endl << "\t How will you cross the rivers? If you have money, " << endl;
-	cout << "\t you might take a ferry (if there is a ferry)." << endl;
-	cout << "\t Or, you can ford the river and hope you and your" << endl;
-	cout << "\t wagon aren't swallowed alive!" << endl << endl;
+	cout << endl;
+	m_utility.OutputMessage("How will you cross the rivers? If you have money,");
+	m_utility.OutputMessage("you might take a ferry (if there is a ferry).");
+	m_utility.OutputMessage("Or, you can ford the river and hope you and your");
+	m_utility.OutputMessage("wagon aren't swallowed alive!");
+	cout << endl;
 	cout << "\t ";
 	m_utility.Wait();
 
-	cout << endl << "\t What about supplies? Well, if" << endl;
-	cout << "\t you're low on food you can hunt. You might get a buffalo..." << endl;
-	cout << "\t you might. And there are bear in the mountains." << endl << endl;
+	cout << endl;
+	m_utility.OutputMessage("What about supplies? Well, if");
+	m_utility.OutputMessage("you're low on food you can hunt. You might get a buffalo...");
+	m_utility.OutputMessage("you might. And there are bear in the mountains.");
+	cout << endl;
 	cout << "\t ";
 	m_utility.Wait();
 
-	cout << endl << "\t At the Dalles, you can try" << endl;
-	cout << "\t navigating the Columbia River," << endl;
-	cout << "\t but if running the rapids with" << endl;
-	cout << "\t a makeshift raph makes you queasy," << endl;
-	cout << "\t better take the Barlow Road." << endl << endl;
+	cout << endl;
+	m_utility.OutputMessage("At the Dalles, you can try");
+	m_utility.OutputMessage("navigating the Columbia River,");
+	m_utility.OutputMessage("but if running the rapids with");
+	m_utility.OutputMessage("a makeshift raph makes you queasy,");
+	m_utility.OutputMessage("better take the Barlow Road.");
+	cout << endl;
 	cout << "\t ";
 	m_utility.Wait();
 
-	cout << endl << "\t If for some reason you don't" << endl;
-	cout << "\t survive -- your wagon burns," << endl;
-	cout << "\t or thieves steal your oxen, or" << endl;
-	cout << "\t you run out of provisions, or" << endl;
-	cout << "\t you die of cholera -- don't" << endl;
-	cout << "\t give up! Try again... and again..." << endl;
-	cout << "\t until your name is up with the others" << endl;
-	cout << "\t on the Oregon Top Ten." << endl << endl;
+	cout << endl;
+	m_utility.OutputMessage("If for some reason you don't");
+	m_utility.OutputMessage("survive -- your wagon burns,");
+	m_utility.OutputMessage("or thieves steal your oxen, or");
+	m_utility.OutputMessage("you run out of provisions, or");
+	m_utility.OutputMessage("you die of cholera -- don't");
+	m_utility.OutputMessage("give up! Try again... and again...");
+	m_utility.OutputMessage("until your name is up with the others");
+	m_utility.OutputMessage("on the Oregon Top Ten.");
+	cout << endl;
 	cout << "\t ";
 	m_utility.Wait();
 
-	cout << endl << "\t You can buy whatever you need at" << endl;
-	cout << "\t Matt's General Store." << endl << endl;
+	cout << endl;
+	m_utility.OutputMessage("You can buy whatever you need at");
+	m_utility.OutputMessage("Matt's General Store.");
+	cout << endl;
 	cout << "\t ";
 	m_utility.Wait();
 
-	cout << endl << "\t Hello I'm Matt. So you're going" << endl;
-	cout << "\t to Oregon! I can fix you up with what you need:" << endl;
+	cout << endl;
+	m_utility.OutputMessage("Hello I'm Matt. So you're going");
+	m_utility.OutputMessage("to Oregon! I can fix you up with what you need:");
 	cout << endl << "\t \t - a team of oxen to pull your wagon" << endl;
 	cout << endl << "\t \t - clothing for both summer and winter" << endl;
 	cout << endl << "\t \t - plenty of food for the trip" << endl;
@@ -375,6 +422,7 @@ void Trail::DepartingStore() {
 
 	vector<Item> storeItems;
 
+	// Initializing the items to be put into the departing store
 	storeItems.push_back(Item("Oxen", 40.0, "\t There are 2 oxen in a yoke; \n \t I recommend at least 3 yoke. \n \t I charge $40 a yoke.", 
 		"You can not bring more than 9 oxen with you.", 9));
 	storeItems.push_back(Item("Food", 0.2, "\t I recommend you take at \n \t least 200 pounds of food \n \t for each person in your \n \t "
@@ -391,6 +439,7 @@ void Trail::DepartingStore() {
 	storeItems.push_back(Item("Spare parts - wagon tongue", 10.0, "\t It's a good idea to have a \n \t few spare tongues for your \n \t wagon:",
 		"Your wagon may only carry 3 \n \t wagon tongues", 3));
 
+	// Creating the store, setting the initial information, and sending the items to be sold there
 	Store departingStore = Store();
 	departingStore.SetDate("March 1, 1848");
 	departingStore.SetLocation("Independence, Missouri");
@@ -400,6 +449,7 @@ void Trail::DepartingStore() {
 	// Deduct the money that the player spent at the store
 	DeductMoney(departingStore.GetTotalPrice());
 
+	// Add the items that the player bought to their inventory
 	AddItemsFromStore(departingStore.GetItemQuantitys());
 
 	cout << "Player's price after store: " << m_playerMoney << endl;
@@ -407,10 +457,12 @@ void Trail::DepartingStore() {
 	cout << "Quantitys after the store:" << endl;
 	cout << m_partyOxen.GetQuantity();
 
-
-
-
-	
+	cout << endl << endl;
+	m_utility.OutputMessage("Well then, you're ready");
+	m_utility.OutputMessage("to start. Good luck!");
+	m_utility.OutputMessage("You have a long and");
+	m_utility.OutputMessage("difficult journey ahead");
+	m_utility.OutputMessage("of you.");
 
 }
 

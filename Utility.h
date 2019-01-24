@@ -29,6 +29,7 @@ public:
 	void DisplayError(string a_error);
 	void Wait();
 	bool IsDigits(string &a_input);
+	void OutputMessage(string a_message);
 
 private:
 	HANDLE m_hConsole = GetStdHandle(STD_OUTPUT_HANDLE);

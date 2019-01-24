@@ -46,3 +46,7 @@ void Utility::Wait() {
 bool Utility::IsDigits(string &a_input) {
 	return all_of(a_input.begin(), a_input.end(), ::isdigit);
 }
+
+void Utility::OutputMessage(string a_message) {
+	cout << "\t " << a_message << endl;
+}

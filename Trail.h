@@ -28,7 +28,6 @@ class Trail
 {
 public:
 	Trail();
-	~Trail();
 	void ActiveGame();
 
 private:
@@ -44,11 +43,10 @@ private:
 	Utility m_utility = Utility();
 	double m_playerMoney;
 	string m_playerPosition;
+	string m_startingMonth;
 
 	string m_wagonLeader;
 	string m_wagonParty[4];
-
-	string m_startingMonth;
 
 	Store m_Store;
 
