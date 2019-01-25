@@ -1,16 +1,16 @@
 /*
 WRITTEN BY
-Nicholas Cockcroft
+	Nicholas Cockcroft
 
 DATE
-1/9/2019
+	1/9/2019
 
 CLASS
-Error
+	Utility
 
 DESCRIPTION
-The purpose of this class is to handle any error handling that occurs throughout the course of the program. This class is used
-accross all other classes in Oregon Trail for displaying errors and anything else that deals with errors.
+	The purpose of this class is to handle various utility functions used throughout the program for Oregon Trail.
+	Some incluce handling errors, outputting specially formatted messages, and other useful functions.
 */
 #pragma once
 

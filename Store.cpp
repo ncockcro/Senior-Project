@@ -228,22 +228,166 @@ double Store::CalculateTotal() {
 	return m_totalPrice;
 }
 
+/*
+	Store::SetDate(string a_date)
+
+NAME
+
+	Store::SetDate - Sets the date for the store
+
+SYNOPSIS
+
+	Store::CalculateTotal(string a_date)
+
+	a_date --> the date that should be displayed at the store.
+
+DESCRIPTION
+
+	This function will take in a string which is the date of the store and will be displayed at the top when
+	the store is outputted.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	9:42am 1/25/2019
+*/
 void Store::SetDate(string a_date) {
 	m_date = a_date;
 }
 
+/*
+	Store::SetLocation(string a_location)
+
+NAME
+
+	Store::SetLocation - Sets the location of a store object
+
+SYNOPSIS
+
+	Store::SetLocation(string a_location)
+
+	a_location --> a string that represents the location of the store
+
+DESCRIPTION
+
+	This function will take in a string that represents the location of a store object and is displayed when
+	the store gets outputted.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	9:45am 1/25/2019
+*/
 void Store::SetLocation(string a_location) {
 	m_location = a_location;
 }
 
+/*
+	Store::SetPlayerMoney(double a_money)
+
+NAME
+
+	Store::SetPlayerMoney - Sets player money for the store to what was passed in
+
+SYNOPSIS
+
+	Store::SetPlayerMoney(string a_money)
+
+	a_money --> the player's current money that is passed in
+
+DESCRIPTION
+
+	This function will take the money the player currently has and store it in the store object
+	to be displayed with the store.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	9:46am 1/25/2019
+*/
 void Store::SetPlayerMoney(double a_money) {
 	m_playerMoney = a_money;
 }
 
+/*
+	Store::GetTotalPrice()
+
+NAME
+
+	Store::GetTotalPrice - Returns the total price the player spent
+
+SYNOPSIS
+
+	Store::GetTotalPrice()
+
+DESCRIPTION
+
+	This function will retrieve the total price the player spent at the store and return it.
+
+RETURNS
+
+	Double
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	9:54am 1/25/2019
+*/
 double Store::GetTotalPrice() {
 	return m_totalPrice;
 }
 
+/*
+	Store::GetItemQuantitys()
+
+NAME
+
+	Store::GetItemQuantitys - Returns the quantities of the items bought
+
+SYNOPSIS
+
+	Store::GetItemQuantitys()
+
+DESCRIPTION
+
+	This function will return the vector of item quantitys of what the player purchased from the store object.
+
+RETURNS
+
+	Vector<Item>
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	9:55am 1/25/2019
+*/
 vector<Item> Store::GetItemQuantitys() {
 	return m_userItems;
 }

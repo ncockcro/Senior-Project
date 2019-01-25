@@ -294,10 +294,67 @@ void Item::SetDescription(string a_description) {
 	}
 }
 
+/*
+	Item::GetDescription()
+
+NAME
+
+	Item::GetDescription - Get the description of an item
+
+SYNOPSIS
+
+	void Item::GetDescription()
+
+DESCRIPTION
+
+	This function retrieve the description of an item.
+
+RETURNS
+
+	String
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	10:00am 1/25/2019
+*/
 string Item::GetCapDescription() {
 	return m_capDescription;
 }
 
+/*
+	Item::SetDescription(string a_description)
+
+NAME
+
+	Item::SetDescription - Set the description of an item object to what was passed in
+
+SYNOPSIS
+
+	void Item::SetDescription(string a_description)
+		a_description      --> the description of an object
+
+DESCRIPTION
+
+	This function will set the cap description of an item object. The cap description is in place if the player tries
+	to buy too much of an item. For example, a player tries to buy 10 oxen but the cap is 9 oxen, then this cap
+	description is going to be shown.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	10:03am 1/25/2019
+*/
 void Item::SetCapDescription(string a_capDescription) {
 	try {
 		m_capDescription = a_capDescription;
@@ -307,10 +364,67 @@ void Item::SetCapDescription(string a_capDescription) {
 	}
 }
 
+/*
+	Item::GetCapNumber()
+
+NAME
+
+	Item::GetCapNumber - Get the cap number of an item object
+
+SYNOPSIS
+
+	void Item::GetCapNumber()
+
+DESCRIPTION
+
+	This function will retrieve the cap number of an item object. The cap number is the max amount of an item
+	that a player can purchase. For example, if the user tries to buy 10 oxen but the store can only sell 9,
+	the cap number of the item, Oxen, is 9.
+
+RETURNS
+
+	Int
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	10:11am 1/25/2019
+*/
 int Item::GetCapNumber() {
 	return m_capNumber;
 }
 
+/*
+	Item::SetCapNumber(int a_capNumber)
+
+NAME
+
+	Item::SetCapNumber - Sets the cap number of an item
+
+SYNOPSIS
+
+	void Item::SetCapNumber(int a_capNumber)
+		a_capNumber      --> the number that an item caps out at
+
+DESCRIPTION
+
+	This function will set the cap number of an item. That is, the max amount of a particular item a place can buy
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	10:13am 1/25/2019
+*/
 void Item::SetCapNumber(int a_capNumber) {
 
 	if (a_capNumber > 0) {
@@ -321,14 +435,103 @@ void Item::SetCapNumber(int a_capNumber) {
 	}
 }
 
+/*
+	Item::GetQuantity()
+
+NAME
+
+	Item::GetQuantity - Retrieves the quantity of an item
+
+SYNOPSIS
+
+	void Item::GetQuantity()
+
+DESCRIPTION
+
+	This function will retrieve how much of an item there is.
+
+RETURNS
+
+	Int
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	10:15am 1/25/2019
+*/
 int Item::GetQuantity() {
 	return m_quantity;
 }
 
+/*
+	Item::SetQuantity(int a_quantity)
+
+NAME
+
+	Item::SetQuantity - Set the quantity of an item
+
+SYNOPSIS
+
+	void Item::SetQuantity(string a_quantity)
+		a_quantity     --> the quantity of an item
+
+DESCRIPTION
+
+	This function will set the amount of an item that is passed in.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	10:16am 1/25/2019
+*/
 void Item::SetQuantity(int a_quantity) {
 	m_quantity = a_quantity;
 }
 
+/*
+	Item::AddToQuantity(int a_quantity)
+
+NAME
+
+	Item::AddToQuantity - Add to the quantity of an item
+
+SYNOPSIS
+
+	void Item::AddToQuantity(int a_quantity)
+		a_quantity      --> the amount to be added to 
+
+DESCRIPTION
+
+	This function will set the description of an item object.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	10:24am 1/25/2019
+*/
 void Item::AddToQuantity(int a_quantity) {
-	m_quantity += a_quantity;
+
+	if (a_quantity > 0) {
+		m_quantity += a_quantity;
+	}
+	else {
+		m_utility.DisplayError("ERROR: Tried ading a negative/zero number to item quantity in item class.");
+	}
 }
