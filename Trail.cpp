@@ -129,6 +129,7 @@ void Trail::PromptPosition() {
 			m_utility.OutputMessage("Therefore, the farmer earns the greatest number of points");
 			m_utility.OutputMessage("and the banker earns the least.");
 			cout << endl;
+			m_utility.Wait();
 		}
 		else {
 			m_utility.DisplayError("That is an incorrect option.");
@@ -194,19 +195,40 @@ void Trail::PromptCharacterNames() {
 		m_utility.OutputMessage("What are the names of the four other members?");
 
 		string temp;
+		bool sameName = false;
 		// Cycling through four times to get the names of the four other members of the wagon party
 		for (int i = 0; i < 4; i++) {
 			cout << "\t " << i + 1 << ". ";
-			cin >> m_wagonParty[i];
+			cin >> temp;
+
+			if (temp == m_wagonLeader) {
+				sameName = true;
+			}
+
+			for (int j = 0; j < i; j++) {
+				if (temp == m_wagonParty[j]) {
+					sameName = true;
+				}
+			}
+
+			if (sameName) {
+				m_utility.DisplayError("Name already used, pick another.");
+				i--;
+				sameName = false;
+			}
+			else {
+				m_wagonParty[i] = temp;
+			}
 		}
 
 		cout << "\t Are these names correct? Verify with yes or no. ";
 		cin >> verify;
 
-		if (verify == "yes") {
+		if (verify == "yes" || verify == "ye" || verify == "y") {
 			break;
 		}
 	}
+
 }
 
 /*
@@ -271,6 +293,7 @@ void Trail::PromptStartingMonth() {
 			m_utility.OutputMessage("leave at just the right time, there will be green grass and the weather ");
 			m_utility.OutputMessage("will still be cool.");
 			cout << endl;
+			m_utility.Wait();
 		}
 		// If it is anything else, output an error message and continure the loop
 		else {
