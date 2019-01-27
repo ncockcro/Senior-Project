@@ -26,12 +26,18 @@ using namespace std;
 class Utility
 {
 public:
+	Utility();
 	void DisplayError(string a_error);
 	void Wait();
 	bool IsDigits(string &a_input);
 	void OutputMessage(string a_message);
+	void NextDay(int &a_year, string &a_month, int &a_day);
 
 private:
-	HANDLE m_hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	int ConvertMonth(string a_month);
+	string ConvertMonth(int a_month);
+
+	HANDLE m_hConsole;
+	int m_lastDays[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 };
 

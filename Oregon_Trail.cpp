@@ -112,6 +112,7 @@ Date
 	11:24am 1/8/2019
 */
 void Oregon_Trail::ShowChoices() {
+
 	cout << "     You may:" << endl;
 	m_utility.OutputMessage("1. Travel the trail");
 	m_utility.OutputMessage("2. Learn about the trail");

@@ -1,5 +1,9 @@
 #include "Utility.h"
 
+Utility::Utility() {
+	m_hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+}
+
 /*
 	Error:DisplayError(string a_error)
 
@@ -137,4 +141,113 @@ Date
 */
 void Utility::OutputMessage(string a_message) {
 	cout << "\t " << a_message << endl;
+}
+
+void Utility::NextDay(int &a_year, string &a_month, int &a_day) {
+
+	int monthNum = ConvertMonth(a_month);
+
+	// If the next day is going to be a new year...
+	if (monthNum == 12 && a_day == m_lastDays[monthNum - 1]) {
+		a_year++;
+		a_month = "January";
+		a_day = 1;
+	}
+	// If it is the last day of the month...
+	else if (a_day == m_lastDays[monthNum - 1]) {
+		monthNum++;
+		a_month = ConvertMonth(monthNum);
+		a_day = 1;
+	}
+	// Otherwise, just increase the current day they are on
+	else {
+		a_day++;
+	}
+}
+
+int Utility::ConvertMonth(string a_month) {
+
+	if (a_month == "January") {
+		return 1;
+	}
+	else if (a_month == "February") {
+		return 2;
+	}
+	else if (a_month == "March") {
+		return 3;
+	}
+	else if (a_month == "April") {
+		return 4;
+	}
+	else if (a_month == "May") {
+		return 5;
+	}
+	else if (a_month == "June") {
+		return 6;
+	}
+	else if (a_month == "July") {
+		return 7;
+	}
+	else if (a_month == "August") {
+		return 8;
+	}
+	else if (a_month == "September") {
+		return 9;
+	}
+	else if (a_month == "October") {
+		return 10;
+	}
+	else if (a_month == "November") {
+		return 11;
+	}
+	else if (a_month == "December") {
+		return 12;
+	}
+	else {
+		DisplayError("Error: Was not a proper month in utility class.");
+		return -1;
+	}
+}
+
+string Utility::ConvertMonth(int a_month) {
+
+	if (a_month == 1) {
+		return "January";
+	}
+	else if (a_month == 2) {
+		return "February";
+	}
+	else if (a_month == 3) {
+		return "March";
+	}
+	else if (a_month == 4) {
+		return "April";
+	}
+	else if (a_month == 5) {
+		return "May";
+	}
+	else if (a_month == 6) {
+		return "June";
+	}
+	else if (a_month == 7) {
+		return "July";
+	}
+	else if (a_month == 8) {
+		return "August";
+	}
+	else if (a_month == 9) {
+		return "September";
+	}
+	else if (a_month == 10) {
+		return "October";
+	}
+	else if (a_month == 11) {
+		return "November";
+	}
+	else if (a_month == 12) {
+		return "December";
+	}
+	else {
+		DisplayError("ERROR: Invalid month given for conversion in utility class.");
+	}
 }
