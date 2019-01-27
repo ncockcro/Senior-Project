@@ -30,7 +30,7 @@ public:
 	Store();
 
 	void DisplayStore(vector<Item> a_items);
-	void SetDate(string a_date);
+	void SetDate(int a_year, string a_month, int a_day);
 	void SetLocation(string a_location);
 	void SetPlayerMoney(double a_amount);
 	double GetTotalPrice();
@@ -44,7 +44,9 @@ private:
 
 
 	int m_color;
-	string m_date;
+	string m_month;
+	int m_day;
+	int m_year;
 	string m_location;
 	vector<Item> m_userItems;
 	int m_itemQuantitys[20] = { 0 };

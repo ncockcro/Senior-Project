@@ -30,7 +30,9 @@ Date
 */
 Store::Store()
 {
-	m_date = "December 31, 9999";
+	m_month = "NULL";
+	m_year = 9999;
+	m_day = 31;
 	m_location = "NULL, NULL";
 	m_color = 12;
 
@@ -78,7 +80,7 @@ void Store::DisplayStore(vector<Item> a_items) {
 		SetConsoleTextAttribute(hConsole, m_color);
 		cout << "-----------------------------------------------" << endl;
 		SetConsoleTextAttribute(hConsole, 7);
-		cout << "\t        " << m_date << endl;
+		cout << "\t        " << m_month << " " << m_day << ", " << m_year << endl;
 		cout << "\t   " << m_location << endl;
 		SetConsoleTextAttribute(hConsole, m_color);
 		cout << "-----------------------------------------------" << endl;
@@ -258,8 +260,16 @@ Date
 
 	9:42am 1/25/2019
 */
-void Store::SetDate(string a_date) {
-	m_date = a_date;
+void Store::SetDate(int a_year, string a_month, int a_day) {
+
+	if (a_year > 0 && a_day > 0) {
+		m_year = a_year;
+		m_day = a_day;
+	}
+	else {
+		m_utility.DisplayError("ERROR: Year or day passed in was negative.");
+	}
+	m_month = a_month;
 }
 
 /*

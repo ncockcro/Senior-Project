@@ -279,23 +279,26 @@ void Trail::PromptStartingMonth() {
 	}
 
 	if (choice == "1") {
-		m_startingMonth = "March";
+		m_month = "March";
 	}
 	else if (choice == "2") {
-		m_startingMonth = "April";
+		m_month = "April";
 	}
 	else if (choice == "3") {
-		m_startingMonth = "May";
+		m_month = "May";
 	}
 	else if (choice == "4") {
-		m_startingMonth == "June";
+		m_month = "June";
 	}
 	else if (choice == "5") {
-		m_startingMonth == "July";
+		m_month = "July";
 	}
 	else {
 		m_utility.DisplayError("ERROR: Trail class doesn't know which month is starting!");
 	}
+
+	m_day = 1;
+	m_year = 1848;
 }
 
 /*
@@ -441,7 +444,7 @@ void Trail::DepartingStore() {
 
 	// Creating the store, setting the initial information, and sending the items to be sold there
 	Store departingStore = Store();
-	departingStore.SetDate("March 1, 1848");
+	departingStore.SetDate(m_year, m_month, m_day);
 	departingStore.SetLocation("Independence, Missouri");
 	departingStore.SetPlayerMoney(m_playerMoney);
 	departingStore.DisplayStore(storeItems);

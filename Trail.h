@@ -43,7 +43,9 @@ private:
 	Utility m_utility = Utility();
 	double m_playerMoney;
 	string m_playerPosition;
-	string m_startingMonth;
+	string m_month;
+	int m_year;
+	int m_day;
 
 	string m_wagonLeader;
 	string m_wagonParty[4];
