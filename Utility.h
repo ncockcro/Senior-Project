@@ -32,6 +32,7 @@ public:
 	bool IsDigits(string &a_input);
 	void OutputMessage(string a_message);
 	void NextDay(int &a_year, string &a_month, int &a_day);
+	void ShowLocation(string a_location, int a_year, string a_month, int a_day);
 
 private:
 	int ConvertMonth(string a_month);

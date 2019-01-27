@@ -32,6 +32,7 @@ Date
 Trail::Trail()
 {
 	InitializePartyItems();
+	m_location = "Independence";
 }
 
 /*
@@ -69,6 +70,8 @@ void Trail::ActiveGame() {
 	PromptStartingMonth();
 	LeavingMessage();
 	DepartingStore();
+
+	m_utility.ShowLocation(m_location, m_year, m_month, m_day);
 }
 
 /*
@@ -478,17 +481,13 @@ void Trail::DepartingStore() {
 	// Add the items that the player bought to their inventory
 	AddItemsFromStore(departingStore.GetItemQuantitys());
 
-	cout << "Player's price after store: " << m_playerMoney << endl;
-
-	cout << "Quantitys after the store:" << endl;
-	cout << m_partyOxen.GetQuantity();
-
 	cout << endl << endl;
 	m_utility.OutputMessage("Well then, you're ready");
 	m_utility.OutputMessage("to start. Good luck!");
 	m_utility.OutputMessage("You have a long and");
 	m_utility.OutputMessage("difficult journey ahead");
 	m_utility.OutputMessage("of you.");
+	m_utility.Wait();
 
 }
 

@@ -528,7 +528,7 @@ Date
 */
 void Item::AddToQuantity(int a_quantity) {
 
-	if (a_quantity > 0) {
+	if (a_quantity > -1) {
 		m_quantity += a_quantity;
 	}
 	else {

@@ -76,12 +76,18 @@ void Oregon_Trail::ShowTitle() {
 	string input;
 	file.open("title.txt");
 
-	while (getline(file, input)) {
+	// If title file doesn't exist, show a simple title instead
+	if (!file) {
+		cout << "Welcome to Oregon Trail" << endl << endl;
+	}
+	else {
+		while (getline(file, input)) {
 
-		cout << input;
+			cout << input;
+			cout << endl;
+		}
 		cout << endl;
 	}
-	cout << endl;
 }
 
 /*

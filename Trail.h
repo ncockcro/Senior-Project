@@ -46,6 +46,7 @@ private:
 	string m_month;
 	int m_year;
 	int m_day;
+	string m_location;
 
 	string m_wagonLeader;
 	string m_wagonParty[4];
