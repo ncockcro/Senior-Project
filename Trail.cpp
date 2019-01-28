@@ -33,6 +33,9 @@ Trail::Trail()
 {
 	InitializePartyItems();
 	m_location = "Independence";
+	m_milesLeft = 1828;
+	m_pace = "steady";
+	m_rationsPace = "filling";
 }
 
 /*
@@ -72,6 +75,14 @@ void Trail::ActiveGame() {
 	DepartingStore();
 
 	m_utility.ShowLocation(m_location, m_year, m_month, m_day);
+	TrailMenu();
+
+	while (m_milesLeft > 0) {
+
+	}
+
+	
+
 }
 
 /*
@@ -358,7 +369,6 @@ void Trail::LeavingMessage() {
 
 	m_utility.OutputMessage("Before leaving Independence you should buy equipment and supplies.");
 	cout << "\t You have " << m_playerMoney << ".00 in cash, but you don't have to spend it all now" << endl << endl;
-	cout << "\t ";
 	m_utility.Wait();
 
 	cout << endl;
@@ -367,7 +377,6 @@ void Trail::LeavingMessage() {
 	m_utility.OutputMessage("Or, you can ford the river and hope you and your");
 	m_utility.OutputMessage("wagon aren't swallowed alive!");
 	cout << endl;
-	cout << "\t ";
 	m_utility.Wait();
 
 	cout << endl;
@@ -375,7 +384,6 @@ void Trail::LeavingMessage() {
 	m_utility.OutputMessage("you're low on food you can hunt. You might get a buffalo...");
 	m_utility.OutputMessage("you might. And there are bear in the mountains.");
 	cout << endl;
-	cout << "\t ";
 	m_utility.Wait();
 
 	cout << endl;
@@ -385,7 +393,6 @@ void Trail::LeavingMessage() {
 	m_utility.OutputMessage("a makeshift raph makes you queasy,");
 	m_utility.OutputMessage("better take the Barlow Road.");
 	cout << endl;
-	cout << "\t ";
 	m_utility.Wait();
 
 	cout << endl;
@@ -398,14 +405,12 @@ void Trail::LeavingMessage() {
 	m_utility.OutputMessage("until your name is up with the others");
 	m_utility.OutputMessage("on the Oregon Top Ten.");
 	cout << endl;
-	cout << "\t ";
 	m_utility.Wait();
 
 	cout << endl;
 	m_utility.OutputMessage("You can buy whatever you need at");
 	m_utility.OutputMessage("Matt's General Store.");
 	cout << endl;
-	cout << "\t ";
 	m_utility.Wait();
 
 	cout << endl;
@@ -416,7 +421,6 @@ void Trail::LeavingMessage() {
 	cout << endl << "\t \t - plenty of food for the trip" << endl;
 	cout << endl << "\t \t - ammunition for your rifles" << endl;
 	cout << endl << "\t \t - spare parts for your wagon" << endl;
-	cout << "\t ";
 	m_utility.Wait();
 }
 
@@ -677,4 +681,349 @@ void Trail::InitializePartyItems() {
 	m_partyExtraTongue = Item("Spare parts - wagon tongue", 0.1, "\t It's a good idea to have a \n \t few spare tongues for your \n \t wagon:",
 		"Your wagon may only carry 3 \n \t wagon tongues", 3);
 	m_partyExtraTongue.SetQuantity(0);
+}
+
+/*
+	Trail::TrailMenu()
+
+NAME
+
+	Oregon_Trail::TrailMenu - Menu for player options while on the trail
+
+SYNOPSIS
+
+	void Trail::TrailMenu()
+
+DESCRIPTION
+
+	This function provides various functions for the player to use while on the trail, able to change
+	the pace at which they are using rations and pace, and other uses.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	11:41am 1/28/2019
+*/
+void Trail::TrailMenu() {
+
+	string choice;
+
+	while (1) {
+		cout << "\t Weather: " << m_weather << endl;
+		cout << "\t Health: " << m_health << endl;
+		cout << "\t Pace: " << m_pace << endl;
+		cout << "\t Rations: " << m_rationsPace << endl << endl;
+
+		cout << "\t You May:" << endl;
+		m_utility.OutputMessage("    1. Continue on trail");
+		m_utility.OutputMessage("    2. Check Supplies");
+		m_utility.OutputMessage("    3. Change pace");
+		m_utility.OutputMessage("    4. Change food rations");
+		m_utility.OutputMessage("    5. Stop to rest");
+		m_utility.OutputMessage("    6. Talk to people");
+		m_utility.OutputMessage("    7. Buy supplies");
+
+		cin >> choice;
+
+		// Continue the trail
+		if (choice == "1") {
+			break;
+		}
+		// Show the player's supplies
+		else if (choice == "2") {
+			ShowSupplies();
+		} 
+		// Change the pace the player is going
+		else if (choice == "3") {
+			ChangePace();
+		}
+		// Change the amount of rations being used
+		else if (choice == "4") {
+			ChangeRations();
+		}
+		// Rest for a # of days to regenerate party health
+		else if (choice == "5") {
+			Rest();
+		}
+		// Talk to local people to get advice
+		else if (choice == "6") {
+
+		}
+		// Buy supplies if available
+		else if (choice == "7") {
+
+		}
+		// Anything else if invlaid input
+		else {
+			m_utility.DisplayError("Invalid option.");
+		}
+	}
+
+}
+
+/*
+	Trail::ShowSupplies()
+
+NAME
+
+	Oregon_Trail::ShowSupplies - Shows the player's current supplies
+
+SYNOPSIS
+
+	void Trail::ShowSupplies()
+
+DESCRIPTION
+
+	This function will output all of the player's supplies to the screen for them to see.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	11:50am 1/28/2019
+*/
+void Trail::ShowSupplies() {
+
+	m_utility.OutputMessage("\t Your Supplies");
+	cout << "\t oxen     " << m_partyOxen.GetQuantity() << endl;
+	cout << "\t sets of clothing     " << m_partyClothing.GetQuantity() << endl;
+	cout << "\t bullets     " << m_partyAmmunition.GetQuantity() << endl;
+	cout << "\t wagon wheels     " << m_partyExtraWheel.GetQuantity() << endl;
+	cout << "\t wagon axles     " << m_partyExtraAxle.GetQuantity() << endl;
+	cout << "\t wagon toungue     " << m_partyOxen.GetQuantity() << endl;
+	cout << "\t pounds of food     " << m_partyFood.GetQuantity() << endl;
+	cout << "\t money left     $" << m_playerMoney << endl;
+	m_utility.Wait();
+}
+
+/*
+	Trail::ChangePace()
+
+NAME
+
+	Oregon_Trail::ChangePace - Changes the pace at which the player's party walks per day
+
+SYNOPSIS
+
+	void Trail::ChangePace()
+
+DESCRIPTION
+
+	This function allows the player to change the pace at which the player can travel per day with their
+	party. The less they walk per day, the healthier they will be. The more they walk per day, the greater
+	the chance they will get sick.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	12:01pm 1/28/2019
+*/
+void Trail::ChangePace() {
+
+	string choice;
+
+	while (1) {
+		// Outputting the options to console for the player
+		m_utility.OutputMessage("\t Change pace");
+		cout << "\t (currently \"" << m_pace << "\")" << endl << endl;
+
+		cout << "\t    1. a steady pace" << endl;
+		cout << "\t    2. a strenuous pace" << endl;
+		cout << "\t    3. a grueling pace" << endl;
+		cout << "\t    4. find out what these \n different paces mean" << endl << endl;
+
+		cout << "What is your choice? ";
+		cin >> choice;
+
+		// If they picked a valid option, the corrent pace will be selected
+		if (choice == "1") {
+			m_pace = "steady";
+			break;
+		}
+		else if (choice == "2") {
+			m_pace = "strenuous";
+			break;
+		}
+		else if (choice == "3") {
+			m_pace = "grueling";
+			break;
+		}
+		else if (choice == "4") {
+			m_utility.OutputMessage("steady - You travel about 8 hours a");
+			m_utility.OutputMessage("day, taking frequent rests. You take");
+			m_utility.OutputMessage("care not to get too tired.");
+			cout << endl;
+			m_utility.OutputMessage("strenuous - You travel about 12 hours");
+			m_utility.OutputMessage("a day, starting just after sunrise");
+			m_utility.OutputMessage("and stopping shortly before sunset.");
+			m_utility.OutputMessage("You stop to rest only when necessary.");
+			m_utility.OutputMessage("You finish each day feeling very");
+			m_utility.OutputMessage("tired.");
+			cout << endl;
+			m_utility.OutputMessage("grueling - You travel about 16 hours");
+			m_utility.OutputMessage("a day, starting before sunrise and");
+			m_utility.OutputMessage("continuing until dark. You almost");
+			m_utility.OutputMessage("never stop to rest. You do not get");
+			m_utility.OutputMessage("enough sleep at night. You finish");
+			m_utility.OutputMessage("each day feeling absolutley");
+			m_utility.OutputMessage("exhausted, and your health suffers.");
+			cout << endl;
+			m_utility.Wait();
+		}
+	}
+}
+
+/*
+	Trail::ChangeRations
+
+NAME
+
+	Oregon_Trail::ChangeRations - Changes the amount of rations the player's party each per day
+
+SYNOPSIS
+
+	void Trail::ChangeRations()
+
+DESCRIPTION
+
+	This function allows the player to change the amount of rations their party will consume each day. If they choose
+	"filling" they will consume 15 pounds of food per day, "meager" will consume 10 pounds, and "bare bones" will
+	consume 5 pounds per day.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	1:05pm 1/28/2019
+*/
+void Trail::ChangeRations() {
+
+	string choice;
+
+	while (1) {
+		m_utility.OutputMessage("\t Change food rations");
+		cout << "(currently \"" << m_rationsPace << "\")" << endl << endl;
+
+		m_utility.OutputMessage("The amount of food the people in");
+		m_utility.OutputMessage("your party eat each day can");
+		m_utility.OutputMessage("change. These amounts are:");
+		cout << endl;
+		m_utility.OutputMessage("\t 1. filling - meals are large and");
+		m_utility.OutputMessage("\t generous.");
+		cout << endl;
+		m_utility.OutputMessage("\t 2. meager - meals are small, but");
+		m_utility.OutputMessage("\t adequate.");
+		cout << endl;
+		m_utility.OutputMessage("\t 3. bare bones - meals are very");
+		m_utility.OutputMessage("\t small; everyone stays hungry.");
+		cout << endl;
+
+		cout << "\t What is your choice? ";
+		cin >> choice;
+
+		// Consume 15 pounds of food per day
+		if (choice == "1") {
+			m_rationsPace = "filling";
+			break;
+		}
+		// Consume 10 pounds of food per day
+		else if (choice == "2") {
+			m_rationsPace = "meager";
+			break;
+		}
+		// Consume 5 pounds of food per day
+		else if (choice == "3") {
+			m_rationsPace = "bare bones";
+			break;
+		}
+		else {
+			m_utility.DisplayError("Invalid menu choice");
+		}
+	}
+
+}
+
+/*
+	Trail::
+	Rest()
+
+NAME
+
+	Oregon_Trail::Rest - Allows player to rest a couple days to regenerate health
+
+SYNOPSIS
+
+	void Trail::Rest()
+
+DESCRIPTION
+
+	This function allows the player rest for a couple of days to regenerate the members of the party's health. 
+	The player is at most allowed to rest 9 days at a time.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	1:29pm 1/28/2019
+*/
+void Trail::Rest() {
+
+	string numOfDays;
+
+	while (1) {
+		cout << "\t How many days would you" << endl;
+		cout << "\t like to rest? ";
+		cin >> numOfDays;
+
+		try {
+
+			// Only allowed to rest 9 days
+			if (stoi(numOfDays) > 9) {
+				m_utility.DisplayError("Can only rest at most 9 days.");
+			}
+			else {
+				for (int i = 0; i < stoi(numOfDays); i++) {
+					m_utility.NextDay(m_year, m_month, m_day);
+				}
+				break;
+			}
+		}
+		// If the user typed in anything other than a number, an exception will be thrown and the player
+		// will get an error message
+		catch (exception e) {
+			m_utility.DisplayError("Invalid option.");
+		}
+	}
 }

@@ -39,6 +39,11 @@ private:
 	void DeductMoney(double a_money);
 	void InitializePartyItems();
 	void AddItemsFromStore(vector<Item> a_storeItems);
+	void TrailMenu();
+	void ShowSupplies();
+	void ChangePace();
+	void ChangeRations();
+	void Rest();
 
 	Utility m_utility = Utility();
 	double m_playerMoney;
@@ -61,6 +66,12 @@ private:
 	Item m_partyExtraWheel;
 	Item m_partyExtraAxle;
 	Item m_partyExtraTongue;
+
+	int m_milesLeft;
+	int m_weather;
+	int m_health;
+	string m_pace;
+	string m_rationsPace;
 
 };
 
