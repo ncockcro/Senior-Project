@@ -21,6 +21,7 @@ DESCRIPTION
 #include "Utility.h"
 #include "Store.h"
 #include "Item.h"
+#include "Dialogue.h"
 
 using namespace std;
 
@@ -72,6 +73,8 @@ private:
 	int m_health;
 	string m_pace;
 	string m_rationsPace;
+
+	Dialogue m_dialogue = Dialogue();
 
 };
 

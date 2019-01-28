@@ -730,6 +730,7 @@ void Trail::TrailMenu() {
 		m_utility.OutputMessage("    6. Talk to people");
 		m_utility.OutputMessage("    7. Buy supplies");
 
+		cout << "\t    What is your choice? ";
 		cin >> choice;
 
 		// Continue the trail
@@ -754,7 +755,7 @@ void Trail::TrailMenu() {
 		}
 		// Talk to local people to get advice
 		else if (choice == "6") {
-
+			m_dialogue.TalkToPeople(m_location);
 		}
 		// Buy supplies if available
 		else if (choice == "7") {
@@ -970,8 +971,7 @@ void Trail::ChangeRations() {
 }
 
 /*
-	Trail::
-	Rest()
+	Trail::Rest()
 
 NAME
 
