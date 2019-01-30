@@ -48,7 +48,7 @@ private:
 	void ChangeRations();
 	void Rest();
 	void InitializeLocations();
-	void ShowAndUpdateTrailInfo(int a_miles);
+	void ShowAndUpdateTrailInfo(int a_miles, int &a_milesNeeded);
 
 	Utility m_utility = Utility();
 	double m_playerMoney;

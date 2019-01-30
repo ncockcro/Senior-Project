@@ -89,6 +89,7 @@ Date
 void Trail::ActiveGame() {
 
 	string choice;
+	int milesNeededToTravel;
 
 	PromptPosition();
 	PromptCharacterNames();
@@ -101,20 +102,29 @@ void Trail::ActiveGame() {
 
 	// Cycle through the list of locations that the player has to travel to
 	for (int i = 0; i < m_locations.size(); i++) {
+
+		milesNeededToTravel = m_locations[i]->GetMilesNeeded();
+
 		// At each location, keep cycling through til the player reaches the destination
 		for (int j = 0; j < m_locations[i]->GetMilesNeeded(); j += m_rateOfTravel) {
-			ShowAndUpdateTrailInfo(m_rateOfTravel);
+			ShowAndUpdateTrailInfo(m_rateOfTravel, milesNeededToTravel);
 			m_utility.Wait();
 		}
 
-		cout << "\t You are now at the " << endl;
-		cout << "\t " << m_locations[i]->GetName() << endl;
-		cout << "\t Would you like to look around? ";
-		cin >> choice;
+		while (1) {
+			cout << "\t You are now at the " << endl;
+			cout << "\t " << m_locations[i]->GetName() << endl;
+			cout << "\t Would you like to look around? ";
+			cin >> choice;
 
-		if (choice == "yes" || choice == "ye" || choice == "y") {
-			m_utility.ShowLocation(m_locations[i]->GetName(), m_year, m_month, m_day);
-			TrailMenu();
+			if (choice == "yes" || choice == "ye" || choice == "y") {
+				m_utility.ShowLocation(m_locations[i]->GetName(), m_year, m_month, m_day);
+				TrailMenu();
+				break;
+			}
+			else if (choice == "no" || choice == "n") {
+				break;
+			}
 		}
 	}
 
@@ -1074,16 +1084,17 @@ void Trail::InitializeLocations() {
 	m_FortKearney.SetMilesNeeded(100);
 }
 
-void Trail::ShowAndUpdateTrailInfo(int a_miles) {
+void Trail::ShowAndUpdateTrailInfo(int a_miles, int &a_milesNeeded) {
 
 	cout << "\t Date: " << m_month << " " << m_day << ", " << m_year << endl;
 	cout << "\t Weather: " << "Warm" << endl;
 	cout << "\t Health: " << "Good" << endl;
 	cout << "\t Food: " << m_partyFood.GetQuantity() << endl;
-	cout << "\t Next landmark: " << 0 << " miles" << endl;;
+	cout << "\t Next landmark: " << a_milesNeeded << " miles" << endl;;
 	cout << "\t Miles traveled: " << m_milesTraveled << " miles" << endl << endl;
 
 	m_partyFood.DecrementFood(m_foodRate);
 	m_utility.NextDay(m_year, m_month, m_day);
+	a_milesNeeded -= m_rateOfTravel;
 	m_milesTraveled += a_miles;
 }
