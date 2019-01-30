@@ -12,6 +12,7 @@ public:
 	Location();
 	void SetName(string a_name);
 	void SetMilesNeeded(int a_miles);
+	int GetMilesNeeded();
 	void DeductMiles(int a_miles);
 
 private:

@@ -32,11 +32,29 @@ Date
 Trail::Trail()
 {
 	InitializePartyItems();
-	m_location = "Independence";
+	m_currentLocation = "Independence";
 	m_milesLeft = 1907; // Will probably round up to 2000 to compensate for the final river
 	// The final location is Willamette Valley in Oregon
 	m_pace = "steady";
 	m_rationsPace = "filling";
+
+	m_locations.push_back(&m_KansasRiver);
+	m_locations.push_back(&m_BigBlueRiver);
+	m_locations.push_back(&m_FortKearney);
+	m_locations.push_back(&m_ChimneyRock);
+	m_locations.push_back(&m_FortLaramie);
+	m_locations.push_back(&m_IndependenceRock);
+	m_locations.push_back(&m_SouthPass);
+	m_locations.push_back(&m_FortBridger);
+	m_locations.push_back(&m_SnakeRiver);
+	m_locations.push_back(&m_FortBoise);
+	m_locations.push_back(&m_BlueMountains);
+	m_locations.push_back(&m_FortWallaWalla);
+	m_locations.push_back(&m_TheDalles); 
+
+	m_rateOfTravel = 10;
+
+	InitializeLocations();
 }
 
 /*
@@ -75,11 +93,16 @@ void Trail::ActiveGame() {
 	LeavingMessage();
 	DepartingStore();
 
-	m_utility.ShowLocation(m_location, m_year, m_month, m_day);
+	m_utility.ShowLocation(m_currentLocation, m_year, m_month, m_day);
 	TrailMenu();
 
-	while (m_milesLeft > 0) {
-
+	// Cycle through the list of locations that the player has to travel to
+	for (int i = 0; i < m_locations.size(); i++) {
+		// At each location, keep cycling through til the player reaches the destination
+		for (int j = 0; j < m_locations[i]->GetMilesNeeded(); j += m_rateOfTravel) {
+			cout << "You traveled " << m_rateOfTravel << endl;
+			m_utility.Wait();
+		}
 	}
 
 	
@@ -756,7 +779,7 @@ void Trail::TrailMenu() {
 		}
 		// Talk to local people to get advice
 		else if (choice == "6") {
-			m_dialogue.TalkToPeople(m_location);
+			m_dialogue.TalkToPeople(m_currentLocation);
 		}
 		// Buy supplies if available
 		else if (choice == "7") {

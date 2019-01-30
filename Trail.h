@@ -55,7 +55,7 @@ private:
 	string m_month;
 	int m_year;
 	int m_day;
-	string m_location;
+	string m_currentLocation;
 
 	string m_wagonLeader;
 	string m_wagonParty[4];
@@ -79,19 +79,22 @@ private:
 
 	Dialogue m_dialogue = Dialogue();
 
+	vector<Location*> m_locations;
 	River m_KansasRiver;
 	River m_BigBlueRiver;
 	Location m_FortKearney;
 	Location m_ChimneyRock;
 	Location m_FortLaramie;
 	Location m_IndependenceRock;
-	Location m_SoutPass;
+	Location m_SouthPass;
 	Location m_FortBridger;
 	River m_SnakeRiver;
 	Location m_FortBoise;
 	Location m_BlueMountains;
 	Location m_FortWallaWalla;
 	Location m_TheDalles;
+
+	int m_rateOfTravel;
 
 };
 

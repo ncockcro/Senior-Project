@@ -14,6 +14,10 @@ void Location::SetMilesNeeded(int a_miles) {
 	m_milesNeeded = a_miles;
 }
 
+int Location::GetMilesNeeded() {
+	return m_milesNeeded;
+}
+
 void Location::DeductMiles(int a_miles) {
 
 	if (a_miles > 0) {
