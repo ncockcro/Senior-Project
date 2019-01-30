@@ -1075,6 +1075,34 @@ void Trail::Rest() {
 	}
 }
 
+/*
+	Trail::InitalizeLocations()
+
+NAME
+
+	Trail::InitializeLocations - Initializes the various locations for the trail
+
+SYNOPSIS
+
+	void Trail::Rest()
+
+DESCRIPTION
+
+	This function will intialize the name, amount of miles required to get to, and various other information
+	that should be set at the start of the game for the locations in the game
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	5:50pm 1/30/2019
+*/
 void Trail::InitializeLocations() {
 
 	m_KansasRiver.SetName("Kansas River");
@@ -1084,6 +1112,37 @@ void Trail::InitializeLocations() {
 	m_FortKearney.SetMilesNeeded(100);
 }
 
+/*
+	Trail::ShowAndUpdateTrailInfo()
+
+NAME
+
+	Trail::ShowAndUpdateTrailInfo - Shows and updates the information each time the player travels
+
+SYNOPSIS
+
+	void Trail::ShowAndUpdateTrailInfo(int a_miles, int &a_milesNeeded)
+
+	a_miles --> the rate the player travels at in miles
+	a_milesNeeded --> how many miles the player needs to travel to
+
+DESCRIPTION
+
+	This function shows essential information while the player is traveling to Oregon and updates
+	all of the information after being displayed such as the date and miles traveled.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	5:55pm 1/30/2019
+*/
 void Trail::ShowAndUpdateTrailInfo(int a_miles, int &a_milesNeeded) {
 
 	cout << "\t Date: " << m_month << " " << m_day << ", " << m_year << endl;
