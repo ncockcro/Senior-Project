@@ -535,3 +535,16 @@ void Item::AddToQuantity(int a_quantity) {
 		m_utility.DisplayError("ERROR: Tried ading a negative/zero number to item quantity in item class.");
 	}
 }
+
+void Item::DecrementFood(string a_rate) {
+
+	if (m_quantity > 0 && a_rate == "filling") {
+		m_quantity -= 15;
+	}
+	else if (m_quantity > 0 && a_rate == "meager") {
+		m_quantity -= 10;
+	}
+	else if (m_quantity && a_rate == "bare bones") {
+		m_quantity -= 5;
+	}
+}

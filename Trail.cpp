@@ -36,7 +36,7 @@ Trail::Trail()
 	m_milesLeft = 1907; // Will probably round up to 2000 to compensate for the final river
 	// The final location is Willamette Valley in Oregon
 	m_pace = "steady";
-	m_rationsPace = "filling";
+	m_foodRate = "filling";
 
 	m_locations.push_back(&m_KansasRiver);
 	m_locations.push_back(&m_BigBlueRiver);
@@ -53,6 +53,7 @@ Trail::Trail()
 	m_locations.push_back(&m_TheDalles); 
 
 	m_rateOfTravel = 10;
+	m_milesTraveled = 0;
 
 	InitializeLocations();
 }
@@ -87,6 +88,8 @@ Date
 */
 void Trail::ActiveGame() {
 
+	string choice;
+
 	PromptPosition();
 	PromptCharacterNames();
 	PromptStartingMonth();
@@ -100,8 +103,18 @@ void Trail::ActiveGame() {
 	for (int i = 0; i < m_locations.size(); i++) {
 		// At each location, keep cycling through til the player reaches the destination
 		for (int j = 0; j < m_locations[i]->GetMilesNeeded(); j += m_rateOfTravel) {
-			cout << "You traveled " << m_rateOfTravel << endl;
+			ShowAndUpdateTrailInfo(m_rateOfTravel);
 			m_utility.Wait();
+		}
+
+		cout << "\t You are now at the " << endl;
+		cout << "\t " << m_locations[i]->GetName() << endl;
+		cout << "\t Would you like to look around? ";
+		cin >> choice;
+
+		if (choice == "yes" || choice == "ye" || choice == "y") {
+			m_utility.ShowLocation(m_locations[i]->GetName(), m_year, m_month, m_day);
+			TrailMenu();
 		}
 	}
 
@@ -743,7 +756,7 @@ void Trail::TrailMenu() {
 		cout << "\t Weather: " << m_weather << endl;
 		cout << "\t Health: " << m_health << endl;
 		cout << "\t Pace: " << m_pace << endl;
-		cout << "\t Rations: " << m_rationsPace << endl << endl;
+		cout << "\t Rations: " << m_foodRate << endl << endl;
 
 		cout << "\t You May:" << endl;
 		m_utility.OutputMessage("    1. Continue on trail");
@@ -953,7 +966,7 @@ void Trail::ChangeRations() {
 
 	while (1) {
 		m_utility.OutputMessage("\t Change food rations");
-		cout << "(currently \"" << m_rationsPace << "\")" << endl << endl;
+		cout << "(currently \"" << m_foodRate << "\")" << endl << endl;
 
 		m_utility.OutputMessage("The amount of food the people in");
 		m_utility.OutputMessage("your party eat each day can");
@@ -974,17 +987,17 @@ void Trail::ChangeRations() {
 
 		// Consume 15 pounds of food per day
 		if (choice == "1") {
-			m_rationsPace = "filling";
+			m_foodRate = "filling";
 			break;
 		}
 		// Consume 10 pounds of food per day
 		else if (choice == "2") {
-			m_rationsPace = "meager";
+			m_foodRate = "meager";
 			break;
 		}
 		// Consume 5 pounds of food per day
 		else if (choice == "3") {
-			m_rationsPace = "bare bones";
+			m_foodRate = "bare bones";
 			break;
 		}
 		else {
@@ -1059,4 +1072,18 @@ void Trail::InitializeLocations() {
 	m_BigBlueRiver.SetName("Big Blue River");
 	m_FortKearney.SetName("Fort Kearney");
 	m_FortKearney.SetMilesNeeded(100);
+}
+
+void Trail::ShowAndUpdateTrailInfo(int a_miles) {
+
+	cout << "\t Date: " << m_month << " " << m_day << ", " << m_year << endl;
+	cout << "\t Weather: " << "Warm" << endl;
+	cout << "\t Health: " << "Good" << endl;
+	cout << "\t Food: " << m_partyFood.GetQuantity() << endl;
+	cout << "\t Next landmark: " << 0 << " miles" << endl;;
+	cout << "\t Miles traveled: " << m_milesTraveled << " miles" << endl << endl;
+
+	m_partyFood.DecrementFood(m_foodRate);
+	m_utility.NextDay(m_year, m_month, m_day);
+	m_milesTraveled += a_miles;
 }

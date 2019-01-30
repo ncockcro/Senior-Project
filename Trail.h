@@ -48,6 +48,7 @@ private:
 	void ChangeRations();
 	void Rest();
 	void InitializeLocations();
+	void ShowAndUpdateTrailInfo(int a_miles);
 
 	Utility m_utility = Utility();
 	double m_playerMoney;
@@ -75,7 +76,7 @@ private:
 	int m_weather;
 	int m_health;
 	string m_pace;
-	string m_rationsPace;
+	string m_foodRate;
 
 	Dialogue m_dialogue = Dialogue();
 
@@ -95,6 +96,7 @@ private:
 	Location m_TheDalles;
 
 	int m_rateOfTravel;
+	int m_milesTraveled;
 
 };
 

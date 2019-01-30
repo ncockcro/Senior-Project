@@ -10,6 +10,10 @@ void Location::SetName(string a_name) {
 	m_name = a_name;
 }
 
+string Location::GetName() {
+	return m_name;
+}
+
 void Location::SetMilesNeeded(int a_miles) {
 	m_milesNeeded = a_miles;
 }

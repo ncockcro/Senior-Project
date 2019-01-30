@@ -40,6 +40,7 @@ public:
 	int GetQuantity();
 	void SetQuantity(int a_quantity);
 	void AddToQuantity(int a_quantity);
+	void DecrementFood(string a_rate);
 
 private:
 	string m_name;
