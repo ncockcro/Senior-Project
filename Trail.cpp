@@ -1028,3 +1028,12 @@ void Trail::Rest() {
 		}
 	}
 }
+
+void Trail::InitializeLocations() {
+
+	m_KansasRiver.SetName("Kansas River");
+	m_KansasRiver.SetMilesNeeded(102);
+	m_BigBlueRiver.SetName("Big Blue River");
+	m_FortKearney.SetName("Fort Kearney");
+	m_FortKearney.SetMilesNeeded(100);
+}

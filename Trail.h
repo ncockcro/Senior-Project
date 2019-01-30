@@ -22,6 +22,8 @@ DESCRIPTION
 #include "Store.h"
 #include "Item.h"
 #include "Dialogue.h"
+#include "Location.h"
+#include "River.h"
 
 using namespace std;
 
@@ -45,6 +47,7 @@ private:
 	void ChangePace();
 	void ChangeRations();
 	void Rest();
+	void InitializeLocations();
 
 	Utility m_utility = Utility();
 	double m_playerMoney;
@@ -75,6 +78,20 @@ private:
 	string m_rationsPace;
 
 	Dialogue m_dialogue = Dialogue();
+
+	River m_KansasRiver;
+	River m_BigBlueRiver;
+	Location m_FortKearney;
+	Location m_ChimneyRock;
+	Location m_FortLaramie;
+	Location m_IndependenceRock;
+	Location m_SoutPass;
+	Location m_FortBridger;
+	River m_SnakeRiver;
+	Location m_FortBoise;
+	Location m_BlueMountains;
+	Location m_FortWallaWalla;
+	Location m_TheDalles;
 
 };
 
