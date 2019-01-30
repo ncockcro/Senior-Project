@@ -33,7 +33,8 @@ Trail::Trail()
 {
 	InitializePartyItems();
 	m_location = "Independence";
-	m_milesLeft = 1828;
+	m_milesLeft = 1907; // Will probably round up to 2000 to compensate for the final river
+	// The final location is Willamette Valley in Oregon
 	m_pace = "steady";
 	m_rationsPace = "filling";
 }
@@ -853,7 +854,7 @@ void Trail::ChangePace() {
 		cout << "\t    3. a grueling pace" << endl;
 		cout << "\t    4. find out what these \n different paces mean" << endl << endl;
 
-		cout << "What is your choice? ";
+		cout << "\t What is your choice? ";
 		cin >> choice;
 
 		// If they picked a valid option, the corrent pace will be selected
