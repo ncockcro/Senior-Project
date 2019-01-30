@@ -222,6 +222,8 @@ Date
 	6:31pm 1/22/2019
 */
 double Store::CalculateTotal() {
+
+	m_totalPrice = 0.0;
 	
 	for (size_t i = 0; i < m_userItems.size(); i++) {
 		m_totalPrice += m_itemPrices[i];
