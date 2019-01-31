@@ -536,6 +536,34 @@ void Item::AddToQuantity(int a_quantity) {
 	}
 }
 
+/*
+	Item::DecrementFood(string a_rate)
+
+NAME
+
+	Item::DecrementFood - Subtracts from the quantity of a food item with what was passed in
+
+SYNOPSIS
+
+	void Item::DecrementFood(int a_rate)
+		a_rate      --> the rate at which the player is consuming food
+
+DESCRIPTION
+
+	This function will subtract the proper amount of food from the rate that was passed in
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	10:19pm 1/25/2019
+*/
 void Item::DecrementFood(string a_rate) {
 
 	if (m_quantity > 0 && a_rate == "filling") {

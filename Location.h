@@ -1,3 +1,18 @@
+/*
+WRITTEN BY
+	Nicholas Cockcroft
+
+DATE
+	1/30/2019
+
+CLASS
+	Location
+
+DESCRIPTION
+	The purpose of this class is to represent locations in the game and have basic functionality such as the
+	name of the location, distance needed to travel to the location, and any other useful information about
+	a place.
+*/
 #pragma once
 
 #include <iostream>
@@ -14,7 +29,6 @@ public:
 	string GetName();
 	void SetMilesNeeded(int a_miles);
 	int GetMilesNeeded();
-	void DeductMiles(int a_miles);
 
 private:
 

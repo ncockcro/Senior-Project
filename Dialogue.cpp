@@ -4,7 +4,7 @@
 
 Dialogue::Dialogue()
 {
-	srand(time(0));
+	srand((unsigned int)time(0));
 }
 
 

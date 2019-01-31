@@ -98,6 +98,7 @@ void Store::DisplayStore(vector<Item> a_items) {
 
 		cout << "\t \t Amount you have: $" << m_playerMoney << endl;
 
+		// Have the user make a choice for what they want to do
 		MakeChoice();
 	}
 }

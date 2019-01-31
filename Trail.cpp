@@ -1,6 +1,5 @@
 #include "Trail.h"
 
-
 /*
 	Trail()
 
@@ -59,7 +58,7 @@ Trail::Trail()
 }
 
 /*
-Trail::ActiveGame()
+	Trail::ActiveGame()
 
 NAME
 
@@ -101,7 +100,7 @@ void Trail::ActiveGame() {
 	TrailMenu();
 
 	// Cycle through the list of locations that the player has to travel to
-	for (int i = 0; i < m_locations.size(); i++) {
+	for (size_t i = 0; i < m_locations.size(); i++) {
 
 		milesNeededToTravel = m_locations[i]->GetMilesNeeded();
 
@@ -133,11 +132,11 @@ void Trail::ActiveGame() {
 }
 
 /*
-Trail::PromptPosition()
+	Trail::PromptPosition()
 
 NAME
 
-	Oregon_Trail::PromptPosition - Prompts the user for which position they want (difficulty)
+	Trail::PromptPosition - Prompts the user for which position they want (difficulty)
 
 SYNOPSIS
 
@@ -219,7 +218,7 @@ void Trail::PromptPosition() {
 }
 
 /*
-Trail::PromptCharacterNames()
+	Trail::PromptCharacterNames()
 
 NAME
 
@@ -293,11 +292,11 @@ void Trail::PromptCharacterNames() {
 }
 
 /*
-Trail::PromptStartingMonth()
+	Trail::PromptStartingMonth()
 
 NAME
 
-	Oregon_Trail::PromptStartingMonth - Prompts the user for which month to start from
+	Trail::PromptStartingMonth - Prompts the user for which month to start from
 
 SYNOPSIS
 
@@ -386,11 +385,11 @@ void Trail::PromptStartingMonth() {
 }
 
 /*
-Trail::LeavingMessage()
+	Trail::LeavingMessage()
 
 NAME
 
-	Oregon_Trail::LeavingMessage - Outputs all of the dialougue for when the player is leaving Independence
+	Trail::LeavingMessage - Outputs all of the dialougue for when the player is leaving Independence
 
 SYNOPSIS
 
@@ -476,7 +475,7 @@ void Trail::LeavingMessage() {
 
 NAME
 
-	Oregon_Trail::DepartingStore - Initialize the store for the player when they are leaving Independence
+	Trail::DepartingStore - Initialize the store for the player when they are leaving Independence
 
 SYNOPSIS
 
@@ -547,11 +546,12 @@ void Trail::DepartingStore() {
 
 NAME
 
-	Oregon_Trail::DepartingStore - Deduct money that is passed in from the player's cash stack
+	Trail::DepartingStore - Deduct money that is passed in from the player's cash stack
 
 SYNOPSIS
 
 	void Trail::DepartingStore(double a_money)
+
 	a_money --> money to deduct
 
 DESCRIPTION
@@ -584,37 +584,11 @@ void Trail::DeductMoney(double a_money) {
 }
 
 /*
-Trail::DepartingStore()
-
-NAME
-
-Oregon_Trail::DepartingStore - Initialize the store for the player when they are leaving Independence
-
-SYNOPSIS
-
-void Trail::DepartingStore()
-
-DESCRIPTION
-
-This function initializes the items and the store for when the player is departing from Independence, Missouri
-
-RETURNS
-
-Void
-
-AUTHOR
-
-Nicholas Cockcroft
-
-Date
-
-3:32pm 1/14/2019
-*//*
 	Trail::AddItemsFromStore(vector<Item> a_storeItems)
 
 NAME
 
-	Oregon_Trail::AddItemsFromStore - Add the items the player bought from a store to their inventory
+	Trail::AddItemsFromStore - Add the items the player bought from a store to their inventory
 
 SYNOPSIS
 
@@ -676,7 +650,7 @@ void Trail::AddItemsFromStore(vector<Item> a_storeItems) {
 
 NAME
 
-	Oregon_Trail::InitializePartyItems - Initialize the items in the player's inventory
+	Trail::InitializePartyItems - Initialize the items in the player's inventory
 
 SYNOPSIS
 
@@ -735,7 +709,7 @@ void Trail::InitializePartyItems() {
 
 NAME
 
-	Oregon_Trail::TrailMenu - Menu for player options while on the trail
+	Trail::TrailMenu - Menu for player options while on the trail
 
 SYNOPSIS
 
@@ -821,7 +795,7 @@ void Trail::TrailMenu() {
 
 NAME
 
-	Oregon_Trail::ShowSupplies - Shows the player's current supplies
+	Trail::ShowSupplies - Shows the player's current supplies
 
 SYNOPSIS
 
@@ -862,7 +836,7 @@ void Trail::ShowSupplies() {
 
 NAME
 
-	Oregon_Trail::ChangePace - Changes the pace at which the player's party walks per day
+	Trail::ChangePace - Changes the pace at which the player's party walks per day
 
 SYNOPSIS
 
@@ -946,7 +920,7 @@ void Trail::ChangePace() {
 
 NAME
 
-	Oregon_Trail::ChangeRations - Changes the amount of rations the player's party each per day
+	Trail::ChangeRations - Changes the amount of rations the player's party each per day
 
 SYNOPSIS
 
@@ -1022,7 +996,7 @@ void Trail::ChangeRations() {
 
 NAME
 
-	Oregon_Trail::Rest - Allows player to rest a couple days to regenerate health
+	Trail::Rest - Allows player to rest a couple days to regenerate health
 
 SYNOPSIS
 
