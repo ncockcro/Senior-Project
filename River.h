@@ -16,7 +16,11 @@ DESCRIPTION
 
 #include <iostream>
 #include <string>
+#include <cstdlib>
+#include <ctime>
+#include <random>
 #include "Location.h"
+#include "Utility.h"
 
 using namespace std;
 
@@ -24,11 +28,18 @@ class River: public Location
 {
 public:
 	River();
+	void CrossLocation(string a_weather);
 	double GetRiverLength();
 	double GetRiverDepth();
 
 private:
+	void OpeningDialogue();
+	void ShowRiverMenu(string a_weather);
+	void RiverMoreInfoDialogue();
+
+	double m_randomNum;
 	double m_riverLength;
 	double m_riverDepth;
+	Utility m_utility = Utility();
 };
 

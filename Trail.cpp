@@ -89,6 +89,7 @@ void Trail::ActiveGame() {
 
 	string choice;
 	int milesNeededToTravel;
+	int milesTraveled;
 
 	PromptPosition();
 	PromptCharacterNames();
@@ -103,13 +104,20 @@ void Trail::ActiveGame() {
 	for (size_t i = 0; i < m_locations.size(); i++) {
 
 		milesNeededToTravel = m_locations[i]->GetMilesNeeded();
+		milesTraveled = 0;
 
 		// At each location, keep cycling through til the player reaches the destination
 		for (int j = 0; j < m_locations[i]->GetMilesNeeded(); j += m_rateOfTravel) {
 			ShowAndUpdateTrailInfo(m_rateOfTravel, milesNeededToTravel);
+			milesTraveled += m_rateOfTravel;
 			m_utility.Wait();
 		}
 
+		m_milesTraveled -= m_rateOfTravel;
+		milesTraveled -= m_rateOfTravel;
+		AddEndingMiles(m_locations[i]->GetMilesNeeded() - milesTraveled);
+
+		// Once you arrive at a location, this will propt if you want to visit the location
 		while (1) {
 			cout << "\t You are now at the " << endl;
 			cout << "\t " << m_locations[i]->GetName() << endl;
@@ -125,6 +133,8 @@ void Trail::ActiveGame() {
 				break;
 			}
 		}
+
+		m_locations[i]->CrossLocation();
 	}
 
 	
@@ -1085,6 +1095,7 @@ void Trail::InitializeLocations() {
 	m_KansasRiver.SetMilesNeeded(102);
 	m_KansasRiver.SetHasStore(false);
 	m_BigBlueRiver.SetName("Big Blue River");
+	m_BigBlueRiver.SetMilesNeeded(82);
 	m_FortKearney.SetName("Fort Kearney");
 	m_FortKearney.SetMilesNeeded(100);
 }
@@ -1132,5 +1143,10 @@ void Trail::ShowAndUpdateTrailInfo(int a_miles, int &a_milesNeeded) {
 	m_partyFood.DecrementFood(m_foodRate);
 	m_utility.NextDay(m_year, m_month, m_day);
 	a_milesNeeded -= m_rateOfTravel;
+	m_milesTraveled += a_miles;
+}
+
+void Trail::AddEndingMiles(int a_miles) {
+
 	m_milesTraveled += a_miles;
 }

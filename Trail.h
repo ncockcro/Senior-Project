@@ -49,6 +49,7 @@ private:
 	void Rest();
 	void InitializeLocations();
 	void ShowAndUpdateTrailInfo(int a_miles, int &a_milesNeeded);
+	void AddEndingMiles(int a_miles);
 
 	Utility m_utility = Utility();
 	double m_playerMoney;

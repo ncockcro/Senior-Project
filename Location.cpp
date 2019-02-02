@@ -34,6 +34,10 @@ Location::Location()
 	m_hasStore = false;
 }
 
+void Location::CrossLocation(string a_weather) {
+
+}
+
 /*
 	Location::SetName(string a_name)
 

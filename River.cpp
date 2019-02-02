@@ -4,10 +4,46 @@
 
 River::River()
 {
-	m_riverDepth = 0.0;
-	m_riverLength = 0.0;
+	srand((unsigned int)time(0));
+
+	uniform_real_distribution<double> unif(0.1, 10.0);
+	default_random_engine re;
+	m_riverDepth = unif(re);
+
+	uniform_real_distribution<double> unif2(100.0, 400.0);
+	default_random_engine re2;
+	m_riverLength = unif2(re2);
 }
 
+void River::CrossLocation(string a_weather) {
+
+	string choice;
+
+	OpeningDialogue();
+
+	while (1) {
+		ShowRiverMenu(a_weather);
+		cin >> choice;
+
+		if (choice == "1") {
+
+		}
+		else if (choice == "2") {
+
+		}
+		else if (choice == "3") {
+
+		}
+		else if (choice == "4") {
+			RiverMoreInfoDialogue();
+		}
+		else {
+			m_utility.DisplayError("Invalid option.");
+		}
+
+	}
+
+}
 /*
 	River::GetRiverLength()
 
@@ -68,4 +104,56 @@ Date
 */
 double River::GetRiverDepth() {
 	return m_riverDepth;
+}
+
+void River::OpeningDialogue() {
+
+	m_utility.OutputMessage("You must cross the river in");
+	m_utility.OutputMessage("order to continue. The");
+	m_utility.OutputMessage("river at this point is");
+	cout << "\t currently " << m_riverLength << " feet across," << endl;
+	cout << "\t and " << m_riverDepth << " feet deep in the" << endl;
+	m_utility.OutputMessage("middle.");
+}
+
+void River::ShowRiverMenu(string a_weather) {
+
+	cout << "\t Weather: " << a_weather << endl;
+	cout << "\t River width: " << m_riverLength << endl;
+	cout << "\t River depth: " << m_riverDepth << endl << endl;
+	
+	cout << "\t You may:" << endl << endl;
+	
+	cout << "\t 1. attempt to ford the river" << endl;
+	cout << "\t 2. caulk the wagon and float it across" << endl;
+	cout << "\t 3. wait to see if conditions improve" << endl;
+	cout << "\t 4. get more information" << endl << endl;
+
+	cout << "What is your choice? ";
+}
+
+void River::RiverMoreInfoDialogue() {
+
+	m_utility.OutputMessage("\t To ford a river means to");
+	m_utility.OutputMessage("\t pull your wagon across a");
+	m_utility.OutputMessage("\t shallow part of the river,");
+	m_utility.OutputMessage("\t with the oxen still");
+	m_utility.OutputMessage("\t attached.");
+	m_utility.Wait();
+
+	m_utility.OutputMessage("To caulk the wagon means to");
+	m_utility.OutputMessage("seal it so that no water can");
+	m_utility.OutputMessage("get in. The wagon can then");
+	m_utility.OutputMessage("be floated across like a");
+	m_utility.OutputMessage("boat.");
+	m_utility.Wait();
+
+	m_utility.OutputMessage("To use a ferry means to put");
+	m_utility.OutputMessage("your wagon on top of a flat");
+	m_utility.OutputMessage("boat that belongs to someone");
+	m_utility.OutputMessage("else. The owner of the");
+	m_utility.OutputMessage("ferry will take your wagon");
+	m_utility.OutputMessage("across the river.");
+	m_utility.Wait();
+
 }
