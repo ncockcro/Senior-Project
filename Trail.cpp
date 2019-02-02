@@ -97,7 +97,7 @@ void Trail::ActiveGame() {
 	DepartingStore();
 
 	m_utility.ShowLocation(m_currentLocation, m_year, m_month, m_day);
-	TrailMenu();
+	TrailMenu(m_Independence.GetHasStore());
 
 	// Cycle through the list of locations that the player has to travel to
 	for (size_t i = 0; i < m_locations.size(); i++) {
@@ -118,7 +118,7 @@ void Trail::ActiveGame() {
 
 			if (choice == "yes" || choice == "ye" || choice == "y") {
 				m_utility.ShowLocation(m_locations[i]->GetName(), m_year, m_month, m_day);
-				TrailMenu();
+				TrailMenu(m_locations[i]->GetHasStore());
 				break;
 			}
 			else if (choice == "no" || choice == "n") {
@@ -732,7 +732,7 @@ Date
 
 	11:41am 1/28/2019
 */
-void Trail::TrailMenu() {
+void Trail::TrailMenu(bool a_hasStore) {
 
 	string choice;
 
@@ -749,7 +749,9 @@ void Trail::TrailMenu() {
 		m_utility.OutputMessage("    4. Change food rations");
 		m_utility.OutputMessage("    5. Stop to rest");
 		m_utility.OutputMessage("    6. Talk to people");
-		m_utility.OutputMessage("    7. Buy supplies");
+		if (a_hasStore) {
+			m_utility.OutputMessage("    7. Buy supplies");
+		}
 
 		cout << "\t    What is your choice? ";
 		cin >> choice;
@@ -778,8 +780,8 @@ void Trail::TrailMenu() {
 		else if (choice == "6") {
 			m_dialogue.TalkToPeople(m_currentLocation);
 		}
-		// Buy supplies if available
-		else if (choice == "7") {
+		// Buy supplies if the location the player is at is not a river
+		else if (a_hasStore && choice == "7") {
 
 		}
 		// Anything else if invlaid input
@@ -1081,6 +1083,7 @@ void Trail::InitializeLocations() {
 
 	m_KansasRiver.SetName("Kansas River");
 	m_KansasRiver.SetMilesNeeded(102);
+	m_KansasRiver.SetHasStore(false);
 	m_BigBlueRiver.SetName("Big Blue River");
 	m_FortKearney.SetName("Fort Kearney");
 	m_FortKearney.SetMilesNeeded(100);

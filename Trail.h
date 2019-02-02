@@ -42,7 +42,7 @@ private:
 	void DeductMoney(double a_money);
 	void InitializePartyItems();
 	void AddItemsFromStore(vector<Item> a_storeItems);
-	void TrailMenu();
+	void TrailMenu(bool a_hasStore);
 	void ShowSupplies();
 	void ChangePace();
 	void ChangeRations();
@@ -81,6 +81,7 @@ private:
 	Dialogue m_dialogue = Dialogue();
 
 	vector<Location*> m_locations;
+	Location m_Independence;
 	River m_KansasRiver;
 	River m_BigBlueRiver;
 	Location m_FortKearney;

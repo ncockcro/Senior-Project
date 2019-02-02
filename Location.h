@@ -29,12 +29,15 @@ public:
 	string GetName();
 	void SetMilesNeeded(int a_miles);
 	int GetMilesNeeded();
+	void SetHasStore(bool a_has);
+	bool GetHasStore();
 
 private:
 
 	string m_name;
 	int m_milesNeeded;
 	Utility m_utility;
+	bool m_hasStore;
 
 };
 

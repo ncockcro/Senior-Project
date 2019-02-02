@@ -31,6 +31,7 @@ Location::Location()
 {
 	m_name = "NULL";
 	m_milesNeeded = 0;
+	m_hasStore = false;
 }
 
 /*
@@ -161,4 +162,12 @@ Date
 */
 int Location::GetMilesNeeded() {
 	return m_milesNeeded;
+}
+
+void Location::SetHasStore(bool a_has) {
+	m_hasStore = a_has;
+}
+
+bool Location::GetHasStore() {
+	return m_hasStore;
 }
