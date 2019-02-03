@@ -38,8 +38,9 @@ void River::CrossLocation(string a_weather, int &a_year, string &a_month, int &a
 		}
 		// If the river has a ferry, then choice 3 will be the option to take it
 		else if (m_hasFerry && choice == "3") {
-			TakeFerry();
-			break;
+			if (TakeFerry()) {
+				break;
+			}
 		}
 		// If the river does not have a ferry, then option 3 is for waiting for conditions
 		else if (!m_hasFerry && choice == "3") {
@@ -159,7 +160,7 @@ void River::ShowRiverMenu(string a_weather) {
 	cout << "\t What is your choice? ";
 }
 
-void River::TakeFerry() {
+bool River::TakeFerry() {
 
 	string choice;
 	bool takeFerry = false;
@@ -184,18 +185,22 @@ void River::TakeFerry() {
 		}
 	}
 
-	m_utility.OutputMessage("Crossing river...");
-	m_utility.Wait();
+	if (takeFerry) {
+		m_utility.OutputMessage("Crossing river...");
+		m_utility.Wait();
 
-	m_utility.OutputMessage("Crossing river...");
-	m_utility.Wait();
+		m_utility.OutputMessage("Crossing river...");
+		m_utility.Wait();
 
-	m_utility.OutputMessage("Crossing river...");
-	m_utility.Wait();
+		m_utility.OutputMessage("Crossing river...");
+		m_utility.Wait();
 
-	m_utility.OutputMessage("The ferry got your party");
-	m_utility.OutputMessage("and wagon safely across.");
-	m_utility.Wait();
+		m_utility.OutputMessage("The ferry got your party");
+		m_utility.OutputMessage("and wagon safely across.");
+		m_utility.Wait();
+	}
+
+	return takeFerry;
 }
 
 void River::WaitADay(int &a_year, string &a_month, int &a_day) {

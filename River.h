@@ -36,7 +36,7 @@ public:
 private:
 	void OpeningDialogue();
 	void ShowRiverMenu(string a_weather);
-	void TakeFerry();
+	bool TakeFerry();
 	void WaitADay(int &a_year, string &a_month, int &a_day);
 	void RiverMoreInfoDialogue();
 
