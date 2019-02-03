@@ -134,7 +134,7 @@ void Trail::ActiveGame() {
 			}
 		}
 
-		m_locations[i]->CrossLocation(m_utility.GetWeatherName(m_weather));
+		m_locations[i]->CrossLocation(m_utility.GetWeatherName(m_weather), m_year, m_month, m_day);
 	}
 
 	

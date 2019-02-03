@@ -28,7 +28,7 @@ class River: public Location
 {
 public:
 	River();
-	void CrossLocation(string a_weather);
+	void CrossLocation(string a_weather, int &a_year, string &a_month, int &a_day);
 	double GetRiverLength();
 	double GetRiverDepth();
 	void SetHasFerry(bool a_hasFerry);
@@ -37,6 +37,7 @@ private:
 	void OpeningDialogue();
 	void ShowRiverMenu(string a_weather);
 	void TakeFerry();
+	void WaitADay(int &a_year, string &a_month, int &a_day);
 	void RiverMoreInfoDialogue();
 
 	double m_randomNum;

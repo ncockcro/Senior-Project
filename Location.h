@@ -25,7 +25,7 @@ class Location
 {
 public:
 	Location();
-	virtual void CrossLocation(string a_weather);
+	virtual void CrossLocation(string a_weather, int &a_year, string &a_month, int &a_day);
 	void SetName(string a_name);
 	string GetName();
 	void SetMilesNeeded(int a_miles);

@@ -17,29 +17,37 @@ River::River()
 	m_hasFerry = false;
 }
 
-void River::CrossLocation(string a_weather) {
+void River::CrossLocation(string a_weather, int &a_year, string &a_month, int &a_day) {
 
 	string choice;
 
 	OpeningDialogue();
 
 	while (1) {
+		cout << "\t " << a_month << " " << a_day << ", " << a_year << endl << endl;
 		ShowRiverMenu(a_weather);
 		cin >> choice;
 
+		// If the player wants to ford the river with their wagon
 		if (choice == "1") {
-
+			break;
 		}
+		// If the player wants to try and float across the river
 		else if (choice == "2") {
-
+			break;
 		}
+		// If the river has a ferry, then choice 3 will be the option to take it
 		else if (m_hasFerry && choice == "3") {
 			TakeFerry();
+			break;
 		}
+		// If the river does not have a ferry, then option 3 is for waiting for conditions
 		else if (!m_hasFerry && choice == "3") {
 
 		}
+		// If the river has a ferry, then option 4 is for waiting for conditions
 		else if (m_hasFerry && choice == "4") {
+			WaitADay(a_year, a_month, a_day);
 		}
 		// If there is no ferry for the river, then option 4 is for getting more info
 		else if (!m_hasFerry && choice == "4") {
@@ -148,7 +156,7 @@ void River::ShowRiverMenu(string a_weather) {
 		cout << "\t 4. get more information" << endl << endl;
 	}
 
-	cout << "What is your choice? ";
+	cout << "\t What is your choice? ";
 }
 
 void River::TakeFerry() {
@@ -190,6 +198,18 @@ void River::TakeFerry() {
 	m_utility.Wait();
 }
 
+void River::WaitADay(int &a_year, string &a_month, int &a_day) {
+
+	m_utility.OutputMessage("You camp near the river for a day.");
+	m_utility.Wait();
+
+	m_utility.NextDay(a_year, a_month, a_day);
+
+	if (m_riverDepth > 0.0 && m_riverLength > 0.0) {
+		m_riverDepth -= 0.01;
+		m_riverLength -= 1.0;
+	}
+}
 void River::RiverMoreInfoDialogue() {
 
 	m_utility.OutputMessage("\t To ford a river means to");
