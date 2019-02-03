@@ -134,7 +134,7 @@ void Trail::ActiveGame() {
 			}
 		}
 
-		m_locations[i]->CrossLocation();
+		m_locations[i]->CrossLocation(m_utility.GetWeatherName(m_weather));
 	}
 
 	
@@ -1094,6 +1094,7 @@ void Trail::InitializeLocations() {
 	m_KansasRiver.SetName("Kansas River");
 	m_KansasRiver.SetMilesNeeded(102);
 	m_KansasRiver.SetHasStore(false);
+	m_KansasRiver.SetHasFerry(true);
 	m_BigBlueRiver.SetName("Big Blue River");
 	m_BigBlueRiver.SetMilesNeeded(82);
 	m_FortKearney.SetName("Fort Kearney");

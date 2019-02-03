@@ -31,15 +31,18 @@ public:
 	void CrossLocation(string a_weather);
 	double GetRiverLength();
 	double GetRiverDepth();
+	void SetHasFerry(bool a_hasFerry);
 
 private:
 	void OpeningDialogue();
 	void ShowRiverMenu(string a_weather);
+	void TakeFerry();
 	void RiverMoreInfoDialogue();
 
 	double m_randomNum;
 	double m_riverLength;
 	double m_riverDepth;
 	Utility m_utility = Utility();
+	bool m_hasFerry;
 };
 

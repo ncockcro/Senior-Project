@@ -13,6 +13,8 @@ River::River()
 	uniform_real_distribution<double> unif2(100.0, 400.0);
 	default_random_engine re2;
 	m_riverLength = unif2(re2);
+
+	m_hasFerry = false;
 }
 
 void River::CrossLocation(string a_weather) {
@@ -31,10 +33,20 @@ void River::CrossLocation(string a_weather) {
 		else if (choice == "2") {
 
 		}
-		else if (choice == "3") {
+		else if (m_hasFerry && choice == "3") {
+			TakeFerry();
+		}
+		else if (!m_hasFerry && choice == "3") {
 
 		}
-		else if (choice == "4") {
+		else if (m_hasFerry && choice == "4") {
+		}
+		// If there is no ferry for the river, then option 4 is for getting more info
+		else if (!m_hasFerry && choice == "4") {
+			RiverMoreInfoDialogue();
+		}
+		// If there is a ferry at the river, then option 5 is for getting more info
+		else if (m_hasFerry && choice == "5") {
 			RiverMoreInfoDialogue();
 		}
 		else {
@@ -126,10 +138,56 @@ void River::ShowRiverMenu(string a_weather) {
 	
 	cout << "\t 1. attempt to ford the river" << endl;
 	cout << "\t 2. caulk the wagon and float it across" << endl;
-	cout << "\t 3. wait to see if conditions improve" << endl;
-	cout << "\t 4. get more information" << endl << endl;
+	if (m_hasFerry) {
+		cout << "\t 3. take a ferry across" << endl;
+		cout << "\t 4. wait to see if conditions improve" << endl;
+		cout << "\t 5. get more information" << endl << endl;
+	}
+	else {
+		cout << "\t 3. wait to see if conditions improve" << endl;
+		cout << "\t 4. get more information" << endl << endl;
+	}
 
 	cout << "What is your choice? ";
+}
+
+void River::TakeFerry() {
+
+	string choice;
+	bool takeFerry = false;
+
+	while (1) {
+		m_utility.OutputMessage("The ferry operator says that");
+		m_utility.OutputMessage("he will charge you $5.00 and");
+		m_utility.OutputMessage("that you will have to wait 4");
+		m_utility.OutputMessage("days. Are you willing to do");
+		cout << "\t this? ";
+		cin >> choice;
+
+		if (choice == "yes" || choice == "ye" || choice == "y") {
+			takeFerry = true;
+			break;
+		}
+		else if (choice == "no" || choice == "n") {
+			break;
+		}
+		else {
+			m_utility.OutputMessage("Invalid choice.");
+		}
+	}
+
+	m_utility.OutputMessage("Crossing river...");
+	m_utility.Wait();
+
+	m_utility.OutputMessage("Crossing river...");
+	m_utility.Wait();
+
+	m_utility.OutputMessage("Crossing river...");
+	m_utility.Wait();
+
+	m_utility.OutputMessage("The ferry got your party");
+	m_utility.OutputMessage("and wagon safely across.");
+	m_utility.Wait();
 }
 
 void River::RiverMoreInfoDialogue() {
@@ -156,4 +214,8 @@ void River::RiverMoreInfoDialogue() {
 	m_utility.OutputMessage("across the river.");
 	m_utility.Wait();
 
+}
+
+void River::SetHasFerry(bool a_hasFerry) {
+	m_hasFerry = a_hasFerry;
 }

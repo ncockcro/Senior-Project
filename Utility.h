@@ -33,6 +33,7 @@ public:
 	void OutputMessage(string a_message);
 	void NextDay(int &a_year, string &a_month, int &a_day);
 	void ShowLocation(string a_location, int a_year, string a_month, int a_day);
+	string GetWeatherName(int a_weather);
 
 private:
 	int ConvertMonth(string a_month);

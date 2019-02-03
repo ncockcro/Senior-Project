@@ -387,3 +387,25 @@ void Utility::ShowLocation(string a_location, int a_year, string a_month, int a_
 	Wait();
 	SetConsoleTextAttribute(m_hConsole, 7);
 }
+
+string Utility::GetWeatherName(int a_weather) {
+
+	if (a_weather == 0) {
+		return "cold";
+	}
+	else if (a_weather == 1) {
+		return "cool";
+	}
+	else if (a_weather == 2) {
+		return "mild";
+	}
+	else if (a_weather == 3) {
+		return "warm";
+	}
+	else if (a_weather == 4) {
+		return "hot";
+	}
+	else {
+		DisplayError("ERROR: Unknown weather code.");
+	}
+}
