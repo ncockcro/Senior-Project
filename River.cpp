@@ -17,7 +17,7 @@ River::River()
 	m_hasFerry = false;
 }
 
-void River::CrossLocation(string a_weather, int &a_year, string &a_month, int &a_day) {
+void River::CrossLocation(string a_weather, int &a_year, string &a_month, int &a_day, double &a_money) {
 
 	string choice;
 
@@ -38,13 +38,15 @@ void River::CrossLocation(string a_weather, int &a_year, string &a_month, int &a
 		}
 		// If the river has a ferry, then choice 3 will be the option to take it
 		else if (m_hasFerry && choice == "3") {
-			if (TakeFerry()) {
+
+			// If TakeFerry returns true, then the player successfully crossed the river
+			if (TakeFerry(a_money)) {
 				break;
 			}
 		}
 		// If the river does not have a ferry, then option 3 is for waiting for conditions
 		else if (!m_hasFerry && choice == "3") {
-
+			WaitADay(a_year, a_month, a_day);
 		}
 		// If the river has a ferry, then option 4 is for waiting for conditions
 		else if (m_hasFerry && choice == "4") {
@@ -135,6 +137,8 @@ void River::OpeningDialogue() {
 	cout << "\t currently " << m_riverLength << " feet across," << endl;
 	cout << "\t and " << m_riverDepth << " feet deep in the" << endl;
 	m_utility.OutputMessage("middle.");
+	cout << endl;
+	m_utility.Wait();
 }
 
 void River::ShowRiverMenu(string a_weather) {
@@ -160,7 +164,7 @@ void River::ShowRiverMenu(string a_weather) {
 	cout << "\t What is your choice? ";
 }
 
-bool River::TakeFerry() {
+bool River::TakeFerry(double &a_money) {
 
 	string choice;
 	bool takeFerry = false;
@@ -175,6 +179,7 @@ bool River::TakeFerry() {
 
 		if (choice == "yes" || choice == "ye" || choice == "y") {
 			takeFerry = true;
+			a_money -= 5.0;
 			break;
 		}
 		else if (choice == "no" || choice == "n") {

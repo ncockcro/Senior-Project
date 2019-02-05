@@ -34,7 +34,7 @@ Location::Location()
 	m_hasStore = false;
 }
 
-void Location::CrossLocation(string a_weather, int &a_year, string &a_month, int &a_day) {
+void Location::CrossLocation(string a_weather, int &a_year, string &a_month, int &a_day, double &a_money) {
 
 }
 

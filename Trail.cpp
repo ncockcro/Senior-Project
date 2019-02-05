@@ -123,6 +123,7 @@ void Trail::ActiveGame() {
 			cout << "\t " << m_locations[i]->GetName() << endl;
 			cout << "\t Would you like to look around? ";
 			cin >> choice;
+			cout << endl;
 
 			if (choice == "yes" || choice == "ye" || choice == "y") {
 				m_utility.ShowLocation(m_locations[i]->GetName(), m_year, m_month, m_day);
@@ -134,7 +135,7 @@ void Trail::ActiveGame() {
 			}
 		}
 
-		m_locations[i]->CrossLocation(m_utility.GetWeatherName(m_weather), m_year, m_month, m_day);
+		m_locations[i]->CrossLocation(m_utility.GetWeatherName(m_weather), m_year, m_month, m_day, m_playerMoney);
 	}
 
 	
