@@ -1098,8 +1098,45 @@ void Trail::InitializeLocations() {
 	m_KansasRiver.SetHasFerry(true);
 	m_BigBlueRiver.SetName("Big Blue River");
 	m_BigBlueRiver.SetMilesNeeded(82);
+	m_BigBlueRiver.SetHasStore(false);
 	m_FortKearney.SetName("Fort Kearney");
-	m_FortKearney.SetMilesNeeded(100);
+	m_FortKearney.SetMilesNeeded(118);
+	m_ChimneyRock.SetName("Chimney Rock");
+	m_ChimneyRock.SetMilesNeeded(250);
+	m_ChimneyRock.SetHasStore(false);
+	m_FortLaramie.SetName("Fort Laramie");
+	m_FortLaramie.SetMilesNeeded(86);
+	m_IndependenceRock.SetName("Independence Rock");
+	m_IndependenceRock.SetMilesNeeded(190);
+	m_IndependenceRock.SetHasStore(false);
+	m_SouthPass.SetName("South Pass");
+	m_SouthPass.SetMilesNeeded(102);
+	m_SouthPass.SetHasStore(false);
+	m_GreenRiver.SetName("Green River");
+	m_GreenRiver.SetMilesNeeded(57);
+	m_GreenRiver.SetHasStore(false);
+	m_GreenRiver.SetHasFerry(false);
+	m_FortBridger.SetName("Fort Bridger");
+	m_SodaSprings.SetName("Soda Springs");
+	m_SodaSprings.SetMilesNeeded(143);
+	m_SodaSprings.SetHasStore(false);
+	m_FortHall.SetName("Fort Hall");
+	m_FortHall.SetMilesNeeded(57);
+	m_SnakeRiver.SetName("Snake River");
+	m_SnakeRiver.SetMilesNeeded(182); // Has the option to hire an Indian to cross
+	m_FortBoise.SetName("Fort Boise");
+	m_FortBoise.SetMilesNeeded(113);
+	m_BlueMountains.SetName("Blue Mountains");
+	m_BlueMountains.SetMilesNeeded(160);
+	m_BlueMountains.SetHasStore(false); 
+	m_FortWallaWalla.SetName("Fort Walla Walla");
+	m_FortWallaWalla.SetMilesNeeded(55);
+	m_TheDalles.SetName("The Dalles");
+	m_TheDalles.SetMilesNeeded(120);
+	m_TheDalles.SetHasStore(false);
+	m_WillametteValley.SetName("Willamette Valley"); // User must pay to get into this location
+	m_WillametteValley.SetMilesNeeded(100);
+	m_WillametteValley.SetHasStore(false);
 }
 
 /*

@@ -90,12 +90,16 @@ private:
 	Location m_FortLaramie;
 	Location m_IndependenceRock;
 	Location m_SouthPass;
+	River m_GreenRiver;
 	Location m_FortBridger;
+	Location m_SodaSprings;
+	Location m_FortHall;
 	River m_SnakeRiver;
 	Location m_FortBoise;
 	Location m_BlueMountains;
 	Location m_FortWallaWalla;
 	Location m_TheDalles;
+	Location m_WillametteValley;
 
 	int m_rateOfTravel;
 	int m_milesTraveled;
