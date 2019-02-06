@@ -6,15 +6,9 @@ River::River()
 {
 	srand((unsigned int)time(0));
 
-	uniform_real_distribution<double> unif(0.1, 10.0);
-	default_random_engine re;
-	re.seed(time(0));
-	m_riverDepth = unif(re);
+	m_riverDepth = 0.0;
 
-	uniform_real_distribution<double> unif2(100.0, 400.0);
-	default_random_engine re2;
-	re2.seed(time(0));
-	m_riverLength = unif2(re2);
+	m_riverLength = 0.0;
 
 	m_hasFerry = false;
 }
@@ -22,6 +16,16 @@ River::River()
 void River::CrossLocation(Player a_player, Date &a_date, int a_weather) {
 
 	string choice;
+
+	uniform_real_distribution<double> unif(0.1, 10.0);
+	default_random_engine re;
+	re.seed(time(0));
+	m_riverDepth = unif(re);
+
+	uniform_real_distribution<double> unif2(100.0, 800.0);
+	default_random_engine re2;
+	re2.seed(time(0));
+	m_riverLength = unif2(re2);
 
 	OpeningDialogue();
 
