@@ -8,10 +8,12 @@ River::River()
 
 	uniform_real_distribution<double> unif(0.1, 10.0);
 	default_random_engine re;
+	re.seed(time(0));
 	m_riverDepth = unif(re);
 
 	uniform_real_distribution<double> unif2(100.0, 400.0);
 	default_random_engine re2;
+	re2.seed(time(0));
 	m_riverLength = unif2(re2);
 
 	m_hasFerry = false;
@@ -30,11 +32,15 @@ void River::CrossLocation(Player a_player, Date &a_date, int a_weather) {
 
 		// If the player wants to ford the river with their wagon
 		if (choice == "1") {
-			break;
+			if (FordRiver(a_player)) {
+				break;
+			}
 		}
 		// If the player wants to try and float across the river
 		else if (choice == "2") {
-			break;
+			if (FloatRiver(a_player)) {
+				break;
+			}
 		}
 		// If the river has a ferry, then choice 3 will be the option to take it
 		else if (m_hasFerry && choice == "3") {
@@ -162,6 +168,25 @@ void River::ShowRiverMenu(string a_weather) {
 	}
 
 	cout << "\t What is your choice? ";
+}
+
+bool River::FordRiver(Player &a_player) {
+
+	return true;
+}
+
+bool River::FloatRiver(Player &a_player) {
+
+	cout << "Actual length: " << m_riverLength << endl;
+	cout << "Modula length: " << (int)m_riverLength / 100 << endl;
+	for (int i = 0; i < ((int)m_riverLength / 100); i++) {
+		m_utility.OutputMessage("Floating on river...");
+		m_utility.Wait();
+
+		// Insert random chance of losing items here
+	}
+
+	return true;
 }
 
 bool River::TakeFerry(Player &a_player) {
