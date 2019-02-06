@@ -18,6 +18,8 @@ DESCRIPTION
 #include <iostream>
 #include <string>
 #include "Utility.h"
+#include "Player.h"
+#include "Date.h"
 
 using namespace std;
 
@@ -25,7 +27,7 @@ class Location
 {
 public:
 	Location();
-	virtual void CrossLocation(string a_weather, int &a_year, string &a_month, int &a_day, double &a_money);
+	virtual void CrossLocation(Player a_player, Date &a_date, int a_weather);
 	void SetName(string a_name);
 	string GetName();
 	void SetMilesNeeded(int a_miles);

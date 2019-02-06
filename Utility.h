@@ -31,15 +31,10 @@ public:
 	void Wait();
 	bool IsDigits(string &a_input);
 	void OutputMessage(string a_message);
-	void NextDay(int &a_year, string &a_month, int &a_day);
 	void ShowLocation(string a_location, int a_year, string a_month, int a_day);
 	string GetWeatherName(int a_weather);
 
 private:
-	int ConvertMonth(string a_month);
-	string ConvertMonth(int a_month);
-
 	HANDLE m_hConsole;
-	int m_lastDays[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 };
 

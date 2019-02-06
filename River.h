@@ -21,6 +21,8 @@ DESCRIPTION
 #include <random>
 #include "Location.h"
 #include "Utility.h"
+#include "Player.h"
+#include "Date.h"
 
 using namespace std;
 
@@ -28,7 +30,7 @@ class River: public Location
 {
 public:
 	River();
-	void CrossLocation(string a_weather, int &a_year, string &a_month, int &a_day, double &a_money);
+	void CrossLocation(Player a_player, Date &a_date, int a_weather);
 	double GetRiverLength();
 	double GetRiverDepth();
 	void SetHasFerry(bool a_hasFerry);
@@ -36,8 +38,8 @@ public:
 private:
 	void OpeningDialogue();
 	void ShowRiverMenu(string a_weather);
-	bool TakeFerry(double &a_money);
-	void WaitADay(int &a_year, string &a_month, int &a_day);
+	bool TakeFerry(Player &a_player);
+	void WaitADay(Date &a_date);
 	void RiverMoreInfoDialogue();
 
 	double m_randomNum;

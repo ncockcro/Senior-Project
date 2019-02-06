@@ -30,26 +30,11 @@ Date
 */
 Trail::Trail()
 {
-	InitializePartyItems();
 	m_currentLocation = "Independence";
 	m_milesLeft = 1907; // Will probably round up to 2000 to compensate for the final river
 	// The final location is Willamette Valley in Oregon
 	m_pace = "steady";
 	m_foodRate = "filling";
-
-	m_locations.push_back(&m_KansasRiver);
-	m_locations.push_back(&m_BigBlueRiver);
-	m_locations.push_back(&m_FortKearney);
-	m_locations.push_back(&m_ChimneyRock);
-	m_locations.push_back(&m_FortLaramie);
-	m_locations.push_back(&m_IndependenceRock);
-	m_locations.push_back(&m_SouthPass);
-	m_locations.push_back(&m_FortBridger);
-	m_locations.push_back(&m_SnakeRiver);
-	m_locations.push_back(&m_FortBoise);
-	m_locations.push_back(&m_BlueMountains);
-	m_locations.push_back(&m_FortWallaWalla);
-	m_locations.push_back(&m_TheDalles); 
 
 	m_rateOfTravel = 10;
 	m_milesTraveled = 0;
@@ -97,7 +82,7 @@ void Trail::ActiveGame() {
 	LeavingMessage();
 	DepartingStore();
 
-	m_utility.ShowLocation(m_currentLocation, m_year, m_month, m_day);
+	m_date.ShowLocation(m_currentLocation);
 	TrailMenu(m_Independence.GetHasStore());
 
 	// Cycle through the list of locations that the player has to travel to
@@ -126,7 +111,7 @@ void Trail::ActiveGame() {
 			cout << endl;
 
 			if (choice == "yes" || choice == "ye" || choice == "y") {
-				m_utility.ShowLocation(m_locations[i]->GetName(), m_year, m_month, m_day);
+				m_date.ShowLocation(m_locations[i]->GetName());
 				TrailMenu(m_locations[i]->GetHasStore());
 				break;
 			}
@@ -135,7 +120,7 @@ void Trail::ActiveGame() {
 			}
 		}
 
-		m_locations[i]->CrossLocation(m_utility.GetWeatherName(m_weather), m_year, m_month, m_day, m_playerMoney);
+		m_locations[i]->CrossLocation(m_player, m_date, m_weather);
 	}
 
 	
@@ -209,18 +194,18 @@ void Trail::PromptPosition() {
 
 	// Player chose to be a banker
 	if (positionChoice == "1") {
-		m_playerMoney = 1600;
-		m_playerPosition = "Banker";
+		m_player.SetPlayerMoney(1600);
+		m_player.SetPlayerPosition("Banker");
 	}
 	// Player chose to be a carpenter
 	else if (positionChoice == "2") {
-		m_playerMoney = 800;
-		m_playerPosition = "Carpenter";
+		m_player.SetPlayerMoney(800);
+		m_player.SetPlayerPosition("Cerpenter");
 	}
 	// Player chose to be a farmer
 	else if (positionChoice == "3") {
-		m_playerMoney = 400;
-		m_playerPosition = "Farmer";
+		m_player.SetPlayerMoney(400);
+		m_player.SetPlayerPosition("Farmer");
 	}
 	else {
 		m_utility.DisplayError("ERROR: Trail class did not know which position the player chose!");
@@ -373,26 +358,26 @@ void Trail::PromptStartingMonth() {
 	}
 
 	if (choice == "1") {
-		m_month = "March";
+		m_date.SetMonth("March");
 	}
 	else if (choice == "2") {
-		m_month = "April";
+		m_date.SetMonth("April");
 	}
 	else if (choice == "3") {
-		m_month = "May";
+		m_date.SetMonth("May");
 	}
 	else if (choice == "4") {
-		m_month = "June";
+		m_date.SetMonth("June");
 	}
 	else if (choice == "5") {
-		m_month = "July";
+		m_date.SetMonth("July");
 	}
 	else {
 		m_utility.DisplayError("ERROR: Trail class doesn't know which month is starting!");
 	}
 
-	m_day = 1;
-	m_year = 1848;
+	m_date.SetDay(1);
+	m_date.SetYear(1848);
 }
 
 /*
@@ -425,7 +410,7 @@ Date
 void Trail::LeavingMessage() {
 
 	m_utility.OutputMessage("Before leaving Independence you should buy equipment and supplies.");
-	cout << "\t You have " << m_playerMoney << ".00 in cash, but you don't have to spend it all now" << endl << endl;
+	cout << "\t You have " << m_player.GetPlayerMoney() << ".00 in cash, but you don't have to spend it all now" << endl << endl;
 	m_utility.Wait();
 
 	cout << endl;
@@ -531,13 +516,13 @@ void Trail::DepartingStore() {
 
 	// Creating the store, setting the initial information, and sending the items to be sold there
 	Store departingStore = Store();
-	departingStore.SetDate(m_year, m_month, m_day);
+	departingStore.SetDate(m_date.GetYear(), m_date.GetMonth(), m_date.GetDay());
 	departingStore.SetLocation("Independence, Missouri");
-	departingStore.SetPlayerMoney(m_playerMoney);
+	departingStore.SetPlayerMoney(m_player.GetPlayerMoney());
 	departingStore.DisplayStore(storeItems);
 
 	// Deduct the money that the player spent at the store
-	DeductMoney(departingStore.GetTotalPrice());
+	m_player.DeductMoney(departingStore.GetTotalPrice());
 
 	// Add the items that the player bought to their inventory
 	AddItemsFromStore(departingStore.GetItemQuantitys());
@@ -550,48 +535,6 @@ void Trail::DepartingStore() {
 	m_utility.OutputMessage("of you.");
 	m_utility.Wait();
 
-}
-
-/*
-	Trail::DeductMoney(double a_money)
-
-NAME
-
-	Trail::DepartingStore - Deduct money that is passed in from the player's cash stack
-
-SYNOPSIS
-
-	void Trail::DepartingStore(double a_money)
-
-	a_money --> money to deduct
-
-DESCRIPTION
-
-	This function will deduct the amount of money passed in from the money the player has in a game of
-	Oregon Trail.
-
-RETURNS
-
-	Void
-
-AUTHOR
-
-	Nicholas Cockcroft
-
-Date
-
-	8:18pm 1/24/2019
-*/
-void Trail::DeductMoney(double a_money) {
-
-	// If the player's money subtracted with what was passed in was greater than 0, subtract the money
-	if (m_playerMoney - a_money > 0) {
-		m_playerMoney = m_playerMoney - a_money;
-	}
-	// Otherwise, report an error since there should never be subtracting of more money than the player has
-	else {
-		m_utility.DisplayError("ERROR: Tried to subtract more money than player had.");
-	}
 }
 
 /*
@@ -630,89 +573,30 @@ void Trail::AddItemsFromStore(vector<Item> a_storeItems) {
 	for (size_t i = 0; i < a_storeItems.size(); i++) {
 
 		if (a_storeItems[i].GetName() == "Oxen") {
-			m_partyOxen.AddToQuantity(a_storeItems[i].GetQuantity());
+			m_player.SetItemQuantity("Oxen", a_storeItems[i].GetQuantity());
 		}
 		else if (a_storeItems[i].GetName() == "Food") {
-			m_partyFood.AddToQuantity(a_storeItems[i].GetQuantity());
+			m_player.SetItemQuantity("Food", a_storeItems[i].GetQuantity());
 		}
 		else if (a_storeItems[i].GetName() == "Clothing") {
-			m_partyClothing.AddToQuantity(a_storeItems[i].GetQuantity());
+			m_player.SetItemQuantity("Clothing", a_storeItems[i].GetQuantity());
 		}
 		else if (a_storeItems[i].GetName() == "Ammunition") {
-			m_partyAmmunition.AddToQuantity(a_storeItems[i].GetQuantity());
+			m_player.SetItemQuantity("Ammunition", a_storeItems[i].GetQuantity());
 		}
 		else if (a_storeItems[i].GetName() == "Spare parts - wagon wheel") {
-			m_partyExtraWheel.AddToQuantity(a_storeItems[i].GetQuantity());
+			m_player.SetItemQuantity("Spare parts - wagon wheel", a_storeItems[i].GetQuantity());
 		}
 		else if (a_storeItems[i].GetName() == "Spare parts - wagon axle") {
-			m_partyExtraAxle.AddToQuantity(a_storeItems[i].GetQuantity());
+			m_player.SetItemQuantity("Spare parts - wagon axle", a_storeItems[i].GetQuantity());
 		}
 		else if (a_storeItems[i].GetName() == "Spare parts - wagon tongue") {
-			m_partyExtraTongue.AddToQuantity(a_storeItems[i].GetQuantity());
+			m_player.SetItemQuantity("Spare parts - wagon tongue", a_storeItems[i].GetQuantity());
 		}
 		else {
 			m_utility.DisplayError("ERROR: There was an invalid item name from the store in trail class.");
 		}
 	}
-}
-
-/*
-	Trail::IntializePartyItems()
-
-NAME
-
-	Trail::InitializePartyItems - Initialize the items in the player's inventory
-
-SYNOPSIS
-
-	void Trail::InitializePartyItems
-
-DESCRIPTION
-
-	This function initializes the player's items by setting each item's name, description, default price, default
-	cap price, and cap price description. This initializes all of the items in the game for the player.
-
-RETURNS
-
-	Void
-
-AUTHOR
-
-	Nicholas Cockcroft
-
-Date
-
-	8:25pm 1/23/2019
-*/
-void Trail::InitializePartyItems() {
-	m_partyOxen = Item("Oxen", 0.1, "\t There are 2 oxen in a yoke; \n \t I recommend at least 3 yoke. \n \t I charge $40 a yoke.",
-		"You can not bring more than 9 oxen with you.", 9);
-	m_partyOxen.SetQuantity(0);
-
-	m_partyFood = Item("Food", 0.1, "\t I recommend you take at \n \t least 200 pounds of food \n \t for each person in your \n \t "
-		"family. I see that you have \n \t 5 people in all. You'll need \n \t flour, sugar, bacon,"
-		"and \n \t coffee. My price is 20 \n \t cents a pound.",
-		"Your wagon may only carry \n \t 2000 pounds of food.", 2000);
-	m_partyFood.SetQuantity(0);
-
-	m_partyClothing = Item("Clothing", 0.1, "\t You'll need warm clothing in \n \t the mountains. I recommend \n \t taking at least \n \t "
-		"2 sets of \n \t clothes per person. Each \n \t set is $10.00", "NULL", INT_MAX);
-	m_partyClothing.SetQuantity(0);
-
-	m_partyAmmunition = Item("Ammunition", 0.1, "\t I sell amunition in boxes \n \t of 20 bullets. Each box \n \t costs $2.00.", "NULL", INT_MAX);
-	m_partyAmmunition.SetQuantity(0);
-
-	m_partyExtraWheel = Item("Spare parts - wagon wheel", 0.1, "\t It's a good idea to have a \n \t few spare wheels for your \n \t wagon:",
-		"Your wagon may only carry 3 \n \t wagon wheels.", 3);
-	m_partyExtraWheel.SetQuantity(0);
-
-	m_partyExtraAxle = Item("Spare parts - wagon axle", 0.1, "\t It's a good idea to have a \n \t few spare axles for your \n \t wagon:",
-		"Your wagon may only carry 3 \n \t wagon axles.", 3);
-	m_partyExtraAxle.SetQuantity(0);
-
-	m_partyExtraTongue = Item("Spare parts - wagon tongue", 0.1, "\t It's a good idea to have a \n \t few spare tongues for your \n \t wagon:",
-		"Your wagon may only carry 3 \n \t wagon tongues", 3);
-	m_partyExtraTongue.SetQuantity(0);
 }
 
 /*
@@ -833,14 +717,14 @@ Date
 void Trail::ShowSupplies() {
 
 	m_utility.OutputMessage("\t Your Supplies");
-	cout << "\t oxen     " << m_partyOxen.GetQuantity() << endl;
-	cout << "\t sets of clothing     " << m_partyClothing.GetQuantity() << endl;
-	cout << "\t bullets     " << m_partyAmmunition.GetQuantity() << endl;
-	cout << "\t wagon wheels     " << m_partyExtraWheel.GetQuantity() << endl;
-	cout << "\t wagon axles     " << m_partyExtraAxle.GetQuantity() << endl;
-	cout << "\t wagon toungue     " << m_partyOxen.GetQuantity() << endl;
-	cout << "\t pounds of food     " << m_partyFood.GetQuantity() << endl;
-	cout << "\t money left     $" << m_playerMoney << endl;
+	cout << "\t oxen     " << m_player.GetItem("Oxen").GetQuantity() << endl;
+	cout << "\t sets of clothing     " << m_player.GetItem("Clothing").GetQuantity() << endl;
+	cout << "\t bullets     " << m_player.GetItem("Ammunition").GetQuantity() << endl;
+	cout << "\t wagon wheels     " << m_player.GetItem("Spare parts - wagon wheel").GetQuantity() << endl;
+	cout << "\t wagon axles     " << m_player.GetItem("Spare parts - wagon axle").GetQuantity() << endl;
+	cout << "\t wagon tongue     " << m_player.GetItem("Spare parts - wagon tongue").GetQuantity() << endl;
+	cout << "\t pounds of food     " << m_player.GetItem("Food").GetQuantity() << endl;
+	cout << "\t money left     $" << m_player.GetPlayerMoney() << endl;
 	m_utility.Wait();
 }
 
@@ -1049,7 +933,7 @@ void Trail::Rest() {
 			}
 			else {
 				for (int i = 0; i < stoi(numOfDays); i++) {
-					m_utility.NextDay(m_year, m_month, m_day);
+					m_date.NextDay();
 				}
 				break;
 			}
@@ -1136,7 +1020,27 @@ void Trail::InitializeLocations() {
 	m_TheDalles.SetHasStore(false);
 	m_WillametteValley.SetName("Willamette Valley"); // User must pay to get into this location
 	m_WillametteValley.SetMilesNeeded(100);
-	m_WillametteValley.SetHasStore(false);
+	m_WillametteValley.SetHasStore(false); 
+	
+	m_locations.push_back(&m_KansasRiver);
+	m_locations.push_back(&m_BigBlueRiver);
+	m_locations.push_back(&m_FortKearney);
+	m_locations.push_back(&m_ChimneyRock);
+	m_locations.push_back(&m_FortLaramie);
+	m_locations.push_back(&m_IndependenceRock);
+	m_locations.push_back(&m_SouthPass);
+	m_locations.push_back(&m_GreenRiver);
+	m_locations.push_back(&m_FortBridger);
+	m_locations.push_back(&m_SodaSprings);
+	m_locations.push_back(&m_FortHall);
+	m_locations.push_back(&m_SnakeRiver);
+	m_locations.push_back(&m_FortBoise);
+	m_locations.push_back(&m_BlueMountains);
+	m_locations.push_back(&m_FortWallaWalla);
+	m_locations.push_back(&m_TheDalles);
+	m_locations.push_back(&m_WillametteValley);
+
+
 }
 
 /*
@@ -1172,15 +1076,15 @@ Date
 */
 void Trail::ShowAndUpdateTrailInfo(int a_miles, int &a_milesNeeded) {
 
-	cout << "\t Date: " << m_month << " " << m_day << ", " << m_year << endl;
+	cout << "\t Date: " << m_date.GetMonth() << " " << m_date.GetDay() << ", " << m_date.GetYear() << endl;
 	cout << "\t Weather: " << "Warm" << endl;
 	cout << "\t Health: " << "Good" << endl;
-	cout << "\t Food: " << m_partyFood.GetQuantity() << endl;
+	cout << "\t Food: " << m_player.GetItem("Food").GetQuantity() << endl;
 	cout << "\t Next landmark: " << a_milesNeeded << " miles" << endl;;
 	cout << "\t Miles traveled: " << m_milesTraveled << " miles" << endl << endl;
 
-	m_partyFood.DecrementFood(m_foodRate);
-	m_utility.NextDay(m_year, m_month, m_day);
+	m_player.DeductFood(m_foodRate);
+	m_date.NextDay();
 	a_milesNeeded -= m_rateOfTravel;
 	m_milesTraveled += a_miles;
 }

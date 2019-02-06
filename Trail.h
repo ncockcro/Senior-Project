@@ -24,6 +24,8 @@ DESCRIPTION
 #include "Dialogue.h"
 #include "Location.h"
 #include "River.h"
+#include "Player.h"
+#include "Date.h"
 
 using namespace std;
 
@@ -39,8 +41,6 @@ private:
 	void PromptStartingMonth();
 	void LeavingMessage();
 	void DepartingStore();
-	void DeductMoney(double a_money);
-	void InitializePartyItems();
 	void AddItemsFromStore(vector<Item> a_storeItems);
 	void TrailMenu(bool a_hasStore);
 	void ShowSupplies();
@@ -52,12 +52,9 @@ private:
 	void AddEndingMiles(int a_miles);
 
 	Utility m_utility = Utility();
-	double m_playerMoney;
-	string m_playerPosition;
-	string m_month;
-	int m_year;
-	int m_day;
+	Player m_player;
 	string m_currentLocation;
+	Date m_date;
 
 	string m_wagonLeader;
 	string m_wagonParty[4];
@@ -65,13 +62,6 @@ private:
 	Store m_Store;
 
 	// Player's items during the playthrough
-	Item m_partyOxen;
-	Item m_partyFood;
-	Item m_partyClothing;
-	Item m_partyAmmunition;
-	Item m_partyExtraWheel;
-	Item m_partyExtraAxle;
-	Item m_partyExtraTongue;
 
 	int m_milesLeft;
 	int m_weather;
