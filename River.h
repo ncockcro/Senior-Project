@@ -31,7 +31,7 @@ class River: public Location
 public:
 	River();
 	void CrossLocation(Player a_player, Date &a_date, int a_weather);
-	double GetRiverLength();
+	double GetRiverWidth();
 	double GetRiverDepth();
 	void SetHasFerry(bool a_hasFerry);
 
@@ -45,7 +45,7 @@ private:
 	void RiverMoreInfoDialogue();
 
 	double m_randomNum;
-	double m_riverLength;
+	double m_riverWidth;
 	double m_riverDepth;
 	Utility m_utility = Utility();
 	bool m_hasFerry;

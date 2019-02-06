@@ -1,31 +1,88 @@
 #include "River.h"
 
+/*
+	River::River()
 
+NAME
 
+	River::River() - Default constructor
+
+SYNOPSIS
+
+	River::River()
+
+DESCRIPTION
+
+	This is the default constructor for the river class, sets the initial values for the width and depth of the river
+
+RETURNS
+
+	None
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	11:18am 2/6/2019
+*/
 River::River()
 {
 	srand((unsigned int)time(0));
 
 	m_riverDepth = 0.0;
 
-	m_riverLength = 0.0;
+	m_riverWidth = 0.0;
 
 	m_hasFerry = false;
 }
 
+/*
+	River::CrossLocation()
+
+NAME
+
+	River::CrossLocation - Handles the functionality for when the player needs to cross a river
+
+SYNOPSIS
+
+	void River::CrossLocation
+
+DESCRIPTION
+
+	This function is the main driving function of the river class and handles the opening dialogue for the river,
+	seeding the width and depth of a river with random values, and houses the main menu for a river for if the
+	player wants to take a certain way to cross a river, take a ferry if available, wait a day, or get some
+	advice.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	11:21am 2/6/2019
+*/
 void River::CrossLocation(Player a_player, Date &a_date, int a_weather) {
 
 	string choice;
 
+	// Generating a random number for the depth of the river
 	uniform_real_distribution<double> unif(0.1, 10.0);
 	default_random_engine re;
-	re.seed(time(0));
+	re.seed((unsigned int)time(0));
 	m_riverDepth = unif(re);
 
+	// Generating a random number for the length of the river
 	uniform_real_distribution<double> unif2(100.0, 800.0);
 	default_random_engine re2;
-	re2.seed(time(0));
-	m_riverLength = unif2(re2);
+	re2.seed((unsigned int)time(0));
+	m_riverWidth = unif2(re2);
 
 	OpeningDialogue();
 
@@ -78,19 +135,19 @@ void River::CrossLocation(Player a_player, Date &a_date, int a_weather) {
 
 }
 /*
-	River::GetRiverLength()
+	River::GetRiverWidth()
 
 NAME
 
-	River::GetRiverLength - Returns the length of a river object
+	River::GetRiverWidth - Returns the width of a river object
 
 SYNOPSIS
 
-	double River::GetRiverLength()
+	double River::GetRiverWidth()
 
 DESCRIPTION
 
-	The function returns the length of a river object.
+	The function returns the width of a river object.
 
 RETURNS
 
@@ -104,8 +161,8 @@ Date
 
 	10:27pm 1/30/2019
 */
-double River::GetRiverLength() {
-	return m_riverLength;
+double River::GetRiverWidth() {
+	return m_riverWidth;
 }
 
 /*
@@ -117,7 +174,7 @@ NAME
 
 SYNOPSIS
 
-	void Trail::GetRiverDepth()
+	void River::GetRiverDepth()
 
 DESCRIPTION
 
@@ -139,22 +196,79 @@ double River::GetRiverDepth() {
 	return m_riverDepth;
 }
 
+/*
+	River::OpeningDialogue()
+
+NAME
+
+	River::OpeningDialogue - Outputs the intro to a river
+
+SYNOPSIS
+
+	void Trail::OpeningDialogue()
+
+DESCRIPTION
+
+	This function outputs the opening dialogue, river width and depth, to the console.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	11:24am 2/6/2019
+*/
 void River::OpeningDialogue() {
 
 	m_utility.OutputMessage("You must cross the river in");
 	m_utility.OutputMessage("order to continue. The");
 	m_utility.OutputMessage("river at this point is");
-	cout << "\t currently " << m_riverLength << " feet across," << endl;
+	cout << "\t currently " << m_riverWidth << " feet across," << endl;
 	cout << "\t and " << m_riverDepth << " feet deep in the" << endl;
 	m_utility.OutputMessage("middle.");
 	cout << endl;
 	m_utility.Wait();
 }
 
+/*
+	River::ShowRiverMenu
+
+NAME
+
+	River::ShowRiverMenu - Outputs the menu options for river
+
+SYNOPSIS
+
+	void Trail::ShowRiverMenu(string a_weather)
+
+	a_weather --> current weather of the game
+
+DESCRIPTION
+
+	This function outputs to the console the menu options for the player. It will also show if there is a ferry
+	to take or not depending on what was set.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	11:28am 2/6/2019
+*/
 void River::ShowRiverMenu(string a_weather) {
 
 	cout << "\t Weather: " << a_weather << endl;
-	cout << "\t River width: " << m_riverLength << endl;
+	cout << "\t River width: " << m_riverWidth << endl;
 	cout << "\t River depth: " << m_riverDepth << endl << endl;
 	
 	cout << "\t You may:" << endl << endl;
@@ -174,16 +288,71 @@ void River::ShowRiverMenu(string a_weather) {
 	cout << "\t What is your choice? ";
 }
 
+/*
+	River::FordRiver()
+
+NAME
+
+	River::FordRiver - Player uses oxen to pull wagon through river
+
+SYNOPSIS
+
+	bool Trail::GetRiverDepth()
+
+DESCRIPTION
+
+	This function handles when the player picks the option to ford the river with their oxen. If
+	the depth of a river is shallow enough, than they will be successfull in crossing this way, otherwise,
+	the player's wagon may sink and lose items.
+
+RETURNS
+
+	Bool
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	11:31am 2/6/2019
+*/
 bool River::FordRiver(Player &a_player) {
 
 	return true;
 }
 
+/*
+	River::FloatRiver()
+
+NAME
+
+	River::FloatRiver - Player seals their wagon and floats across river
+
+SYNOPSIS
+
+	bool Trail::FloatRiver()
+
+DESCRIPTION
+
+	This function handles when the player chooses the option to float across the river. If the river has a very high
+	depth, then they will be more successful in floating across then if they tried to ford the river.
+
+RETURNS
+
+	Bool
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	11:34am 2/6/2019
+*/
 bool River::FloatRiver(Player &a_player) {
 
-	cout << "Actual length: " << m_riverLength << endl;
-	cout << "Modula length: " << (int)m_riverLength / 100 << endl;
-	for (int i = 0; i < ((int)m_riverLength / 100); i++) {
+	for (int i = 0; i < ((int)m_riverWidth / 100); i++) {
 		m_utility.OutputMessage("Floating on river...");
 		m_utility.Wait();
 
@@ -193,6 +362,36 @@ bool River::FloatRiver(Player &a_player) {
 	return true;
 }
 
+/*
+	River::TakeFerry
+
+NAME
+
+	River::TakeFerry - Player uses a ferry to cross the river without fail
+
+SYNOPSIS
+
+	void Trail::TakeFerry(Player &a_player)
+
+	a_player --> player object with all of the player's items
+
+DESCRIPTION
+
+	This function is used when the player wants to take a ferry to cross the river. It handles
+	removing $5 from the player's cash if they take the ferry, and then they cross the river safely.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	11:58am 2/6/2019
+*/
 bool River::TakeFerry(Player &a_player) {
 
 	string choice;
@@ -237,6 +436,35 @@ bool River::TakeFerry(Player &a_player) {
 	return takeFerry;
 }
 
+/*
+	River::WaitADay()
+
+NAME
+
+	River::WaitADay - Increments the day and lessen river conditions
+
+SYNOPSIS
+
+	void Trail::WaitADay(Date &a_date)
+
+	a_date --> date object which contains the current date
+
+DESCRIPTION
+
+	This function increments the day by 1 and lessens the river conditions slightly
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	12:01pm 1/6/2019
+*/
 void River::WaitADay(Date &a_date) {
 
 	m_utility.OutputMessage("You camp near the river for a day.");
@@ -244,11 +472,40 @@ void River::WaitADay(Date &a_date) {
 
 	a_date.NextDay();
 
-	if (m_riverDepth > 0.0 && m_riverLength > 0.0) {
+	if (m_riverDepth > 0.0 && m_riverWidth > 0.0) {
 		m_riverDepth -= 0.01;
-		m_riverLength -= 1.0;
+		m_riverWidth -= 1.0;
 	}
 }
+
+/*
+	River::RiverMoreInfoDialogue()
+
+NAME
+
+	River::RiverMoreInfoDialogue - Outputs the advice for crossing the river
+
+SYNOPSIS
+
+	void River::RiverMoreInfoDialogue
+
+DESCRIPTION
+
+	This function outputs to the console the dialogue for when the player wants to learn more info
+	about crossing the river.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	12:04pm 2/6/2019
+*/
 void River::RiverMoreInfoDialogue() {
 
 	m_utility.OutputMessage("\t To ford a river means to");
@@ -275,6 +532,35 @@ void River::RiverMoreInfoDialogue() {
 
 }
 
+/*
+	River::SetHasFerry(bool a_hasFerry)
+
+NAME
+
+	River::SetHasFerry - Sets the boolean value for if there is a ferry at a river
+
+SYNOPSIS
+
+	void Trail::SetHasFerry(bool a_hasFerry)
+
+	a_hasFerry --> boolean value for if the river has a ferry
+
+DESCRIPTION
+
+	This function sets the boolean value for whether of not a river object has a ferry or not.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	12:07pm 2/6/2019
+*/
 void River::SetHasFerry(bool a_hasFerry) {
 	m_hasFerry = a_hasFerry;
 }
