@@ -41,6 +41,8 @@ public:
 	void SetQuantity(int a_quantity);
 	void AddToQuantity(int a_quantity);
 	void DecrementFood(string a_rate);
+	int GetLoseItemNum();
+	void SetLoseItemNum(int a_num);
 
 private:
 	string m_name;
@@ -50,5 +52,6 @@ private:
 	int m_capNumber;
 	int m_quantity;
 	Utility m_utility;
+	int m_loseItemNum;
 };
 

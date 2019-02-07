@@ -2,6 +2,9 @@
 
 #include <iostream>
 #include <string>
+#include <cstdlib>
+#include <ctime>
+#include <vector>
 #include "Utility.h"
 #include "Item.h"
 
@@ -20,12 +23,14 @@ public:
 	double GetPlayerMoney();
 	void DeductMoney(double a_money);
 	void DeductFood(string a_rate);
+	void LoseItems();
 
 
 private:
 	Utility m_utility = Utility();
 	double m_playerMoney;
 	string m_playerPosition;
+	void GenerateItemRandNums();
 
 	// Player's items
 	Item m_Oxen;

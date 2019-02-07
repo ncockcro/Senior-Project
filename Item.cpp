@@ -576,3 +576,11 @@ void Item::DecrementFood(string a_rate) {
 		m_quantity -= 5;
 	}
 }
+
+int Item::GetLoseItemNum() {
+	return m_loseItemNum;
+}
+
+void Item::SetLoseItemNum(int a_num) {
+	m_loseItemNum = a_num;
+}

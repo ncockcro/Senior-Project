@@ -82,6 +82,8 @@ void Trail::ActiveGame() {
 	LeavingMessage();
 	DepartingStore();
 
+	m_player.LoseItems();
+
 	m_date.ShowLocation(m_currentLocation);
 	TrailMenu(m_Independence.GetHasStore());
 

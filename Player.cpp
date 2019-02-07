@@ -5,6 +5,7 @@
 Player::Player()
 {
 	InitializePartyItems();
+	srand((unsigned int)time(0));
 }
 
 
@@ -184,4 +185,140 @@ void Player::DeductMoney(double a_money) {
 
 void Player::DeductFood(string a_rate) {
 	m_Food.DecrementFood(a_rate);
+}
+
+/*
+	Player::LoseItems()
+
+NAME
+
+	Player::LoseItems - Randomly deducts items from the player
+
+SYNOPSIS
+
+	void Player::LoseItems()
+
+DESCRIPTION
+
+	This function will randomly generate a percentage between 1 and 50 percent and then deduct that by some of
+	the items in the player's inventory. A new random number gets generate each time this function is called.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	2:10pm 2/06/2019
+*/
+void Player::LoseItems() {
+
+	// Generate a random number between 1 and 50
+	int randomNum = (rand() % 50) + 1;
+	int randomNumForItems = rand() % 3;
+	double percentRandNum;
+	vector<string> lostItems;
+
+	GenerateItemRandNums();
+
+	// Convert random number to a percentage
+	percentRandNum = (double)randomNum / 100;
+
+	// Amount being lost for "Oxen"
+	if (randomNumForItems == m_Oxen.GetLoseItemNum()) {
+		m_Oxen.SetQuantity(m_Oxen.GetQuantity() - (int)(m_Oxen.GetQuantity() * percentRandNum));
+		lostItems.push_back(m_Oxen.GetQuantity() - (int)(m_Oxen.GetQuantity() * percentRandNum) + "oxen");
+	}
+
+	randomNum = (rand() % 50) + 1;
+	percentRandNum = (double)randomNum / 100;
+
+	// Amount being lost for "Food"
+	if (randomNumForItems == m_Food.GetLoseItemNum()) {
+		m_Food.SetQuantity(m_Food.GetQuantity() - (int)(m_Food.GetQuantity() * percentRandNum));
+		lostItems.push_back((m_Food.GetQuantity() - (int)(m_Food.GetQuantity() * percentRandNum) + "pounds of food"));
+	}
+
+	randomNum = (rand() % 50) + 1;
+	percentRandNum = (double)randomNum / 100;
+
+	// Amount being lost for "Clothing"
+	if (randomNumForItems == m_Clothing.GetLoseItemNum()) {
+		m_Clothing.SetQuantity(m_Clothing.GetQuantity() - (int)(m_Clothing.GetQuantity() * percentRandNum));
+		lostItems.push_back(m_Clothing.GetQuantity() - (int)(m_Clothing.GetQuantity() * percentRandNum) + "sets of clothing");
+	}
+
+	randomNum = (rand() % 50) + 1;
+	percentRandNum = (double)randomNum / 100;
+
+	// Amount being lost for "Ammunition"
+	if (randomNumForItems == m_Ammunition.GetLoseItemNum()) {
+		m_Ammunition.SetQuantity(m_Ammunition.GetQuantity() - (int)(m_Ammunition.GetQuantity() * percentRandNum));
+		lostItems.push_back(m_Ammunition.GetQuantity() - (int)(m_Ammunition.GetQuantity() * percentRandNum) + " bullets");
+	}
+
+	randomNum = (rand() % 50) + 1;
+	percentRandNum = (double)randomNum / 100;
+
+	// Losing 2 "Extra wheels"
+	if (randomNumForItems == m_ExtraWheel.GetLoseItemNum() && randomNum > 25) {
+		m_ExtraWheel.SetQuantity(m_ExtraWheel.GetQuantity() - 2);
+	}
+	// Losing 1 "Extra wheel"
+	else if (randomNumForItems == m_ExtraWheel.GetLoseItemNum() && randomNum < 25) {
+		m_ExtraWheel.SetQuantity(m_ExtraWheel.GetQuantity() - 1);
+	}
+
+	randomNum = (rand() % 50) + 1;
+	percentRandNum = (double)randomNum / 100;
+
+	// Losing 2 "Extra axles"
+	if (randomNumForItems == m_ExtraAxle.GetLoseItemNum() && randomNum > 25) {
+		m_ExtraAxle.SetQuantity(m_ExtraAxle.GetQuantity() - 2);
+	}
+	// Losing 1 "Extra Axle"
+	else if (randomNumForItems == m_ExtraAxle.GetLoseItemNum() && randomNum < 25) {
+		m_ExtraAxle.SetQuantity(m_ExtraAxle.GetQuantity() - 1);
+	}
+
+	randomNum = (rand() % 50) + 1;
+	percentRandNum = (double)randomNum / 100;
+
+	// Losing 2 "Extra Tongues"
+	if (randomNumForItems == m_ExtraTongue.GetLoseItemNum() && randomNum > 25) {
+		m_ExtraTongue.SetQuantity(m_ExtraTongue.GetQuantity() - 2);
+	}
+	// Losing 1 "Extra Tongue"
+	else if (randomNumForItems == m_ExtraTongue.GetLoseItemNum() && randomNum < 25) {
+		m_ExtraTongue.SetQuantity(m_ExtraTongue.GetQuantity() - 1);
+	}
+
+}
+
+void Player::GenerateItemRandNums() {
+
+	int randNum = rand() % 3;
+	m_Oxen.SetLoseItemNum(randNum);
+
+	randNum = rand() % 3;
+	m_Food.SetLoseItemNum(randNum);
+
+	randNum = rand() % 3;
+	m_Clothing.SetLoseItemNum(randNum);
+
+	randNum = rand() % 3;
+	m_Ammunition.SetLoseItemNum(randNum);
+
+	randNum = rand() % 3;
+	m_ExtraWheel.SetLoseItemNum(randNum);
+
+	randNum = rand() % 3;
+	m_ExtraAxle.SetLoseItemNum(randNum);
+
+	randNum = rand() % 3;
+	m_ExtraTongue.SetLoseItemNum(randNum);
 }
