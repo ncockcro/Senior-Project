@@ -1,3 +1,17 @@
+/*
+WRITTEN BY
+	Nicholas Cockcroft
+
+DATE
+	1/30/2019
+
+CLASS
+	Dialogue
+
+DESCRIPTION
+	The prupose of this class is to house all of the dialogue that is displayed at the various locations throughout
+	the game.
+*/
 #pragma once
 
 #include <iostream>

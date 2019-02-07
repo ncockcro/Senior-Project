@@ -1091,6 +1091,37 @@ void Trail::ShowAndUpdateTrailInfo(int a_miles, int &a_milesNeeded) {
 	m_milesTraveled += a_miles;
 }
 
+/*
+	Trail::AddEndingMiles(int a_miles)
+
+NAME
+
+	Trail::AddEndingMiles - Add ending miles to the total traveled
+
+SYNOPSIS
+
+	void Trail::AddEndingMiles(int a_miles)
+
+	a_miles --> the rate the player travels at in miles
+
+DESCRIPTION
+
+	This function adds any leftover miles from traveling to the total miles travelled. For example,
+	if the rate the player is travelling at is 10 miles per increment, and they have to travel
+	102 miles, the last 2 miles will be added using this function.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	5:55pm 2/6/2019
+*/
 void Trail::AddEndingMiles(int a_miles) {
 
 	m_milesTraveled += a_miles;

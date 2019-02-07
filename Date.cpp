@@ -1,15 +1,35 @@
 #include "Date.h"
 
+/*
+	Date::Date()
 
+NAME
 
+	Date::Date - Default constructor
+
+SYNOPSIS
+
+	Date::Date()
+
+DESCRIPTION
+
+	Default constructor for intializing Date values.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	9:18pm 2/6/2019
+*/
 Date::Date()
 {
 	m_hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-}
-
-
-Date::~Date()
-{
 }
 
 /*
@@ -213,26 +233,194 @@ string Date::ConvertMonth(int a_month) {
 	}
 }
 
+/*
+	Date::GetYear()
+
+NAME
+
+	Date::GetYear - Retrieves the year
+
+SYNOPSIS
+
+	Date::GetYear()
+
+DESCRIPTION
+
+	This function will return the year of a Date object.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	9:20pm 2/6/2019
+*/
 int Date::GetYear() {
 	return m_year;
 }
 
+/*
+	Date::SetYear(int a_year)
+
+NAME
+
+	Date::SetYear - Sets the year of a Date object
+
+SYNOPSIS
+
+	Date::NextDay(int a_year)
+
+	a_year  --> the year in game
+
+DESCRIPTION
+
+	Takes in the year and sets it to the member variable of the Date object.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	9:24pm 2/6/2019
+*/
 void Date::SetYear(int a_year) {
 	m_year = a_year;
 }
 
+/*
+	Date::GetMonth()
+
+NAME
+
+	Date::GetMonth - Retrieves the month of a Date object
+
+SYNOPSIS
+
+	Date::GetMonth()
+
+DESCRIPTION
+
+	Returns the month of a Date object.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	9:25pm 2/6/2019
+*/
 string Date::GetMonth() {
 	return m_month;
 }
 
+/*
+	Date::SetMonth(string a_month)
+
+NAME
+
+	Date::SetMonth - Sets the month of a Date object
+
+SYNOPSIS
+
+	Date::SetMonth(string a_month)
+
+	a_month --> the month in game
+
+DESCRIPTION
+
+	Takes in the month and sets it to the member function of the Date object.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	9:33pm 2/6/2019
+*/
 void Date::SetMonth(string a_month) {
 	m_month = a_month;
 }
 
+/*
+	Date::GetDay()
+
+NAME
+
+	Date::GetDay - Returns the day of a Date object
+
+SYNOPSIS
+
+	Date::NGetDay()
+
+DESCRIPTION
+
+	Returns the day of a Date object.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	9:39pm 2/6/2019
+*/
 int Date::GetDay() {
 	return m_day;
 }
 
+/*
+	Date::SetDay(int a_day)
+
+NAME
+
+	Date::SetDay - Sets the day to what was passed in
+
+SYNOPSIS
+
+	Date::SetDay(int a_day)
+
+	a_day --> the day in game
+
+DESCRIPTION
+
+	Takes in the day and sets the member variable to what was passed in for a Date object.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	9:41pm 2/6/2019
+*/
 void Date::SetDay(int a_day) {
 	m_day = a_day;
 }

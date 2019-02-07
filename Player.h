@@ -1,3 +1,19 @@
+/*
+WRITTEN BY
+	Nicholas Cockcroft
+
+DATE
+	2/6/2019
+
+CLASS
+	Player
+
+DESCRIPTION
+	The prupose of this class is to handle all of the functionality reguarding the player which involves
+	their money, items, position they selected and any other functionality such as losing items when the
+	player tries to traverse a river.
+*/
+
 #pragma once
 
 #include <iostream>
@@ -13,7 +29,6 @@ class Player
 {
 public:
 	Player();
-	~Player();
 
 	void InitializePartyItems();
 	void SetPlayerMoney(double a_money);

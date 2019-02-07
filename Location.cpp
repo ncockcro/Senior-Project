@@ -168,10 +168,66 @@ int Location::GetMilesNeeded() {
 	return m_milesNeeded;
 }
 
+/*
+	Location::SetHasStore(bool a_has)
+
+NAME
+
+	Location::SetHasStore - Sets if a location has a store or not
+
+SYNOPSIS
+
+	void Location::SetHasStore(bool a_has)
+
+	a_has --> true if there is a store, false otherwise
+
+DESCRIPTION
+
+	Sets the boolean value that represents if a location has a store or not.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	9:50pm 2/6/2019
+*/
 void Location::SetHasStore(bool a_has) {
 	m_hasStore = a_has;
 }
 
+/*
+	Location::GetHasStore()
+
+NAME
+
+	Location::GetHasStore - Returns if a location has a store or not
+
+SYNOPSIS
+
+	void Location::GetHasStore()
+
+DESCRIPTION
+
+	Returns the boolean whether a location has a store or not.
+
+RETURNS
+
+	Bool
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	10:02pm 2/6/2019
+*/
 bool Location::GetHasStore() {
 	return m_hasStore;
 }

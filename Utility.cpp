@@ -1,5 +1,32 @@
 #include "Utility.h"
 
+/*
+	Utility:Utility()
+
+NAME
+
+	Utility::Utility - Default constructor
+
+SYNOPSIS
+
+	Utility::Utility()
+
+DESCRIPTION
+
+	Default constructor for the Utility class.
+
+RETURNS
+
+	None
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	10:28pm 2/6/2019
+*/
 Utility::Utility() {
 	m_hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 }
@@ -9,7 +36,7 @@ Utility::Utility() {
 
 NAME
 
-	Utility::DisplayError - Default constructor
+	Utility::DisplayError - Overloaded constructor
 
 SYNOPSIS
 
@@ -23,7 +50,7 @@ DESCRIPTION
 
 RETURNS
 
-	Void
+	None
 
 AUTHOR
 
@@ -119,7 +146,7 @@ NAME
 
 SYNOPSIS
 
-	Utility::OutputMessage(string a_message)
+	void Utility::OutputMessage(string a_message)
 
 	a_message  --> the message to be outputed
 
@@ -143,6 +170,35 @@ void Utility::OutputMessage(string a_message) {
 	cout << "\t " << a_message << endl;
 }
 
+/*
+	Utility:GetWeatherName(int a_weather)
+
+NAME
+
+	Utility::GetWeatherName - Default constructor
+
+SYNOPSIS
+
+	string Utility::GetWeatherName(int a_weather)
+
+	a_weather  --> the current weather in the trail
+
+DESCRIPTION
+
+	Takes in the integer value of the weather and returns the string equivalent of it.
+
+RETURNS
+
+	String
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	10:40pm 2/6/2019
+*/
 string Utility::GetWeatherName(int a_weather) {
 
 	if (a_weather == 0) {

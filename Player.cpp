@@ -1,16 +1,36 @@
 #include "Player.h"
 
+/*
+	Player::Player()
 
+NAME
 
+	Player::Player - Default constructor
+
+SYNOPSIS
+
+	Player::Player
+
+DESCRIPTION
+
+	This function initializes the items for the player and seeds the random number generator
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	8:51pm 2/6/2019
+*/
 Player::Player()
 {
 	InitializePartyItems();
 	srand((unsigned int)time(0));
-}
-
-
-Player::~Player()
-{
 }
 
 /*
@@ -72,14 +92,105 @@ void Player::InitializePartyItems() {
 	m_ExtraTongue.SetQuantity(0);
 }
 
+/*
+	Player::SetPlayerMoney(double a_money)
+
+NAME
+
+	Player::SetPlayerMoney - Sets the amount of money the player has
+
+SYNOPSIS
+
+	void Player::SetPlayerMoney(double a_money)
+
+	a_money --> money the player should have
+
+DESCRIPTION
+
+	This function takes in a double which represents how much money the player should have and assigns it
+	to the player.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	8:52pm 2/6/2019
+*/
 void Player::SetPlayerMoney(double a_money) {
 	m_playerMoney = a_money;
 }
 
+/*
+	Player::SetPlayerPosition(string a_position)
+
+NAME
+
+	Player::SetPlayerPosition - assigns the position of the player
+
+SYNOPSIS
+
+	void Player::SetPlayerPosition(string a_position)
+
+	a_position --> the position the player is supposed to be
+
+DESCRIPTION
+
+	This function takes in the position of the player (banker, carpenter, or farmer) and assigns it to the
+	player.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	8:55pm 2/6/2019
+*/
 void Player::SetPlayerPosition(string a_position) {
 	m_playerPosition = a_position;
 }
 
+/*
+	Player::SetItemQuantity
+
+NAME
+
+	Player::SetItemQuantity - Sets the quantity of an item
+
+SYNOPSIS
+
+	void Player::SetItemQuantity(string a_itemName, int a_quantity)
+
+	a_itemName --> name of the item
+	a_quantity --> amount of a specific item
+
+DESCRIPTION
+
+	This function takes in an item name and the quantity and will set that quantity to the item for the
+	player.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	8:58pm 2/6/2019
+*/
 void Player::SetItemQuantity(string a_itemName, int a_quantity) {
 
 	if (a_itemName == "Oxen") {
@@ -108,6 +219,35 @@ void Player::SetItemQuantity(string a_itemName, int a_quantity) {
 	}
 }
 
+/*
+	Player::GetItem(string a_itemName)
+
+NAME
+
+	Player::GetItem - Returns a copy of an item
+
+SYNOPSIS
+
+	void Player::GetItem(string a_itemName)
+
+	a_itemName --> name of the item to be retrieved
+
+DESCRIPTION
+
+	This function takes in the name of an item and returns the item object.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	9:03pm 2/6/2019
+*/
 Item Player::GetItem(string a_itemName) {
 	
 	if (a_itemName == "Oxen") {
@@ -137,6 +277,33 @@ Item Player::GetItem(string a_itemName) {
 	}
 }
 
+/*
+	Player::GGetPlayerMoney()
+
+NAME
+
+	Player::GetPlayerMoney - Returns the amount of money the player has
+
+SYNOPSIS
+
+	void Player::GetPlayerMoney()
+
+DESCRIPTION
+
+	This function returns the amount of money that player currently has.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	9:05pm 2/6/2019
+*/
 double Player::GetPlayerMoney() {
 	return m_playerMoney;
 }
@@ -299,6 +466,34 @@ void Player::LoseItems() {
 
 }
 
+/*
+	Player::GeneratItemRandNums()
+
+NAME
+
+	Player::GenerateItemRandNums - Randomly assigns a number to each item
+
+SYNOPSIS
+
+	void Player::GenerateItemRandNums()
+
+DESCRIPTION
+
+	This function will randomly generate a number between 0 and 2 and assign it to each of the items
+	for a player object.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	8:47pm 2/06/2019
+*/
 void Player::GenerateItemRandNums() {
 
 	int randNum = rand() % 3;

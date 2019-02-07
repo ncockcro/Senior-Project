@@ -1,3 +1,18 @@
+/*
+WRITTEN BY
+	Nicholas Cockcroft
+
+DATE
+	2/6/2019
+
+CLASS
+	Date
+
+DESCRIPTION
+	The prupose of this class is to handle all of the functionality surrounding the in game date system. This holds
+	the date but also the functionality to increment by a day and show the current location of where the player is.
+*/
+
 #pragma once
 
 #include <iostream>
@@ -11,7 +26,6 @@ class Date
 {
 public:
 	Date();
-	~Date();
 
 	void NextDay();
 	int GetYear();

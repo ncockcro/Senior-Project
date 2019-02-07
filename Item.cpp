@@ -476,7 +476,8 @@ NAME
 SYNOPSIS
 
 	void Item::SetQuantity(string a_quantity)
-		a_quantity     --> the quantity of an item
+
+		a_quantity --> the quantity of an item
 
 DESCRIPTION
 
@@ -546,7 +547,7 @@ NAME
 SYNOPSIS
 
 	void Item::DecrementFood(int a_rate)
-		a_rate      --> the rate at which the player is consuming food
+		a_rate --> the rate at which the player is consuming food
 
 DESCRIPTION
 
@@ -577,10 +578,69 @@ void Item::DecrementFood(string a_rate) {
 	}
 }
 
+/*
+	Item::GetLoseItemNum()
+
+NAME
+
+	Item::GetLoseItemNum - Retrieves the random number for losing the item
+
+SYNOPSIS
+
+	int Item::GetLoseItemNum()
+
+DESCRIPTION
+
+	This function will return the random number that represents whether the item will be lost or not. If
+	this number matches with another random number between 0 and 2, then this will dictate the lost
+	of some of the quantity of the item.
+
+RETURNS
+
+	Int
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	9:45pm 2/6/2019
+*/
 int Item::GetLoseItemNum() {
 	return m_loseItemNum;
 }
 
+/*
+	Item::SetLoseItemNum(int a_num)
+
+NAME
+
+	Item::SetLoseItemNum - Sets the number that dictates if the item will lose some quantity
+
+SYNOPSIS
+
+	void Item::DecrementFood(int a_num)
+
+		a_num --> random number between 0 and 2
+
+DESCRIPTION
+
+	This function will set the number that represents if the item will lose quantity or not to what was
+	passed in.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	9:48pm 2/6/2019
+*/
 void Item::SetLoseItemNum(int a_num) {
 	m_loseItemNum = a_num;
 }
