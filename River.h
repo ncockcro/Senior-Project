@@ -38,11 +38,12 @@ public:
 private:
 	void OpeningDialogue();
 	void ShowRiverMenu(string a_weather);
-	bool FordRiver(Player &a_player);
-	bool FloatRiver(Player &a_player);
+	void FordRiver(Player &a_player);
+	void FloatRiver(Player &a_player);
 	bool TakeFerry(Player &a_player);
 	void WaitADay(Date &a_date);
 	void RiverMoreInfoDialogue();
+	bool GenerateRandomNum(double a_percent);
 
 	double m_randomNum;
 	double m_riverWidth;

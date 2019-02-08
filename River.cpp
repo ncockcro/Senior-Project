@@ -93,15 +93,13 @@ void River::CrossLocation(Player a_player, Date &a_date, int a_weather) {
 
 		// If the player wants to ford the river with their wagon
 		if (choice == "1") {
-			if (FordRiver(a_player)) {
-				break;
-			}
+			FordRiver(a_player);
+			break;
 		}
 		// If the player wants to try and float across the river
 		else if (choice == "2") {
-			if (FloatRiver(a_player)) {
-				break;
-			}
+			FloatRiver(a_player);
+			break;
 		}
 		// If the river has a ferry, then choice 3 will be the option to take it
 		else if (m_hasFerry && choice == "3") {
@@ -297,7 +295,7 @@ NAME
 
 SYNOPSIS
 
-	bool Trail::GetRiverDepth()
+	void Trail::GetRiverDepth()
 
 DESCRIPTION
 
@@ -307,7 +305,7 @@ DESCRIPTION
 
 RETURNS
 
-	Bool
+	Void
 
 AUTHOR
 
@@ -317,9 +315,42 @@ Date
 
 	11:31am 2/6/2019
 */
-bool River::FordRiver(Player &a_player) {
+void River::FordRiver(Player &a_player) {
 
-	return true;
+	for (int i = 0; i < ((int)m_riverWidth / 100); i++) {
+		m_utility.OutputMessage("Fording the river...");
+		m_utility.Wait();
+
+		// Insert random chance of losing items here
+		if (m_riverDepth < 3.00) {
+			// 10% of losing items
+			if (GenerateRandomNum(0.1)) {
+				m_utility.OutputMessage("The river is too deep to");
+				m_utility.OutputMessage("ford. You lose:");
+				a_player.LoseItems();
+				break;
+			}
+		}
+		else if (m_riverDepth < 7.00) {
+			// 50% of losing items
+			if (GenerateRandomNum(0.5)) {
+				m_utility.OutputMessage("The river is too deep to");
+				m_utility.OutputMessage("ford. You lose:");
+				a_player.LoseItems();
+				break;
+			}
+		}
+		else {
+			// 40% of losing items
+			if (GenerateRandomNum(0.4)) {
+				m_utility.OutputMessage("The river is too deep to");
+				m_utility.OutputMessage("ford. You lose:");
+				a_player.LoseItems();
+				break;
+			}
+		}
+	}
+
 }
 
 /*
@@ -331,7 +362,7 @@ NAME
 
 SYNOPSIS
 
-	bool Trail::FloatRiver()
+	void Trail::FloatRiver()
 
 DESCRIPTION
 
@@ -340,7 +371,7 @@ DESCRIPTION
 
 RETURNS
 
-	Bool
+	Void
 
 AUTHOR
 
@@ -350,16 +381,35 @@ Date
 
 	11:34am 2/6/2019
 */
-bool River::FloatRiver(Player &a_player) {
+void River::FloatRiver(Player &a_player) {
 
 	for (int i = 0; i < ((int)m_riverWidth / 100); i++) {
 		m_utility.OutputMessage("Floating on river...");
 		m_utility.Wait();
 
 		// Insert random chance of losing items here
+		if (m_riverDepth < 3.00) {
+			// 50% of losing items
+			if (GenerateRandomNum(0.5)) {
+				a_player.LoseItems();
+				break;
+			}
+		}
+		else if (m_riverDepth < 7.00) {
+			// 10% of losing items
+			if (GenerateRandomNum(0.1)) {
+				a_player.LoseItems();
+				break;
+			}
+		}
+		else {
+			// 40% of losing items
+			if (GenerateRandomNum(0.4)) {
+				a_player.LoseItems();
+				break;
+			}
+		}
 	}
-
-	return true;
 }
 
 /*
@@ -563,4 +613,49 @@ Date
 */
 void River::SetHasFerry(bool a_hasFerry) {
 	m_hasFerry = a_hasFerry;
+}
+
+/*
+	River::GenerateRandomNum(double a_percent)
+
+NAME
+
+	River::GenerateRandomNum - Generates a random number with the percentage passed in
+
+SYNOPSIS
+
+	void Trail::GenerateRandomNum(double a_percent)
+
+	a_percent --> percentage that something will happen
+
+DESCRIPTION
+
+	This function takes in a percentage and multiplies it with the number 10. Then a random number is generated
+	and if that number is less than the percentage number, then the function will return true as the random
+	number was in the threshold. Otherwise, it will return false since the random number wasn't a hit.
+
+RETURNS
+
+	Bool
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	2:41pm 2/7/2019
+*/
+bool River::GenerateRandomNum(double a_percent) {
+
+	int randNum = (rand() % 10) + 1;
+
+	int successNum = 10 * a_percent;
+
+	if (randNum <= successNum) {
+		return true;
+	}
+	else {
+		return false;
+	}
 }
