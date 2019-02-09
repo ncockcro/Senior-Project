@@ -82,8 +82,6 @@ void Trail::ActiveGame() {
 	LeavingMessage();
 	DepartingStore();
 
-	m_player.LoseItems();
-
 	m_date.ShowLocation(m_currentLocation);
 	TrailMenu(m_Independence.GetHasStore());
 
@@ -922,6 +920,7 @@ void Trail::Rest() {
 
 	string numOfDays;
 
+	cout << endl;
 	while (1) {
 		cout << "\t How many days would you" << endl;
 		cout << "\t like to rest? ";

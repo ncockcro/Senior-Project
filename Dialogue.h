@@ -45,7 +45,6 @@ private:
 	void SnakeRiver();
 	void FortBoise();
 	void BlueMountains();
-	void GrandeRondeValley(); // Or Blue Mountains
 	void FortWallaWalla();
 	void TheDalles();
 

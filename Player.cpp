@@ -262,13 +262,13 @@ Item Player::GetItem(string a_itemName) {
 	else if (a_itemName == "Ammunition") {
 		return m_Ammunition;
 	}
-	else if (a_itemName == "Spare parts - extra wheel") {
+	else if (a_itemName == "Spare parts - wagon wheel") {
 		return m_ExtraWheel;
 	}
-	else if (a_itemName == "Spare parts - extra axle") {
+	else if (a_itemName == "Spare parts - wagon axle") {
 		return m_ExtraAxle;
 	}
-	else if (a_itemName == "Spare parts - extra tongue") {
+	else if (a_itemName == "Spare parts - wagon tongue") {
 		return m_ExtraTongue;
 	}
 	else {

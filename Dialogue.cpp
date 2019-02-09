@@ -5,6 +5,8 @@
 Dialogue::Dialogue()
 {
 	srand((unsigned int)time(0));
+
+	m_randomNum = rand() % 3;
 }
 
 
@@ -59,9 +61,6 @@ void Dialogue::TalkToPeople(string a_location) {
 	else if (a_location == "Blue Mountains") {
 		BlueMountains();
 	}
-	else if (a_location == "Grande Ronde Valley") {
-		GrandeRondeValley();
-	}
 	else if (a_location == "Fort Walla Walla") {
 		FortWallaWalla();
 	}
@@ -83,8 +82,6 @@ void Dialogue::TalkToPeople(string a_location) {
 }
 
 void Dialogue::Independence() {
-
-	m_randomNum = rand() % 3;
 
 	if (m_randomNum == 0) {
 		m_utility.OutputMessage("A town resident tells you:");
@@ -131,8 +128,6 @@ void Dialogue::Independence() {
 
 void Dialogue::KRiverCrossing() {
 
-	m_randomNum = rand() % 3;
-
 	if (m_randomNum == 0) {
 		m_utility.OutputMessage("A stranger tells you:");
 		cout << endl;
@@ -177,8 +172,6 @@ void Dialogue::KRiverCrossing() {
 }
 
 void Dialogue::BBlueRiverCrossing() {
-
-	m_randomNum = rand() % 3;
 
 	if (m_randomNum == 0) {
 		m_utility.OutputMessage("Big Louie, a trail driver,");
@@ -225,8 +218,6 @@ void Dialogue::BBlueRiverCrossing() {
 }
 
 void Dialogue::FortKearney() {
-	
-	m_randomNum = rand() % 3;
 
 	if (m_randomNum == 0) {
 		m_utility.OutputMessage("A Fort Kearney scout tells you:");
@@ -271,8 +262,6 @@ void Dialogue::FortKearney() {
 
 void Dialogue::ChimneyRock() {
 
-	m_randomNum = rand() % 3;
-
 	if (m_randomNum == 0) {
 		m_utility.OutputMessage("Aunt Rebecce Sims tells you:");
 		cout << endl;
@@ -315,7 +304,6 @@ void Dialogue::ChimneyRock() {
 }
 
 void Dialogue::FortLaramie() {
-	m_randomNum = rand() % 3;
 
 	if (m_randomNum == 0) {
 		m_utility.OutputMessage("A Sioux brave tells you:");
@@ -360,8 +348,6 @@ void Dialogue::FortLaramie() {
 
 void Dialogue::IndependenceRock() {
 
-	m_randomNum = rand() % 3;
-
 	if (m_randomNum == 0) {
 		m_utility.OutputMessage("A young boy tells you:");
 		cout << endl;
@@ -405,8 +391,6 @@ void Dialogue::IndependenceRock() {
 
 void Dialogue::SouthPass() {
 
-	m_randomNum = rand() % 3;
-
 	if (m_randomNum == 0) {
 		m_utility.OutputMessage("An Arapaho Indian tells you:");
 		cout << endl;
@@ -448,8 +432,6 @@ void Dialogue::SouthPass() {
 }
 
 void Dialogue::FortBridger() {
-
-	m_randomNum = rand() % 3;
 
 	if (m_randomNum == 0) {
 		m_utility.OutputMessage("A tired-looking woman tells");
@@ -495,8 +477,6 @@ void Dialogue::FortBridger() {
 
 void Dialogue::GreenRiver() {
 
-	m_randomNum = rand() % 3;
-
 	if (m_randomNum == 0) {
 		m_utility.OutputMessage("A young boy tells you:");
 		cout << endl;
@@ -539,8 +519,6 @@ void Dialogue::GreenRiver() {
 }
 
 void Dialogue::SodaSprings() {
-
-	m_randomNum = rand() % 3;
 
 	if (m_randomNum == 0) {
 		m_utility.OutputMessage("A young boy tells you:");
@@ -585,8 +563,6 @@ void Dialogue::SodaSprings() {
 
 void Dialogue::FortHall() {
 
-	m_randomNum = rand() % 3;
-
 	if (m_randomNum == 0) {
 		m_utility.OutputMessage("A fellow traveler tells you:");
 		cout << endl;
@@ -630,8 +606,6 @@ void Dialogue::FortHall() {
 
 void Dialogue::SnakeRiver() {
 
-	m_randomNum = rand() % 3;
-
 	if (m_randomNum == 0) {
 		m_utility.OutputMessage("An overlander tells you:");
 		cout << endl;
@@ -674,8 +648,6 @@ void Dialogue::SnakeRiver() {
 }
 
 void Dialogue::FortBoise() {
-
-	m_randomNum = rand() % 3;
 
 	if (m_randomNum == 0) {
 		m_utility.OutputMessage("Aunt Rebecca tells you:");
@@ -721,8 +693,6 @@ void Dialogue::FortBoise() {
 
 void Dialogue::BlueMountains() {
 
-	m_randomNum = rand() % 3;
-
 	if (m_randomNum == 0) {
 		m_utility.OutputMessage("Jacob Hofsteader tells you:");
 		cout << endl;
@@ -765,27 +735,7 @@ void Dialogue::BlueMountains() {
 	}
 }
 
-void Dialogue::GrandeRondeValley() {
-
-	m_randomNum = rand() % 3;
-
-	if (m_randomNum == 0) {
-
-	}
-	else if (m_randomNum == 1) {
-
-	}
-	else if (m_randomNum == 2) {
-
-	}
-	else {
-		m_utility.DisplayError("ERROR: Invalid random number, Grande Ronde Valley");
-	}
-}
-
 void Dialogue::FortWallaWalla() {
-
-	m_randomNum = rand() % 3;
 
 	if (m_randomNum == 0) {
 		m_utility.OutputMessage("A young mother tells you:");
@@ -832,8 +782,6 @@ void Dialogue::FortWallaWalla() {
 }
 
 void Dialogue::TheDalles() {
-
-	m_randomNum = rand() % 3;
 
 	if (m_randomNum == 0) {
 		m_utility.OutputMessage("A mountain man tells you:");
