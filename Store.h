@@ -21,6 +21,7 @@ DESCRIPTION
 #include <iomanip>
 #include <Windows.h>
 #include "Item.h"
+#include "Player.h"
 
 using namespace std;
 
@@ -29,7 +30,7 @@ class Store
 public:
 	Store();
 
-	void DisplayStore(vector<Item> a_items);
+	void DisplayStore(vector<Item> a_items, Player a_player);
 	void SetDate(int a_year, string a_month, int a_day);
 	void SetLocation(string a_location);
 	void SetPlayerMoney(double a_amount);
@@ -40,7 +41,7 @@ public:
 
 private:
 	double CalculateTotal();
-	void MakeChoice();
+	void MakeChoice(Player a_player);
 
 
 	int m_color;

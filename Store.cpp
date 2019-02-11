@@ -68,7 +68,7 @@ Date
 
 	2:41pm 1/14/2019
 */
-void Store::DisplayStore(vector<Item> a_items) {
+void Store::DisplayStore(vector<Item> a_items, Player a_player) {
 
 	m_userItems = a_items;
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -99,12 +99,12 @@ void Store::DisplayStore(vector<Item> a_items) {
 		cout << "\t \t Amount you have: $" << m_playerMoney << endl;
 
 		// Have the user make a choice for what they want to do
-		MakeChoice();
+		MakeChoice(a_player);
 	}
 }
 
 /*
-	Store::MakeChoice()
+	Store::MakeChoice(Player a_player)
 
 NAME
 
@@ -112,7 +112,9 @@ NAME
 
 SYNOPSIS
 
-	Store::MakeChoice()
+	Store::MakeChoice(Player a_player)
+
+	a_player --> the player with all of their item quantitys
 
 DESCRIPTION
 
@@ -133,7 +135,7 @@ Date
 
 	6:31pm 1/22/2019
 */
-void Store::MakeChoice() {
+void Store::MakeChoice(Player a_player) {
 
 	string amount;
 	bool validChoice = false;
@@ -152,11 +154,17 @@ void Store::MakeChoice() {
 					cout << "How many would you like to buy? ";
 					cin >> amount;
 
+					
 					m_userItems[i].SetQuantity(stoi(amount));
 					m_itemPrices[i] = stoi(amount) * m_userItems[i].GetPrice();
 
+					// If the user tries to buy more of an item when they already have some in their inventory, this will
+					// deny them
+					if (a_player.GetItem(m_userItems[i].GetName()).GetQuantity() + stoi(amount) > m_userItems[i].GetCapNumber()) {
+						m_utility.DisplayError("Your wagon does not support that many.");
+					}
 					// If the user tries to buy more than the limited amount...
-					if (stoi(amount) > m_userItems[i].GetCapNumber()) {
+					else if (stoi(amount) > m_userItems[i].GetCapNumber()) {
 						m_utility.DisplayError(m_userItems[i].GetCapDescription());
 					}
 					// If the user tries to buy more of a product than the amount of money they have...

@@ -532,7 +532,7 @@ void Trail::DepartingStore() {
 	store.SetDate(m_date.GetYear(), m_date.GetMonth(), m_date.GetDay());
 	store.SetLocation("Independence, Missouri");
 	store.SetPlayerMoney(m_player.GetPlayerMoney());
-	store.DisplayStore(storeItems);
+	store.DisplayStore(storeItems, m_player);
 
 	// Deduct the money that the player spent at the store
 	m_player.DeductMoney(store.GetTotalPrice());
@@ -1181,7 +1181,7 @@ void Trail::VisitStore(string a_location) {
 	store.SetDate(m_date.GetYear(), m_date.GetMonth(), m_date.GetDay());
 	store.SetLocation(a_location);
 	store.SetPlayerMoney(m_player.GetPlayerMoney());
-	store.DisplayStore(storeItems);
+	store.DisplayStore(storeItems, m_player);
 
 	// Deduct the money that the player spent at the store
 	m_player.DeductMoney(store.GetTotalPrice());
