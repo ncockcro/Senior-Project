@@ -1151,6 +1151,37 @@ void Trail::AddEndingMiles(int a_miles) {
 	m_milesTraveled += a_miles;
 }
 
+/*
+	Trail::ShowMilesTo(string a_currentLocationName, string a_nextLocationName, int a_milesNeeded)
+
+NAME
+
+	Trail::ShowMilesTo - Outputs the miles needed to travel somewhere
+
+SYNOPSIS
+
+	void Trail::ShowMilesTo(string a_currentLocationName, string a_nextLocationName, int a_milesNeeded)
+
+	a_currentLocationName --> name of the current location the player is at
+	a_nextLocationName --> name of the next location the player will travel to
+	a_milesNeeded --> miles needed to get to the next location
+
+DESCRIPTION
+
+	This function outputs a short description of where the player will travel to next.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	4:11pm 2/11/2019
+*/
 void Trail::ShowMilesTo(string a_currentLocationName, string a_nextLocationName, int a_milesNeeded) {
 
 	cout << endl << "\t From " << a_currentLocationName << " it is " << a_milesNeeded << endl;
@@ -1160,6 +1191,37 @@ void Trail::ShowMilesTo(string a_currentLocationName, string a_nextLocationName,
 	m_utility.Wait();
 }
 
+/*
+	Trail::VisitStore(string a_location)
+
+NAME
+
+	Trail::VisitStore - A locations store if the player wants to visit it
+
+SYNOPSIS
+
+	void Trail::VisitStore(string a_location)
+
+	a_location --> the location the store is at
+
+DESCRIPTION
+
+	This function provides the functionality for setting up a store for the player to visit,
+	initializsing the items inside of it, and calling the function from the Store class for the
+	player to buy supplies.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	4:17pm 2/11/2019
+*/
 void Trail::VisitStore(string a_location) {
 
 	vector<Item> storeItems;
@@ -1192,6 +1254,34 @@ void Trail::VisitStore(string a_location) {
 	IncreaseRates();
 }
 
+/*
+	Trail::IncreaseRates()
+
+NAME
+
+	Trail::IncreaseRates - Increases the amount of money to be added to store prices
+
+SYNOPSIS
+
+	void Trail::IncreaseRates()
+
+DESCRIPTION
+
+	This function increases the rates by various amounts so the next time the player visits a location,
+	the prices will be slightly higher than the previous.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	4:21pm 2/11/2019
+*/
 void Trail::IncreaseRates() {
 
 	m_rate5dollars += 5;
