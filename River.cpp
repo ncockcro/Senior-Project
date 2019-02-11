@@ -68,7 +68,7 @@ Date
 
 	11:21am 2/6/2019
 */
-void River::CrossLocation(Player a_player, Date &a_date, int a_weather) {
+void River::CrossLocation(Player &a_player, Date &a_date, int a_weather) {
 
 	string choice;
 

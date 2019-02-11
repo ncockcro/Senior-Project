@@ -34,7 +34,7 @@ Location::Location()
 	m_hasStore = false;
 }
 
-void Location::CrossLocation(Player a_player, Date &a_date, int a_weather) {
+void Location::CrossLocation(Player &a_player, Date &a_date, int a_weather) {
 
 }
 

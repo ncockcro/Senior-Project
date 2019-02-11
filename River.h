@@ -30,7 +30,7 @@ class River: public Location
 {
 public:
 	River();
-	void CrossLocation(Player a_player, Date &a_date, int a_weather);
+	void CrossLocation(Player &a_player, Date &a_date, int a_weather);
 	double GetRiverWidth();
 	double GetRiverDepth();
 	void SetHasFerry(bool a_hasFerry);
