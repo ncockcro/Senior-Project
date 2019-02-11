@@ -395,12 +395,6 @@ void Player::LoseItems() {
 	// Convert random number to a percentage
 	percentRandNum = (double)randomNum / 100;
 
-	cout << "Quantity before: " << endl;
-	cout << "Oxen: " << m_Oxen.GetQuantity() << endl;
-	cout << "Food: " << m_Food.GetQuantity() << endl;
-	cout << "Clothing: " << m_Clothing.GetQuantity() << endl;
-	cout << "Ammunition: " << m_Ammunition.GetQuantity() << endl;
-
 	// Amount being lost for "Oxen"
 	if (randomNumForItems == m_Oxen.GetLoseItemNum()) {
 
@@ -510,12 +504,6 @@ void Player::LoseItems() {
 		m_ExtraTongue.SetQuantity(m_ExtraTongue.GetQuantity() - 1);
 		cout << "\t \t 1 wagon tongue" << endl;
 	}
-
-	cout << "Quantity after: " << endl;
-	cout << "Oxen: " << m_Oxen.GetQuantity() << endl;
-	cout << "Food: " << m_Food.GetQuantity() << endl;
-	cout << "Clothing: " << m_Clothing.GetQuantity() << endl;
-	cout << "Ammunition: " << m_Ammunition.GetQuantity() << endl;
 
 }
 

@@ -50,6 +50,7 @@ private:
 	void InitializeLocations();
 	void ShowAndUpdateTrailInfo(int a_miles, int &a_milesNeeded);
 	void AddEndingMiles(int a_miles);
+	void ShowMilesTo(string a_currentLocationName, string a_nextLocationName, int a_milesNeeded);
 
 	Utility m_utility = Utility();
 	Player m_player;

@@ -85,6 +85,8 @@ void Trail::ActiveGame() {
 	m_date.ShowLocation(m_currentLocation);
 	TrailMenu(m_Independence.GetHasStore());
 
+	ShowMilesTo(m_Independence.GetName(), m_locations[0]->GetName(), m_locations[0]->GetMilesNeeded());
+
 	// Cycle through the list of locations that the player has to travel to
 	for (size_t i = 0; i < m_locations.size(); i++) {
 
@@ -101,6 +103,8 @@ void Trail::ActiveGame() {
 		m_milesTraveled -= m_rateOfTravel;
 		milesTraveled -= m_rateOfTravel;
 		AddEndingMiles(m_locations[i]->GetMilesNeeded() - milesTraveled);
+
+
 
 		// Once you arrive at a location, this will propt if you want to visit the location
 		while (1) {
@@ -121,6 +125,10 @@ void Trail::ActiveGame() {
 		}
 
 		m_locations[i]->CrossLocation(m_player, m_date, m_weather);
+
+		if (m_utility.HasElement(m_locations.size(), i + 1)) {
+			ShowMilesTo(m_locations[i]->GetName(), m_locations[i + 1]->GetName(), m_locations[i + 1]->GetMilesNeeded());
+		}
 	}
 
 	
@@ -977,6 +985,7 @@ Date
 */
 void Trail::InitializeLocations() {
 
+	m_Independence.SetName("Independence");
 	m_KansasRiver.SetName("Kansas River");
 	m_KansasRiver.SetMilesNeeded(102);
 	m_KansasRiver.SetHasStore(false);
@@ -1124,4 +1133,13 @@ Date
 void Trail::AddEndingMiles(int a_miles) {
 
 	m_milesTraveled += a_miles;
+}
+
+void Trail::ShowMilesTo(string a_currentLocationName, string a_nextLocationName, int a_milesNeeded) {
+
+	cout << endl << "\t From " << a_currentLocationName << " it is " << a_milesNeeded << endl;
+	m_utility.OutputMessage("miles to the " + a_nextLocationName + ".");
+	cout << endl;
+
+	m_utility.Wait();
 }

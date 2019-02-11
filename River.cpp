@@ -223,6 +223,7 @@ Date
 */
 void River::OpeningDialogue() {
 
+	cout << endl;
 	m_utility.OutputMessage("You must cross the river in");
 	m_utility.OutputMessage("order to continue. The");
 	m_utility.OutputMessage("river at this point is");

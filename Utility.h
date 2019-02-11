@@ -31,8 +31,8 @@ public:
 	void Wait();
 	bool IsDigits(string &a_input);
 	void OutputMessage(string a_message);
-	void ShowLocation(string a_location, int a_year, string a_month, int a_day);
 	string GetWeatherName(int a_weather);
+	bool HasElement(int a_vectorSize, int a_element);
 
 private:
 	HANDLE m_hConsole;

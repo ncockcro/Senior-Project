@@ -221,3 +221,13 @@ string Utility::GetWeatherName(int a_weather) {
 		return "NULL";
 	}
 }
+
+bool Utility::HasElement(int a_vectorSize, int a_element) {
+
+	if (a_element < a_vectorSize) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
