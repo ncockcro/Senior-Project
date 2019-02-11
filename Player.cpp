@@ -558,3 +558,31 @@ void Player::GenerateItemRandNums() {
 	randNum = rand() % 3;
 	m_ExtraTongue.SetLoseItemNum(randNum);
 }
+
+void Player::AddItemQuantity(string a_itemName, int a_quantity) {
+
+	if (a_itemName == "Oxen") {
+		m_Oxen.AddToQuantity(a_quantity);
+	}
+	else if (a_itemName == "Food") {
+		m_Food.AddToQuantity(a_quantity);
+	}
+	else if (a_itemName == "Clothing") {
+		m_Clothing.AddToQuantity(a_quantity);
+	}
+	else if (a_itemName == "Ammunition") {
+		m_Ammunition.AddToQuantity(a_quantity);
+	}
+	else if (a_itemName == "Spare parts - wagon wheel") {
+		m_ExtraWheel.AddToQuantity(a_quantity);
+	}
+	else if (a_itemName == "Spare parts - wagon axle") {
+		m_ExtraAxle.AddToQuantity(a_quantity);
+	}
+	else if (a_itemName == "Spare parts - wagon tongue") {
+		m_ExtraTongue.AddToQuantity(a_quantity);
+	}
+	else {
+		m_utility.DisplayError("ERROR: Uknown item name in player class.");
+	}
+}

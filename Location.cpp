@@ -31,7 +31,7 @@ Location::Location()
 {
 	m_name = "NULL";
 	m_milesNeeded = 0;
-	m_hasStore = false;
+	m_hasStore = true;
 }
 
 void Location::CrossLocation(Player &a_player, Date &a_date, int a_weather) {

@@ -824,3 +824,14 @@ void Dialogue::TheDalles() {
 		m_utility.DisplayError("ERROR: Invalid random number, The Dalles");
 	}
 }
+
+void Dialogue::T_DepartingDialogue() {
+
+	cout << endl << endl;
+	m_utility.OutputMessage("Well then, you're ready");
+	m_utility.OutputMessage("to start. Good luck!");
+	m_utility.OutputMessage("You have a long and");
+	m_utility.OutputMessage("difficult journey ahead");
+	m_utility.OutputMessage("of you.");
+	m_utility.Wait();
+}

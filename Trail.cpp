@@ -40,6 +40,10 @@ Trail::Trail()
 	m_milesTraveled = 0;
 
 	InitializeLocations();
+
+	m_rate5dollars = 0;
+	m_rate2_5dollars = 0;
+	m_rate0_5dollars = 0;
 }
 
 /*
@@ -81,9 +85,10 @@ void Trail::ActiveGame() {
 	PromptStartingMonth();
 	LeavingMessage();
 	DepartingStore();
+	m_dialogue.T_DepartingDialogue();
 
 	m_date.ShowLocation(m_currentLocation);
-	TrailMenu(m_Independence.GetHasStore());
+	TrailMenu(m_Independence.GetHasStore(), m_Independence.GetName());
 
 	ShowMilesTo(m_Independence.GetName(), m_locations[0]->GetName(), m_locations[0]->GetMilesNeeded());
 
@@ -116,7 +121,7 @@ void Trail::ActiveGame() {
 
 			if (choice == "yes" || choice == "ye" || choice == "y") {
 				m_date.ShowLocation(m_locations[i]->GetName());
-				TrailMenu(m_locations[i]->GetHasStore());
+				TrailMenu(m_locations[i]->GetHasStore(), m_locations[i]->GetName());
 				break;
 			}
 			else if (choice == "no" || choice == "n") {
@@ -523,25 +528,17 @@ void Trail::DepartingStore() {
 		"Your wagon may only carry 3 \n \t wagon tongues", 3));
 
 	// Creating the store, setting the initial information, and sending the items to be sold there
-	Store departingStore = Store();
-	departingStore.SetDate(m_date.GetYear(), m_date.GetMonth(), m_date.GetDay());
-	departingStore.SetLocation("Independence, Missouri");
-	departingStore.SetPlayerMoney(m_player.GetPlayerMoney());
-	departingStore.DisplayStore(storeItems);
+	Store store = Store();
+	store.SetDate(m_date.GetYear(), m_date.GetMonth(), m_date.GetDay());
+	store.SetLocation("Independence, Missouri");
+	store.SetPlayerMoney(m_player.GetPlayerMoney());
+	store.DisplayStore(storeItems);
 
 	// Deduct the money that the player spent at the store
-	m_player.DeductMoney(departingStore.GetTotalPrice());
+	m_player.DeductMoney(store.GetTotalPrice());
 
 	// Add the items that the player bought to their inventory
-	AddItemsFromStore(departingStore.GetItemQuantitys());
-
-	cout << endl << endl;
-	m_utility.OutputMessage("Well then, you're ready");
-	m_utility.OutputMessage("to start. Good luck!");
-	m_utility.OutputMessage("You have a long and");
-	m_utility.OutputMessage("difficult journey ahead");
-	m_utility.OutputMessage("of you.");
-	m_utility.Wait();
+	AddItemsFromStore(store.GetItemQuantitys());
 
 }
 
@@ -581,25 +578,25 @@ void Trail::AddItemsFromStore(vector<Item> a_storeItems) {
 	for (size_t i = 0; i < a_storeItems.size(); i++) {
 
 		if (a_storeItems[i].GetName() == "Oxen") {
-			m_player.SetItemQuantity("Oxen", a_storeItems[i].GetQuantity());
+			m_player.AddItemQuantity("Oxen", a_storeItems[i].GetQuantity());
 		}
 		else if (a_storeItems[i].GetName() == "Food") {
-			m_player.SetItemQuantity("Food", a_storeItems[i].GetQuantity());
+			m_player.AddItemQuantity("Food", a_storeItems[i].GetQuantity());
 		}
 		else if (a_storeItems[i].GetName() == "Clothing") {
-			m_player.SetItemQuantity("Clothing", a_storeItems[i].GetQuantity());
+			m_player.AddItemQuantity("Clothing", a_storeItems[i].GetQuantity());
 		}
 		else if (a_storeItems[i].GetName() == "Ammunition") {
-			m_player.SetItemQuantity("Ammunition", a_storeItems[i].GetQuantity());
+			m_player.AddItemQuantity("Ammunition", a_storeItems[i].GetQuantity());
 		}
 		else if (a_storeItems[i].GetName() == "Spare parts - wagon wheel") {
-			m_player.SetItemQuantity("Spare parts - wagon wheel", a_storeItems[i].GetQuantity());
+			m_player.AddItemQuantity("Spare parts - wagon wheel", a_storeItems[i].GetQuantity());
 		}
 		else if (a_storeItems[i].GetName() == "Spare parts - wagon axle") {
-			m_player.SetItemQuantity("Spare parts - wagon axle", a_storeItems[i].GetQuantity());
+			m_player.AddItemQuantity("Spare parts - wagon axle", a_storeItems[i].GetQuantity());
 		}
 		else if (a_storeItems[i].GetName() == "Spare parts - wagon tongue") {
-			m_player.SetItemQuantity("Spare parts - wagon tongue", a_storeItems[i].GetQuantity());
+			m_player.AddItemQuantity("Spare parts - wagon tongue", a_storeItems[i].GetQuantity());
 		}
 		else {
 			m_utility.DisplayError("ERROR: There was an invalid item name from the store in trail class.");
@@ -616,7 +613,10 @@ NAME
 
 SYNOPSIS
 
-	void Trail::TrailMenu()
+	void Trail::TrailMenu(bool a_hasStore, string a_locationName)
+
+	a_hasStore --> indicates if a location has a store or not
+	a_locationName --> name of the current location
 
 DESCRIPTION
 
@@ -635,7 +635,7 @@ Date
 
 	11:41am 1/28/2019
 */
-void Trail::TrailMenu(bool a_hasStore) {
+void Trail::TrailMenu(bool a_hasStore, string a_locationName) {
 
 	string choice;
 
@@ -685,7 +685,7 @@ void Trail::TrailMenu(bool a_hasStore) {
 		}
 		// Buy supplies if the location the player is at is not a river
 		else if (a_hasStore && choice == "7") {
-
+			VisitStore(a_locationName);
 		}
 		// Anything else if invlaid input
 		else {
@@ -990,44 +990,60 @@ void Trail::InitializeLocations() {
 	m_KansasRiver.SetMilesNeeded(102);
 	m_KansasRiver.SetHasStore(false);
 	m_KansasRiver.SetHasFerry(true);
+
 	m_BigBlueRiver.SetName("Big Blue River");
 	m_BigBlueRiver.SetMilesNeeded(82);
 	m_BigBlueRiver.SetHasStore(false);
+
 	m_FortKearney.SetName("Fort Kearney");
 	m_FortKearney.SetMilesNeeded(118);
+
 	m_ChimneyRock.SetName("Chimney Rock");
 	m_ChimneyRock.SetMilesNeeded(250);
 	m_ChimneyRock.SetHasStore(false);
+
 	m_FortLaramie.SetName("Fort Laramie");
 	m_FortLaramie.SetMilesNeeded(86);
+
 	m_IndependenceRock.SetName("Independence Rock");
 	m_IndependenceRock.SetMilesNeeded(190);
 	m_IndependenceRock.SetHasStore(false);
+
 	m_SouthPass.SetName("South Pass");
 	m_SouthPass.SetMilesNeeded(102);
 	m_SouthPass.SetHasStore(false);
+
 	m_GreenRiver.SetName("Green River");
 	m_GreenRiver.SetMilesNeeded(57);
 	m_GreenRiver.SetHasStore(false);
 	m_GreenRiver.SetHasFerry(false);
+
 	m_FortBridger.SetName("Fort Bridger");
+
 	m_SodaSprings.SetName("Soda Springs");
 	m_SodaSprings.SetMilesNeeded(143);
 	m_SodaSprings.SetHasStore(false);
+
 	m_FortHall.SetName("Fort Hall");
 	m_FortHall.SetMilesNeeded(57);
+
 	m_SnakeRiver.SetName("Snake River");
 	m_SnakeRiver.SetMilesNeeded(182); // Has the option to hire an Indian to cross
+
 	m_FortBoise.SetName("Fort Boise");
 	m_FortBoise.SetMilesNeeded(113);
+
 	m_BlueMountains.SetName("Blue Mountains");
 	m_BlueMountains.SetMilesNeeded(160);
 	m_BlueMountains.SetHasStore(false); 
+
 	m_FortWallaWalla.SetName("Fort Walla Walla");
 	m_FortWallaWalla.SetMilesNeeded(55);
+
 	m_TheDalles.SetName("The Dalles");
 	m_TheDalles.SetMilesNeeded(120);
 	m_TheDalles.SetHasStore(false);
+
 	m_WillametteValley.SetName("Willamette Valley"); // User must pay to get into this location
 	m_WillametteValley.SetMilesNeeded(100);
 	m_WillametteValley.SetHasStore(false); 
@@ -1142,4 +1158,43 @@ void Trail::ShowMilesTo(string a_currentLocationName, string a_nextLocationName,
 	cout << endl;
 
 	m_utility.Wait();
+}
+
+void Trail::VisitStore(string a_location) {
+
+	vector<Item> storeItems;
+
+	// Initializing the items to be put into the departing store
+	storeItems.push_back(Item("Oxen", 25.0 + m_rate5dollars, "\t " + to_string(25 + m_rate5dollars) + " per ox", "You can not bring more than 9 oxen with you.", 9));
+	storeItems.push_back(Item("Food", 0.25 + m_rate0_5dollars, "\t " + to_string(0.25 + m_rate0_5dollars) + "per pound", "Your wagon may only carry \n \t 2000 pounds of food.", 2000));
+	storeItems.push_back(Item("Clothing", 12.5 + m_rate2_5dollars, "\t " + to_string(12.50 + m_rate2_5dollars) + "per set", "NULL", INT_MAX));
+	storeItems.push_back(Item("Ammunition", 2.5 + m_rate0_5dollars, "\t " + to_string(2.5 + m_rate0_5dollars) + "per box", "NULL", INT_MAX));
+	storeItems.push_back(Item("Spare parts - wagon wheel", 12.5 + m_rate2_5dollars, "\t " + to_string(12.50 + m_rate2_5dollars) + "per wheel", 
+		"Your wagon may only carry 3 \n \t wagon wheels.", 3));
+	storeItems.push_back(Item("Spare parts - wagon axle", 12.5 + m_rate2_5dollars, "\t " + to_string(12.50 + m_rate2_5dollars) + " per axle",
+		"Your wagon may only carry 3 \n \t wagon axles.", 3));
+	storeItems.push_back(Item("Spare parts - wagon tongue", 12.5 + m_rate2_5dollars, "\t " + to_string(12.50 + m_rate2_5dollars) + " per tongue",
+		"Your wagon may only carry 3 \n \t wagon tongues", 3));
+
+	// Creating the store, setting the initial information, and sending the items to be sold there
+	Store store = Store();
+	store.SetDate(m_date.GetYear(), m_date.GetMonth(), m_date.GetDay());
+	store.SetLocation(a_location);
+	store.SetPlayerMoney(m_player.GetPlayerMoney());
+	store.DisplayStore(storeItems);
+
+	// Deduct the money that the player spent at the store
+	m_player.DeductMoney(store.GetTotalPrice());
+
+	// Add the items that the player bought to their inventory
+	AddItemsFromStore(store.GetItemQuantitys());
+
+	IncreaseRates();
+}
+
+void Trail::IncreaseRates() {
+
+	m_rate5dollars += 5;
+	m_rate2_5dollars += 2.5;
+	m_rate0_5dollars += 0.05;
 }

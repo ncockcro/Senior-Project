@@ -29,6 +29,8 @@ public:
 	~Dialogue();
 	void TalkToPeople(string a_location);
 
+	void T_DepartingDialogue();
+
 private:
 	void Independence();
 	void KRiverCrossing();

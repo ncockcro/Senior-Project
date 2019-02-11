@@ -42,7 +42,7 @@ private:
 	void LeavingMessage();
 	void DepartingStore();
 	void AddItemsFromStore(vector<Item> a_storeItems);
-	void TrailMenu(bool a_hasStore);
+	void TrailMenu(bool a_hasStore, string a_locationName);
 	void ShowSupplies();
 	void ChangePace();
 	void ChangeRations();
@@ -51,6 +51,8 @@ private:
 	void ShowAndUpdateTrailInfo(int a_miles, int &a_milesNeeded);
 	void AddEndingMiles(int a_miles);
 	void ShowMilesTo(string a_currentLocationName, string a_nextLocationName, int a_milesNeeded);
+	void VisitStore(string a_location);
+	void IncreaseRates();
 
 	Utility m_utility = Utility();
 	Player m_player;
@@ -94,6 +96,10 @@ private:
 
 	int m_rateOfTravel;
 	int m_milesTraveled;
+
+	int m_rate5dollars;
+	double m_rate2_5dollars;
+	double m_rate0_5dollars;
 
 };
 

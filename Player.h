@@ -34,6 +34,7 @@ public:
 	void SetPlayerMoney(double a_money);
 	void SetPlayerPosition(string a_position);
 	void SetItemQuantity(string a_itemName, int a_quantity);
+	void AddItemQuantity(string a_itemName, int a_quantity);
 	Item GetItem(string a_itemName);
 	double GetPlayerMoney();
 	void DeductMoney(double a_money);

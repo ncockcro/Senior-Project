@@ -651,7 +651,7 @@ bool River::GenerateRandomNum(double a_percent) {
 
 	int randNum = (rand() % 10) + 1;
 
-	int successNum = 10 * a_percent;
+	int successNum = (int)(10 * a_percent);
 
 	if (randNum <= successNum) {
 		return true;
