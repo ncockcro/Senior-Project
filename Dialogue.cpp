@@ -835,3 +835,91 @@ void Dialogue::T_DepartingDialogue() {
 	m_utility.OutputMessage("of you.");
 	m_utility.Wait();
 }
+
+/*
+	Dialogue::LeavingMessage(int a_playerMoney)
+
+NAME
+
+	Dialogue::LeavingMessage - Outputs all of the dialougue for when the player is leaving Independence
+
+SYNOPSIS
+
+	void Dialogue::LeavingMessage(int a_playerMoney)
+
+	a_playerMoney --> amount of money the player has
+
+DESCRIPTION
+
+	This function will output all of the dialouge after they picked the month they are starting at.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	11:10am 1/10/2019
+*/
+void Dialogue::T_LeavingMessage(double a_playerMoney) {
+
+	m_utility.OutputMessage("Before leaving Independence you should buy equipment and supplies.");
+	cout << "\t You have " << a_playerMoney << ".00 in cash, but you don't have to spend it all now" << endl << endl;
+	m_utility.Wait();
+
+	cout << endl;
+	m_utility.OutputMessage("How will you cross the rivers? If you have money,");
+	m_utility.OutputMessage("you might take a ferry (if there is a ferry).");
+	m_utility.OutputMessage("Or, you can ford the river and hope you and your");
+	m_utility.OutputMessage("wagon aren't swallowed alive!");
+	cout << endl;
+	m_utility.Wait();
+
+	cout << endl;
+	m_utility.OutputMessage("What about supplies? Well, if");
+	m_utility.OutputMessage("you're low on food you can hunt. You might get a buffalo...");
+	m_utility.OutputMessage("you might. And there are bear in the mountains.");
+	cout << endl;
+	m_utility.Wait();
+
+	cout << endl;
+	m_utility.OutputMessage("At the Dalles, you can try");
+	m_utility.OutputMessage("navigating the Columbia River,");
+	m_utility.OutputMessage("but if running the rapids with");
+	m_utility.OutputMessage("a makeshift raph makes you queasy,");
+	m_utility.OutputMessage("better take the Barlow Road.");
+	cout << endl;
+	m_utility.Wait();
+
+	cout << endl;
+	m_utility.OutputMessage("If for some reason you don't");
+	m_utility.OutputMessage("survive -- your wagon burns,");
+	m_utility.OutputMessage("or thieves steal your oxen, or");
+	m_utility.OutputMessage("you run out of provisions, or");
+	m_utility.OutputMessage("you die of cholera -- don't");
+	m_utility.OutputMessage("give up! Try again... and again...");
+	m_utility.OutputMessage("until your name is up with the others");
+	m_utility.OutputMessage("on the Oregon Top Ten.");
+	cout << endl;
+	m_utility.Wait();
+
+	cout << endl;
+	m_utility.OutputMessage("You can buy whatever you need at");
+	m_utility.OutputMessage("Matt's General Store.");
+	cout << endl;
+	m_utility.Wait();
+
+	cout << endl;
+	m_utility.OutputMessage("Hello I'm Matt. So you're going");
+	m_utility.OutputMessage("to Oregon! I can fix you up with what you need:");
+	cout << endl << "\t \t - a team of oxen to pull your wagon" << endl;
+	cout << endl << "\t \t - clothing for both summer and winter" << endl;
+	cout << endl << "\t \t - plenty of food for the trip" << endl;
+	cout << endl << "\t \t - ammunition for your rifles" << endl;
+	cout << endl << "\t \t - spare parts for your wagon" << endl;
+	m_utility.Wait();
+}

@@ -30,6 +30,7 @@ public:
 	void TalkToPeople(string a_location);
 
 	void T_DepartingDialogue();
+	void T_LeavingMessage(double a_playerMoney);
 
 private:
 	void Independence();

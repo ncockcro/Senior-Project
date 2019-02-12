@@ -39,7 +39,6 @@ private:
 	void PromptPosition();
 	void PromptCharacterNames();
 	void PromptStartingMonth();
-	void LeavingMessage();
 	void DepartingStore();
 	void AddItemsFromStore(vector<Item> a_storeItems);
 	void TrailMenu(bool a_hasStore, string a_locationName);
