@@ -392,6 +392,8 @@ void River::FloatRiver(Player &a_player) {
 		if (m_riverDepth < 3.00) {
 			// 50% of losing items
 			if (GenerateRandomNum(0.5)) {
+				m_utility.OutputMessage("Your wagon tips over and");
+				m_utility.OutputMessage("you lose:");
 				a_player.LoseItems();
 				break;
 			}
@@ -399,6 +401,8 @@ void River::FloatRiver(Player &a_player) {
 		else if (m_riverDepth < 7.00) {
 			// 10% of losing items
 			if (GenerateRandomNum(0.1)) {
+				m_utility.OutputMessage("Your wagon tips over and");
+				m_utility.OutputMessage("you lose:");
 				a_player.LoseItems();
 				break;
 			}
@@ -406,6 +410,8 @@ void River::FloatRiver(Player &a_player) {
 		else {
 			// 40% of losing items
 			if (GenerateRandomNum(0.4)) {
+				m_utility.OutputMessage("Your wagon tips over and");
+				m_utility.OutputMessage("you lose:");
 				a_player.LoseItems();
 				break;
 			}

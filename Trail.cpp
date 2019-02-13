@@ -522,7 +522,7 @@ void Trail::AddItemsFromStore(vector<Item> a_storeItems) {
 	for (size_t i = 0; i < a_storeItems.size(); i++) {
 
 		if (a_storeItems[i].GetName() == "Oxen") {
-			m_player.AddItemQuantity("Oxen", a_storeItems[i].GetQuantity());
+			m_player.AddItemQuantity("Oxen", a_storeItems[i].GetQuantity() * 2);
 		}
 		else if (a_storeItems[i].GetName() == "Food") {
 			m_player.AddItemQuantity("Food", a_storeItems[i].GetQuantity());
@@ -531,7 +531,7 @@ void Trail::AddItemsFromStore(vector<Item> a_storeItems) {
 			m_player.AddItemQuantity("Clothing", a_storeItems[i].GetQuantity());
 		}
 		else if (a_storeItems[i].GetName() == "Ammunition") {
-			m_player.AddItemQuantity("Ammunition", a_storeItems[i].GetQuantity());
+			m_player.AddItemQuantity("Ammunition", a_storeItems[i].GetQuantity() * 20);
 		}
 		else if (a_storeItems[i].GetName() == "Spare parts - wagon wheel") {
 			m_player.AddItemQuantity("Spare parts - wagon wheel", a_storeItems[i].GetQuantity());

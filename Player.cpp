@@ -467,12 +467,12 @@ void Player::LoseItems() {
 	percentRandNum = (double)randomNum / 100;
 
 	// Losing 2 "Extra wheels"
-	if (randomNumForItems == m_ExtraWheel.GetLoseItemNum() && randomNum > 25) {
+	if (randomNumForItems == m_ExtraWheel.GetLoseItemNum() && randomNum > 25 && m_ExtraWheel.GetQuantity() >= 2) {
 		m_ExtraWheel.SetQuantity(m_ExtraWheel.GetQuantity() - 2);
 		cout << "\t \t 2 wagon wheel" << endl;
 	}
 	// Losing 1 "Extra wheel"
-	else if (randomNumForItems == m_ExtraWheel.GetLoseItemNum() && randomNum < 25) {
+	else if (randomNumForItems == m_ExtraWheel.GetLoseItemNum() && randomNum < 25 && m_ExtraWheel.GetQuantity() >= 1) {
 		m_ExtraWheel.SetQuantity(m_ExtraWheel.GetQuantity() - 1);
 		cout << "\t \t 1 wagon wheel" << endl;
 	}
@@ -481,12 +481,12 @@ void Player::LoseItems() {
 	percentRandNum = (double)randomNum / 100;
 
 	// Losing 2 "Extra axles"
-	if (randomNumForItems == m_ExtraAxle.GetLoseItemNum() && randomNum > 25) {
+	if (randomNumForItems == m_ExtraAxle.GetLoseItemNum() && randomNum > 25 && m_ExtraAxle.GetQuantity() >= 2) {
 		m_ExtraAxle.SetQuantity(m_ExtraAxle.GetQuantity() - 2);
 		cout << "\t \t 2 wagon axle" << endl;
 	}
 	// Losing 1 "Extra Axle"
-	else if (randomNumForItems == m_ExtraAxle.GetLoseItemNum() && randomNum < 25) {
+	else if (randomNumForItems == m_ExtraAxle.GetLoseItemNum() && randomNum < 25 && m_ExtraAxle.GetQuantity() >= 1) {
 		m_ExtraAxle.SetQuantity(m_ExtraAxle.GetQuantity() - 1);
 		cout << "\t \t 1 wagon axle" << endl;
 	}
@@ -495,12 +495,12 @@ void Player::LoseItems() {
 	percentRandNum = (double)randomNum / 100;
 
 	// Losing 2 "Extra Tongues"
-	if (randomNumForItems == m_ExtraTongue.GetLoseItemNum() && randomNum > 25) {
+	if (randomNumForItems == m_ExtraTongue.GetLoseItemNum() && randomNum > 25 && m_ExtraTongue.GetQuantity() >= 2) {
 		m_ExtraTongue.SetQuantity(m_ExtraTongue.GetQuantity() - 2);
 		cout << "\t \t 2 wagon tongue" << endl;
 	}
 	// Losing 1 "Extra Tongue"
-	else if (randomNumForItems == m_ExtraTongue.GetLoseItemNum() && randomNum < 25) {
+	else if (randomNumForItems == m_ExtraTongue.GetLoseItemNum() && randomNum < 25 && m_ExtraTongue.GetQuantity() >= 1) {
 		m_ExtraTongue.SetQuantity(m_ExtraTongue.GetQuantity() - 1);
 		cout << "\t \t 1 wagon tongue" << endl;
 	}

@@ -496,7 +496,14 @@ Date
 	10:16am 1/25/2019
 */
 void Item::SetQuantity(int a_quantity) {
-	m_quantity = a_quantity;
+
+	if (a_quantity >= 0) {
+		m_quantity = a_quantity;
+	}
+	else {
+		m_utility.DisplayError("ERROR: Tried to set an item quantity to be negative.");
+		m_quantity = 0;
+	}
 }
 
 /*
@@ -642,5 +649,6 @@ Date
 	9:48pm 2/6/2019
 */
 void Item::SetLoseItemNum(int a_num) {
+
 	m_loseItemNum = a_num;
 }
