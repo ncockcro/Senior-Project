@@ -923,3 +923,11 @@ void Dialogue::T_LeavingMessage(double a_playerMoney) {
 	cout << endl << "\t \t - spare parts for your wagon" << endl;
 	m_utility.Wait();
 }
+
+void Dialogue::T_WhichDirectionChoice() {
+
+	m_utility.OutputMessage("The trail divides here. You may: \n");
+	m_utility.OutputMessage("\t 1. head for Green River crossing");
+	m_utility.OutputMessage("\t 2. head for Fort Bridger \n");
+	cout << "What is your choice? ";
+}

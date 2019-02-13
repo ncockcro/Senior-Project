@@ -79,6 +79,8 @@ void Trail::ActiveGame() {
 	string choice;
 	int milesNeededToTravel;
 	int milesTraveled;
+	string whichDirection;
+	bool goingToGreenRiver = true;
 
 	PromptPosition();
 	PromptCharacterNames();
@@ -90,10 +92,64 @@ void Trail::ActiveGame() {
 	m_date.ShowLocation(m_currentLocation);
 	TrailMenu(m_Independence.GetHasStore(), m_Independence.GetName());
 
-	ShowMilesTo(m_Independence.GetName(), m_locations[0]->GetName(), m_locations[0]->GetMilesNeeded());
-
 	// Cycle through the list of locations that the player has to travel to
 	for (size_t i = 0; i < m_locations.size(); i++) {
+
+		// If the player is at the Green River, then they have the option to travel to Green River,
+		// or the next location which is Fort Bridger
+		if (m_locations[i]->GetName() == "Green River crossing") {
+			while (1) {
+				m_dialogue.T_WhichDirectionChoice();
+				cin >> whichDirection;
+
+				// Going to Green River
+				if (whichDirection == "1") {
+					goingToGreenRiver = true;
+					break;
+				}
+				// Going to Fort Bridger
+				else if (whichDirection == "2") {
+					goingToGreenRiver = false;
+					break;
+				}
+				else {
+					m_utility.DisplayError("Invalid option.");
+				}
+			}
+		}
+
+		if (goingToGreenRiver && m_locations[i]->GetName() == "Fort Bridger") {
+			continue;
+		}
+		else if (!goingToGreenRiver && m_locations[i]->GetName() == "Green River") {
+			continue;
+		}
+
+		// Once you arrive at a location, this will propt if you want to visit the location
+		if (m_locations[i]->GetName() != "Independence") {
+			while (1) {
+				cout << "\t You are now at the " << endl;
+				cout << "\t " << m_locations[i]->GetName() << endl;
+				cout << "\t Would you like to look around? ";
+				cin >> choice;
+				cout << endl;
+
+				if (choice == "yes" || choice == "ye" || choice == "y") {
+					m_date.ShowLocation(m_locations[i]->GetName());
+					TrailMenu(m_locations[i]->GetHasStore(), m_locations[i]->GetName());
+					break;
+				}
+				else if (choice == "no" || choice == "n") {
+					break;
+				}
+			}
+		}
+
+		m_locations[i]->CrossLocation(m_player, m_date, m_weather);
+
+		if (m_utility.HasElement(m_locations.size(), i + 1)) {
+			ShowMilesTo(m_locations[i]->GetName(), m_locations[i + 1]->GetName(), m_locations[i]->GetMilesNeeded());
+		}
 
 		m_currentLocation = m_locations[i]->GetName();
 		milesNeededToTravel = m_locations[i]->GetMilesNeeded();
@@ -110,34 +166,7 @@ void Trail::ActiveGame() {
 		milesTraveled -= m_rateOfTravel;
 		AddEndingMiles(m_locations[i]->GetMilesNeeded() - milesTraveled);
 
-
-
-		// Once you arrive at a location, this will propt if you want to visit the location
-		while (1) {
-			cout << "\t You are now at the " << endl;
-			cout << "\t " << m_locations[i]->GetName() << endl;
-			cout << "\t Would you like to look around? ";
-			cin >> choice;
-			cout << endl;
-
-			if (choice == "yes" || choice == "ye" || choice == "y") {
-				m_date.ShowLocation(m_locations[i]->GetName());
-				TrailMenu(m_locations[i]->GetHasStore(), m_locations[i]->GetName());
-				break;
-			}
-			else if (choice == "no" || choice == "n") {
-				break;
-			}
-		}
-
-		m_locations[i]->CrossLocation(m_player, m_date, m_weather);
-
-		if (m_utility.HasElement(m_locations.size(), i + 1)) {
-			ShowMilesTo(m_locations[i]->GetName(), m_locations[i + 1]->GetName(), m_locations[i + 1]->GetMilesNeeded());
-		}
 	}
-
-	
 
 }
 
@@ -901,39 +930,42 @@ Date
 void Trail::InitializeLocations() {
 
 	m_Independence.SetName("Independence");
+	m_Independence.SetMilesNeeded(102);
+
 	m_KansasRiver.SetName("Kansas River crossing");
-	m_KansasRiver.SetMilesNeeded(102);
+	m_KansasRiver.SetMilesNeeded(82);
 	m_KansasRiver.SetHasStore(false);
 	m_KansasRiver.SetHasFerry(true);
 
 	m_BigBlueRiver.SetName("Big Blue River crossing");
-	m_BigBlueRiver.SetMilesNeeded(82);
+	m_BigBlueRiver.SetMilesNeeded(118);
 	m_BigBlueRiver.SetHasStore(false);
 
 	m_FortKearney.SetName("Fort Kearney");
-	m_FortKearney.SetMilesNeeded(118);
+	m_FortKearney.SetMilesNeeded(250);
 
 	m_ChimneyRock.SetName("Chimney Rock");
-	m_ChimneyRock.SetMilesNeeded(250);
+	m_ChimneyRock.SetMilesNeeded(86);
 	m_ChimneyRock.SetHasStore(false);
 
 	m_FortLaramie.SetName("Fort Laramie");
-	m_FortLaramie.SetMilesNeeded(86);
+	m_FortLaramie.SetMilesNeeded(190);
 
 	m_IndependenceRock.SetName("Independence Rock");
-	m_IndependenceRock.SetMilesNeeded(190);
+	m_IndependenceRock.SetMilesNeeded(102);
 	m_IndependenceRock.SetHasStore(false);
 
 	m_SouthPass.SetName("South Pass");
-	m_SouthPass.SetMilesNeeded(102);
+	m_SouthPass.SetMilesNeeded(0); // Will change once the user picks Green River or Fort Bridger
 	m_SouthPass.SetHasStore(false);
 
-	m_GreenRiver.SetName("Green River");
+	m_GreenRiver.SetName("Green River crossing");
 	m_GreenRiver.SetMilesNeeded(57);
 	m_GreenRiver.SetHasStore(false);
 	m_GreenRiver.SetHasFerry(false);
 
 	m_FortBridger.SetName("Fort Bridger");
+	m_FortBridger.SetMilesNeeded(125);
 
 	m_SodaSprings.SetName("Soda Springs");
 	m_SodaSprings.SetMilesNeeded(143);
@@ -963,6 +995,7 @@ void Trail::InitializeLocations() {
 	m_WillametteValley.SetMilesNeeded(100);
 	m_WillametteValley.SetHasStore(false); 
 	
+	m_locations.push_back(&m_Independence);
 	m_locations.push_back(&m_KansasRiver);
 	m_locations.push_back(&m_BigBlueRiver);
 	m_locations.push_back(&m_FortKearney);
@@ -970,8 +1003,8 @@ void Trail::InitializeLocations() {
 	m_locations.push_back(&m_FortLaramie);
 	m_locations.push_back(&m_IndependenceRock);
 	m_locations.push_back(&m_SouthPass);
-	m_locations.push_back(&m_GreenRiver);
-	m_locations.push_back(&m_FortBridger);
+	//m_locations.push_back(&m_GreenRiver);
+	//m_locations.push_back(&m_FortBridger);
 	m_locations.push_back(&m_SodaSprings);
 	m_locations.push_back(&m_FortHall);
 	m_locations.push_back(&m_SnakeRiver);
