@@ -35,6 +35,7 @@ public:
 	int GetDay();
 	void SetDay(int a_day);
 	void ShowLocation(string a_location);
+	void ShowDate();
 
 private:
 	Utility m_utility;

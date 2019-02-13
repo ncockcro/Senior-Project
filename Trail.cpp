@@ -95,35 +95,6 @@ void Trail::ActiveGame() {
 	// Cycle through the list of locations that the player has to travel to
 	for (size_t i = 0; i < m_locations.size(); i++) {
 
-		// If the player is at the Green River, then they have the option to travel to Green River,
-		// or the next location which is Fort Bridger
-		if (m_locations[i]->GetName() == "Green River crossing") {
-			while (1) {
-				m_dialogue.T_WhichDirectionChoice();
-				cin >> whichDirection;
-
-				// Going to Green River
-				if (whichDirection == "1") {
-					goingToGreenRiver = true;
-					break;
-				}
-				// Going to Fort Bridger
-				else if (whichDirection == "2") {
-					goingToGreenRiver = false;
-					break;
-				}
-				else {
-					m_utility.DisplayError("Invalid option.");
-				}
-			}
-		}
-
-		if (goingToGreenRiver && m_locations[i]->GetName() == "Fort Bridger") {
-			continue;
-		}
-		else if (!goingToGreenRiver && m_locations[i]->GetName() == "Green River") {
-			continue;
-		}
 
 		// Once you arrive at a location, this will propt if you want to visit the location
 		if (m_locations[i]->GetName() != "Independence") {
@@ -146,6 +117,41 @@ void Trail::ActiveGame() {
 		}
 
 		m_locations[i]->CrossLocation(m_player, m_date, m_weather);
+
+		// If the player is at the Green River, then they have the option to travel to Green River,
+		// or the next location which is Fort Bridger
+		if (m_locations[i]->GetName() == "South Pass") {
+			while (1) {
+				m_dialogue.T_WhichDirectionChoice();
+				cin >> whichDirection;
+
+				// Going to Green River
+				if (whichDirection == "1") {
+					goingToGreenRiver = true;
+					m_locations[i]->SetMilesNeeded(57);
+					break;
+				}
+				// Going to Fort Bridger
+				else if (whichDirection == "2") {
+					goingToGreenRiver = false;
+					m_locations[i]->SetMilesNeeded(125);
+					if (m_utility.HasElement(m_locations.size(), i + 1)) {
+						m_locations[i + 1] = &m_FortBridger;
+					}
+					break;
+				}
+				else {
+					m_utility.DisplayError("Invalid option.");
+				}
+			}
+		}
+
+		if (goingToGreenRiver && m_locations[i]->GetName() == "Fort Bridger") {
+			continue;
+		}
+		else if (!goingToGreenRiver && m_locations[i]->GetName() == "Green River") {
+			continue;
+		}
 
 		if (m_utility.HasElement(m_locations.size(), i + 1)) {
 			ShowMilesTo(m_locations[i]->GetName(), m_locations[i + 1]->GetName(), m_locations[i]->GetMilesNeeded());
@@ -886,7 +892,13 @@ void Trail::Rest() {
 			}
 			else {
 				for (int i = 0; i < stoi(numOfDays); i++) {
+					m_date.ShowDate();
+					m_utility.OutputMessage("Your party rests and recovers");
+					m_utility.OutputMessage("for the day.");
+					m_utility.Wait();
+
 					m_date.NextDay();
+
 				}
 				break;
 			}
@@ -959,40 +971,40 @@ void Trail::InitializeLocations() {
 	m_SouthPass.SetMilesNeeded(0); // Will change once the user picks Green River or Fort Bridger
 	m_SouthPass.SetHasStore(false);
 
-	m_GreenRiver.SetName("Green River crossing");
-	m_GreenRiver.SetMilesNeeded(57);
+	m_GreenRiver.SetName("Green River");
+	m_GreenRiver.SetMilesNeeded(143);
 	m_GreenRiver.SetHasStore(false);
 	m_GreenRiver.SetHasFerry(false);
 
 	m_FortBridger.SetName("Fort Bridger");
-	m_FortBridger.SetMilesNeeded(125);
+	m_FortBridger.SetMilesNeeded(143);
 
 	m_SodaSprings.SetName("Soda Springs");
-	m_SodaSprings.SetMilesNeeded(143);
+	m_SodaSprings.SetMilesNeeded(57);
 	m_SodaSprings.SetHasStore(false);
 
 	m_FortHall.SetName("Fort Hall");
-	m_FortHall.SetMilesNeeded(57);
+	m_FortHall.SetMilesNeeded(182);
 
 	m_SnakeRiver.SetName("Snake River");
-	m_SnakeRiver.SetMilesNeeded(182); // Has the option to hire an Indian to cross
+	m_SnakeRiver.SetMilesNeeded(113); // Has the option to hire an Indian to cross
 
 	m_FortBoise.SetName("Fort Boise");
-	m_FortBoise.SetMilesNeeded(113);
+	m_FortBoise.SetMilesNeeded(160);
 
 	m_BlueMountains.SetName("Blue Mountains");
-	m_BlueMountains.SetMilesNeeded(160);
+	m_BlueMountains.SetMilesNeeded(55);
 	m_BlueMountains.SetHasStore(false); 
 
 	m_FortWallaWalla.SetName("Fort Walla Walla");
-	m_FortWallaWalla.SetMilesNeeded(55);
+	m_FortWallaWalla.SetMilesNeeded(120);
 
 	m_TheDalles.SetName("The Dalles");
-	m_TheDalles.SetMilesNeeded(120);
+	m_TheDalles.SetMilesNeeded(100);
 	m_TheDalles.SetHasStore(false);
 
 	m_WillametteValley.SetName("Willamette Valley"); // User must pay to get into this location
-	m_WillametteValley.SetMilesNeeded(100);
+	m_WillametteValley.SetMilesNeeded(0);
 	m_WillametteValley.SetHasStore(false); 
 	
 	m_locations.push_back(&m_Independence);
@@ -1003,7 +1015,7 @@ void Trail::InitializeLocations() {
 	m_locations.push_back(&m_FortLaramie);
 	m_locations.push_back(&m_IndependenceRock);
 	m_locations.push_back(&m_SouthPass);
-	//m_locations.push_back(&m_GreenRiver);
+	m_locations.push_back(&m_GreenRiver);
 	//m_locations.push_back(&m_FortBridger);
 	m_locations.push_back(&m_SodaSprings);
 	m_locations.push_back(&m_FortHall);

@@ -466,3 +466,10 @@ void Date::ShowLocation(string a_location) {
 	m_utility.Wait();
 	SetConsoleTextAttribute(m_hConsole, 7);
 }
+
+void Date::ShowDate() {
+
+	cout << "-----------------------------------------------" << endl;
+	cout << "\t \t " << m_month << " " << m_day << ", " << m_year << endl;
+	cout << "-----------------------------------------------" << endl << endl;
+}
