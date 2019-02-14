@@ -586,3 +586,8 @@ void Player::AddItemQuantity(string a_itemName, int a_quantity) {
 		m_utility.DisplayError("ERROR: Uknown item name in player class.");
 	}
 }
+
+string Player::GetPlayerPosition() {
+
+	return m_playerPosition;
+}

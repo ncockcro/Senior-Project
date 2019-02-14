@@ -174,6 +174,8 @@ void Trail::ActiveGame() {
 
 	}
 
+	cout << "YOU MADE IT TO THE END OF THE GAME!!!!!" << endl;
+
 }
 
 /*
@@ -292,6 +294,8 @@ Date
 void Trail::PromptCharacterNames() {
 
 	string verify;
+	string temp;
+	bool sameName = false;
 
 	while (1) {
 		cout << "\t What is the first name of the wagon leader? ";
@@ -299,8 +303,6 @@ void Trail::PromptCharacterNames() {
 
 		m_utility.OutputMessage("What are the names of the four other members?");
 
-		string temp;
-		bool sameName = false;
 		// Cycling through four times to get the names of the four other members of the wagon party
 		for (int i = 0; i < 4; i++) {
 			cout << "\t " << i + 1 << ". ";
@@ -310,7 +312,7 @@ void Trail::PromptCharacterNames() {
 				sameName = true;
 			}
 
-			for (int j = 0; j < i; j++) {
+			for (size_t j = 0; j < m_wagonParty.size(); j++) {
 				if (temp == m_wagonParty[j]) {
 					sameName = true;
 				}
@@ -322,7 +324,7 @@ void Trail::PromptCharacterNames() {
 				sameName = false;
 			}
 			else {
-				m_wagonParty[i] = temp;
+				m_wagonParty.push_back(temp);
 			}
 		}
 
@@ -331,6 +333,9 @@ void Trail::PromptCharacterNames() {
 
 		if (verify == "yes" || verify == "ye" || verify == "y") {
 			break;
+		}
+		else {
+			m_wagonParty.clear();
 		}
 	}
 
@@ -1247,4 +1252,72 @@ void Trail::IncreaseRates() {
 	m_rate5dollars += 5;
 	m_rate2_5dollars += 2.5;
 	m_rate0_5dollars += 0.05;
+}
+
+void Trail::CalculateScore() {
+
+	int totalPoints = 0;
+	int multiplier = 1;
+
+	// Setting the multiplier the score will be times by depending on the player's initial position
+	if (m_player.GetPlayerPosition() == "carpenter") {
+		multiplier = 2;
+	}
+	else if (m_player.GetPlayerPosition() == "farmer") {
+		multiplier = 3;
+	}
+	else {
+		m_utility.DisplayError("ERROR: In calculating score for position.");
+	}
+
+	// Calculating the score for the player's health
+	if (m_health == 3) {
+		totalPoints += 500;
+		totalPoints += 500 * m_wagonParty.size();
+	}
+	else if (m_health == 2) {
+		totalPoints += 400;
+		totalPoints += 400 * m_wagonParty.size();
+	}
+	else if (m_health == 1) {
+		totalPoints += 300;
+		totalPoints += 300 * m_wagonParty.size();
+	}
+	else if (m_health == 0) {
+		totalPoints += 200;
+		totalPoints += 200 * m_wagonParty.size();
+	}
+	else {
+		m_utility.DisplayError("ERROR: Calculating score in health.");
+	}
+
+	// Gain 50 points for having the wagon
+	totalPoints += 50;
+
+	// 4 points for each ox
+	totalPoints += (4 * m_player.GetItem("Oxen").GetQuantity());
+
+	// 2 points for each extra wagon
+	totalPoints += (2 * m_player.GetItem("Spare parts - wagon wheel").GetQuantity());
+
+	// 2 points for each extra axle
+	totalPoints += (2 * m_player.GetItem("Spare parts - wagon axle").GetQuantity());
+
+	// 2 points for each extra tongue
+	totalPoints += (2 * m_player.GetItem("Spare parts - wagon tongue").GetQuantity());
+
+	// 2 points for each set of clothing
+	totalPoints += (2 * m_player.GetItem("Clothing").GetQuantity());
+
+	// 1 point for each multiple of 50 bullets
+	totalPoints += (m_player.GetItem("Aummunition").GetQuantity() / 50);
+
+	// 1 point for each 25 pounds of food
+	totalPoints += (m_player.GetItem("Food").GetQuantity() / 25);
+
+	// 1 point for each $5
+	totalPoints += (int)(m_player.GetPlayerMoney() / 5);
+
+	m_utility.OutputMessage("\t Total Points earned:" + totalPoints);
+
 }

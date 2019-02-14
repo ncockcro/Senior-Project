@@ -40,6 +40,7 @@ public:
 	void DeductMoney(double a_money);
 	void DeductFood(string a_rate);
 	void LoseItems();
+	string GetPlayerPosition();
 
 
 private:

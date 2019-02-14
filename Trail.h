@@ -52,6 +52,7 @@ private:
 	void ShowMilesTo(string a_currentLocationName, string a_nextLocationName, int a_milesNeeded);
 	void VisitStore(string a_location);
 	void IncreaseRates();
+	void CalculateScore();
 
 	Utility m_utility = Utility();
 	Player m_player;
@@ -59,7 +60,7 @@ private:
 	Date m_date;
 
 	string m_wagonLeader;
-	string m_wagonParty[4];
+	vector <string> m_wagonParty;
 
 	Store m_Store;
 
@@ -67,7 +68,7 @@ private:
 
 	int m_milesLeft;
 	int m_weather;
-	int m_health;
+	int m_health; // 0 = very poor, 1 = poor, 2 = fair, 3 = good
 	string m_pace;
 	string m_foodRate;
 

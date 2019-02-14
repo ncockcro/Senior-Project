@@ -467,6 +467,35 @@ void Date::ShowLocation(string a_location) {
 	SetConsoleTextAttribute(m_hConsole, 7);
 }
 
+/*
+	Date::ShowLocation(string a_location, a_year, a_month, a_day)
+
+NAME
+
+	Date::ShowLocation - Shows the location and date splash screen
+
+SYNOPSIS
+
+	Date::ShowLocation(string a_location)
+
+	a_location --> location the player is in
+
+DESCRIPTION
+
+	Outputs the splash screen of showing the location the player is in and the date
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	10:29pm 1/26/2019
+*/
 void Date::ShowDate() {
 
 	cout << "-----------------------------------------------" << endl;
