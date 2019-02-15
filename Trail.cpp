@@ -44,6 +44,10 @@ Trail::Trail()
 	m_rate5dollars = 0;
 	m_rate2_5dollars = 0;
 	m_rate0_5dollars = 0;
+
+	m_totalScore = 0;
+
+	m_health = 3;
 }
 
 /*
@@ -174,7 +178,8 @@ void Trail::ActiveGame() {
 
 	}
 
-	cout << "YOU MADE IT TO THE END OF THE GAME!!!!!" << endl;
+	m_dialogue.T_End();
+	CalculateScore();
 
 }
 
@@ -251,7 +256,7 @@ void Trail::PromptPosition() {
 	// Player chose to be a carpenter
 	else if (positionChoice == "2") {
 		m_player.SetPlayerMoney(800);
-		m_player.SetPlayerPosition("Cerpenter");
+		m_player.SetPlayerPosition("Carpenter");
 	}
 	// Player chose to be a farmer
 	else if (positionChoice == "3") {
@@ -1256,14 +1261,17 @@ void Trail::IncreaseRates() {
 
 void Trail::CalculateScore() {
 
-	int totalPoints = 0;
 	int multiplier = 1;
+	int scorePerItem[10];
 
 	// Setting the multiplier the score will be times by depending on the player's initial position
-	if (m_player.GetPlayerPosition() == "carpenter") {
+	if (m_player.GetPlayerPosition() == "Banker") {
+		multiplier = 1;
+	}
+	else if (m_player.GetPlayerPosition() == "Carpenter") {
 		multiplier = 2;
 	}
-	else if (m_player.GetPlayerPosition() == "farmer") {
+	else if (m_player.GetPlayerPosition() == "Farmer") {
 		multiplier = 3;
 	}
 	else {
@@ -1272,52 +1280,69 @@ void Trail::CalculateScore() {
 
 	// Calculating the score for the player's health
 	if (m_health == 3) {
-		totalPoints += 500;
-		totalPoints += 500 * m_wagonParty.size();
+		m_totalScore += 500;
+		m_totalScore += 500 * m_wagonParty.size();
+		scorePerItem[0] = 500;
+		scorePerItem[0] += 500 * m_wagonParty.size();
 	}
 	else if (m_health == 2) {
-		totalPoints += 400;
-		totalPoints += 400 * m_wagonParty.size();
+		m_totalScore += 400;
+		m_totalScore += 400 * m_wagonParty.size();
+		scorePerItem[0] = 400;
+		scorePerItem[0] += 400 * m_wagonParty.size();
 	}
 	else if (m_health == 1) {
-		totalPoints += 300;
-		totalPoints += 300 * m_wagonParty.size();
+		m_totalScore += 300;
+		m_totalScore += 300 * m_wagonParty.size();
+		scorePerItem[0] = 300;
+		scorePerItem[0] += 300 * m_wagonParty.size();
 	}
 	else if (m_health == 0) {
-		totalPoints += 200;
-		totalPoints += 200 * m_wagonParty.size();
+		m_totalScore += 200;
+		m_totalScore += 200 * m_wagonParty.size();
+		scorePerItem[0] = 200;
+		scorePerItem[0] += 200 * m_wagonParty.size();
 	}
 	else {
 		m_utility.DisplayError("ERROR: Calculating score in health.");
 	}
 
 	// Gain 50 points for having the wagon
-	totalPoints += 50;
+	m_totalScore += 50;
+	scorePerItem[1] = 50;
 
 	// 4 points for each ox
-	totalPoints += (4 * m_player.GetItem("Oxen").GetQuantity());
+	m_totalScore += (4 * m_player.GetItem("Oxen").GetQuantity());
+	scorePerItem[2] = 4 * m_player.GetItem("Oxen").GetQuantity();
 
 	// 2 points for each extra wagon
-	totalPoints += (2 * m_player.GetItem("Spare parts - wagon wheel").GetQuantity());
+	m_totalScore += (2 * m_player.GetItem("Spare parts - wagon wheel").GetQuantity());
+	scorePerItem[3] = 2 * m_player.GetItem("Spare parts - wagon wheel").GetQuantity();
 
 	// 2 points for each extra axle
-	totalPoints += (2 * m_player.GetItem("Spare parts - wagon axle").GetQuantity());
+	m_totalScore += (2 * m_player.GetItem("Spare parts - wagon axle").GetQuantity());
+	scorePerItem[4] = 2 * m_player.GetItem("Spare parts - wagon axle").GetQuantity();
 
 	// 2 points for each extra tongue
-	totalPoints += (2 * m_player.GetItem("Spare parts - wagon tongue").GetQuantity());
+	m_totalScore += (2 * m_player.GetItem("Spare parts - wagon tongue").GetQuantity());
+	scorePerItem[5] = 2 * m_player.GetItem("Spare parts - wagon tongue").GetQuantity();
 
 	// 2 points for each set of clothing
-	totalPoints += (2 * m_player.GetItem("Clothing").GetQuantity());
+	m_totalScore += (2 * m_player.GetItem("Clothing").GetQuantity());
+	scorePerItem[6] = 2 * m_player.GetItem("Clothing").GetQuantity();
 
 	// 1 point for each multiple of 50 bullets
-	totalPoints += (m_player.GetItem("Aummunition").GetQuantity() / 50);
+	m_totalScore += (m_player.GetItem("Ammunition").GetQuantity() / 50);
+	scorePerItem[7] = m_player.GetItem("Ammunition").GetQuantity() / 50;
 
 	// 1 point for each 25 pounds of food
-	totalPoints += (m_player.GetItem("Food").GetQuantity() / 25);
+	m_totalScore += (m_player.GetItem("Food").GetQuantity() / 25);
+	scorePerItem[8] = m_player.GetItem("Food").GetQuantity() / 25;
 
 	// 1 point for each $5
-	totalPoints += (int)(m_player.GetPlayerMoney() / 5);
+	m_totalScore += (int)(m_player.GetPlayerMoney() / 5);
+	scorePerItem[9] = (int)(m_player.GetPlayerMoney() / 5);
 
-	m_utility.OutputMessage("\t Total Points earned:" + totalPoints);
+	cout << "\t Total points earner: " << m_totalScore << endl;
 
 }

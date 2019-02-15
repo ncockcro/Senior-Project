@@ -931,3 +931,12 @@ void Dialogue::T_WhichDirectionChoice() {
 	m_utility.OutputMessage("\t 2. head for Fort Bridger \n");
 	cout << "What is your choice? ";
 }
+
+void Dialogue::T_End() {
+
+	m_utility.OutputMessage("Congratulations! You have");
+	m_utility.OutputMessage("made it to Oregon! Let's");
+	m_utility.OutputMessage("see how many points you have");
+	m_utility.OutputMessage("recieved.");
+	m_utility.Wait();
+}

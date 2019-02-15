@@ -101,5 +101,7 @@ private:
 	double m_rate2_5dollars;
 	double m_rate0_5dollars;
 
+	int m_totalScore;
+
 };
 
