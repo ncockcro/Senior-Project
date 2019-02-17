@@ -43,6 +43,7 @@ private:
 	void AddItemsFromStore(vector<Item> a_storeItems);
 	void TrailMenu(bool a_hasStore, string a_locationName);
 	void ShowSupplies();
+	void LookAtMap();
 	void ChangePace();
 	void ChangeRations();
 	void Rest();
@@ -53,6 +54,7 @@ private:
 	void VisitStore(string a_location);
 	void IncreaseRates();
 	void CalculateScore();
+	void ShowScoreDetails(int a_scores[]);
 
 	Utility m_utility = Utility();
 	Player m_player;

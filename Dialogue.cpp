@@ -924,11 +924,19 @@ void Dialogue::T_LeavingMessage(double a_playerMoney) {
 	m_utility.Wait();
 }
 
-void Dialogue::T_WhichDirectionChoice() {
+void Dialogue::T_WhichDirectionChoice1() {
 
 	m_utility.OutputMessage("The trail divides here. You may: \n");
 	m_utility.OutputMessage("\t 1. head for Green River crossing");
 	m_utility.OutputMessage("\t 2. head for Fort Bridger \n");
+	cout << "What is your choice? ";
+}
+
+void Dialogue::T_WhichDirectionChoice2() {
+
+	m_utility.OutputMessage("The trail divides here. You may: \n");
+	m_utility.OutputMessage("\t 1. head for Fort Walla Walla");
+	m_utility.OutputMessage("\t 2. head for The Dalles");
 	cout << "What is your choice? ";
 }
 

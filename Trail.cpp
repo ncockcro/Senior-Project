@@ -99,6 +99,7 @@ void Trail::ActiveGame() {
 	// Cycle through the list of locations that the player has to travel to
 	for (size_t i = 0; i < m_locations.size(); i++) {
 
+		m_currentLocation = m_locations[i]->GetName();
 
 		// Once you arrive at a location, this will propt if you want to visit the location
 		if (m_locations[i]->GetName() != "Independence") {
@@ -126,7 +127,7 @@ void Trail::ActiveGame() {
 		// or the next location which is Fort Bridger
 		if (m_locations[i]->GetName() == "South Pass") {
 			while (1) {
-				m_dialogue.T_WhichDirectionChoice();
+				m_dialogue.T_WhichDirectionChoice1();
 				cin >> whichDirection;
 
 				// Going to Green River
@@ -150,18 +151,41 @@ void Trail::ActiveGame() {
 			}
 		}
 
-		if (goingToGreenRiver && m_locations[i]->GetName() == "Fort Bridger") {
+		/*if (goingToGreenRiver && m_locations[i]->GetName() == "Fort Bridger") {
 			continue;
 		}
 		else if (!goingToGreenRiver && m_locations[i]->GetName() == "Green River") {
 			continue;
+		}*/
+
+		if (m_locations[i]->GetName() == "Blue Mountains") {
+			while (1) {
+				m_dialogue.T_WhichDirectionChoice2();
+				cin >> whichDirection;
+
+				// Going to Green River
+				if (whichDirection == "1") {
+					m_locations[i]->SetMilesNeeded(55);
+					break;
+				}
+				// Going to Fort Bridger
+				else if (whichDirection == "2") {
+					m_locations[i]->SetMilesNeeded(125);
+					if (m_utility.HasElement(m_locations.size(), i + 1)) {
+						m_locations[i + 1] = &m_TheDalles;
+					}
+					break;
+				}
+				else {
+					m_utility.DisplayError("Invalid option.");
+				}
+			}
 		}
 
 		if (m_utility.HasElement(m_locations.size(), i + 1)) {
 			ShowMilesTo(m_locations[i]->GetName(), m_locations[i + 1]->GetName(), m_locations[i]->GetMilesNeeded());
 		}
 
-		m_currentLocation = m_locations[i]->GetName();
 		milesNeededToTravel = m_locations[i]->GetMilesNeeded();
 		milesTraveled = 0;
 
@@ -608,12 +632,13 @@ void Trail::TrailMenu(bool a_hasStore, string a_locationName) {
 		cout << "\t You May:" << endl;
 		m_utility.OutputMessage("    1. Continue on trail");
 		m_utility.OutputMessage("    2. Check Supplies");
-		m_utility.OutputMessage("    3. Change pace");
-		m_utility.OutputMessage("    4. Change food rations");
-		m_utility.OutputMessage("    5. Stop to rest");
-		m_utility.OutputMessage("    6. Talk to people");
+		m_utility.OutputMessage("    3. Look at map");
+		m_utility.OutputMessage("    4. Change pace");
+		m_utility.OutputMessage("    5. Change food rations");
+		m_utility.OutputMessage("    6. Stop to rest");
+		m_utility.OutputMessage("    7. Talk to people");
 		if (a_hasStore) {
-			m_utility.OutputMessage("    7. Buy supplies");
+			m_utility.OutputMessage("    8. Buy supplies");
 		}
 
 		cout << "\t    What is your choice? ";
@@ -627,24 +652,28 @@ void Trail::TrailMenu(bool a_hasStore, string a_locationName) {
 		else if (choice == "2") {
 			ShowSupplies();
 		} 
-		// Change the pace the player is going
+		// Show the map
 		else if (choice == "3") {
+			LookAtMap();
+		}
+		// Change the pace the player is going
+		else if (choice == "4") {
 			ChangePace();
 		}
 		// Change the amount of rations being used
-		else if (choice == "4") {
+		else if (choice == "5") {
 			ChangeRations();
 		}
 		// Rest for a # of days to regenerate party health
-		else if (choice == "5") {
+		else if (choice == "6") {
 			Rest();
 		}
 		// Talk to local people to get advice
-		else if (choice == "6") {
+		else if (choice == "7") {
 			m_dialogue.TalkToPeople(m_currentLocation);
 		}
 		// Buy supplies if the location the player is at is not a river
-		else if (a_hasStore && choice == "7") {
+		else if (a_hasStore && choice == "8") {
 			VisitStore(a_locationName);
 		}
 		// Anything else if invlaid input
@@ -693,6 +722,47 @@ void Trail::ShowSupplies() {
 	cout << "\t wagon tongue     " << m_player.GetItem("Spare parts - wagon tongue").GetQuantity() << endl;
 	cout << "\t pounds of food     " << m_player.GetItem("Food").GetQuantity() << endl;
 	cout << "\t money left     $" << m_player.GetPlayerMoney() << endl;
+	m_utility.Wait();
+}
+
+void Trail::LookAtMap() {
+
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	SetConsoleTextAttribute(hConsole, 2);
+	cout << endl << "\t ";
+	for (int i = 0; i < m_locations.size(); i++) {
+
+		cout << m_locations[i]->GetName();
+
+		// Need to also show the other location the player can travel to
+		if (m_locations[i]->GetName() == "Green River") {
+			cout << " || Fort Bridger";
+		}
+
+		// Need to also show the other location the player can travel to
+		if (m_locations[i]->GetName() == "Fort Walla Walla") {
+			cout << " || The Dalles";
+		}
+
+		// Output an arrow so long as its not the last location
+		if (i != m_locations.size() - 1) {
+			cout << " --> ";
+		}
+
+		if (i % 3 == 0 && i > 0) {
+			cout << endl;
+			cout << "\t ";
+		}
+
+		if (m_locations[i]->GetName() == m_currentLocation) {
+			SetConsoleTextAttribute(hConsole, 12);
+		}
+	}
+
+	SetConsoleTextAttribute(hConsole, 7);
+
+	cout << endl << endl;
 	m_utility.Wait();
 }
 
@@ -1002,15 +1072,15 @@ void Trail::InitializeLocations() {
 	m_FortBoise.SetName("Fort Boise");
 	m_FortBoise.SetMilesNeeded(160);
 
-	m_BlueMountains.SetName("Blue Mountains");
+	m_BlueMountains.SetName("Blue Mountains"); // From here, has the choice to travel to Fort Walla Walla or Dalles
 	m_BlueMountains.SetMilesNeeded(55);
 	m_BlueMountains.SetHasStore(false); 
 
-	m_FortWallaWalla.SetName("Fort Walla Walla");
-	m_FortWallaWalla.SetMilesNeeded(120);
+	m_FortWallaWalla.SetName("Fort Walla Walla"); // Has the choice
+	m_FortWallaWalla.SetMilesNeeded(55);
 
 	m_TheDalles.SetName("The Dalles");
-	m_TheDalles.SetMilesNeeded(100);
+	m_TheDalles.SetMilesNeeded(125);
 	m_TheDalles.SetHasStore(false);
 
 	m_WillametteValley.SetName("Willamette Valley"); // User must pay to get into this location
@@ -1033,7 +1103,7 @@ void Trail::InitializeLocations() {
 	m_locations.push_back(&m_FortBoise);
 	m_locations.push_back(&m_BlueMountains);
 	m_locations.push_back(&m_FortWallaWalla);
-	m_locations.push_back(&m_TheDalles);
+	//m_locations.push_back(&m_TheDalles);
 	m_locations.push_back(&m_WillametteValley);
 
 
@@ -1262,7 +1332,7 @@ void Trail::IncreaseRates() {
 void Trail::CalculateScore() {
 
 	int multiplier = 1;
-	int scorePerItem[10];
+	int scorePerItem[8];
 
 	// Setting the multiplier the score will be times by depending on the player's initial position
 	if (m_player.GetPlayerPosition() == "Banker") {
@@ -1321,28 +1391,47 @@ void Trail::CalculateScore() {
 
 	// 2 points for each extra axle
 	m_totalScore += (2 * m_player.GetItem("Spare parts - wagon axle").GetQuantity());
-	scorePerItem[4] = 2 * m_player.GetItem("Spare parts - wagon axle").GetQuantity();
+	scorePerItem[3] += 2 * m_player.GetItem("Spare parts - wagon axle").GetQuantity();
 
 	// 2 points for each extra tongue
 	m_totalScore += (2 * m_player.GetItem("Spare parts - wagon tongue").GetQuantity());
-	scorePerItem[5] = 2 * m_player.GetItem("Spare parts - wagon tongue").GetQuantity();
+	scorePerItem[3] += 2 * m_player.GetItem("Spare parts - wagon tongue").GetQuantity();
 
 	// 2 points for each set of clothing
 	m_totalScore += (2 * m_player.GetItem("Clothing").GetQuantity());
-	scorePerItem[6] = 2 * m_player.GetItem("Clothing").GetQuantity();
+	scorePerItem[4] = 2 * m_player.GetItem("Clothing").GetQuantity();
 
 	// 1 point for each multiple of 50 bullets
 	m_totalScore += (m_player.GetItem("Ammunition").GetQuantity() / 50);
-	scorePerItem[7] = m_player.GetItem("Ammunition").GetQuantity() / 50;
+	scorePerItem[5] = m_player.GetItem("Ammunition").GetQuantity() / 50;
 
 	// 1 point for each 25 pounds of food
 	m_totalScore += (m_player.GetItem("Food").GetQuantity() / 25);
-	scorePerItem[8] = m_player.GetItem("Food").GetQuantity() / 25;
+	scorePerItem[6] = m_player.GetItem("Food").GetQuantity() / 25;
 
 	// 1 point for each $5
 	m_totalScore += (int)(m_player.GetPlayerMoney() / 5);
-	scorePerItem[9] = (int)(m_player.GetPlayerMoney() / 5);
+	scorePerItem[7] = (int)(m_player.GetPlayerMoney() / 5);
 
 	cout << "\t Total points earner: " << m_totalScore << endl;
+	ShowScoreDetails(scorePerItem);
 
+}
+
+void Trail::ShowScoreDetails(int a_scores[]) {
+
+	m_utility.OutputMessage("Points for arriving in Oregon");
+
+	cout << "-------------------------------------------------------" << endl;
+	cout << "\t " << m_wagonParty.size() << " people in " << m_health << " health " << a_scores[0] << endl;
+	cout << "\t " << "1 wagon " << a_scores[1] << endl;
+	cout << "\t " << m_player.GetItem("Oxen").GetQuantity() << " oxen " << a_scores[2] << endl;
+	cout << "\t " << m_player.GetItem("Spare parts - wagon wheel").GetQuantity() + m_player.GetItem("Spare parts - wagon axle").GetQuantity() +
+		m_player.GetItem("Spare parts - wagon tongue").GetQuantity() << " spare parts " << a_scores[3] << endl;
+	cout << "\t " << m_player.GetItem("Clothing").GetQuantity() << " sets of clothing " << a_scores[4] << endl;
+	cout << "\t " << m_player.GetItem("Ammunition").GetQuantity() << " bullets " << a_scores[5] << endl;
+	cout << "\t " << m_player.GetItem("Food").GetQuantity() << " pounds of food " << a_scores[6] << endl;
+	cout << "\t $" << m_player.GetPlayerMoney() << " cash " << a_scores[7] << endl;
+	cout << "\t \t Total: " << m_totalScore << endl;
+	cout << "-------------------------------------------------------" << endl;
 }

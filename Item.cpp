@@ -574,14 +574,17 @@ Date
 */
 void Item::DecrementFood(string a_rate) {
 
-	if (m_quantity > 0 && a_rate == "filling") {
+	if (m_quantity > 15 && a_rate == "filling") {
 		m_quantity -= 15;
 	}
-	else if (m_quantity > 0 && a_rate == "meager") {
+	else if (m_quantity >= 10 && a_rate == "meager") {
 		m_quantity -= 10;
 	}
-	else if (m_quantity && a_rate == "bare bones") {
+	else if (m_quantity >= 5 && a_rate == "bare bones") {
 		m_quantity -= 5;
+	}
+	else {
+		m_quantity = 0;
 	}
 }
 

@@ -31,7 +31,8 @@ public:
 
 	void T_DepartingDialogue();
 	void T_LeavingMessage(double a_playerMoney);
-	void T_WhichDirectionChoice();
+	void T_WhichDirectionChoice1();
+	void T_WhichDirectionChoice2();
 	void T_End();
 
 private:
