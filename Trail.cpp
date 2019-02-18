@@ -45,7 +45,7 @@ Trail::Trail()
 	m_rate2_5dollars = 0;
 	m_rate0_5dollars = 0;
 
-	m_totalScore = 0;
+	m_totalScore = 10000;
 
 	m_health = 3;
 }
@@ -1434,4 +1434,8 @@ void Trail::ShowScoreDetails(int a_scores[]) {
 	cout << "\t $" << m_player.GetPlayerMoney() << " cash " << a_scores[7] << endl;
 	cout << "\t \t Total: " << m_totalScore << endl;
 	cout << "-------------------------------------------------------" << endl;
+}
+
+int Trail::GetTotalScore() {
+	return m_totalScore;
 }

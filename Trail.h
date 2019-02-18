@@ -34,6 +34,7 @@ class Trail
 public:
 	Trail();
 	void ActiveGame();
+	int GetTotalScore();
 
 private:
 	void PromptPosition();

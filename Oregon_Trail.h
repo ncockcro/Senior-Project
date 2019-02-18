@@ -25,6 +25,12 @@ using namespace std;
 
 class Oregon_Trail
 {
+
+	struct LeaderBoardEntry {
+		string name;
+		int score;
+	};
+
 public:
 	Oregon_Trail();
 	void StartGame();
@@ -35,8 +41,12 @@ private:
 	void ShowTitle();
 	void ShowDescription();
 	void ShowLeaderBoard();
+	void AddToLeaderBoard();
+	bool IsPosition(string a_word);
 
 	Trail m_trailGame = Trail();
 	Utility m_utility = Utility();
+
+	vector<LeaderBoardEntry> m_entries;
 };
 

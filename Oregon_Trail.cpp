@@ -40,6 +40,8 @@ void Oregon_Trail::StartGame() {
 	while (1) {
 		ShowChoices();
 		PickDecision();
+
+		AddToLeaderBoard();
 	}
 }
 
@@ -280,4 +282,96 @@ void Oregon_Trail::ShowLeaderBoard() {
 
 	m_utility.Wait();
 	system("cls");
+}
+
+void Oregon_Trail::AddToLeaderBoard() {
+
+	fstream outputLeaderboardFile("leaderboard.txt");
+	string input;
+	ifstream inputLeaderboardFile;
+	string word;
+	string tempName;
+	int count = -1;
+	int structCount = 0;
+	string name;
+	LeaderBoardEntry gameScore;
+
+	// If there is no leaderboard file after finishing a game, this will initialize it
+	if (!outputLeaderboardFile) {
+		outputLeaderboardFile.open("leaderboard.txt", fstream::out);
+
+		outputLeaderboardFile << "\t" << "Leaderboard" << endl;
+		for (int i = 0; i < 10; i++) {
+			outputLeaderboardFile << "\t" << i + 1 << "." << endl;
+		}
+	}
+
+	outputLeaderboardFile.close();
+
+
+	// ***** Reading from leaderboards file *****
+	inputLeaderboardFile.open("leaderboard.txt");
+
+	// While we are not at the end of file...
+	while (inputLeaderboardFile >> word) {
+
+		count++;
+		// If there are players in the leaderboard, this will pull the names and scores from
+		// the leaderboards.txt file and save them to a vector
+		if (count % 3 == 0 && count != 0 && !IsPosition(word)) {
+			m_entries.push_back(LeaderBoardEntry());
+			m_entries[structCount].name = tempName;
+			m_entries[structCount].score = stoi(word);
+			structCount++;
+		}
+
+		tempName = word;
+	}
+
+	gameScore.score = m_trailGame.GetTotalScore();
+
+	// Cycle through leaderboard scores and if the player's is higher, insert it into the leaderboard
+	for (int i = 0; i < m_entries.size(); i++) {
+		if (m_trailGame.GetTotalScore() > m_entries[i].score) {
+
+			cout << "\t Enter your name: ";
+			cin >> name;
+			gameScore.name = name;
+			m_entries.insert(m_entries.begin() + i, gameScore);
+			break;
+		}
+	}
+
+	inputLeaderboardFile.close();
+
+	// ***** Opening the leaderboards file to overwrite with the new leaderboards high scores *****
+	outputLeaderboardFile.open("leaderboard.txt", fstream::out);
+
+	outputLeaderboardFile << "\t" << "Leaderboard" << endl;
+	// Only outputting the top ten players to be saved
+	for (int i = 0; i < 10; i++) {
+
+		if (m_utility.HasElement(m_entries.size(), i)) {
+			outputLeaderboardFile << "\t" << i + 1 << ". " << m_entries[i].name << " " << m_entries[i].score << endl;
+		}
+		else {
+			outputLeaderboardFile << "\t" << i + 1 << "." << endl;
+		}
+	}
+
+	outputLeaderboardFile.close();
+
+	m_utility.Wait();
+
+}
+
+bool Oregon_Trail::IsPosition(string a_word) {
+
+	if (a_word == "10." || a_word == "9." || a_word == "8." || a_word == "7." || a_word == "6." || a_word == "5." ||
+		a_word == "4." || a_word == "3." || a_word == "2." || a_word == "1.") {
+		return true;
+	}
+	else {
+		return false;
+	}
 }
