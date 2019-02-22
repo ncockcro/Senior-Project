@@ -48,6 +48,8 @@ Trail::Trail()
 	m_totalScore = 10000;
 
 	m_health = 3;
+
+	srand((unsigned int)time(0));
 }
 
 /*
@@ -640,6 +642,9 @@ void Trail::TrailMenu(bool a_hasStore, string a_locationName) {
 		if (a_hasStore) {
 			m_utility.OutputMessage("    8. Buy supplies");
 		}
+		else {
+			m_utility.OutputMessage("    8. Hunt");
+		}
 
 		cout << "\t    What is your choice? ";
 		cin >> choice;
@@ -675,6 +680,9 @@ void Trail::TrailMenu(bool a_hasStore, string a_locationName) {
 		// Buy supplies if the location the player is at is not a river
 		else if (a_hasStore && choice == "8") {
 			VisitStore(a_locationName);
+		}
+		else if (!a_hasStore && choice == "8") {
+			Hunt();
 		}
 		// Anything else if invlaid input
 		else {
@@ -731,7 +739,7 @@ void Trail::LookAtMap() {
 
 	SetConsoleTextAttribute(hConsole, 2);
 	cout << endl << "\t ";
-	for (int i = 0; i < m_locations.size(); i++) {
+	for (size_t i = 0; i < m_locations.size(); i++) {
 
 		cout << m_locations[i]->GetName();
 
@@ -1292,6 +1300,91 @@ void Trail::VisitStore(string a_location) {
 	AddItemsFromStore(store.GetItemQuantitys());
 
 	IncreaseRates();
+}
+
+/*
+	Trail::Hunt()
+
+NAME
+
+	Trail::Hunt - Function to let the player hunt to gain extra food
+
+SYNOPSIS
+
+	void Trail::Hunt()
+
+DESCRIPTION
+
+	This function is called when the player is in the trail menu and decides to hunt for food.
+	This gives the player an oppertunity gain extra food at locations that don't have a store.
+	The idea of hunting is that they need to enter "BANG" or "POW" in a certain amount of time
+	that is randomly determined. Also the amount of times they are able to enter "BANG" or "POW"
+	is between 1 and 10 times for varying amount of foods for the player to earn. 
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	10:03pm 2/20/2019
+*/
+void Trail::Hunt() {
+
+	int amountOfTries = (rand() % 10) + 1;
+	int amountOfTime;
+	int bangOrPowNum;
+	string bangOrPowString;
+	string userText;
+	time_t beforeTime;
+	time_t afterTime;
+	int amountOfFoodEarned = 0;
+
+	// Opening intro
+	m_dialogue.T_ShowHuntingInstructions();
+
+	m_utility.OutputMessage("Ready...");
+	Sleep(1000);
+	m_utility.OutputMessage("Set...");
+	Sleep(1000);
+	m_utility.OutputMessage("Go!");
+
+	// Cycle through the amount of times the player has to hunt
+	for (int i = 0; i < amountOfTries; i++) {
+
+		// Amount of time to type word is between 2 and 7 seconds
+		amountOfTime = (rand() % 5) + 2;
+		bangOrPowNum = rand() % 2;
+
+		if (bangOrPowNum == 0) {
+			bangOrPowString = "BANG";
+		}
+		else {
+			bangOrPowString = "POW";
+		}
+		cout << "You have: " << amountOfTime << " seconds to type " << bangOrPowString << endl;
+		beforeTime = time(0);
+		cin >> userText;
+		afterTime = time(0);
+
+		// If the user types the word correctly and in the correct amount of time, they get some food
+		if (userText == bangOrPowString && afterTime - beforeTime < amountOfTime) {
+			cout << "You got food!" << endl;
+			amountOfFoodEarned += 5 * (amountOfTime - (int)(afterTime - beforeTime + 1));
+		}
+		else {
+			cout << "Incorrect" << endl;
+		}
+
+	}
+
+	m_player.AddItemQuantity("Food", amountOfFoodEarned); 
+
+
 }
 
 /*

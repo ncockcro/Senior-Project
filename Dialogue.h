@@ -26,13 +26,13 @@ class Dialogue
 {
 public:
 	Dialogue();
-	~Dialogue();
 	void TalkToPeople(string a_location);
 
 	void T_DepartingDialogue();
 	void T_LeavingMessage(double a_playerMoney);
 	void T_WhichDirectionChoice1();
 	void T_WhichDirectionChoice2();
+	void T_ShowHuntingInstructions();
 	void T_End();
 
 private:

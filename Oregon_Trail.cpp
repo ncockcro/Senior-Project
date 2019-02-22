@@ -41,7 +41,9 @@ void Oregon_Trail::StartGame() {
 		ShowChoices();
 		PickDecision();
 
-		AddToLeaderBoard();
+		if (m_choice == "1") {
+			AddToLeaderBoard();
+		}
 	}
 }
 
@@ -158,25 +160,23 @@ Date
 */
 void Oregon_Trail::PickDecision() {
 
-	string choice;
-
 	cout << "\t What is your choice: ";
-	cin >> choice;
+	cin >> m_choice;
 
 	// Play the actual game
-	if (choice == "1") {
+	if (m_choice == "1") {
 		m_trailGame.ActiveGame();
 	}
 	// Show the description of what the game is about
-	else if (choice == "2") {
+	else if (m_choice == "2") {
 		ShowDescription();
 	}
 	// Show the leaderboards
-	else if (choice == "3") {
+	else if (m_choice == "3") {
 		ShowLeaderBoard();
 	}
 	// Exit out of the game
-	else if (choice == "4") {
+	else if (m_choice == "4") {
 		exit(1);
 	}
 	else {

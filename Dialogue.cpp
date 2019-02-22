@@ -1,7 +1,32 @@
 #include "Dialogue.h"
 
+/*
+	Dialogue::Dialogue()
 
+NAME
 
+	Dialogue::Dialogue - Default constructor
+
+SYNOPSIS
+
+	void Dialogue::Dialouge()
+
+DESCRIPTION
+
+	Default constructor seeding random number generator and assigning random number.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	10:14pm 2/20/2019
+*/
 Dialogue::Dialogue()
 {
 	srand((unsigned int)time(0));
@@ -9,11 +34,37 @@ Dialogue::Dialogue()
 	m_randomNum = rand() % 3;
 }
 
+/*
+	Dialogue::TalkToPeople(string a_location)
 
-Dialogue::~Dialogue()
-{
-}
+NAME
 
+	Dialouge::TalkToPeople - A locations store if the player wants to visit it
+
+SYNOPSIS
+
+	void Dialouge::TalkToPeople(string a_location)
+
+	a_location --> the location dialogue is needed at
+
+DESCRIPTION
+
+	This function takes in a location and cycles through all of the location names in the game
+	and once the name is found, it will call another function to show the dialogue for a specific
+	location.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	10:21pm 2/20/2019
+*/
 void Dialogue::TalkToPeople(string a_location) {
 
 	if (a_location == "Independence") {
@@ -81,6 +132,34 @@ void Dialogue::TalkToPeople(string a_location) {
 	m_utility.Wait();
 }
 
+/*
+	Dialogue::Independence()
+
+NAME
+
+	Dialouge::Independence - Dialogue for "Independece"
+
+SYNOPSIS
+
+	void Dialouge::Independence()
+
+DESCRIPTION
+
+	This function outputs dialogue for "Independence" and randomly cycles through the
+	three sets of dialogue.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	10:24pm 2/20/2019
+*/
 void Dialogue::Independence() {
 
 	if (m_randomNum == 0) {
@@ -126,6 +205,34 @@ void Dialogue::Independence() {
 	}
 }
 
+/*
+	Dialogue::KRiverCrossing()
+
+NAME
+
+	Dialouge::KRiverCrossing - Dialogue for "Kansas River Crossing"
+
+SYNOPSIS
+
+	void Dialouge::KRiverCrossing()
+
+DESCRIPTION
+
+	This function outputs dialogue for "Kansas River Crossing" and randomly cycles through the
+	three sets of dialogue.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	10:25pm 2/20/2019
+*/
 void Dialogue::KRiverCrossing() {
 
 	if (m_randomNum == 0) {
@@ -171,6 +278,34 @@ void Dialogue::KRiverCrossing() {
 
 }
 
+/*
+	Dialogue::BBlueRiverCrossing()
+
+NAME
+
+	Dialouge::BBlueRiverCrossing - Dialogue for "BBlueRiverCrossing"
+
+SYNOPSIS
+
+	void Dialouge::BBRiverCrossing()
+
+DESCRIPTION
+
+	This function outputs dialogue for "BBRiverCrossing" and randomly cycles through the
+	three sets of dialogue.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	10:26pm 2/20/2019
+*/
 void Dialogue::BBlueRiverCrossing() {
 
 	if (m_randomNum == 0) {
@@ -217,6 +352,34 @@ void Dialogue::BBlueRiverCrossing() {
 	}
 }
 
+/*
+	Dialogue::FortKearney()
+
+NAME
+
+	Dialouge::Independence - Dialogue for "Fort Kearney"
+
+SYNOPSIS
+
+	void Dialouge::FortKearney()
+
+DESCRIPTION
+
+	This function outputs dialogue for "Fort Kearney" and randomly cycles through the
+	three sets of dialogue.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	10:27pm 2/20/2019
+*/
 void Dialogue::FortKearney() {
 
 	if (m_randomNum == 0) {
@@ -260,6 +423,34 @@ void Dialogue::FortKearney() {
 	}
 }
 
+/*
+	Dialogue::ChimneyRock()
+
+NAME
+
+	Dialouge::ChimneyRock - Dialogue for "Chimney Rock"
+
+SYNOPSIS
+
+	void Dialouge::ChimneyRock()
+
+DESCRIPTION
+
+	This function outputs dialogue for "Chimney Rock" and randomly cycles through the
+	three sets of dialogue.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	10:28pm 2/20/2019
+*/
 void Dialogue::ChimneyRock() {
 
 	if (m_randomNum == 0) {
@@ -303,6 +494,34 @@ void Dialogue::ChimneyRock() {
 	}
 }
 
+/*
+	Dialogue::Fort Laramie()
+
+NAME
+
+	Dialouge::FortLaramie - Dialogue for "Fort Laramie"
+
+SYNOPSIS
+
+	void Dialouge::FortLaramie()
+
+DESCRIPTION
+
+	This function outputs dialogue for "Fort Laramie" and randomly cycles through the
+	three sets of dialogue.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	10:30pm 2/20/2019
+*/
 void Dialogue::FortLaramie() {
 
 	if (m_randomNum == 0) {
@@ -346,6 +565,34 @@ void Dialogue::FortLaramie() {
 	}
 }
 
+/*
+	Dialogue::IndependenceRock()
+
+NAME
+
+	Dialouge::IndependenceRock - Dialogue for "Independece Rock"
+
+SYNOPSIS
+
+	void Dialouge::IndependenceRock()
+
+DESCRIPTION
+
+	This function outputs dialogue for "Independence Rock" and randomly cycles through the
+	three sets of dialogue.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	10:36pm 2/20/2019
+*/
 void Dialogue::IndependenceRock() {
 
 	if (m_randomNum == 0) {
@@ -389,6 +636,34 @@ void Dialogue::IndependenceRock() {
 	}
 }
 
+/*
+	Dialogue::SouthPass()
+
+NAME
+
+	Dialouge::SouthPass - Dialogue for "South Pass"
+
+SYNOPSIS
+
+	void Dialouge::South Pass()
+
+DESCRIPTION
+
+	This function outputs dialogue for "South Pass" and randomly cycles through the
+	three sets of dialogue.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	10:37pm 2/20/2019
+*/
 void Dialogue::SouthPass() {
 
 	if (m_randomNum == 0) {
@@ -431,6 +706,34 @@ void Dialogue::SouthPass() {
 	}
 }
 
+/*
+	Dialogue::FortBridger()
+
+NAME
+
+	Dialouge::FortBridger - Dialogue for "Fort Bridger"
+
+SYNOPSIS
+
+	void Dialouge::Independence()
+
+DESCRIPTION
+
+	This function outputs dialogue for "Fort Bridger" and randomly cycles through the
+	three sets of dialogue.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	10:39pm 2/20/2019
+*/
 void Dialogue::FortBridger() {
 
 	if (m_randomNum == 0) {
@@ -475,6 +778,34 @@ void Dialogue::FortBridger() {
 	}
 }
 
+/*
+	Dialogue::GreenRiver()
+
+NAME
+
+	Dialouge::Green River - Dialogue for "Green River"
+
+SYNOPSIS
+
+	void Dialouge::GreenRiver()
+
+DESCRIPTION
+
+	This function outputs dialogue for "Green River" and randomly cycles through the
+	three sets of dialogue.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	10:40pm 2/20/2019
+*/
 void Dialogue::GreenRiver() {
 
 	if (m_randomNum == 0) {
@@ -518,6 +849,34 @@ void Dialogue::GreenRiver() {
 	}
 }
 
+/*
+	Dialogue::SodaSprings()
+
+NAME
+
+	Dialouge::SodaSprings - Dialogue for "Soda Springs"
+
+SYNOPSIS
+
+	void Dialouge::SodaSprings()
+
+DESCRIPTION
+
+	This function outputs dialogue for "Soda Springs" and randomly cycles through the
+	three sets of dialogue.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	10:41pm 2/20/2019
+*/
 void Dialogue::SodaSprings() {
 
 	if (m_randomNum == 0) {
@@ -561,6 +920,34 @@ void Dialogue::SodaSprings() {
 	}
 }
 
+/*
+	Dialogue::FortHall()
+
+NAME
+
+	Dialouge::FortHall - Dialogue for "Fort Hall"
+
+SYNOPSIS
+
+	void Dialouge::FortHall()
+
+DESCRIPTION
+
+	This function outputs dialogue for "Fort Hall" and randomly cycles through the
+	three sets of dialogue.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	10:43pm 2/20/2019
+*/
 void Dialogue::FortHall() {
 
 	if (m_randomNum == 0) {
@@ -604,6 +991,34 @@ void Dialogue::FortHall() {
 	}
 }
 
+/*
+	Dialogue::SnakeRiver()
+
+NAME
+
+	Dialouge::SnakeRiver - Dialogue for "Snake River"
+
+SYNOPSIS
+
+	void Dialouge::SnakeRiver()
+
+DESCRIPTION
+
+	This function outputs dialogue for "Snake River" and randomly cycles through the
+	three sets of dialogue.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	10:46pm 2/20/2019
+*/
 void Dialogue::SnakeRiver() {
 
 	if (m_randomNum == 0) {
@@ -647,6 +1062,34 @@ void Dialogue::SnakeRiver() {
 	}
 }
 
+/*
+	Dialogue::FortBoise()
+
+NAME
+
+	Dialouge::FortBoise - Dialogue for "Fort Boise"
+
+SYNOPSIS
+
+	void Dialouge::FortBoise()
+
+DESCRIPTION
+
+	This function outputs dialogue for "Fort Boise" and randomly cycles through the
+	three sets of dialogue.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	10:46pm 2/20/2019
+*/
 void Dialogue::FortBoise() {
 
 	if (m_randomNum == 0) {
@@ -691,6 +1134,34 @@ void Dialogue::FortBoise() {
 	}
 }
 
+/*
+	Dialogue::BlueMountains()
+
+NAME
+
+	Dialouge::BlueMountains - Dialogue for "Blue Mountains"
+
+SYNOPSIS
+
+	void Dialouge::BlueMountains()
+
+DESCRIPTION
+
+	This function outputs dialogue for "Blue Mountains" and randomly cycles through the
+	three sets of dialogue.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	10:47pm 2/20/2019
+*/
 void Dialogue::BlueMountains() {
 
 	if (m_randomNum == 0) {
@@ -735,6 +1206,34 @@ void Dialogue::BlueMountains() {
 	}
 }
 
+/*
+	Dialogue::FortWallaWalla()
+
+NAME
+
+	Dialouge::FortWallaWalla - Dialogue for "Fort Walla Walla"
+
+SYNOPSIS
+
+	void Dialouge::FortWallaWalla()
+
+DESCRIPTION
+
+	This function outputs dialogue for "Fort Walla Walla" and randomly cycles through the
+	three sets of dialogue.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	10:49pm 2/20/2019
+*/
 void Dialogue::FortWallaWalla() {
 
 	if (m_randomNum == 0) {
@@ -781,6 +1280,34 @@ void Dialogue::FortWallaWalla() {
 	}
 }
 
+/*
+	Dialogue::TheDalles()
+
+NAME
+
+	Dialouge::TheDalles - Dialogue for "The Dalles"
+
+SYNOPSIS
+
+	void Dialouge::TheDalles()
+
+DESCRIPTION
+
+	This function outputs dialogue for "The Dalles" and randomly cycles through the
+	three sets of dialogue.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	10:50pm 2/20/2019
+*/
 void Dialogue::TheDalles() {
 
 	if (m_randomNum == 0) {
@@ -825,6 +1352,33 @@ void Dialogue::TheDalles() {
 	}
 }
 
+/*
+	Dialogue::T_DepartingDialogue()
+
+NAME
+
+	Dialouge::T_DepartingDialogue - Dialogue for when the player departs "Independence"
+
+SYNOPSIS
+
+	void Dialouge::T_DepartingDialogue()
+
+DESCRIPTION
+
+	This function outputs dialogue for when the player is departing "Independence".
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	10:51pm 2/20/2019
+*/
 void Dialogue::T_DepartingDialogue() {
 
 	cout << endl << endl;
@@ -924,6 +1478,34 @@ void Dialogue::T_LeavingMessage(double a_playerMoney) {
 	m_utility.Wait();
 }
 
+/*
+	Dialogue::T_WhichDirectionChoice1()
+
+NAME
+
+	Dialouge::T_WhichDirectionChoice1 - Dialogue for the first trail split
+
+SYNOPSIS
+
+	void Dialouge::T_WhichDirectionChoice1()
+
+DESCRIPTION
+
+	This function outputs dialogue for when the trail first splits and the player can either go
+	to "Green River crossing" or "Fort Bridger". 
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	10:58pm 2/20/2019
+*/
 void Dialogue::T_WhichDirectionChoice1() {
 
 	m_utility.OutputMessage("The trail divides here. You may: \n");
@@ -932,12 +1514,52 @@ void Dialogue::T_WhichDirectionChoice1() {
 	cout << "What is your choice? ";
 }
 
+/*
+	Dialogue::T_WhichDirectionChoice2()
+
+NAME
+
+	Dialouge::T_WhichDirectionChoice2 - Dialogue for the second trail split
+
+SYNOPSIS
+
+	void Dialouge::T_WhichDirectionChoice2()
+
+DESCRIPTION
+
+	This function outputs dialogue for "Independence" and randomly cycles through the
+	three sets of dialogue.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	10:24pm 2/20/2019
+*/
 void Dialogue::T_WhichDirectionChoice2() {
 
 	m_utility.OutputMessage("The trail divides here. You may: \n");
 	m_utility.OutputMessage("\t 1. head for Fort Walla Walla");
 	m_utility.OutputMessage("\t 2. head for The Dalles");
 	cout << "What is your choice? ";
+}
+
+void Dialogue::T_ShowHuntingInstructions() {
+
+	m_utility.OutputMessage("You will have several attemps");
+	m_utility.OutputMessage("to type the words \"BANG\"");
+	m_utility.OutputMessage("and \"POW\" in order to gather");
+	m_utility.OutputMessage("food. The faster you type, the");
+	m_utility.OutputMessage("more food that will be gathered.");
+	cout << endl;
+	m_utility.OutputMessage("Misspellings will result in no");
+	m_utility.OutputMessage("points being awarded.");
 }
 
 void Dialogue::T_End() {

@@ -46,6 +46,7 @@ private:
 
 	Trail m_trailGame = Trail();
 	Utility m_utility = Utility();
+	string m_choice;
 
 	vector<LeaderBoardEntry> m_entries;
 };

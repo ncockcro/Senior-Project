@@ -18,6 +18,10 @@ DESCRIPTION
 #include <iostream>
 #include <string>
 #include <vector>
+#include <ctime>
+#include <cstdlib>
+#include <time.h>
+#include <Windows.h>
 #include "Utility.h"
 #include "Store.h"
 #include "Item.h"
@@ -53,6 +57,7 @@ private:
 	void AddEndingMiles(int a_miles);
 	void ShowMilesTo(string a_currentLocationName, string a_nextLocationName, int a_milesNeeded);
 	void VisitStore(string a_location);
+	void Hunt();
 	void IncreaseRates();
 	void CalculateScore();
 	void ShowScoreDetails(int a_scores[]);
