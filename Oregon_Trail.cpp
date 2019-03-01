@@ -331,7 +331,7 @@ void Oregon_Trail::AddToLeaderBoard() {
 	gameScore.score = m_trailGame.GetTotalScore();
 
 	// Cycle through leaderboard scores and if the player's is higher, insert it into the leaderboard
-	for (int i = 0; i < m_entries.size(); i++) {
+	for (size_t i = 0; i < m_entries.size(); i++) {
 		if (m_trailGame.GetTotalScore() > m_entries[i].score) {
 
 			cout << "\t Enter your name: ";

@@ -74,7 +74,7 @@ void Store::DisplayStore(vector<Item> a_items, Player a_player) {
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	string choice;
 
-	while (stoi(m_choice) != a_items.size() + 1) {
+	while (m_utility.CheckInput(m_choice) && stoi(m_choice) != a_items.size() + 1) {
 
 		// Printing the date and location of the store
 		SetConsoleTextAttribute(hConsole, m_color);
@@ -145,52 +145,50 @@ void Store::MakeChoice(Player a_player) {
 
 	// Cycle through the list of items being sold to find which one the user selected...
 	for (size_t i = 0; i < m_userItems.size(); i++) {
-		try {
-			// If the user chose a valid item, then show the description and prompt for how many they want to buy
-			if ((stoi(m_choice) - 1) == i) {
-				cout << m_userItems[i].GetDescription() << endl;
+		// If the user chose a valid item, then show the description and prompt for how many they want to buy
+		if (m_utility.CheckInput(m_choice) && (stoi(m_choice) - 1) == i) {
+			cout << m_userItems[i].GetDescription() << endl;
 
-				while (1) {
-					cout << "How many would you like to buy? ";
-					cin >> amount;
+			while (1) {
+				cout << "How many would you like to buy? ";
+				cin >> amount;
 
+				if (!m_utility.CheckInput(amount)) {
+					m_utility.DisplayError("Invalid input.");
+					continue;
+				}
 					
-					m_userItems[i].SetQuantity(stoi(amount));
-					m_itemPrices[i] = stoi(amount) * m_userItems[i].GetPrice();
+				m_userItems[i].SetQuantity(stoi(amount));
+				m_itemPrices[i] = stoi(amount) * m_userItems[i].GetPrice();
 
-					// If the user tries to buy more of an item when they already have some in their inventory, this will
-					// deny them
-					if (a_player.GetItem(m_userItems[i].GetName()).GetQuantity() + stoi(amount) > m_userItems[i].GetCapNumber()) {
-						m_utility.DisplayError("Your wagon does not support that many.");
-					}
-					// If the user tries to buy more than the limited amount...
-					else if (stoi(amount) > m_userItems[i].GetCapNumber()) {
-						m_utility.DisplayError(m_userItems[i].GetCapDescription());
-					}
-					// If the user tries to buy more of a product than the amount of money they have...
-					else if (m_itemPrices[i] > m_playerMoney) {
-						m_utility.DisplayError("You don't have enough money for that.");
-					}
-					// Otherwise everything is good
-					else {
-						validChoice = true;
-						break;
-					}
+				// If the user tries to buy more of an item when they already have some in their inventory, this will
+				// deny them
+				if (a_player.GetItem(m_userItems[i].GetName()).GetQuantity() + stoi(amount) > m_userItems[i].GetCapNumber()) {
+					m_utility.DisplayError("Your wagon does not support that many.");
+				}
+				// If the user tries to buy more than the limited amount...
+				else if (stoi(amount) > m_userItems[i].GetCapNumber()) {
+					m_utility.DisplayError(m_userItems[i].GetCapDescription());
+				}
+				// If the user tries to buy more of a product than the amount of money they have...
+				else if (m_itemPrices[i] > m_playerMoney) {
+					m_utility.DisplayError("You don't have enough money for that.");
+				}
+				else if (stoi(amount) < 0) {
+					m_utility.DisplayError("You can not buy a negative amount.");
+				}
+				// Otherwise everything is good
+				else {
+					validChoice = true;
+					break;
 				}
 			}
-
-			// If the user wanted to exit the store, this will set validChoice to true so it does not
-			// trigger an invalid option error
-			if (stoi(m_choice) == m_userItems.size() + 1) {
-				validChoice = true;
-			}
 		}
-		// If the user typed in something other then a number, this will catch the exception thrown by
-		// stoi and display an invalid option error
-		catch (exception e) {
-			m_utility.DisplayError("Invalid Option");
-			m_choice = "0";
-			return;
+
+		// If the user wanted to exit the store, this will set validChoice to true so it does not
+		// trigger an invalid option error
+		if (m_utility.CheckInput(m_choice) && stoi(m_choice) == m_userItems.size() + 1) {
+			validChoice = true;
 		}
 	}
 
@@ -198,6 +196,7 @@ void Store::MakeChoice(Player a_player) {
 	// an invalid option error
 	if (!validChoice) {
 		m_utility.DisplayError("Invalid Option!");
+		m_choice = "0";
 	}
 
 }

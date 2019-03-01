@@ -231,3 +231,16 @@ bool Utility::HasElement(int a_vectorSize, int a_element) {
 		return false;
 	}
 }
+
+bool Utility::CheckInput(string a_input) {
+
+	// Cycle through the string passed in and return false if any of the
+	// characters are not a number
+	for (size_t i = 0; i < a_input.size(); i++) {
+		if (!isdigit(a_input[i])) {
+			return false;
+		}
+	}
+
+	return true;
+}

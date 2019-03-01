@@ -62,6 +62,7 @@ private:
 	void CalculateScore();
 	void ShowScoreDetails(int a_scores[]);
 
+
 	Utility m_utility = Utility();
 	Player m_player;
 	string m_currentLocation;

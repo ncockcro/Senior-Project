@@ -339,6 +339,10 @@ void Trail::PromptCharacterNames() {
 			cout << "\t " << i + 1 << ". ";
 			cin >> temp;
 
+			if (temp == "") {
+				cout << "Blank line!" << endl;
+			}
+
 			if (temp == m_wagonLeader) {
 				sameName = true;
 			}
@@ -624,6 +628,8 @@ Date
 void Trail::TrailMenu(bool a_hasStore, string a_locationName) {
 
 	string choice;
+	bool alreadyRested = false;
+	bool alreadyHunted = false;
 
 	while (1) {
 		cout << "\t Weather: " << m_weather << endl;
@@ -671,7 +677,14 @@ void Trail::TrailMenu(bool a_hasStore, string a_locationName) {
 		}
 		// Rest for a # of days to regenerate party health
 		else if (choice == "6") {
-			Rest();
+			if (!alreadyRested) {
+				alreadyRested = true;
+				Rest();
+			}
+			else {
+				cout << endl;
+				m_utility.DisplayError("You have already rested!");
+			}
 		}
 		// Talk to local people to get advice
 		else if (choice == "7") {
@@ -682,7 +695,14 @@ void Trail::TrailMenu(bool a_hasStore, string a_locationName) {
 			VisitStore(a_locationName);
 		}
 		else if (!a_hasStore && choice == "8") {
-			Hunt();
+			if (!alreadyHunted) {
+				alreadyHunted = true;
+				Hunt();
+			}
+			else {
+				cout << endl;
+				m_utility.DisplayError("You have already hunted!");
+			}
 		}
 		// Anything else if invlaid input
 		else {
@@ -972,7 +992,11 @@ void Trail::Rest() {
 		cout << "\t like to rest? ";
 		cin >> numOfDays;
 
-		try {
+		if (!m_utility.CheckInput(numOfDays)) {
+			m_utility.DisplayError("Invalid input.");
+			continue;
+		}
+		//try {
 
 			// Only allowed to rest 9 days
 			if (stoi(numOfDays) > 9) {
@@ -990,12 +1014,12 @@ void Trail::Rest() {
 				}
 				break;
 			}
-		}
+		//}
 		// If the user typed in anything other than a number, an exception will be thrown and the player
 		// will get an error message
-		catch (exception e) {
+		/*catch (exception e) {
 			m_utility.DisplayError("Invalid option.");
-		}
+		}*/
 	}
 }
 
@@ -1377,7 +1401,7 @@ void Trail::Hunt() {
 			amountOfFoodEarned += 5 * (amountOfTime - (int)(afterTime - beforeTime + 1));
 		}
 		else {
-			cout << "Incorrect" << endl;
+			cout << "Spelled wrong or ran out of time." << endl;
 		}
 
 	}

@@ -33,6 +33,7 @@ public:
 	void OutputMessage(string a_message);
 	string GetWeatherName(int a_weather);
 	bool HasElement(int a_vectorSize, int a_element);
+	bool CheckInput(string a_input);
 
 private:
 	HANDLE m_hConsole;

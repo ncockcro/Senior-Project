@@ -15,6 +15,7 @@ DESCRIPTION
 */
 #pragma once
 
+#include <limits>
 #include <iostream>
 #include <string>
 #include <vector>

@@ -68,14 +68,9 @@ Date
 */
 Item::Item(string a_name, double a_price, string a_description, string a_capDescription, int a_capNumber) {
 
-	try {
-		m_name = a_name;
-		m_description = a_description;
-		m_capDescription = a_capDescription;
-	}
-	catch (exception e) {
-		m_utility.DisplayError("ERROR: in setting name/description in item constructor class.");
-	}
+	m_name = a_name;
+	m_description = a_description;
+	m_capDescription = a_capDescription;
 
 	if (a_price > 0.0) {
 		m_price = a_price;
@@ -148,12 +143,8 @@ Date
 	1:50pm 1/14/2019
 */
 void Item::SetName(string a_name) {
-	try {
-		m_name = a_name;
-	}
-	catch (exception e) {
-		m_utility.DisplayError("ERROR: Could not set the name of an object in the item class.");
-	}
+
+	m_name = a_name;
 }
 
 /*
@@ -286,12 +277,8 @@ Date
 	1:57pm 1/14/2019
 */
 void Item::SetDescription(string a_description) {
-	try {
-		m_description = a_description;
-	}
-	catch (exception e) {
-		m_utility.DisplayError("ERROR: The description of an item could not be set in item class.");
-	}
+
+	m_description = a_description;
 }
 
 /*
@@ -356,12 +343,8 @@ Date
 	10:03am 1/25/2019
 */
 void Item::SetCapDescription(string a_capDescription) {
-	try {
-		m_capDescription = a_capDescription;
-	}
-	catch (exception e) {
-		m_utility.DisplayError("ERROR: The cap description of an item could not be set in item class.");
-	}
+
+	m_capDescription = a_capDescription;
 }
 
 /*
