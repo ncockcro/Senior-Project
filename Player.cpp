@@ -31,6 +31,9 @@ Player::Player()
 {
 	InitializePartyItems();
 	srand((unsigned int)time(0));
+
+	m_pace = "steady";
+	m_foodRate = "filling";
 }
 
 /*
@@ -278,7 +281,7 @@ Item Player::GetItem(string a_itemName) {
 }
 
 /*
-	Player::GGetPlayerMoney()
+	Player::GetPlayerMoney()
 
 NAME
 
@@ -350,8 +353,8 @@ void Player::DeductMoney(double a_money) {
 	}
 }
 
-void Player::DeductFood(string a_rate) {
-	m_Food.DecrementFood(a_rate);
+void Player::DeductFood() {
+	m_Food.DecrementFood(m_foodRate);
 }
 
 /*
@@ -606,4 +609,39 @@ void Player::AddItemQuantity(string a_itemName, int a_quantity) {
 string Player::GetPlayerPosition() {
 
 	return m_playerPosition;
+}
+
+void Player::SetPace(string a_pace) {
+
+	if (a_pace == "steady") {
+		m_pace = a_pace;
+	}
+	else if (a_pace == "strenuous") {
+		m_pace = a_pace;
+	}
+	else if (a_pace == "grueling") {
+		m_pace = a_pace;
+	}
+}
+string Player::GetPace() {
+	return m_pace;
+}
+
+void Player::SetFoodRate(string a_foodRate) {
+
+	if (a_foodRate == "filling") {
+		m_foodRate = a_foodRate;
+	}
+	else if (a_foodRate == "meager") {
+		m_foodRate = a_foodRate;
+	}
+	else if (a_foodRate == "bare bones") {
+		m_foodRate = a_foodRate;
+	}
+	else {
+		m_utility.DisplayError("ERROR: invalid rate of food depletion in player class.");
+	}
+}
+string Player::GetFoodRate() {
+	return m_foodRate;
 }

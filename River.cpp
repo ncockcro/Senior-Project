@@ -456,6 +456,7 @@ void River::FloatRiver(Player &a_player) {
 			}
 		}
 	}
+
 }
 
 /*

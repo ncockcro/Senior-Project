@@ -38,9 +38,13 @@ public:
 	Item GetItem(string a_itemName);
 	double GetPlayerMoney();
 	void DeductMoney(double a_money);
-	void DeductFood(string a_rate);
+	void DeductFood();
 	vector<Item> LoseItems();
 	string GetPlayerPosition();
+	void SetPace(string a_pace);
+	string GetPace();
+	void SetFoodRate(string a_foodRate);
+	string GetFoodRate();
 
 
 private:
@@ -57,5 +61,8 @@ private:
 	Item m_ExtraWheel;
 	Item m_ExtraAxle;
 	Item m_ExtraTongue;
+
+	string m_pace;
+	string m_foodRate;
 };
 

@@ -79,8 +79,6 @@ private:
 	int m_milesLeft;
 	int m_weather;
 	int m_health; // 0 = very poor, 1 = poor, 2 = fair, 3 = good
-	string m_pace;
-	string m_foodRate;
 
 	Dialogue m_dialogue = Dialogue();
 

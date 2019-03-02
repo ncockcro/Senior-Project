@@ -33,8 +33,6 @@ Trail::Trail()
 	m_currentLocation = "Independence";
 	m_milesLeft = 1907; // Will probably round up to 2000 to compensate for the final river
 	// The final location is Willamette Valley in Oregon
-	m_pace = "steady";
-	m_foodRate = "filling";
 
 	m_rateOfTravel = 10;
 	m_milesTraveled = 0;
@@ -196,7 +194,7 @@ void Trail::ActiveGame() {
 			ShowAndUpdateTrailInfo(m_rateOfTravel, milesNeededToTravel);
 			milesTraveled += m_rateOfTravel;
 
-			m_randomEvent.RandomEvent(m_player);
+			m_randomEvent.RandomEvent(m_player, m_date, m_weather);
 
 			m_utility.Wait();
 		}
@@ -633,8 +631,8 @@ void Trail::TrailMenu(bool a_hasStore, string a_locationName) {
 	while (1) {
 		cout << "\t Weather: " << m_utility.GetWeatherName(m_weather) << endl;
 		cout << "\t Health: " << m_utility.GetHealthName(m_health) << endl;
-		cout << "\t Pace: " << m_pace << endl;
-		cout << "\t Rations: " << m_foodRate << endl << endl;
+		cout << "\t Pace: " << m_player.GetPace() << endl;
+		cout << "\t Rations: " << m_player.GetFoodRate() << endl << endl;
 
 		cout << "\t You May:" << endl;
 		m_utility.OutputMessage("    1. Continue on trail");
@@ -829,7 +827,7 @@ void Trail::ChangePace() {
 	while (1) {
 		// Outputting the options to console for the player
 		m_utility.OutputMessage("\t Change pace");
-		cout << "\t (currently \"" << m_pace << "\")" << endl << endl;
+		cout << "\t (currently \"" << m_player.GetPace() << "\")" << endl << endl;
 
 		cout << "\t    1. a steady pace" << endl;
 		cout << "\t    2. a strenuous pace" << endl;
@@ -841,15 +839,15 @@ void Trail::ChangePace() {
 
 		// If they picked a valid option, the corrent pace will be selected
 		if (choice == "1") {
-			m_pace = "steady";
+			m_player.SetPace("steady");
 			break;
 		}
 		else if (choice == "2") {
-			m_pace = "strenuous";
+			m_player.SetPace("strenuous");
 			break;
 		}
 		else if (choice == "3") {
-			m_pace = "grueling";
+			m_player.SetPace("grueling");
 			break;
 		}
 		else if (choice == "4") {
@@ -912,7 +910,7 @@ void Trail::ChangeRations() {
 
 	while (1) {
 		m_utility.OutputMessage("\t Change food rations");
-		cout << "(currently \"" << m_foodRate << "\")" << endl << endl;
+		cout << "(currently \"" << m_player.GetFoodRate() << "\")" << endl << endl;
 
 		m_utility.OutputMessage("The amount of food the people in");
 		m_utility.OutputMessage("your party eat each day can");
@@ -933,17 +931,17 @@ void Trail::ChangeRations() {
 
 		// Consume 15 pounds of food per day
 		if (choice == "1") {
-			m_foodRate = "filling";
+			m_player.SetFoodRate("filling");
 			break;
 		}
 		// Consume 10 pounds of food per day
 		else if (choice == "2") {
-			m_foodRate = "meager";
+			m_player.SetFoodRate("meager");
 			break;
 		}
 		// Consume 5 pounds of food per day
 		else if (choice == "3") {
-			m_foodRate = "bare bones";
+			m_player.SetFoodRate("bare bones");
 			break;
 		}
 		else {
@@ -1180,7 +1178,7 @@ void Trail::ShowAndUpdateTrailInfo(int a_miles, int &a_milesNeeded) {
 	cout << "\t Next landmark: " << a_milesNeeded << " miles" << endl;;
 	cout << "\t Miles traveled: " << m_milesTraveled << " miles" << endl << endl;
 
-	m_player.DeductFood(m_foodRate);
+	m_player.DeductFood();
 	m_date.NextDay();
 	a_milesNeeded -= m_rateOfTravel;
 	m_milesTraveled += a_miles;
