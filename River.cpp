@@ -318,6 +318,8 @@ Date
 */
 void River::FordRiver(Player &a_player) {
 
+	vector<Item> lostItems;
+
 	for (int i = 0; i < ((int)m_riverWidth / 100); i++) {
 		m_utility.OutputMessage("Fording the river...");
 		m_utility.Wait();
@@ -326,27 +328,45 @@ void River::FordRiver(Player &a_player) {
 		if (m_riverDepth < 3.00) {
 			// 10% of losing items
 			if (GenerateRandomNum(0.1)) {
-				m_utility.OutputMessage("The river is too deep to");
-				m_utility.OutputMessage("ford. You lose:");
-				a_player.LoseItems();
+				lostItems = a_player.LoseItems();
+				if (lostItems.size() > 0) {
+					m_utility.OutputMessage("The river is too deep to");
+					m_utility.OutputMessage("ford. You lose:");
+				}
+				
+				for (size_t i = 0; i < lostItems.size(); i++) {
+					cout << "\t \t " << lostItems[i].GetName() << ": " << lostItems[i].GetQuantity() << endl;
+				}
 				break;
 			}
 		}
 		else if (m_riverDepth < 7.00) {
 			// 50% of losing items
 			if (GenerateRandomNum(0.5)) {
-				m_utility.OutputMessage("The river is too deep to");
-				m_utility.OutputMessage("ford. You lose:");
-				a_player.LoseItems();
+				lostItems = a_player.LoseItems();
+				if (lostItems.size() > 0) {
+					m_utility.OutputMessage("The river is too deep to");
+					m_utility.OutputMessage("ford. You lose:");
+				}
+
+				for (size_t i = 0; i < lostItems.size(); i++) {
+					cout << "\t \t " << lostItems[i].GetName() << ": " << lostItems[i].GetQuantity() << endl;
+				}
 				break;
 			}
 		}
 		else {
 			// 40% of losing items
 			if (GenerateRandomNum(0.4)) {
-				m_utility.OutputMessage("The river is too deep to");
-				m_utility.OutputMessage("ford. You lose:");
-				a_player.LoseItems();
+				lostItems = a_player.LoseItems();
+				if (lostItems.size() > 0) {
+					m_utility.OutputMessage("The river is too deep to");
+					m_utility.OutputMessage("ford. You lose:");
+				}
+
+				for (size_t i = 0; i < lostItems.size(); i++) {
+					cout << "\t \t " << lostItems[i].GetName() << ": " << lostItems[i].GetQuantity() << endl;
+				}
 				break;
 			}
 		}
@@ -384,6 +404,7 @@ Date
 */
 void River::FloatRiver(Player &a_player) {
 
+	vector<Item> lostItems;
 	for (int i = 0; i < ((int)m_riverWidth / 100); i++) {
 		m_utility.OutputMessage("Floating on river...");
 		m_utility.Wait();
@@ -392,27 +413,45 @@ void River::FloatRiver(Player &a_player) {
 		if (m_riverDepth < 3.00) {
 			// 50% of losing items
 			if (GenerateRandomNum(0.5)) {
-				m_utility.OutputMessage("Your wagon tips over and");
-				m_utility.OutputMessage("you lose:");
-				a_player.LoseItems();
+				lostItems = a_player.LoseItems();
+				if (lostItems.size() > 0) {
+					m_utility.OutputMessage("Your wagon tips over and");
+					m_utility.OutputMessage("you lose:");
+				}
+
+				for (size_t i = 0; i < lostItems.size(); i++) {
+					cout << "\t \t " << lostItems[i].GetName() << ": " << lostItems[i].GetQuantity() << endl;
+				}
 				break;
 			}
 		}
 		else if (m_riverDepth < 7.00) {
 			// 10% of losing items
 			if (GenerateRandomNum(0.1)) {
-				m_utility.OutputMessage("Your wagon tips over and");
-				m_utility.OutputMessage("you lose:");
-				a_player.LoseItems();
+				lostItems = a_player.LoseItems();
+				if (lostItems.size() > 0) {
+					m_utility.OutputMessage("Your wagon tips over and");
+					m_utility.OutputMessage("you lose:");
+				}
+
+				for (size_t i = 0; i < lostItems.size(); i++) {
+					cout << "\t \t " << lostItems[i].GetName() << ": " << lostItems[i].GetQuantity() << endl;
+				}
 				break;
 			}
 		}
 		else {
 			// 40% of losing items
 			if (GenerateRandomNum(0.4)) {
-				m_utility.OutputMessage("Your wagon tips over and");
-				m_utility.OutputMessage("you lose:");
-				a_player.LoseItems();
+				lostItems = a_player.LoseItems();
+				if (lostItems.size() > 0) {
+					m_utility.OutputMessage("Your wagon tips over and");
+					m_utility.OutputMessage("you lose:");
+				}
+
+				for (size_t i = 0; i < lostItems.size(); i++) {
+					cout << "\t \t " << lostItems[i].GetName() << ": " << lostItems[i].GetQuantity() << endl;
+				}
 				break;
 			}
 		}

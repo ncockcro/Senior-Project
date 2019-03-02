@@ -170,6 +170,29 @@ void Utility::OutputMessage(string a_message) {
 	cout << "\t " << a_message << endl;
 }
 
+bool Utility::HasElement(int a_vectorSize, int a_element) {
+
+	if (a_element < a_vectorSize) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+bool Utility::CheckInput(string a_input) {
+
+	// Cycle through the string passed in and return false if any of the
+	// characters are not a number
+	for (size_t i = 0; i < a_input.size(); i++) {
+		if (!isdigit(a_input[i])) {
+			return false;
+		}
+	}
+
+	return true;
+}
+
 /*
 	Utility:GetWeatherName(int a_weather)
 
@@ -201,46 +224,43 @@ Date
 */
 string Utility::GetWeatherName(int a_weather) {
 
-	if (a_weather == 0) {
-		return "cold";
-	}
-	else if (a_weather == 1) {
-		return "cool";
-	}
-	else if (a_weather == 2) {
-		return "mild";
+	if (a_weather == 4) {
+		return "Hot";
 	}
 	else if (a_weather == 3) {
-		return "warm";
+		return "Warm";
 	}
-	else if (a_weather == 4) {
-		return "hot";
+	else if (a_weather == 2) {
+		return "Mild";
+	}
+	else if (a_weather == 1) {
+		return "Cool";
+	}
+	else if (a_weather == 0) {
+		return "Cold";
 	}
 	else {
-		DisplayError("ERROR: Unknown weather code.");
+		DisplayError("Error: Could not determine weather.");
 		return "NULL";
 	}
 }
 
-bool Utility::HasElement(int a_vectorSize, int a_element) {
+string Utility::GetHealthName(int a_health) {
 
-	if (a_element < a_vectorSize) {
-		return true;
+	if (a_health == 3) {
+		return "Good";
+	}
+	else if (a_health == 2) {
+		return "Fair";
+	}
+	else if (a_health == 1) {
+		return "Poor";
+	}
+	else if (a_health == 0) {
+		return "Very Poor";
 	}
 	else {
-		return false;
+		DisplayError("Error: Could not determine health.");
+		return "NULL";
 	}
-}
-
-bool Utility::CheckInput(string a_input) {
-
-	// Cycle through the string passed in and return false if any of the
-	// characters are not a number
-	for (size_t i = 0; i < a_input.size(); i++) {
-		if (!isdigit(a_input[i])) {
-			return false;
-		}
-	}
-
-	return true;
 }

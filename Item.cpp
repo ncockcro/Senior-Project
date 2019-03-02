@@ -36,6 +36,12 @@ Item::Item() {
 	m_quantity = 0;
 }
 
+Item::Item(string a_name, int a_quantity) {
+
+	m_name = a_name;
+	m_quantity = a_quantity;
+}
+
 /*
 	Item::Item(string a_name, double a_price, string a_description)
 
@@ -520,7 +526,12 @@ Date
 void Item::AddToQuantity(int a_quantity) {
 
 	if (a_quantity > -1) {
-		m_quantity += a_quantity;
+		if (m_quantity + a_quantity > m_capNumber) {
+			m_quantity = m_capNumber;
+		}
+		else {
+			m_quantity += a_quantity;
+		}
 	}
 	else {
 		m_utility.DisplayError("ERROR: Tried ading a negative/zero number to item quantity in item class.");

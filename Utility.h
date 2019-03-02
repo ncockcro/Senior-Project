@@ -31,9 +31,10 @@ public:
 	void Wait();
 	bool IsDigits(string &a_input);
 	void OutputMessage(string a_message);
-	string GetWeatherName(int a_weather);
 	bool HasElement(int a_vectorSize, int a_element);
 	bool CheckInput(string a_input);
+	string GetWeatherName(int a_weather);
+	string GetHealthName(int a_health);
 
 private:
 	HANDLE m_hConsole;

@@ -195,6 +195,9 @@ void Trail::ActiveGame() {
 		for (int j = 0; j < m_locations[i]->GetMilesNeeded(); j += m_rateOfTravel) {
 			ShowAndUpdateTrailInfo(m_rateOfTravel, milesNeededToTravel);
 			milesTraveled += m_rateOfTravel;
+
+			m_randomEvent.RandomEvent(m_player);
+
 			m_utility.Wait();
 		}
 
@@ -338,10 +341,6 @@ void Trail::PromptCharacterNames() {
 		for (int i = 0; i < 4; i++) {
 			cout << "\t " << i + 1 << ". ";
 			cin >> temp;
-
-			if (temp == "") {
-				cout << "Blank line!" << endl;
-			}
 
 			if (temp == m_wagonLeader) {
 				sameName = true;
@@ -632,8 +631,8 @@ void Trail::TrailMenu(bool a_hasStore, string a_locationName) {
 	bool alreadyHunted = false;
 
 	while (1) {
-		cout << "\t Weather: " << m_weather << endl;
-		cout << "\t Health: " << m_health << endl;
+		cout << "\t Weather: " << m_utility.GetWeatherName(m_weather) << endl;
+		cout << "\t Health: " << m_utility.GetHealthName(m_health) << endl;
 		cout << "\t Pace: " << m_pace << endl;
 		cout << "\t Rations: " << m_foodRate << endl << endl;
 

@@ -39,7 +39,7 @@ public:
 	double GetPlayerMoney();
 	void DeductMoney(double a_money);
 	void DeductFood(string a_rate);
-	void LoseItems();
+	vector<Item> LoseItems();
 	string GetPlayerPosition();
 
 

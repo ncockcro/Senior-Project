@@ -30,6 +30,7 @@ DESCRIPTION
 #include "River.h"
 #include "Player.h"
 #include "Date.h"
+#include "Random.h"
 
 using namespace std;
 
@@ -112,5 +113,6 @@ private:
 
 	int m_totalScore;
 
+	Random m_randomEvent;
 };
 

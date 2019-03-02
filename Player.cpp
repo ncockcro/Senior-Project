@@ -372,7 +372,7 @@ DESCRIPTION
 
 RETURNS
 
-	Void
+	Vector<Item>
 
 AUTHOR
 
@@ -382,13 +382,14 @@ Date
 
 	2:10pm 2/06/2019
 */
-void Player::LoseItems() {
+vector<Item> Player::LoseItems() {
 
 	// Generate a random number between 1 and 50
 	int randomNum = (rand() % 50) + 1;
 	int randomNumForItems = rand() % 3;
 	double percentRandNum;
 	int tempNumber;
+	vector<Item> lostItems;
 
 	GenerateItemRandNums();
 
@@ -402,13 +403,15 @@ void Player::LoseItems() {
 		if ((int)(m_Oxen.GetQuantity() * percentRandNum) > 0) {
 			tempNumber = (int)(m_Oxen.GetQuantity() * percentRandNum);
 			m_Oxen.SetQuantity(m_Oxen.GetQuantity() - (int)(m_Oxen.GetQuantity() * percentRandNum));
-			cout << "\t \t " << tempNumber << " oxen" << endl;
+			//cout << "\t \t " << tempNumber << " oxen" << endl;
+			lostItems.push_back(Item("Oxen", tempNumber));
 		}
 		// If the number of Oxen is greater than 0 but the percentage was too low, deduct 1 oxen
 		else if(m_Oxen.GetQuantity() > 0) {
 			m_Oxen.SetQuantity(m_Oxen.GetQuantity() - 1);
 			tempNumber = 1;
-			cout << "\t \t " << tempNumber << " oxen" << endl;
+			//cout << "\t \t " << tempNumber << " oxen" << endl;
+			lostItems.push_back(Item("Oxen", tempNumber));
 		}
 	}
 
@@ -420,12 +423,14 @@ void Player::LoseItems() {
 		if ((int)(m_Food.GetQuantity() * percentRandNum) > 0) {
 			tempNumber = (int)(m_Food.GetQuantity() * percentRandNum);
 			m_Food.SetQuantity(m_Food.GetQuantity() - (int)(m_Food.GetQuantity() * percentRandNum));
-			cout << "\t \t " << tempNumber << " pounds of food" << endl;
+			//cout << "\t \t " << tempNumber << " pounds of food" << endl;
+			lostItems.push_back(Item("Food", tempNumber));
 		}
 		else if (m_Food.GetQuantity() > 0) {
 			m_Food.SetQuantity(m_Food.GetQuantity() - 1);
 			tempNumber = 1;
-			cout << "\t \t " << tempNumber << " pounds of food" << endl;
+			//cout << "\t \t " << tempNumber << " pounds of food" << endl;
+			lostItems.push_back(Item("Food", tempNumber));
 		}
 	}
 
@@ -437,12 +442,14 @@ void Player::LoseItems() {
 		if ((int)(m_Clothing.GetQuantity() * percentRandNum) > 0) {
 			tempNumber = (int)(m_Clothing.GetQuantity() * percentRandNum);
 			m_Clothing.SetQuantity(m_Clothing.GetQuantity() - (int)(m_Clothing.GetQuantity() * percentRandNum));
-			cout << "\t \t " << tempNumber << " sets of clothing" << endl;
+			//cout << "\t \t " << tempNumber << " sets of clothing" << endl;
+			lostItems.push_back(Item("Clothing", tempNumber));
 		}
 		else if (m_Clothing.GetQuantity() > 0) {
 			m_Clothing.SetQuantity(m_Clothing.GetQuantity() - 1);
 			tempNumber = 1;
-			cout << "\t \t " << tempNumber << " sets of clothing" << endl;
+			//cout << "\t \t " << tempNumber << " sets of clothing" << endl;
+			lostItems.push_back(Item("Clothing", tempNumber));
 		}
 	}
 
@@ -454,12 +461,14 @@ void Player::LoseItems() {
 		if ((int)(m_Ammunition.GetQuantity() * percentRandNum) > 0) {
 			tempNumber = (int)(m_Ammunition.GetQuantity() * percentRandNum);
 			m_Ammunition.SetQuantity(m_Ammunition.GetQuantity() - (int)(m_Ammunition.GetQuantity() * percentRandNum));
-			cout << "\t \t " << tempNumber << " bullets" << endl;
+			//cout << "\t \t " << tempNumber << " bullets" << endl;
+			lostItems.push_back(Item("Ammuniton", tempNumber));
 		}
 		else if (m_Ammunition.GetQuantity() > 0) {
 			m_Ammunition.SetQuantity(m_Ammunition.GetQuantity() - 1);
 			tempNumber = 1;
-			cout << "\t \t " << tempNumber << " bullets" << endl;
+			//cout << "\t \t " << tempNumber << " bullets" << endl;
+			lostItems.push_back(Item("Ammunition", tempNumber));
 		}
 	}
 
@@ -469,12 +478,14 @@ void Player::LoseItems() {
 	// Losing 2 "Extra wheels"
 	if (randomNumForItems == m_ExtraWheel.GetLoseItemNum() && randomNum > 25 && m_ExtraWheel.GetQuantity() >= 2) {
 		m_ExtraWheel.SetQuantity(m_ExtraWheel.GetQuantity() - 2);
-		cout << "\t \t 2 wagon wheel" << endl;
+		//cout << "\t \t 2 wagon wheel" << endl;
+		lostItems.push_back(Item("Spare parts - wagon wheel", 2));
 	}
 	// Losing 1 "Extra wheel"
 	else if (randomNumForItems == m_ExtraWheel.GetLoseItemNum() && randomNum < 25 && m_ExtraWheel.GetQuantity() >= 1) {
 		m_ExtraWheel.SetQuantity(m_ExtraWheel.GetQuantity() - 1);
-		cout << "\t \t 1 wagon wheel" << endl;
+		//cout << "\t \t 1 wagon wheel" << endl;
+		lostItems.push_back(Item("Spare parts - wagon wheel", 1));
 	}
 
 	randomNum = (rand() % 50) + 1;
@@ -483,12 +494,14 @@ void Player::LoseItems() {
 	// Losing 2 "Extra axles"
 	if (randomNumForItems == m_ExtraAxle.GetLoseItemNum() && randomNum > 25 && m_ExtraAxle.GetQuantity() >= 2) {
 		m_ExtraAxle.SetQuantity(m_ExtraAxle.GetQuantity() - 2);
-		cout << "\t \t 2 wagon axle" << endl;
+		//cout << "\t \t 2 wagon axle" << endl;
+		lostItems.push_back(Item("Spare parts - wagon axle", 2));
 	}
 	// Losing 1 "Extra Axle"
 	else if (randomNumForItems == m_ExtraAxle.GetLoseItemNum() && randomNum < 25 && m_ExtraAxle.GetQuantity() >= 1) {
 		m_ExtraAxle.SetQuantity(m_ExtraAxle.GetQuantity() - 1);
-		cout << "\t \t 1 wagon axle" << endl;
+		//cout << "\t \t 1 wagon axle" << endl;
+		lostItems.push_back(Item("Spare parts - wagon axle", 1));
 	}
 
 	randomNum = (rand() % 50) + 1;
@@ -497,14 +510,17 @@ void Player::LoseItems() {
 	// Losing 2 "Extra Tongues"
 	if (randomNumForItems == m_ExtraTongue.GetLoseItemNum() && randomNum > 25 && m_ExtraTongue.GetQuantity() >= 2) {
 		m_ExtraTongue.SetQuantity(m_ExtraTongue.GetQuantity() - 2);
-		cout << "\t \t 2 wagon tongue" << endl;
+		//cout << "\t \t 2 wagon tongue" << endl;
+		lostItems.push_back(Item("Spare parts - wagon tongue", 2));
 	}
 	// Losing 1 "Extra Tongue"
 	else if (randomNumForItems == m_ExtraTongue.GetLoseItemNum() && randomNum < 25 && m_ExtraTongue.GetQuantity() >= 1) {
 		m_ExtraTongue.SetQuantity(m_ExtraTongue.GetQuantity() - 1);
-		cout << "\t \t 1 wagon tongue" << endl;
+		//cout << "\t \t 1 wagon tongue" << endl;
+		lostItems.push_back(Item("Spare parts - wagon tongue", 1));
 	}
 
+	return lostItems;
 }
 
 /*
