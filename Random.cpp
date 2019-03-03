@@ -71,15 +71,17 @@ void Random::RandomEvent(Player &a_player, Date &a_date, int a_weather) {
 	if (a_weather == 0) {
 		if (randomNum >= 50) {
 			Blizzard(a_player, a_date);
+			return;
 		}
 	}
 	else if (a_weather == 4) {
 		if (randomNum >= 50) {
 			Thunderstorm(a_player, a_date);
+			return;
 		}
 	}
 
-	randomNum = 86;
+	randomNum = 81;
 	if (randomNum >= 95) {
 		FindWildFruit(a_player);
 	}
@@ -90,10 +92,10 @@ void Random::RandomEvent(Player &a_player, Date &a_date, int a_weather) {
 		BrokenWagonPart(a_player);
 	}
 	else if (randomNum >= 80) {
-		RainWashedPath();
+		FindAbandonedWagon(a_player);
 	}
 	else if (randomNum >= 75) {
-		BadTrail();
+		BadTrail(a_player, a_date);
 	}
 	else if (randomNum >= 70) {
 		DevelopDisease();
@@ -147,6 +149,58 @@ void Random::FindWildFruit(Player &a_player) {
 }
 
 /*
+	Random::FindAbandonedWagon(Player &a_player)
+
+NAME
+
+	Random::FindAbandonedWagon - randomly find extra supplies
+
+SYNOPSIS
+
+	void Random::FindAbandonedWagon(Player &a_player)
+
+	a_player --> main player object from the trail game
+
+DESCRIPTION
+
+	This function will randomly select 1 to 3 items that the player can gain from finding
+	an abandoned wagon.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	1:20pm 3/3/2019
+*/
+void Random::FindAbandonedWagon(Player &a_player) {
+
+	int amountOfItemsEarned = rand() % 3;
+	int randomNum = rand() % 7;
+	double amountEarned = (double)((rand() / 100) % 100) / 100;
+
+	vector<string> itemNames = { "Oxen", "Food", "Clothing", "Ammuniton", "Spare parts - wagon wheel" , "Spare parts - wagon axle",
+	"Spare parts - wagon tongue" };
+
+	cout << "\t You stumble upon a broken wagon. You find: " << endl;
+	for (int i = 0; i < amountOfItemsEarned; i++) {
+
+		// Add to the player's quantity for an item based on the random percentage that was generated times the maximum
+		// amount of items the play is allowed to have
+		a_player.AddItemQuantity(itemNames[randomNum], a_player.GetItem(itemNames[randomNum]).GetCapNumber() * amountEarned);
+
+		cout << "\t \t " << a_player.GetItem(itemNames[randomNum]).GetCapNumber() * amountEarned << endl;
+		randomNum = rand() % (7 - (i + 1));
+
+	}
+}
+
+/*
 	Random::StolenGoods(Player &a_player)
 
 NAME
@@ -173,7 +227,6 @@ AUTHOR
 
 Date
 
-	3:47houseatlyncrestwas16
 	4:01pm 3/2/2019
 */
 void Random::StolenGoods(Player &a_player) {
@@ -252,33 +305,131 @@ void Random::BrokenWagonPart(Player &a_player) {
 	}
 }
 
-void Random::RainWashedPath() {
+/*
+	Random::BadTrail(Player &a_player, Date &a_date)
 
+NAME
+
+	Random::BadTrail - randomly picks a number of days the player has to wait
+
+SYNOPSIS
+
+	void Random::BadTrail(Player &a_player, Date &a_date)
+
+	a_player --> main player object from the trail game
+	a_date --> object containing the current date from trail game
+
+DESCRIPTION
+
+	This function will randomly pick a number of days the player must wait because they
+	were on a bad trail
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	11:39am 3/3/2019
+*/
+void Random::BadTrail(Player &a_player, Date &a_date) {
+
+	int randomNum = (rand() % 5) + 1;
+
+	cout << "Lose trail. You lose " << randomNum << " days." << endl;
+
+	for (int i = 0; i < randomNum; i++) {
+		a_date.NextDay();
+		a_player.DeductFood();
+	}
 }
 
-void Random::BadTrail() {
+/*
+	Random::Blizzard(Player &a_player, Date &a_date)
 
-}
+NAME
 
+	Random::Blizzard - randomly picks a number of days the player has to wait
+
+SYNOPSIS
+
+	void Random::Blizzard(Player &a_player, Date &a_date)
+
+	a_player --> main player object from the trail game
+	a_date --> object containing the current date from trail game
+
+DESCRIPTION
+
+	This function will randomly pick a number of days the player must wait because they
+	were trapped in a blizzard
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	11:54am 3/3/2019
+*/
 void Random::Blizzard(Player &a_player, Date &a_date) {
 
 	int randomNum = (rand() % 7) + 1;
 
 	m_utility.OutputMessage("Due to the freezing weather, you get");
-	m_utility.OutputMessage("delayed by a blizzard.");
+	cout << "\t delayed by a blizzard. Lose " << randomNum << " days." << endl;
 
+	// Advance the day and have the player eat food for however many random number of days
 	for (int i = 0; i < randomNum; i++) {
 		a_date.NextDay();
 		a_player.DeductFood();
 	}
 }
 
+/*
+	Random::Thunderstorm(Player &a_player, Date &a_date)
+
+NAME
+
+	Random::Thunderstorm - randomly picks a number of days the player has to wait
+
+SYNOPSIS
+
+	void Random::Thunderstorm(Player &a_player, Date &a_date)
+
+	a_player --> main player object from the trail game
+	a_date --> object containing the current date from trail game
+
+DESCRIPTION
+
+	This function will randomly pick a number of days the player must wait because they
+	were stuck in a thunderstorm.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	11:55am 3/3/2019
+*/
 void Random::Thunderstorm(Player &a_player, Date &a_date) {
 
 	int randomNum = (rand() % 7) + 1;
 
 	m_utility.OutputMessage("Due to the brutal weather, you get");
-	m_utility.OutputMessage("delayed by thunderstorms.");
+	cout << "\t delayed by thunderstorm. Lose " << randomNum << " days." << endl;
 
 	for (int i = 0; i < randomNum; i++) {
 		a_date.NextDay();
@@ -286,10 +437,71 @@ void Random::Thunderstorm(Player &a_player, Date &a_date) {
 	}
 }
 
+/*
+	Random::DevelopeDisease(Player &a_player)
+
+NAME
+
+	Random::DevelopeDisease - randomly picks a member of the player's party to get sick
+
+SYNOPSIS
+
+	void Random::DevelopeDisease(Player &a_player)
+
+	a_player --> main player object from the trail game
+
+DESCRIPTION
+
+	This function will randomly pick a member of the player's party and assign them some kind of disease.
+	Some of them include dysentary, broken arm, ect.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	12:42pm 3/3/2019
+*/
 void Random::DevelopDisease() {
 
 }
 
+/*
+	Random::BrokenWagonPartHelper(Player &a_player, string a_itemName)
+
+NAME
+
+	Random::BrokenWagonPartHelper - handle user input for fixing wagon part
+
+SYNOPSIS
+
+	void Random::BrokenWagonPartHelper(Player &a_player, string a_itemName)
+
+	a_player --> main player object from the trail game
+	a_itemName --> the name of the item that broke
+
+DESCRIPTION
+
+	This function will prompt the user if they want to fix a part of their wagon that broke. It will
+	then randomly pick if the player can repair the part or not. 
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	1:18pm 3/3/2019
+*/
 void Random::BrokenWagonPartHelper(Player &a_player, string a_itemName) {
 
 	string choice;
@@ -297,10 +509,14 @@ void Random::BrokenWagonPartHelper(Player &a_player, string a_itemName) {
 
 	cin >> choice;
 
+	// If the player wants to try and fix the wagon part...
 	if (choice == "yes" || choice == "ye" || choice == "y") {
+
+		// If successful, they won't have to use a spare part
 		if (randomNum == 0) {
 			m_utility.OutputMessage("You were able to fix the broken wagon wheel.");
 		}
+		// Otherwise, they will have to use a spare part if they have one
 		else {
 			m_utility.OutputMessage("You were unsuccessful in repairing.");
 
@@ -312,6 +528,7 @@ void Random::BrokenWagonPartHelper(Player &a_player, string a_itemName) {
 			}
 		}
 	}
+	// If the player said no, the player will have to use a spare part if they have one
 	else {
 		if (a_player.GetItem("Spare parts - wagon wheel").GetQuantity() > 0) {
 			a_player.SetItemQuantity(a_itemName, a_player.GetItem("Spare parts - wagon wheel").GetQuantity() - 1);

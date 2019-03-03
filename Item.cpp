@@ -36,6 +36,36 @@ Item::Item() {
 	m_quantity = 0;
 }
 
+/*
+	Item::Item(string a_name, int a_quantity)
+
+NAME
+
+	Item::Item - Dialogue for the second trail split
+
+SYNOPSIS
+
+	Item::Item(string a_name, int a_quantity)
+
+	a_name --> name of an item
+	a_quantity --> amount of an item
+
+DESCRIPTION
+
+	This is an overloaded constructor which sets the name and quantity of an item.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	1:30pm 3/3/2019
+*/
 Item::Item(string a_name, int a_quantity) {
 
 	m_name = a_name;

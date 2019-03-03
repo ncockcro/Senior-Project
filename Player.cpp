@@ -353,6 +353,33 @@ void Player::DeductMoney(double a_money) {
 	}
 }
 
+/*
+	Player::DeductFood()
+
+NAME
+
+	Player::DeductFood - Decrements food for food object
+
+SYNOPSIS
+
+	void Player::DeductFood()
+
+DESCRIPTION
+
+	This function will deduct food from the player based on the rate of decrementing.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	1:49pm 3/3/2019
+*/
 void Player::DeductFood() {
 	m_Food.DecrementFood(m_foodRate);
 }
@@ -578,6 +605,37 @@ void Player::GenerateItemRandNums() {
 	m_ExtraTongue.SetLoseItemNum(randNum);
 }
 
+/*
+	Player::AddItemQuantity(string a_itemName, int a_quantity)
+
+NAME
+
+	Player::AddItemQuantity - Adds to the quantity of an item
+
+SYNOPSIS
+
+	void Player::AddItemQuantity(string a_itemName, int a_quantity)
+
+	a_itemName --> name of an item
+	a_quantity --> quanatity to be added to the item
+
+DESCRIPTION
+
+	This function will take in an item name and quantity and cycle through the list of items that exist
+	in the game, once the item is found, it will add the quantity to the item.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	2:43pm 3/3/2019
+*/
 void Player::AddItemQuantity(string a_itemName, int a_quantity) {
 
 	if (a_itemName == "Oxen") {
@@ -606,11 +664,68 @@ void Player::AddItemQuantity(string a_itemName, int a_quantity) {
 	}
 }
 
+/*
+	Player::GetPlayerPosition()
+
+NAME
+
+	Player::GetPlayerPosition - return the position the player chose
+
+SYNOPSIS
+
+	string Player::GetPlayerPosition()
+
+DESCRIPTION
+
+	This function will return the position the player chose at the beginning of the game. Either a
+	banker, carpenter, or farmer.
+
+RETURNS
+
+	String
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	2:45pm 3/3/2019
+*/
 string Player::GetPlayerPosition() {
 
 	return m_playerPosition;
 }
 
+/*
+	Player::SetPace(string a_pace)
+
+NAME
+
+	Player::SetPace - Sets the pace to what was passed in
+
+SYNOPSIS
+
+	void Player::GetPace(string a_pace)
+
+	a_pace --> the pace the player is moving at
+
+DESCRIPTION
+
+	This function will take in a string and set it to be the pace the player moves at.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	2:47pm 3/3/2019
+*/
 void Player::SetPace(string a_pace) {
 
 	if (a_pace == "steady") {
@@ -622,11 +737,72 @@ void Player::SetPace(string a_pace) {
 	else if (a_pace == "grueling") {
 		m_pace = a_pace;
 	}
+	else {
+		m_utility.DisplayError("ERROR: Invalid pace to move at in player class.");
+	}
 }
+
+/*
+	Player::GetPace()
+
+NAME
+
+	Player::GetPace - Returns the pace the player moves at
+
+SYNOPSIS
+
+	string Player::GetPace()
+
+DESCRIPTION
+
+	This function will return the pace the player moves at.
+
+RETURNS
+
+	String
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	2:50pm 3/3/2019
+*/
 string Player::GetPace() {
 	return m_pace;
 }
 
+/*
+	Player::SetFoodRate(string a_foodRate)
+
+NAME
+
+	Player::SetFoodRate - Sets the rate the player eats food to what was passed in
+
+SYNOPSIS
+
+	void Player::SetFoodRate(string a_foodRate)
+
+	a_foodRate --> rate the player eats food
+
+DESCRIPTION
+
+	This function will take in a string which represents the rate the player eats food and sets it
+	to the member variable.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	2:54pm 3/3/2019
+*/
 void Player::SetFoodRate(string a_foodRate) {
 
 	if (a_foodRate == "filling") {
@@ -642,6 +818,34 @@ void Player::SetFoodRate(string a_foodRate) {
 		m_utility.DisplayError("ERROR: invalid rate of food depletion in player class.");
 	}
 }
+
+/*
+	Player::GetFoodRate()
+
+NAME
+
+	Player::GetFoodRate - Returns the rate the player eats food
+
+SYNOPSIS
+
+	string Player::GetFoodRate()
+
+DESCRIPTION
+
+	This function will return the rate the player eats food
+
+RETURNS
+
+	String
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	2:55pm 3/3/2019
+*/
 string Player::GetFoodRate() {
 	return m_foodRate;
 }

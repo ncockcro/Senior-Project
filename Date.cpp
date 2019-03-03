@@ -33,7 +33,7 @@ Date::Date()
 }
 
 /*
-	Date::NextDay(int &a_year, string &a_month, int &a_day)
+	Date::NextDay()
 
 NAME
 
@@ -41,11 +41,7 @@ NAME
 
 SYNOPSIS
 
-	Date::NextDay(int &a_year, string &a_month, int &a_day)
-
-	a_year  --> the year in game
-	a_month --> the month in game
-	a_day --> the day in game
+	Date::NextDay()
 
 DESCRIPTION
 

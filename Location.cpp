@@ -34,6 +34,38 @@ Location::Location()
 	m_hasStore = true;
 }
 
+/*
+	Location:CrossLocation(Player &a_player, Date &a_date, int a_weather)
+
+NAME
+
+	Location::CrossLocation - virtual function used by the classes inherited from "Location"
+
+SYNOPSIS
+
+	Location::CrossLocation(Player &a_player, Date &a_date, int a_weather)
+
+	a_player --> player object from main trail game
+	a_date --> date object from main trail game
+	a_weather --> current weather in the game
+
+DESCRIPTION
+
+	This is a virtual function which is primarily used for the class "River" that is inherited from this
+	class. 
+
+RETURNS
+
+	None
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	1:16pm 3/3/2019
+*/
 void Location::CrossLocation(Player &a_player, Date &a_date, int a_weather) {
 
 }

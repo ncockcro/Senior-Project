@@ -1443,6 +1443,35 @@ void Trail::IncreaseRates() {
 	m_rate0_5dollars += 0.05;
 }
 
+/*
+	Trail::CalculateScore()
+
+NAME
+
+	Trail::CalculateScore - Calculates score based on factors of the game
+
+SYNOPSIS
+
+	void Trail::CalculateScore()
+
+DESCRIPTION
+
+	This function cycle through the various ways the player is able to earn points for their
+	score such as the position they picked, how many items they have at the end of the game,
+	how much money they have, and other factors.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	3:05pm 3/3/2019
+*/
 void Trail::CalculateScore() {
 
 	int multiplier = 1;
@@ -1532,6 +1561,35 @@ void Trail::CalculateScore() {
 
 }
 
+/*
+	Trail::ShowScoreDetails(int a_scores[])
+
+NAME
+
+	Trail::ShowScoreDetails - Outputs how the player earned their points
+
+SYNOPSIS
+
+	void Trail::ShowScoreDetails(int a_scores[])
+
+	a_scores[] --> the various scores that the player earned
+
+DESCRIPTION
+
+	This function outputs to the console all of the various ways the player earned their score.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	3:06pm 3/3/2019
+*/
 void Trail::ShowScoreDetails(int a_scores[]) {
 
 	m_utility.OutputMessage("Points for arriving in Oregon");
@@ -1550,6 +1608,33 @@ void Trail::ShowScoreDetails(int a_scores[]) {
 	cout << "-------------------------------------------------------" << endl;
 }
 
+/*
+	Trail::GetTotalScore()
+
+NAME
+
+	Trail::GetTotalScore - Returns the score the player earned
+
+SYNOPSIS
+
+	int Trail::GetTotalScore()
+
+DESCRIPTION
+
+	This function returns the total score the player earned.
+
+RETURNS
+
+	Int
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	3:08pm 3/3/2019
+*/
 int Trail::GetTotalScore() {
 	return m_totalScore;
 }

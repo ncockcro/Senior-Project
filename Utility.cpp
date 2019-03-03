@@ -170,6 +170,36 @@ void Utility::OutputMessage(string a_message) {
 	cout << "\t " << a_message << endl;
 }
 
+/*
+	Utility:HasElement(int a_vectorSize, int a_element)
+
+NAME
+
+	Utility::HasElement - Checks if a vector has the element passed in
+
+SYNOPSIS
+
+	bool Utility::HasElement(int a_vectorSize, int a_element)
+
+	a_vectorSize --> size of a vector
+	a_element --> the element to be checked
+
+DESCRIPTION
+
+	This function checks if a specific element is in a vector. It will return true if it is, otherwise, false.
+
+RETURNS
+
+	Bool
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	3:14pm 3/3/2019
+*/
 bool Utility::HasElement(int a_vectorSize, int a_element) {
 
 	if (a_element < a_vectorSize) {
@@ -180,6 +210,36 @@ bool Utility::HasElement(int a_vectorSize, int a_element) {
 	}
 }
 
+/*
+	Utility:CheckInput(string a_input)
+
+NAME
+
+	Utility::CheckInput - Checks if input is all numbers or not
+
+SYNOPSIS
+
+	bool Utility::CheckInput(string a_input)
+
+	a_input  --> input from the user
+
+DESCRIPTION
+
+	This function will take in user input as an argument and check if all of the characters are numbers.
+	If they are, this function will return true, otherwise, false.
+
+RETURNS
+
+	Bool
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	3:22pm 3/3/2019
+*/
 bool Utility::CheckInput(string a_input) {
 
 	// Cycle through the string passed in and return false if any of the
@@ -245,6 +305,36 @@ string Utility::GetWeatherName(int a_weather) {
 	}
 }
 
+/*
+	Utility:GetHealthName(int a_health)
+
+NAME
+
+	Utility::GetHealthName - Returns the string name of the player's health
+
+SYNOPSIS
+
+	string Utility::GetHealthName(int a_health)
+
+	a_health  --> the int version of the player's health
+
+DESCRIPTION
+
+	This function takes in the integer version of the player's health and returns the actual name
+	of the player's current health.
+
+RETURNS
+
+	String
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	3:26pm 3/3/2019
+*/
 string Utility::GetHealthName(int a_health) {
 
 	if (a_health == 3) {

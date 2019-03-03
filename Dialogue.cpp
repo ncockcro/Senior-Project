@@ -1550,6 +1550,33 @@ void Dialogue::T_WhichDirectionChoice2() {
 	cout << "What is your choice? ";
 }
 
+/*
+	Dialogue::T_ShowHuntingInstruction()
+
+NAME
+
+	Dialouge::T_ShowHuntingInstructions - Dialogue for how to hunt
+
+SYNOPSIS
+
+	void Dialouge::T_ShowHuntingInstructiona()
+
+DESCRIPTION
+
+	This function outputs dialogue for how the player is supposed to hunt.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	1:24pm 3/3/2019
+*/
 void Dialogue::T_ShowHuntingInstructions() {
 
 	m_utility.OutputMessage("You will have several attemps");
@@ -1562,6 +1589,33 @@ void Dialogue::T_ShowHuntingInstructions() {
 	m_utility.OutputMessage("points being awarded.");
 }
 
+/*
+	Dialogue::T_End()
+
+NAME
+
+	Dialouge::T_End - Ending dialogue
+
+SYNOPSIS
+
+	void Dialouge::T_End()
+
+DESCRIPTION
+
+	This function outputs dialogue for when the player finished the game.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	1:27pm 3/3/2019
+*/
 void Dialogue::T_End() {
 
 	m_utility.OutputMessage("Congratulations! You have");

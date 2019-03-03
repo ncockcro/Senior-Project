@@ -284,6 +284,34 @@ void Oregon_Trail::ShowLeaderBoard() {
 	system("cls");
 }
 
+/*
+Oregon_Trail::AddToLeaderBoard()
+
+NAME
+
+	Oregon_Trail::AddToLeaderBoard - Adds the player to the leaderboards
+
+SYNOPSIS
+
+	void Oregon_Trail::AddToLeaderBoard()
+
+DESCRIPTION
+
+	This function is called at the end of a game of Oregon Trail and checks to see if the player made enough
+	score to be added to the leaderboards.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	1:41pm 3/3/2019
+*/
 void Oregon_Trail::AddToLeaderBoard() {
 
 	fstream outputLeaderboardFile("leaderboard.txt");
@@ -365,6 +393,34 @@ void Oregon_Trail::AddToLeaderBoard() {
 
 }
 
+/*
+Oregon_Trail::IsPosition(string a_word)
+
+NAME
+
+	Oregon_Trail::IsPosition - checks if the word passed in is a postion
+
+SYNOPSIS
+
+	bool Oregon_Trail::IsPosition(string a_word)
+
+DESCRIPTION
+
+	This function will check if the string that is passed in is a position from the leaderboards.txt.
+	If is it a postion, it will return true, otherwise, false.
+
+RETURNS
+
+	Bool
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	1:44pm 3/3/2019
+*/
 bool Oregon_Trail::IsPosition(string a_word) {
 
 	if (a_word == "10." || a_word == "9." || a_word == "8." || a_word == "7." || a_word == "6." || a_word == "5." ||
