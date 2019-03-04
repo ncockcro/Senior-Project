@@ -45,8 +45,6 @@ Trail::Trail()
 
 	m_totalScore = 10000;
 
-	m_health = 3;
-
 	srand((unsigned int)time(0));
 }
 
@@ -85,14 +83,6 @@ void Trail::ActiveGame() {
 	int milesTraveled;
 	string whichDirection;
 	bool goingToGreenRiver = true;
-
-	/*cout << m_player.GetItem("Oxen").GetCapNumber() << endl;
-	cout << m_player.GetItem("Food").GetCapNumber() << endl;
-	cout << m_player.GetItem("Clothing").GetCapNumber() << endl;
-	cout << m_player.GetItem("Ammunition").GetCapNumber() << endl;
-	cout << m_player.GetItem("Spare parts - wagon wheel").GetCapNumber() << endl;
-	cout << m_player.GetItem("Spare parts - wagon axle").GetCapNumber() << endl;
-	cout << m_player.GetItem("Spare parts - wagon tongue").GetCapNumber() << endl;*/
 
 	PromptPosition();
 	PromptCharacterNames();
@@ -640,7 +630,7 @@ void Trail::TrailMenu(bool a_hasStore, string a_locationName) {
 
 	while (1) {
 		cout << "\t Weather: " << m_utility.GetWeatherName(m_weather) << endl;
-		cout << "\t Health: " << m_utility.GetHealthName(m_health) << endl;
+		cout << "\t Health: " << m_utility.GetHealthName(m_player.GetHealth()) << endl;
 		cout << "\t Pace: " << m_player.GetPace() << endl;
 		cout << "\t Rations: " << m_player.GetFoodRate() << endl << endl;
 
@@ -1502,25 +1492,25 @@ void Trail::CalculateScore() {
 	}
 
 	// Calculating the score for the player's health
-	if (m_health == 3) {
+	if (m_player.GetHealth() == 3) {
 		m_totalScore += 500;
 		m_totalScore += 500 * m_player.GetWagonParty().size();
 		scorePerItem[0] = 500;
 		scorePerItem[0] += 500 * m_player.GetWagonParty().size();
 	}
-	else if (m_health == 2) {
+	else if (m_player.GetHealth() == 2) {
 		m_totalScore += 400;
 		m_totalScore += 400 * m_player.GetWagonParty().size();
 		scorePerItem[0] = 400;
 		scorePerItem[0] += 400 * m_player.GetWagonParty().size();
 	}
-	else if (m_health == 1) {
+	else if (m_player.GetHealth() == 1) {
 		m_totalScore += 300;
 		m_totalScore += 300 * m_player.GetWagonParty().size();
 		scorePerItem[0] = 300;
 		scorePerItem[0] += 300 * m_player.GetWagonParty().size();
 	}
-	else if (m_health == 0) {
+	else if (m_player.GetHealth() == 0) {
 		m_totalScore += 200;
 		m_totalScore += 200 * m_player.GetWagonParty().size();
 		scorePerItem[0] = 200;
@@ -1605,7 +1595,7 @@ void Trail::ShowScoreDetails(int a_scores[]) {
 	m_utility.OutputMessage("Points for arriving in Oregon");
 
 	cout << "-------------------------------------------------------" << endl;
-	cout << "\t " << m_player.GetWagonParty().size() << " people in " << m_health << " health " << a_scores[0] << endl;
+	cout << "\t " << m_player.GetWagonParty().size() << " people in " << m_player.GetHealth() << " health " << a_scores[0] << endl;
 	cout << "\t " << "1 wagon " << a_scores[1] << endl;
 	cout << "\t " << m_player.GetItem("Oxen").GetQuantity() << " oxen " << a_scores[2] << endl;
 	cout << "\t " << m_player.GetItem("Spare parts - wagon wheel").GetQuantity() + m_player.GetItem("Spare parts - wagon axle").GetQuantity() +

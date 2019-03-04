@@ -69,19 +69,18 @@ void Random::RandomEvent(Player &a_player, Date &a_date, int a_weather) {
 
 	// If the weather is cold, higher chance for a blizzard
 	if (a_weather == 0) {
-		if (randomNum >= 50) {
+		if (randomNum >= 80) {
 			Blizzard(a_player, a_date);
 			return;
 		}
 	}
 	else if (a_weather == 4) {
-		if (randomNum >= 50) {
+		if (randomNum >= 80) {
 			Thunderstorm(a_player, a_date);
 			return;
 		}
 	}
 
-	randomNum = 81;
 	if (randomNum >= 95) {
 		FindWildFruit(a_player);
 	}
@@ -403,13 +402,25 @@ void Random::Blizzard(Player &a_player, Date &a_date) {
 	int randomNum = (rand() % 7) + 1;
 
 	m_utility.OutputMessage("Due to the freezing weather, you get");
-	cout << "\t delayed by a blizzard. Lose " << randomNum << " days." << endl;
+	cout << "\t delayed by a blizzard. Lose " << randomNum << " days." << endl << endl;
 
 	// Advance the day and have the player eat food for however many random number of days
 	for (int i = 0; i < randomNum; i++) {
+
+		if (randomNum - i == 1) {
+			cout << "\t Trapped in the blizzard for " << randomNum - i << " day..." << endl;
+		}
+		else {
+			cout << "\t Trapped in the blizzard for " << randomNum - i << " days..." << endl;
+		}
+		m_utility.Wait();
+
 		a_date.NextDay();
 		a_player.DeductFood();
+
 	}
+
+	m_utility.OutputMessage("The blizzard has passed...");
 }
 
 /*
@@ -451,9 +462,21 @@ void Random::Thunderstorm(Player &a_player, Date &a_date) {
 	cout << "\t delayed by thunderstorm. Lose " << randomNum << " days." << endl;
 
 	for (int i = 0; i < randomNum; i++) {
+
+		if (randomNum - i == 1) {
+			cout << "\t Trapped in the storm for " << randomNum - i << " day..." << endl;
+		}
+		else {
+			cout << "\t Trapped in the storm for " << randomNum - i << " days..." << endl;
+		}
+		m_utility.Wait();
+
 		a_date.NextDay();
 		a_player.DeductFood();
+
 	}
+
+	m_utility.OutputMessage("The storm as passed...");
 }
 
 /*

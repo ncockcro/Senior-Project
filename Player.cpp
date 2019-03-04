@@ -34,6 +34,8 @@ Player::Player()
 
 	m_pace = "steady";
 	m_foodRate = "filling";
+
+	m_health = 3;
 }
 
 /*
@@ -856,4 +858,11 @@ Member& Player::GetWagonLeader() {
 
 vector<Member>& Player::GetWagonParty() {
 	return m_wagonParty;
+}
+
+int Player::GetHealth() {
+	return m_health;
+}
+void Player::SetHealt(int a_health) {
+	m_health = a_health;
 }

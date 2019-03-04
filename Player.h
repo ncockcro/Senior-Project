@@ -48,6 +48,8 @@ public:
 	string GetFoodRate();
 	Member& GetWagonLeader();
 	vector<Member>& GetWagonParty();
+	int GetHealth();
+	void SetHealt(int a_health);
 
 
 private:
@@ -58,6 +60,8 @@ private:
 
 	Member m_wagonLeader;
 	vector <Member> m_wagonParty;
+
+	int m_health; // 0 = very poor, 1 = poor, 2 = fair, 3 = good
 
 	// Player's items
 	Item m_Oxen;
