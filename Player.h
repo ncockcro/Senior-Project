@@ -23,6 +23,7 @@ DESCRIPTION
 #include <vector>
 #include "Utility.h"
 #include "Item.h"
+#include "Member.h"
 
 using namespace std;
 class Player
@@ -45,6 +46,8 @@ public:
 	string GetPace();
 	void SetFoodRate(string a_foodRate);
 	string GetFoodRate();
+	Member& GetWagonLeader();
+	vector<Member>& GetWagonParty();
 
 
 private:
@@ -52,6 +55,9 @@ private:
 	double m_playerMoney;
 	string m_playerPosition;
 	void GenerateItemRandNums();
+
+	Member m_wagonLeader;
+	vector <Member> m_wagonParty;
 
 	// Player's items
 	Item m_Oxen;

@@ -30,6 +30,7 @@ DESCRIPTION
 #include "River.h"
 #include "Player.h"
 #include "Date.h"
+#include "Member.h"
 #include "Random.h"
 
 using namespace std;
@@ -68,9 +69,6 @@ private:
 	Player m_player;
 	string m_currentLocation;
 	Date m_date;
-
-	string m_wagonLeader;
-	vector <string> m_wagonParty;
 
 	Store m_Store;
 

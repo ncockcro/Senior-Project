@@ -849,3 +849,11 @@ Date
 string Player::GetFoodRate() {
 	return m_foodRate;
 }
+
+Member& Player::GetWagonLeader() {
+	return m_wagonLeader;
+}
+
+vector<Member>& Player::GetWagonParty() {
+	return m_wagonParty;
+}
