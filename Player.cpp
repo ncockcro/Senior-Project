@@ -76,10 +76,10 @@ void Player::InitializePartyItems() {
 	m_Food.SetQuantity(0);
 
 	m_Clothing = Item("Clothing", 0.1, "\t You'll need warm clothing in \n \t the mountains. I recommend \n \t taking at least \n \t "
-		"2 sets of \n \t clothes per person. Each \n \t set is $10.00", "NULL", INT_MAX);
+		"2 sets of \n \t clothes per person. Each \n \t set is $10.00", "NULL", 20);
 	m_Clothing.SetQuantity(0);
 
-	m_Ammunition = Item("Ammunition", 0.1, "\t I sell amunition in boxes \n \t of 20 bullets. Each box \n \t costs $2.00.", "NULL", INT_MAX);
+	m_Ammunition = Item("Ammunition", 0.1, "\t I sell amunition in boxes \n \t of 20 bullets. Each box \n \t costs $2.00.", "NULL", 100);
 	m_Ammunition.SetQuantity(0);
 
 	m_ExtraWheel = Item("Spare parts - wagon wheel", 0.1, "\t It's a good idea to have a \n \t few spare wheels for your \n \t wagon:",

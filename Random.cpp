@@ -180,21 +180,40 @@ Date
 */
 void Random::FindAbandonedWagon(Player &a_player) {
 
-	int amountOfItemsEarned = rand() % 3;
-	int randomNum = rand() % 7;
-	double amountEarned = (double)((rand() / 100) % 100) / 100;
+	// Determines how many items the player will earn from the abandoned wagon
+	int amountOfItemsEarned = (rand() % 3) + 1;
 
-	vector<string> itemNames = { "Oxen", "Food", "Clothing", "Ammuniton", "Spare parts - wagon wheel" , "Spare parts - wagon axle",
+	// This determines which item will be picked
+	int randomNum = rand() % 7;
+
+	// This determines the percentage of the quantity of an item the player will recieve
+	double amountEarnedPercentage = (double)(rand() % 50) / 100;
+
+	int itemsEarned;
+
+	// Vector of names for the items to be rewarded
+	vector<string> itemNames = { "Oxen", "Food", "Clothing", "Ammunition", "Spare parts - wagon wheel" , "Spare parts - wagon axle",
 	"Spare parts - wagon tongue" };
 
-	cout << "\t You stumble upon a broken wagon. You find: " << endl;
+	cout << "\t You stumble upon a broken wagon. You find: " << endl; 
 	for (int i = 0; i < amountOfItemsEarned; i++) {
+
+		// The amount of an item the player will earned is calculated by the maximum number the player can
+	// carry, multiplied by the random percentage calculated earlier
+		itemsEarned = (int)(a_player.GetItem(itemNames[randomNum]).GetCapNumber() * amountEarnedPercentage);
+
+		// If the percentage was too low, the player will earn 1 of the item
+		if (itemsEarned == 0) {
+			itemsEarned = 1;
+		}
 
 		// Add to the player's quantity for an item based on the random percentage that was generated times the maximum
 		// amount of items the play is allowed to have
-		a_player.AddItemQuantity(itemNames[randomNum], a_player.GetItem(itemNames[randomNum]).GetCapNumber() * amountEarned);
+		a_player.AddItemQuantity(itemNames[randomNum], itemsEarned);
 
-		cout << "\t \t " << a_player.GetItem(itemNames[randomNum]).GetCapNumber() * amountEarned << endl;
+		cout << "\t \t "<< itemNames[randomNum] << ": " << itemsEarned << endl; 
+
+		// Re calculate a new item for the player to earn
 		randomNum = rand() % (7 - (i + 1));
 
 	}

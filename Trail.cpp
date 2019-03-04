@@ -86,6 +86,14 @@ void Trail::ActiveGame() {
 	string whichDirection;
 	bool goingToGreenRiver = true;
 
+	/*cout << m_player.GetItem("Oxen").GetCapNumber() << endl;
+	cout << m_player.GetItem("Food").GetCapNumber() << endl;
+	cout << m_player.GetItem("Clothing").GetCapNumber() << endl;
+	cout << m_player.GetItem("Ammunition").GetCapNumber() << endl;
+	cout << m_player.GetItem("Spare parts - wagon wheel").GetCapNumber() << endl;
+	cout << m_player.GetItem("Spare parts - wagon axle").GetCapNumber() << endl;
+	cout << m_player.GetItem("Spare parts - wagon tongue").GetCapNumber() << endl;*/
+
 	PromptPosition();
 	PromptCharacterNames();
 	PromptStartingMonth();
