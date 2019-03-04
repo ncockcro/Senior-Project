@@ -81,6 +81,7 @@ void Random::RandomEvent(Player &a_player, Date &a_date, int a_weather) {
 		}
 	}
 
+	randomNum = 71;
 	if (randomNum >= 95) {
 		FindWildFruit(a_player);
 	}
@@ -97,11 +98,12 @@ void Random::RandomEvent(Player &a_player, Date &a_date, int a_weather) {
 		BadTrail(a_player, a_date);
 	}
 	else if (randomNum >= 70) {
-		DevelopDisease();
+		DevelopDisease(a_player);
 	}
 	else {
 
 	}
+
 }
 
 /*
@@ -509,8 +511,12 @@ Date
 
 	12:42pm 3/3/2019
 */
-void Random::DevelopDisease() {
+void Random::DevelopDisease(Player &a_player) {
 
+	int sizeOfParty = a_player.GetWagonParty().size();
+	int randomNum = rand() % sizeOfParty;
+
+	a_player.GetWagonParty()[randomNum].AddDisease(PickRandomDisease(a_player.GetWagonParty()[randomNum].GetDiseases()));
 }
 
 /*
@@ -579,4 +585,32 @@ void Random::BrokenWagonPartHelper(Player &a_player, string a_itemName) {
 			// Broken wagon wheel - significantly hurt player's health
 		}
 	}
+}
+
+string Random::PickRandomDisease(vector<string> a_currentDiseases) {
+
+	vector<string> diseases = { "cholera", "exhaustion", "broken arm", "broken leg", "measles", "typhoid", "dysentery" };
+	vector<int> deleteDisease;
+
+	// Cycle through the diseases pass in and the list of available diseases...
+	for (int i = 0; i < a_currentDiseases.size(); i++) {
+		for (int j = 0; j < diseases.size(); j++) {
+
+			// If there is a match, track the index so the disease can be deleted so the
+			// wagon member does not get the same disease twice
+			if (a_currentDiseases[i] == diseases[j]) {
+				deleteDisease.push_back(j);
+				break;
+			}
+		}
+	}
+
+	// Cycle through the diseases and remove the ones the party member already has...
+	for (int i = 0; i < deleteDisease.size(); i++) {
+		diseases.erase(diseases.begin() + deleteDisease[i]);
+	}
+
+	// Finally, randomly pick a disease and return it
+	int randomNum = rand() % diseases.size();
+	return diseases[randomNum];
 }

@@ -29,3 +29,7 @@ void Member::AddDisease(string a_disease) {
 int Member::GetNumOfDiseases() {
 	return m_diseases.size();
 }
+
+vector<string> Member::GetDiseases() {
+	return m_diseases;
+}

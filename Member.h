@@ -16,6 +16,7 @@ public:
 	void SetName(string a_name);
 	void AddDisease(string a_disease);
 	int GetNumOfDiseases();
+	vector<string> GetDiseases();
 
 private:
 	string m_name;
