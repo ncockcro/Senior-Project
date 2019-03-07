@@ -17,6 +17,7 @@ public:
 	void AddDisease(string a_disease);
 	int GetNumOfDiseases();
 	vector<string> GetDiseases();
+	string GetLastDisease();
 
 private:
 	string m_name;

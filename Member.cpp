@@ -33,3 +33,14 @@ int Member::GetNumOfDiseases() {
 vector<string> Member::GetDiseases() {
 	return m_diseases;
 }
+
+string Member::GetLastDisease() {
+
+	if (m_diseases.size() > 0) {
+		return m_diseases.back();
+	}
+	else {
+		cerr << "ERROR: No diseases." << endl;
+		return "NULL";
+	}
+}

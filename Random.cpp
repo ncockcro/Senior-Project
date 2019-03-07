@@ -517,6 +517,7 @@ void Random::DevelopDisease(Player &a_player) {
 	int randomNum = rand() % sizeOfParty;
 
 	a_player.GetWagonParty()[randomNum].AddDisease(PickRandomDisease(a_player.GetWagonParty()[randomNum].GetDiseases()));
+	cout << a_player.GetWagonParty()[randomNum].GetName() << " has " << a_player.GetWagonParty()[randomNum].GetLastDisease() << endl;
 }
 
 /*
@@ -589,12 +590,12 @@ void Random::BrokenWagonPartHelper(Player &a_player, string a_itemName) {
 
 string Random::PickRandomDisease(vector<string> a_currentDiseases) {
 
-	vector<string> diseases = { "cholera", "exhaustion", "broken arm", "broken leg", "measles", "typhoid", "dysentery" };
+	vector<string> diseases = { "cholera", "exhaustion", "a broken arm", "a broken leg", "measles", "typhoid", "dysentery" };
 	vector<int> deleteDisease;
 
 	// Cycle through the diseases pass in and the list of available diseases...
-	for (int i = 0; i < a_currentDiseases.size(); i++) {
-		for (int j = 0; j < diseases.size(); j++) {
+	for (size_t i = 0; i < a_currentDiseases.size(); i++) {
+		for (size_t j = 0; j < diseases.size(); j++) {
 
 			// If there is a match, track the index so the disease can be deleted so the
 			// wagon member does not get the same disease twice
@@ -605,8 +606,11 @@ string Random::PickRandomDisease(vector<string> a_currentDiseases) {
 		}
 	}
 
+	// Sort array so we delete the diseases from the end of the vector first 
+	sort(deleteDisease.rbegin(), deleteDisease.rend());
+
 	// Cycle through the diseases and remove the ones the party member already has...
-	for (int i = 0; i < deleteDisease.size(); i++) {
+	for (size_t i = 0; i < deleteDisease.size(); i++) {
 		diseases.erase(diseases.begin() + deleteDisease[i]);
 	}
 

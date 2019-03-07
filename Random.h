@@ -21,6 +21,7 @@ DESCRIPTION
 #include <vector>
 #include <cstdlib>
 #include <ctime>
+#include <algorithm>
 #include "Player.h"
 #include "Item.h"
 #include "Date.h"
