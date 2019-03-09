@@ -55,12 +55,13 @@ public:
 
 private:
 	Utility m_utility = Utility();
-	double m_playerMoney;
-	string m_playerPosition;
 	void GenerateItemRandNums();
 
 	Member m_wagonLeader;
 	vector <Member> m_wagonParty;
+
+	double m_playerMoney;
+	string m_playerPosition;
 
 	int m_health; // 0 = very poor, 1 = poor, 2 = fair, 3 = good
 

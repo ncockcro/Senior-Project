@@ -41,6 +41,7 @@ private:
 	Utility m_utility;
 	string ConvertMonth(int a_month);
 	int ConvertMonth(string a_month);
+
 	string m_month;
 	int m_year;
 	int m_day;

@@ -67,6 +67,7 @@ void Random::RandomEvent(Player &a_player, Date &a_date, int a_weather) {
 
 	int randomNum = rand() % 100;
 
+
 	// If the weather is cold, higher chance for a blizzard
 	if (a_weather == 0) {
 		if (randomNum >= 80) {
@@ -81,7 +82,6 @@ void Random::RandomEvent(Player &a_player, Date &a_date, int a_weather) {
 		}
 	}
 
-	randomNum = 71;
 	if (randomNum >= 95) {
 		FindWildFruit(a_player);
 	}
@@ -521,10 +521,6 @@ void Random::DevelopDisease(Player &a_player) {
 
 	if (a_player.GetWagonParty()[randomNum].CheckIfDead()) {
 		a_player.RemovePlayer(randomNum);
-	}
-
-	for (size_t i = 0; i < a_player.GetWagonParty().size(); i++) {
-		cout << a_player.GetWagonParty()[i].GetName() << endl;
 	}
 }
 

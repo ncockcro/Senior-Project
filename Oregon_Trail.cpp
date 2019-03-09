@@ -2,6 +2,7 @@
 
 Oregon_Trail::Oregon_Trail()
 {
+	m_choice = "NULL";
 }
 
 /*

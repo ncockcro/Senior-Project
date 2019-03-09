@@ -30,9 +30,9 @@ Date
 */
 Trail::Trail()
 {
+	m_weather = 0;
+
 	m_currentLocation = "Independence";
-	m_milesLeft = 1907; // Will probably round up to 2000 to compensate for the final river
-	// The final location is Willamette Valley in Oregon
 
 	m_rateOfTravel = 10;
 	m_milesTraveled = 0;
@@ -43,7 +43,7 @@ Trail::Trail()
 	m_rate2_5dollars = 0;
 	m_rate0_5dollars = 0;
 
-	m_totalScore = 10000;
+	m_totalScore = 0;
 
 	srand((unsigned int)time(0));
 }
@@ -148,13 +148,6 @@ void Trail::ActiveGame() {
 				}
 			}
 		}
-
-		/*if (goingToGreenRiver && m_locations[i]->GetName() == "Fort Bridger") {
-			continue;
-		}
-		else if (!goingToGreenRiver && m_locations[i]->GetName() == "Green River") {
-			continue;
-		}*/
 
 		if (m_locations[i]->GetName() == "Blue Mountains") {
 			while (1) {

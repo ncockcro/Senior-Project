@@ -29,6 +29,9 @@ Date
 */
 Date::Date()
 {
+	m_month = "NULL";
+	m_day = 0;
+	m_year = 0;
 	m_hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 }
 

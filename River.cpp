@@ -31,10 +31,9 @@ River::River()
 {
 	srand((unsigned int)time(0));
 
+	m_randomNum = 0;
 	m_riverDepth = 0.0;
-
 	m_riverWidth = 0.0;
-
 	m_hasFerry = false;
 }
 

@@ -34,6 +34,7 @@ Item::Item() {
 	m_capDescription = "NULL";
 	m_capNumber = INT_MAX;
 	m_quantity = 0;
+	m_loseItemNum = 0;
 }
 
 /*

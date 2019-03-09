@@ -36,6 +36,9 @@ Player::Player()
 	m_foodRate = "filling";
 
 	m_health = 3;
+	m_playerMoney = 0;
+	m_playerPosition = "NULL";
+
 }
 
 /*

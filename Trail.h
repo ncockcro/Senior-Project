@@ -72,9 +72,6 @@ private:
 
 	Store m_Store;
 
-	// Player's items during the playthrough
-
-	int m_milesLeft;
 	int m_weather;
 
 	Dialogue m_dialogue = Dialogue();
