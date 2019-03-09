@@ -866,3 +866,8 @@ int Player::GetHealth() {
 void Player::SetHealt(int a_health) {
 	m_health = a_health;
 }
+
+void Player::RemovePlayer(int a_memberNumber) {
+
+	m_wagonParty.erase(m_wagonParty.begin() + a_memberNumber);
+}

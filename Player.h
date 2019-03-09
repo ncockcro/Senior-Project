@@ -50,6 +50,7 @@ public:
 	vector<Member>& GetWagonParty();
 	int GetHealth();
 	void SetHealt(int a_health);
+	void RemovePlayer(int a_memberNumber);
 
 
 private:

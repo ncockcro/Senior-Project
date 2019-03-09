@@ -518,6 +518,14 @@ void Random::DevelopDisease(Player &a_player) {
 
 	a_player.GetWagonParty()[randomNum].AddDisease(PickRandomDisease(a_player.GetWagonParty()[randomNum].GetDiseases()));
 	cout << a_player.GetWagonParty()[randomNum].GetName() << " has " << a_player.GetWagonParty()[randomNum].GetLastDisease() << endl;
+
+	if (a_player.GetWagonParty()[randomNum].CheckIfDead()) {
+		a_player.RemovePlayer(randomNum);
+	}
+
+	for (size_t i = 0; i < a_player.GetWagonParty().size(); i++) {
+		cout << a_player.GetWagonParty()[i].GetName() << endl;
+	}
 }
 
 /*
