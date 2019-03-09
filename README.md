@@ -9,7 +9,7 @@ Oregon Trail was originally developed in 1971 by Don Rawitsch, Bill Heinemann, a
 ### Setup
 When the game first boots up, players are greated by a welcome screen with several options, this is the main menu.  Users can start a new game, get a description of what the game is about, check the leaderboards, and exit the application. 
 
-###Actual Trail
+### Actual Trail
 
 Once entering into a new game, the player is asked to pick what their profession is. They have the option to start off as a banker, carpenter, or farmer which each start out with $1600, $800, and $400 respectively. Then the player is asked for the names of their party members and which month to leave from. The month they leave has an impact on some of the random conditions they may encounter in the game. For example, if they leave in March, the party will be more susceptible to blizzards which will cause the player to lose the trail for a couple days and go through their food more quickly due to the cold weather. After these choices are made, you stop by Matt's general store to pick up supplies for the trip. Finally your off! Your path goes as follows:
 
@@ -19,7 +19,7 @@ Fort Boise --> Blue Mountains --> Fort Walla Walla --> The Dalles --> Willamette
 
 Through this path the player will encounter random events such as disease, thieves, blizzards, lack of water, and much more. However, once the player makes it to Willamette Valley, they made it to Oregon and the game is over. The player's score is shown and then they are taken back to the main menu.
 
-###Trail Menu
+### Trail Menu
 Every time the player stops at a location, they have several options available to them by the trail menu. In the menu, the player can:
 
 - Check the supplies that they own
@@ -30,19 +30,19 @@ Every time the player stops at a location, they have several options available t
 - Talk to people
 - Either buy supplies OR hunt (depending on the location)
 
-###Map
+### Map
 When the player stops at a location, they have the option to look at the map and see which locations they have been to and which ones they need to go to. The locations in green mean they have been visited and the ones in red are the ones the player still needs to go to.
 
-###Player's Pace
+### Player's Pace
 The player has the option to change the pace at which they travel at. They have the options of steady, streneuous, and grueling. Steady will keep the player's party healthy and travel at a moderate amount of miles. Steneuous picks up the pace from steady and will negatively impact the party's health but not by much. Grueling will allow the player to travel more per day but will greatly hurt the player's overal party health.
 
-###Player's Food Rate
+### Player's Food Rate
 The player has the option to change how much food the party will eat. per day. They have the options of filling, meager, and bare bones. Filling will give three pounds of food to each party member and will ensure that the party stays healthy. Meager will give two pounds of food to each party member and will slightly keep the party healthy. Bare bones will only give one pound of food to each party member and this will negatively impact the party's health.
 
-###Rest
+### Rest
 At a location, the player has the option to rest which still has the player's party eat food for every day they rest, but, the party will regain health as long as the player has enough food for the rest.
 
-###Dialogue
+### Dialogue
 As the player travels across the trail, there are various people to talk to at all of the locations in the game. These people offer helpful tips that can lead the player in the right direction to surviving the Oregon Trail.
 
 ### Stores
