@@ -354,3 +354,11 @@ string Utility::GetHealthName(int a_health) {
 		return "NULL";
 	}
 }
+
+void Utility::BlueText(string a_text) {
+
+	SetConsoleTextAttribute(m_hConsole, 11);
+	cout << "\t " << a_text << endl;
+	SetConsoleTextAttribute(m_hConsole, 7);
+
+}

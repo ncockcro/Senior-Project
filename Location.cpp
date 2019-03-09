@@ -66,7 +66,7 @@ Date
 
 	1:16pm 3/3/2019
 */
-void Location::CrossLocation(Player &a_player, Date &a_date, int a_weather) {
+void Location::CrossLocation(Player &a_player, Date &a_date) {
 
 }
 

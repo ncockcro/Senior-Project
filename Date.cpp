@@ -32,6 +32,7 @@ Date::Date()
 	m_month = "NULL";
 	m_day = 0;
 	m_year = 0;
+	m_weather = 0;
 	m_hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 }
 
@@ -84,6 +85,8 @@ void Date::NextDay() {
 	else {
 		m_day++;
 	}
+
+	CheckAndChangeWeather();
 }
 
 /*
@@ -358,6 +361,7 @@ Date
 */
 void Date::SetMonth(string a_month) {
 	m_month = a_month;
+	CheckAndChangeWeather();
 }
 
 /*
@@ -500,4 +504,33 @@ void Date::ShowDate() {
 	cout << "-----------------------------------------------" << endl;
 	cout << "\t \t " << m_month << " " << m_day << ", " << m_year << endl;
 	cout << "-----------------------------------------------" << endl << endl;
+}
+
+int Date::GetWeather() {
+	return m_weather;
+}
+
+void Date::CheckAndChangeWeather() {
+
+	if (ConvertMonth(m_month) == 12 || ConvertMonth(m_month) < 4) {
+		m_weather = 0;
+	}
+	else if (ConvertMonth(m_month) < 5) {
+		m_weather = 1;
+	}
+	else if (ConvertMonth(m_month) < 6) {
+		m_weather = 2;
+	}
+	else if (ConvertMonth(m_month) < 7) {
+		m_weather = 3;
+	}
+	else if (ConvertMonth(m_month) < 9) {
+		m_weather = 4;
+	}
+	else if (ConvertMonth(m_month) < 10) {
+		m_weather = 3;
+	}
+	else if (ConvertMonth(m_month) < 11) {
+		m_weather = 1;
+	}
 }

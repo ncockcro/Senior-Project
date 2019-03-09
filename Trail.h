@@ -72,8 +72,6 @@ private:
 
 	Store m_Store;
 
-	int m_weather;
-
 	Dialogue m_dialogue = Dialogue();
 
 	vector<Location*> m_locations;

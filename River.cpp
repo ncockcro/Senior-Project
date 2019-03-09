@@ -67,7 +67,7 @@ Date
 
 	11:21am 2/6/2019
 */
-void River::CrossLocation(Player &a_player, Date &a_date, int a_weather) {
+void River::CrossLocation(Player &a_player, Date &a_date) {
 
 	string choice;
 
@@ -87,7 +87,7 @@ void River::CrossLocation(Player &a_player, Date &a_date, int a_weather) {
 
 	while (1) {
 		cout << "\t " << a_date.GetMonth() << " " << a_date.GetDay() << ", " << a_date.GetYear() << endl << endl;
-		ShowRiverMenu(m_utility.GetWeatherName(a_weather));
+		ShowRiverMenu(m_utility.GetWeatherName(a_date.GetWeather()));
 		cin >> choice;
 
 		// If the player wants to ford the river with their wagon

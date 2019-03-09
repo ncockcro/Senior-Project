@@ -36,17 +36,21 @@ public:
 	void SetDay(int a_day);
 	void ShowLocation(string a_location);
 	void ShowDate();
+	int GetWeather();
 
 private:
 	Utility m_utility;
 	string ConvertMonth(int a_month);
 	int ConvertMonth(string a_month);
+	void CheckAndChangeWeather();
 
 	string m_month;
 	int m_year;
 	int m_day;
 
 	int m_lastDays[12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+
+	int m_weather;
 
 	HANDLE m_hConsole;
 };

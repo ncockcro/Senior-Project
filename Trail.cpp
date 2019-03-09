@@ -30,7 +30,6 @@ Date
 */
 Trail::Trail()
 {
-	m_weather = 0;
 
 	m_currentLocation = "Independence";
 
@@ -119,7 +118,7 @@ void Trail::ActiveGame() {
 			}
 		}
 
-		m_locations[i]->CrossLocation(m_player, m_date, m_weather);
+		m_locations[i]->CrossLocation(m_player, m_date);
 
 		// If the player is at the Green River, then they have the option to travel to Green River,
 		// or the next location which is Fort Bridger
@@ -185,9 +184,17 @@ void Trail::ActiveGame() {
 			ShowAndUpdateTrailInfo(m_rateOfTravel, milesNeededToTravel);
 			milesTraveled += m_rateOfTravel;
 
-			m_randomEvent.RandomEvent(m_player, m_date, m_weather);
+			m_randomEvent.RandomEvent(m_player, m_date);
+
+			if (m_player.GetWagonLeader().CheckIfDead() && m_player.GetWagonParty().size() == 0) {
+				break;
+			}
 
 			m_utility.Wait();
+		}
+
+		if (m_player.GetWagonLeader().CheckIfDead() && m_player.GetWagonParty().size() == 0) {
+			break;
 		}
 
 		m_milesTraveled -= m_rateOfTravel;
@@ -196,8 +203,10 @@ void Trail::ActiveGame() {
 
 	}
 
-	m_dialogue.T_End();
-	CalculateScore();
+	if (!m_player.GetWagonLeader().CheckIfDead()) {
+		m_dialogue.T_End();
+		CalculateScore();
+	}
 
 }
 
@@ -622,7 +631,7 @@ void Trail::TrailMenu(bool a_hasStore, string a_locationName) {
 	bool alreadyHunted = false;
 
 	while (1) {
-		cout << "\t Weather: " << m_utility.GetWeatherName(m_weather) << endl;
+		cout << "\t Weather: " << m_utility.GetWeatherName(m_date.GetWeather()) << endl;
 		cout << "\t Health: " << m_utility.GetHealthName(m_player.GetHealth()) << endl;
 		cout << "\t Pace: " << m_player.GetPace() << endl;
 		cout << "\t Rations: " << m_player.GetFoodRate() << endl << endl;

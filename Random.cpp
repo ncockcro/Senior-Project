@@ -63,19 +63,19 @@ Date
 
 	3:44pm 3/2/2019
 */
-void Random::RandomEvent(Player &a_player, Date &a_date, int a_weather) {
+void Random::RandomEvent(Player &a_player, Date &a_date) {
 
 	int randomNum = rand() % 100;
 
 
 	// If the weather is cold, higher chance for a blizzard
-	if (a_weather == 0) {
+	if (a_date.GetWeather() == 0) {
 		if (randomNum >= 80) {
 			Blizzard(a_player, a_date);
 			return;
 		}
 	}
-	else if (a_weather == 4) {
+	else if (a_date.GetWeather() == 4) {
 		if (randomNum >= 80) {
 			Thunderstorm(a_player, a_date);
 			return;
@@ -363,8 +363,18 @@ void Random::BadTrail(Player &a_player, Date &a_date) {
 	cout << "Lose trail. You lose " << randomNum << " days." << endl;
 
 	for (int i = 0; i < randomNum; i++) {
+
+		if (randomNum - i == 1) {
+			cout << "\t Still lost for " << randomNum - i << " day..." << endl;
+		}
+		else {
+			cout << "\t Still lost for " << randomNum - i << " days..." << endl;
+		}
+		m_utility.Wait();
+
 		a_date.NextDay();
 		a_player.DeductFood();
+
 	}
 }
 
@@ -514,13 +524,43 @@ Date
 void Random::DevelopDisease(Player &a_player) {
 
 	int sizeOfParty = a_player.GetWagonParty().size();
-	int randomNum = rand() % sizeOfParty;
+	int randomNum;
+	string playersDisease;
+	string temp;
 
-	a_player.GetWagonParty()[randomNum].AddDisease(PickRandomDisease(a_player.GetWagonParty()[randomNum].GetDiseases()));
-	cout << a_player.GetWagonParty()[randomNum].GetName() << " has " << a_player.GetWagonParty()[randomNum].GetLastDisease() << endl;
+	if (sizeOfParty > 0) {
+		randomNum = rand() % sizeOfParty;
+	}
 
-	if (a_player.GetWagonParty()[randomNum].CheckIfDead()) {
-		a_player.RemovePlayer(randomNum);
+	if (a_player.GetWagonParty().size() > 0) {
+		a_player.GetWagonParty()[randomNum].AddDisease(PickRandomDisease(a_player.GetWagonParty()[randomNum].GetDiseases()));
+		playersDisease = a_player.GetWagonParty()[randomNum].GetName() + " has " + a_player.GetWagonParty()[randomNum].GetLastDisease();
+		m_utility.BlueText(playersDisease);
+		cout << endl;
+
+		if (a_player.GetWagonParty()[randomNum].CheckIfDead()) {
+
+			temp = a_player.GetWagonParty()[randomNum].GetName() + " has died.";
+			m_utility.DisplayError(temp);
+			a_player.RemovePlayer(randomNum);
+		}
+	}
+	else {
+		a_player.GetWagonLeader().AddDisease(PickRandomDisease(a_player.GetWagonLeader().GetDiseases()));
+		playersDisease = a_player.GetWagonLeader().GetName() + " has " + a_player.GetWagonLeader().GetLastDisease();
+		m_utility.BlueText(playersDisease);
+		cout << endl;
+
+		if (a_player.GetWagonLeader().CheckIfDead()) {
+
+			temp = a_player.GetWagonLeader().GetName() + ", your wagon leader, has died.";
+			m_utility.DisplayError(temp);
+			m_utility.Wait();
+
+			m_utility.DisplayError("Oh dear, all of your party members have passed.");
+			m_utility.DisplayError("You never made it to Oregon. You and about");
+			m_utility.DisplayError("15,000 other pioneers never made it past the trail.");
+		}
 	}
 }
 

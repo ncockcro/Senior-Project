@@ -35,6 +35,7 @@ public:
 	bool CheckInput(string a_input);
 	string GetWeatherName(int a_weather);
 	string GetHealthName(int a_health);
+	void BlueText(string a_text);
 
 private:
 	HANDLE m_hConsole;

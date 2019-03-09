@@ -33,7 +33,7 @@ class Random
 {
 public:
 	Random();
-	void RandomEvent(Player &a_player, Date &a_date, int a_weather);
+	void RandomEvent(Player &a_player, Date &a_date);
 
 private:
 	void FindWildFruit(Player &a_player);
