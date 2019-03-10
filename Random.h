@@ -43,7 +43,7 @@ private:
 	void BadTrail(Player &a_player, Date &a_date);
 	void Blizzard(Player &a_player, Date &a_date);
 	void Thunderstorm(Player &a_player, Date &a_date);
-	void DevelopDisease(Player &a_player);
+	void DevelopeDisease(Player &a_player);
 	void BrokenWagonPartHelper(Player &a_player, string a_itemName);
 	string PickRandomDisease(vector<string> a_currentDiseases);
 

@@ -36,6 +36,7 @@ Player::Player()
 	m_foodRate = "filling";
 
 	m_health = 3;
+	m_healthOutOfHundred = 100;
 	m_playerMoney = 0;
 	m_playerPosition = "NULL";
 
@@ -386,7 +387,38 @@ Date
 	1:49pm 3/3/2019
 */
 void Player::DeductFood() {
-	m_Food.DecrementFood(m_foodRate);
+
+	if (m_Food.GetQuantity() == 0 || m_foodRate == "bare bones") {
+		DecreaseHealthOutOfHundred(2);
+	}
+	else if (m_foodRate == "steady") {
+		IncreaseHealthOutOfHundred(2);
+	}
+	else if (m_foodRate == "filling") {
+		IncreaseHealthOutOfHundred(5);
+	}
+	m_Food.DecrementFood(m_foodRate, m_wagonParty.size() + 1);
+
+	
+}
+
+void Player::DeductFood(bool a_isResting) {
+
+	if (a_isResting) {
+		if (m_Food.GetQuantity() == 0 || m_foodRate == "bare bones") {
+			DecreaseHealthOutOfHundred(2);
+		}
+		else if (m_foodRate == "bare bones") {
+			IncreaseHealthOutOfHundred(2);
+		}
+		else if (m_foodRate == "steady") {
+			IncreaseHealthOutOfHundred(4);
+		}
+		else if (m_foodRate == "filling") {
+			IncreaseHealthOutOfHundred(10);
+		}
+		m_Food.DecrementFood(m_foodRate, m_wagonParty.size() + 1);
+	}
 }
 
 /*
@@ -864,6 +896,19 @@ vector<Member>& Player::GetWagonParty() {
 }
 
 int Player::GetHealth() {
+
+	if (m_healthOutOfHundred > 75) {
+		m_health = 3;
+	}
+	else if (m_healthOutOfHundred > 50) {
+		m_health = 2;
+	}
+	else if (m_healthOutOfHundred > 25) {
+		m_health = 1;
+	}
+	else {
+		m_health = 0;
+	}
 	return m_health;
 }
 void Player::SetHealt(int a_health) {
@@ -873,4 +918,24 @@ void Player::SetHealt(int a_health) {
 void Player::RemovePlayer(int a_memberNumber) {
 
 	m_wagonParty.erase(m_wagonParty.begin() + a_memberNumber);
+}
+
+void Player::IncreaseHealthOutOfHundred(int a_increase) {
+
+	if (m_healthOutOfHundred + a_increase < 100) {
+		m_healthOutOfHundred += a_increase;
+	}
+	else {
+		m_healthOutOfHundred = 100;
+	}
+}
+
+void Player::DecreaseHealthOutOfHundred(int a_decrease) {
+
+	if (m_healthOutOfHundred - a_decrease > -1) {
+		m_healthOutOfHundred -= a_decrease;
+	}
+	else {
+		m_healthOutOfHundred = 0;
+	}
 }

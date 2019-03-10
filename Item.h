@@ -41,7 +41,7 @@ public:
 	int GetQuantity();
 	void SetQuantity(int a_quantity);
 	void AddToQuantity(int a_quantity);
-	void DecrementFood(string a_rate);
+	void DecrementFood(string a_rate, int a_sizeOfParty);
 	int GetLoseItemNum();
 	void SetLoseItemNum(int a_num);
 

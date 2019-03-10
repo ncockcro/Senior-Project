@@ -45,6 +45,8 @@ Trail::Trail()
 	m_totalScore = 0;
 
 	srand((unsigned int)time(0));
+
+	m_passedFortLaramie = false;
 }
 
 /*
@@ -178,6 +180,7 @@ void Trail::ActiveGame() {
 
 		milesNeededToTravel = m_locations[i]->GetMilesNeeded();
 		milesTraveled = 0;
+		UpdateRateOfTravel();
 
 		// At each location, keep cycling through til the player reaches the destination
 		for (int j = 0; j < m_locations[i]->GetMilesNeeded(); j += m_rateOfTravel) {
@@ -995,30 +998,24 @@ void Trail::Rest() {
 			m_utility.DisplayError("Invalid input.");
 			continue;
 		}
-		//try {
 
 			// Only allowed to rest 9 days
-			if (stoi(numOfDays) > 9) {
-				m_utility.DisplayError("Can only rest at most 9 days.");
-			}
-			else {
-				for (int i = 0; i < stoi(numOfDays); i++) {
-					m_date.ShowDate();
-					m_utility.OutputMessage("Your party rests and recovers");
-					m_utility.OutputMessage("for the day.");
-					m_utility.Wait();
+		if (stoi(numOfDays) > 9) {
+			m_utility.DisplayError("Can only rest at most 9 days.");
+		}
+		else {
+			for (int i = 0; i < stoi(numOfDays); i++) {
+				m_date.ShowDate();
+				m_utility.OutputMessage("Your party rests and recovers");
+				m_utility.OutputMessage("for the day.");
+				m_utility.Wait();
 
-					m_date.NextDay();
+				m_date.NextDay();
+				m_player.DeductFood(true);
 
-				}
-				break;
 			}
-		//}
-		// If the user typed in anything other than a number, an exception will be thrown and the player
-		// will get an error message
-		/*catch (exception e) {
-			m_utility.DisplayError("Invalid option.");
-		}*/
+			break;
+		}
 	}
 }
 
@@ -1174,12 +1171,13 @@ Date
 void Trail::ShowAndUpdateTrailInfo(int a_miles, int &a_milesNeeded) {
 
 	cout << "\t Date: " << m_date.GetMonth() << " " << m_date.GetDay() << ", " << m_date.GetYear() << endl;
-	cout << "\t Weather: " << "Warm" << endl;
-	cout << "\t Health: " << "Good" << endl;
+	cout << "\t Weather: " << m_utility.GetWeatherName(m_date.GetWeather()) << endl;
+	cout << "\t Health: " << m_utility.GetHealthName(m_player.GetHealth()) << endl;
 	cout << "\t Food: " << m_player.GetItem("Food").GetQuantity() << endl;
 	cout << "\t Next landmark: " << a_milesNeeded << " miles" << endl;;
 	cout << "\t Miles traveled: " << m_milesTraveled << " miles" << endl << endl;
 
+	UpdateRateOfTravel();
 	m_player.DeductFood();
 	m_date.NextDay();
 	a_milesNeeded -= m_rateOfTravel;
@@ -1639,4 +1637,28 @@ Date
 */
 int Trail::GetTotalScore() {
 	return m_totalScore;
+}
+
+void Trail::UpdateRateOfTravel() {
+
+	if (m_currentLocation == "Fort Laramie") {
+		m_passedFortLaramie = true;
+	}
+	if (m_player.GetHealth() == 3) {
+		m_rateOfTravel = 18 + m_player.GetItem("Oxen").GetQuantity();
+	}
+	else if (m_player.GetHealth() == 2) {
+		m_rateOfTravel = 15 + m_player.GetItem("Oxen").GetQuantity();
+	}
+	else if (m_player.GetHealth() == 1) {
+		m_rateOfTravel = 12 + m_player.GetItem("Oxen").GetQuantity();
+	}
+	else if (m_player.GetHealth() == 0) {
+		m_rateOfTravel = 9 + m_player.GetItem("Oxen").GetQuantity();
+	}
+
+	if (m_passedFortLaramie) {
+		m_rateOfTravel / 2;
+	}
+
 }

@@ -63,6 +63,7 @@ private:
 	void IncreaseRates();
 	void CalculateScore();
 	void ShowScoreDetails(int a_scores[]);
+	void UpdateRateOfTravel();
 
 
 	Utility m_utility = Utility();
@@ -104,5 +105,7 @@ private:
 	int m_totalScore;
 
 	Random m_randomEvent;
+
+	bool m_passedFortLaramie;
 };
 

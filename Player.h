@@ -40,6 +40,7 @@ public:
 	double GetPlayerMoney();
 	void DeductMoney(double a_money);
 	void DeductFood();
+	void DeductFood(bool a_isResting);
 	vector<Item> LoseItems();
 	string GetPlayerPosition();
 	void SetPace(string a_pace);
@@ -56,6 +57,8 @@ public:
 private:
 	Utility m_utility = Utility();
 	void GenerateItemRandNums();
+	void IncreaseHealthOutOfHundred(int a_increase);
+	void DecreaseHealthOutOfHundred(int a_decrease);
 
 	Member m_wagonLeader;
 	vector <Member> m_wagonParty;
@@ -64,6 +67,7 @@ private:
 	string m_playerPosition;
 
 	int m_health; // 0 = very poor, 1 = poor, 2 = fair, 3 = good
+	int m_healthOutOfHundred;
 
 	// Player's items
 	Item m_Oxen;

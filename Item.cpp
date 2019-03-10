@@ -570,7 +570,7 @@ void Item::AddToQuantity(int a_quantity) {
 }
 
 /*
-	Item::DecrementFood(string a_rate)
+	Item::DecrementFood(string a_rate, int a_sizeOfParty)
 
 NAME
 
@@ -578,8 +578,10 @@ NAME
 
 SYNOPSIS
 
-	void Item::DecrementFood(int a_rate)
+	void Item::DecrementFood(string a_rate, int a_sizeOfParty)
+
 		a_rate --> the rate at which the player is consuming food
+		a_sizeOfParty --> size of the player's party
 
 DESCRIPTION
 
@@ -597,16 +599,16 @@ Date
 
 	10:19pm 1/25/2019
 */
-void Item::DecrementFood(string a_rate) {
+void Item::DecrementFood(string a_rate, int a_sizeOfParty) {
 
 	if (m_quantity > 15 && a_rate == "filling") {
-		m_quantity -= 15;
+		m_quantity -= (a_sizeOfParty * 3);
 	}
 	else if (m_quantity >= 10 && a_rate == "meager") {
-		m_quantity -= 10;
+		m_quantity -= (a_sizeOfParty * 2);
 	}
 	else if (m_quantity >= 5 && a_rate == "bare bones") {
-		m_quantity -= 5;
+		m_quantity -= a_sizeOfParty;
 	}
 	else {
 		m_quantity = 0;

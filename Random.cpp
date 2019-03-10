@@ -67,16 +67,21 @@ void Random::RandomEvent(Player &a_player, Date &a_date) {
 
 	int randomNum = rand() % 100;
 
+	if (a_player.GetHealth() == 0) {
+		if (randomNum >= 60) {
+			DevelopeDisease(a_player);
+		}
+	}
 
 	// If the weather is cold, higher chance for a blizzard
 	if (a_date.GetWeather() == 0) {
-		if (randomNum >= 80) {
+		if (randomNum >= 85) {
 			Blizzard(a_player, a_date);
 			return;
 		}
 	}
 	else if (a_date.GetWeather() == 4) {
-		if (randomNum >= 80) {
+		if (randomNum >= 85) {
 			Thunderstorm(a_player, a_date);
 			return;
 		}
@@ -98,10 +103,7 @@ void Random::RandomEvent(Player &a_player, Date &a_date) {
 		BadTrail(a_player, a_date);
 	}
 	else if (randomNum >= 70) {
-		DevelopDisease(a_player);
-	}
-	else {
-
+		DevelopeDisease(a_player);
 	}
 
 }
@@ -521,7 +523,7 @@ Date
 
 	12:42pm 3/3/2019
 */
-void Random::DevelopDisease(Player &a_player) {
+void Random::DevelopeDisease(Player &a_player) {
 
 	int sizeOfParty = a_player.GetWagonParty().size();
 	int randomNum;
