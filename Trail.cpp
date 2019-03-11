@@ -82,6 +82,7 @@ void Trail::ActiveGame() {
 	int milesTraveled;
 	string whichDirection;
 	bool goingToGreenRiver = true;
+	bool skipDalles = false;
 
 	// These next few functions are used for the intro to Oregon Trail
 	PromptPosition();
@@ -97,6 +98,18 @@ void Trail::ActiveGame() {
 
 	// Cycle through the list of locations that the player has to travel to
 	for (size_t i = 0; i < m_locations.size(); i++) {
+
+		// Now when the second The Dalles comes up in the iteration, it
+		// will be skipped since the player already went to the dalles
+		if (m_locations[i]->GetName() == "The Dalles" && skipDalles) {
+			continue;
+		}
+
+		// If the player is at The Dalles, set the boolean to true so it will
+		// skip the second Dalles entry in the m_locations vector
+		if (m_locations[i]->GetName() == "The Dalles" && !skipDalles) {
+			skipDalles = true;
+		}
 
 		m_currentLocation = m_locations[i]->GetName();
 
@@ -178,7 +191,15 @@ void Trail::ActiveGame() {
 
 		// So long as there is a "next location", show to the player how far the next location is
 		if (m_utility.HasElement(m_locations.size(), i + 1)) {
-			ShowMilesTo(m_locations[i]->GetName(), m_locations[i + 1]->GetName(), m_locations[i]->GetMilesNeeded());
+
+			// If the player choice to go to The Dalles over Fort Walla Walla, then we need to skip over
+			// an entry in the locations vector since it will be a Dalles duplicate
+			if (m_locations[i]->GetName() == "The Dalles" && skipDalles && m_utility.HasElement(m_locations.size(), i + 2)) {
+				ShowMilesTo(m_locations[i]->GetName(), m_locations[i + 2]->GetName(), m_locations[i]->GetMilesNeeded());
+			}
+			else {
+				ShowMilesTo(m_locations[i]->GetName(), m_locations[i + 1]->GetName(), m_locations[i]->GetMilesNeeded());
+			}
 		}
 
 		milesNeededToTravel = m_locations[i]->GetMilesNeeded();
@@ -210,6 +231,7 @@ void Trail::ActiveGame() {
 		m_milesTraveled -= m_rateOfTravel;
 		milesTraveled -= m_rateOfTravel;
 		AddEndingMiles(m_locations[i]->GetMilesNeeded() - milesTraveled);
+
 
 	}
 
@@ -1123,7 +1145,7 @@ void Trail::InitializeLocations() {
 	m_FortWallaWalla.SetMilesNeeded(55);
 
 	m_TheDalles.SetName("The Dalles");
-	m_TheDalles.SetMilesNeeded(125);
+	m_TheDalles.SetMilesNeeded(100);
 	m_TheDalles.SetHasStore(false);
 
 	m_WillametteValley.SetName("Willamette Valley"); // User must pay to get into this location
@@ -1145,7 +1167,7 @@ void Trail::InitializeLocations() {
 	m_locations.push_back(&m_FortBoise);
 	m_locations.push_back(&m_BlueMountains);
 	m_locations.push_back(&m_FortWallaWalla);
-	//m_locations.push_back(&m_TheDalles);
+	m_locations.push_back(&m_TheDalles);
 	m_locations.push_back(&m_WillametteValley);
 
 

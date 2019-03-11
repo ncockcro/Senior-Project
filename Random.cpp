@@ -87,22 +87,22 @@ void Random::RandomEvent(Player &a_player, Date &a_date) {
 		}
 	}
 
-	if (randomNum >= 95) {
+	if (randomNum >= 96) {
 		FindWildFruit(a_player);
 	}
-	else if (randomNum >= 90) {
+	else if (randomNum >= 94) {
 		StolenGoods(a_player);
 	}
-	else if (randomNum >= 85) {
+	else if (randomNum >= 92) {
 		BrokenWagonPart(a_player);
 	}
-	else if (randomNum >= 80) {
+	else if (randomNum >= 89) {
 		FindAbandonedWagon(a_player);
 	}
-	else if (randomNum >= 75) {
+	else if (randomNum >= 87) {
 		BadTrail(a_player, a_date);
 	}
-	else if (randomNum >= 70) {
+	else if (randomNum >= 85) {
 		DevelopeDisease(a_player);
 	}
 
