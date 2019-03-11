@@ -108,20 +108,25 @@ void River::CrossLocation(Player &a_player, Date &a_date) {
 				break;
 			}
 		}
+		else if (m_hasIndianFerry && choice == "3") {
+			if (TakeIndianFerry(a_player)) {
+				break;
+			}
+		}
 		// If the river does not have a ferry, then option 3 is for waiting for conditions
-		else if (!m_hasFerry && choice == "3") {
+		else if (!m_hasFerry || !m_hasIndianFerry && choice == "3") {
 			WaitADay(a_date);
 		}
 		// If the river has a ferry, then option 4 is for waiting for conditions
-		else if (m_hasFerry && choice == "4") {
+		else if (m_hasFerry || m_hasIndianFerry && choice == "4") {
 			WaitADay(a_date);
 		}
 		// If there is no ferry for the river, then option 4 is for getting more info
-		else if (!m_hasFerry && choice == "4") {
+		else if (!m_hasFerry || !m_hasIndianFerry && choice == "4") {
 			RiverMoreInfoDialogue();
 		}
 		// If there is a ferry at the river, then option 5 is for getting more info
-		else if (m_hasFerry && choice == "5") {
+		else if (m_hasFerry || m_hasIndianFerry && choice == "5") {
 			RiverMoreInfoDialogue();
 		}
 		else {
@@ -275,6 +280,11 @@ void River::ShowRiverMenu(string a_weather) {
 	cout << "\t 2. caulk the wagon and float it across" << endl;
 	if (m_hasFerry) {
 		cout << "\t 3. take a ferry across" << endl;
+		cout << "\t 4. wait to see if conditions improve" << endl;
+		cout << "\t 5. get more information" << endl << endl;
+	}
+	else if (m_hasIndianFerry) {
+		cout << "\t 3. hire an Indian to help" << endl;
 		cout << "\t 4. wait to see if conditions improve" << endl;
 		cout << "\t 5. get more information" << endl << endl;
 	}
@@ -560,6 +570,61 @@ bool River::TakeFerry(Player &a_player) {
 	return takeFerry;
 }
 
+bool River::TakeIndianFerry(Player &a_player) {
+
+	string choice;
+	bool takeIndianFerry = false;
+
+	while (1) {
+		cout << endl;
+		m_utility.OutputMessage("A Shoshoni guide says that he");
+		m_utility.OutputMessage("will take your wagon across");
+		m_utility.OutputMessage("the river in exchange for 3");
+		m_utility.OutputMessage("sets of clothing.");
+		cout << endl;
+
+		m_utility.OutputMessage("Will you accept this");
+		cout << "\t offer? ";
+		cin >> choice;
+
+		if (choice == "yes" || choice == "ye" || choice == "y") {
+			takeIndianFerry = true;
+			if (a_player.GetItem("Clothing").GetQuantity() >= 3) {
+				a_player.SetItemQuantity("Clothing", a_player.GetItem("Clothing").GetQuantity() - 3);
+				break;
+			}
+			else {
+				m_utility.DisplayError("You do not have enough clothing");
+				m_utility.DisplayError("to pay the Shoshoni guide.");
+				return false;
+			}
+		}
+		else if (choice == "no" || choice == "n") {
+			break;
+		}
+		else {
+			m_utility.OutputMessage("Invalid choice.");
+		}
+	}
+
+	if (takeIndianFerry) {
+		m_utility.OutputMessage("Crossing river...");
+		m_utility.Wait();
+
+		m_utility.OutputMessage("Crossing river...");
+		m_utility.Wait();
+
+		m_utility.OutputMessage("Crossing river...");
+		m_utility.Wait();
+
+		m_utility.OutputMessage("The Shoshoni guide got your");
+		m_utility.OutputMessage("party and wagon safely across.");
+		m_utility.Wait();
+	}
+
+	return takeIndianFerry;
+}
+
 /*
 	River::WaitADay()
 
@@ -686,7 +751,13 @@ Date
 	12:07pm 2/6/2019
 */
 void River::SetHasFerry(bool a_hasFerry) {
+
 	m_hasFerry = a_hasFerry;
+}
+
+void River::SetHasIndianFerry(bool a_hasIndianFerry) {
+
+	m_hasIndianFerry = a_hasIndianFerry;
 }
 
 /*

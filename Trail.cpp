@@ -1133,6 +1133,7 @@ void Trail::InitializeLocations() {
 
 	m_SnakeRiver.SetName("Snake River");
 	m_SnakeRiver.SetMilesNeeded(113); // Has the option to hire an Indian to cross
+	m_SnakeRiver.SetHasIndianFerry(true);
 
 	m_FortBoise.SetName("Fort Boise");
 	m_FortBoise.SetMilesNeeded(160);

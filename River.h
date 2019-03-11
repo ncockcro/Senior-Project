@@ -34,6 +34,7 @@ public:
 	double GetRiverWidth();
 	double GetRiverDepth();
 	void SetHasFerry(bool a_hasFerry);
+	void SetHasIndianFerry(bool a_hasIndianFerry);
 
 private:
 	void OpeningDialogue();
@@ -41,6 +42,7 @@ private:
 	void FordRiver(Player &a_player);
 	void FloatRiver(Player &a_player);
 	bool TakeFerry(Player &a_player);
+	bool TakeIndianFerry(Player &a_player);
 	void WaitADay(Date &a_date);
 	void RiverMoreInfoDialogue();
 	bool GenerateRandomNum(double a_percent);
@@ -50,5 +52,6 @@ private:
 	double m_riverDepth;
 	Utility m_utility = Utility();
 	bool m_hasFerry;
+	bool m_hasIndianFerry;
 };
 
