@@ -88,7 +88,7 @@ void Store::DisplayStore(vector<Item> a_items, Player a_player) {
 
 		// Printing out the items that are being sold in the store
 		for (size_t i = 0; i < a_items.size(); i++) {
-			cout << "\t " << i + 1 << ". " << a_items[i].GetName() << "      " << fixed << setprecision(2) << m_itemPrices[i] << endl;
+			cout << "\t " << i + 1 << ". " << left << setw(30) << a_items[i].GetName() << fixed << setprecision(2) << m_itemPrices[i] << endl;
 		}
 		cout << "\t " << a_items.size() + 1 << ". to leave the store." << endl;
 		SetConsoleTextAttribute(hConsole, m_color);
