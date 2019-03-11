@@ -40,7 +40,7 @@ NAME
 
 SYNOPSIS
 
-	Utility::DisplayError(string a_error)
+	void Utility::DisplayError(string a_error)
 
 	a_error  --> the error that wants to be outputted
 
@@ -50,7 +50,7 @@ DESCRIPTION
 
 RETURNS
 
-	None
+	Void
 
 AUTHOR
 
@@ -76,7 +76,7 @@ NAME
 
 SYNOPSIS
 
-	Utility::Wait()
+	void Utility::Wait()
 
 DESCRIPTION
 
@@ -112,7 +112,7 @@ NAME
 
 SYNOPSIS
 
-	Utility::IsDigits(string &a_input)
+	bool Utility::IsDigits(string &a_input)
 
 	a_input  --> a string to be checked if it is a number
 

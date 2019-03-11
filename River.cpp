@@ -326,6 +326,7 @@ void River::FordRiver(Player &a_player) {
 
 		// Insert random chance of losing items here
 		if (m_riverDepth < 3.00) {
+
 			// 10% of losing items
 			if (GenerateRandomNum(0.1)) {
 				lostItems = a_player.LoseItems();
@@ -343,6 +344,7 @@ void River::FordRiver(Player &a_player) {
 			}
 		}
 		else if (m_riverDepth < 7.00) {
+
 			// 50% of losing items
 			if (GenerateRandomNum(0.5)) {
 				lostItems = a_player.LoseItems();
@@ -360,6 +362,7 @@ void River::FordRiver(Player &a_player) {
 			}
 		}
 		else {
+
 			// 40% of losing items
 			if (GenerateRandomNum(0.4)) {
 				lostItems = a_player.LoseItems();
@@ -423,6 +426,7 @@ void River::FloatRiver(Player &a_player) {
 
 		// Insert random chance of losing items here
 		if (m_riverDepth < 3.00) {
+
 			// 50% of losing items
 			if (GenerateRandomNum(0.5)) {
 				lostItems = a_player.LoseItems();
@@ -440,6 +444,7 @@ void River::FloatRiver(Player &a_player) {
 			}
 		}
 		else if (m_riverDepth < 7.00) {
+
 			// 10% of losing items
 			if (GenerateRandomNum(0.1)) {
 				lostItems = a_player.LoseItems();
@@ -457,6 +462,7 @@ void River::FloatRiver(Player &a_player) {
 			}
 		}
 		else {
+
 			// 40% of losing items
 			if (GenerateRandomNum(0.4)) {
 				lostItems = a_player.LoseItems();
@@ -489,7 +495,7 @@ NAME
 
 SYNOPSIS
 
-	void Trail::TakeFerry(Player &a_player)
+	bool Trail::TakeFerry(Player &a_player)
 
 	a_player --> player object with all of the player's items
 
@@ -500,7 +506,7 @@ DESCRIPTION
 
 RETURNS
 
-	Void
+	Bool
 
 AUTHOR
 
@@ -692,7 +698,7 @@ NAME
 
 SYNOPSIS
 
-	void Trail::GenerateRandomNum(double a_percent)
+	bool Trail::GenerateRandomNum(double a_percent)
 
 	a_percent --> percentage that something will happen
 

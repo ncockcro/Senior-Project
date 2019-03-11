@@ -17,7 +17,7 @@ DESCRIPTION
 
 RETURNS
 
-	Void
+	None
 
 AUTHOR
 
@@ -45,7 +45,7 @@ NAME
 
 SYNOPSIS
 
-	Date::NextDay()
+	void Date::NextDay()
 
 DESCRIPTION
 
@@ -98,7 +98,7 @@ NAME
 
 SYNOPSIS
 
-	Date::ConvertMonth(string a_month)
+	int Date::ConvertMonth(string a_month)
 
 	a_month  --> string version of a month
 
@@ -171,7 +171,7 @@ NAME
 
 SYNOPSIS
 
-	Date::ConvertMonth(int a_month)
+	string Date::ConvertMonth(int a_month)
 
 	a_month  --> integer version of a month
 
@@ -244,7 +244,7 @@ NAME
 
 SYNOPSIS
 
-	Date::GetYear()
+	int Date::GetYear()
 
 DESCRIPTION
 
@@ -252,7 +252,7 @@ DESCRIPTION
 
 RETURNS
 
-	Void
+	Int
 
 AUTHOR
 
@@ -275,7 +275,7 @@ NAME
 
 SYNOPSIS
 
-	Date::NextDay(int a_year)
+	void Date::NextDay(int a_year)
 
 	a_year  --> the year in game
 
@@ -308,7 +308,7 @@ NAME
 
 SYNOPSIS
 
-	Date::GetMonth()
+	String Date::GetMonth()
 
 DESCRIPTION
 
@@ -316,7 +316,7 @@ DESCRIPTION
 
 RETURNS
 
-	Void
+	String
 
 AUTHOR
 
@@ -339,7 +339,7 @@ NAME
 
 SYNOPSIS
 
-	Date::SetMonth(string a_month)
+	void Date::SetMonth(string a_month)
 
 	a_month --> the month in game
 
@@ -373,7 +373,7 @@ NAME
 
 SYNOPSIS
 
-	Date::NGetDay()
+	void Date::GetDay()
 
 DESCRIPTION
 
@@ -404,7 +404,7 @@ NAME
 
 SYNOPSIS
 
-	Date::SetDay(int a_day)
+	void Date::SetDay(int a_day)
 
 	a_day --> the day in game
 
@@ -429,7 +429,7 @@ void Date::SetDay(int a_day) {
 }
 
 /*
-	Date::ShowLocation(string a_location, a_year, a_month, a_day)
+	Date::ShowLocation(string a_location)
 
 NAME
 
@@ -437,7 +437,7 @@ NAME
 
 SYNOPSIS
 
-	Date::ShowLocation(string a_location)
+	void Date::ShowLocation(string a_location)
 
 	a_location --> location the player is in
 
@@ -471,21 +471,19 @@ void Date::ShowLocation(string a_location) {
 }
 
 /*
-	Date::ShowLocation(string a_location, a_year, a_month, a_day)
+	Date::ShowDate()
 
 NAME
 
-	Date::ShowLocation - Shows the location and date splash screen
+	Date::ShowDate - Shows the date
 
 SYNOPSIS
 
-	Date::ShowLocation(string a_location)
-
-	a_location --> location the player is in
+	Date::ShowDate()
 
 DESCRIPTION
 
-	Outputs the splash screen of showing the location the player is in and the date
+	Outputs the splash screen of showing the date.
 
 RETURNS
 
@@ -506,30 +504,92 @@ void Date::ShowDate() {
 	cout << "-----------------------------------------------" << endl << endl;
 }
 
+/*
+	Date::GetWeather()
+
+NAME
+
+	Date::GetWeather - returns the weather
+
+SYNOPSIS
+
+	int Date::GetWeather()
+
+DESCRIPTION
+
+	Returns the value of the weather.
+
+RETURNS
+
+	Int
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	8:37am 3/11/2019
+*/
 int Date::GetWeather() {
 	return m_weather;
 }
 
+/*
+	Date::CheckAndChangeWeather()
+
+NAME
+
+	Date::CheckAndChangeWeather -  Adjusts weather based on season
+
+SYNOPSIS
+
+	void Date::CheckAndChangeWeather()
+
+DESCRIPTION
+
+	Checks which month range the current month is in and changes the weather type depending
+	on which season of the year the game is in.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	8:49am 3/11/2019
+*/
 void Date::CheckAndChangeWeather() {
 
+	// Cold
 	if (ConvertMonth(m_month) == 12 || ConvertMonth(m_month) < 4) {
 		m_weather = 0;
 	}
+	// cool
 	else if (ConvertMonth(m_month) < 5) {
 		m_weather = 1;
 	}
+	// mild
 	else if (ConvertMonth(m_month) < 6) {
 		m_weather = 2;
 	}
+	// warm
 	else if (ConvertMonth(m_month) < 7) {
 		m_weather = 3;
 	}
+	// hot
 	else if (ConvertMonth(m_month) < 9) {
 		m_weather = 4;
 	}
+	// warm
 	else if (ConvertMonth(m_month) < 10) {
 		m_weather = 3;
 	}
+	// cool
 	else if (ConvertMonth(m_month) < 11) {
 		m_weather = 1;
 	}

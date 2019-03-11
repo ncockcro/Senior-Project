@@ -1,5 +1,33 @@
 #include "Oregon_Trail.h"
 
+/*
+Oregon_Trail::Oregon_Trail()
+
+NAME
+
+	Oregon_Trail::Oregon_Trail - Default constructor
+
+SYNOPSIS
+
+	Oregon_Trail::Oregon_Trail()
+
+DESCRIPTION
+
+	This function serves as the default constructor for the Oregon_Trail class. This initializes any member variables
+	used for the class.
+
+RETURNS
+
+	None
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	10:21am 1/8/2019
+*/
 Oregon_Trail::Oregon_Trail()
 {
 	m_choice = "NULL";

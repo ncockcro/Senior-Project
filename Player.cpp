@@ -17,7 +17,7 @@ DESCRIPTION
 
 RETURNS
 
-	Void
+	None
 
 AUTHOR
 
@@ -71,6 +71,7 @@ Date
 	8:25pm 1/23/2019
 */
 void Player::InitializePartyItems() {
+
 	m_Oxen = Item("Oxen", 0.1, "\t There are 2 oxen in a yoke; \n \t I recommend at least 3 yoke. \n \t I charge $40 a yoke.",
 		"You can not bring more than 9 oxen with you.", 9);
 	m_Oxen.SetQuantity(0);
@@ -237,7 +238,7 @@ NAME
 
 SYNOPSIS
 
-	void Player::GetItem(string a_itemName)
+	item Player::GetItem(string a_itemName)
 
 	a_itemName --> name of the item to be retrieved
 
@@ -247,7 +248,7 @@ DESCRIPTION
 
 RETURNS
 
-	Void
+	Item
 
 AUTHOR
 
@@ -295,7 +296,7 @@ NAME
 
 SYNOPSIS
 
-	void Player::GetPlayerMoney()
+	double Player::GetPlayerMoney()
 
 DESCRIPTION
 
@@ -303,7 +304,7 @@ DESCRIPTION
 
 RETURNS
 
-	Void
+	Double
 
 AUTHOR
 
@@ -402,6 +403,38 @@ void Player::DeductFood() {
 	
 }
 
+/*
+	Player::DeductFood(bool a_isResting)
+
+NAME
+
+	Player::DeductFood - Decrements food for food object
+
+SYNOPSIS
+
+	void Player::DeductFood(bool a_isResting)
+
+	a_isResting --> a boolean if the player is currently resting or not
+
+DESCRIPTION
+
+	This function will deduct food from the player based on the rate of decrementing. It also takes in a boolean
+	parameter which is true or false if the player is currently resting. If the player is resting, the rates at
+	which the player is healed is different by them being healed faster since they are resting and not
+	travelling.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	11:13am 3/11/2019
+*/
 void Player::DeductFood(bool a_isResting) {
 
 	if (a_isResting) {
@@ -430,7 +463,7 @@ NAME
 
 SYNOPSIS
 
-	void Player::LoseItems()
+	vector<Item> Player::LoseItems()
 
 DESCRIPTION
 
@@ -470,14 +503,12 @@ vector<Item> Player::LoseItems() {
 		if ((int)(m_Oxen.GetQuantity() * percentRandNum) > 0) {
 			tempNumber = (int)(m_Oxen.GetQuantity() * percentRandNum);
 			m_Oxen.SetQuantity(m_Oxen.GetQuantity() - (int)(m_Oxen.GetQuantity() * percentRandNum));
-			//cout << "\t \t " << tempNumber << " oxen" << endl;
 			lostItems.push_back(Item("Oxen", tempNumber));
 		}
 		// If the number of Oxen is greater than 0 but the percentage was too low, deduct 1 oxen
 		else if(m_Oxen.GetQuantity() > 0) {
 			m_Oxen.SetQuantity(m_Oxen.GetQuantity() - 1);
 			tempNumber = 1;
-			//cout << "\t \t " << tempNumber << " oxen" << endl;
 			lostItems.push_back(Item("Oxen", tempNumber));
 		}
 	}
@@ -490,13 +521,11 @@ vector<Item> Player::LoseItems() {
 		if ((int)(m_Food.GetQuantity() * percentRandNum) > 0) {
 			tempNumber = (int)(m_Food.GetQuantity() * percentRandNum);
 			m_Food.SetQuantity(m_Food.GetQuantity() - (int)(m_Food.GetQuantity() * percentRandNum));
-			//cout << "\t \t " << tempNumber << " pounds of food" << endl;
 			lostItems.push_back(Item("Food", tempNumber));
 		}
 		else if (m_Food.GetQuantity() > 0) {
 			m_Food.SetQuantity(m_Food.GetQuantity() - 1);
 			tempNumber = 1;
-			//cout << "\t \t " << tempNumber << " pounds of food" << endl;
 			lostItems.push_back(Item("Food", tempNumber));
 		}
 	}
@@ -509,13 +538,11 @@ vector<Item> Player::LoseItems() {
 		if ((int)(m_Clothing.GetQuantity() * percentRandNum) > 0) {
 			tempNumber = (int)(m_Clothing.GetQuantity() * percentRandNum);
 			m_Clothing.SetQuantity(m_Clothing.GetQuantity() - (int)(m_Clothing.GetQuantity() * percentRandNum));
-			//cout << "\t \t " << tempNumber << " sets of clothing" << endl;
 			lostItems.push_back(Item("Clothing", tempNumber));
 		}
 		else if (m_Clothing.GetQuantity() > 0) {
 			m_Clothing.SetQuantity(m_Clothing.GetQuantity() - 1);
 			tempNumber = 1;
-			//cout << "\t \t " << tempNumber << " sets of clothing" << endl;
 			lostItems.push_back(Item("Clothing", tempNumber));
 		}
 	}
@@ -528,13 +555,11 @@ vector<Item> Player::LoseItems() {
 		if ((int)(m_Ammunition.GetQuantity() * percentRandNum) > 0) {
 			tempNumber = (int)(m_Ammunition.GetQuantity() * percentRandNum);
 			m_Ammunition.SetQuantity(m_Ammunition.GetQuantity() - (int)(m_Ammunition.GetQuantity() * percentRandNum));
-			//cout << "\t \t " << tempNumber << " bullets" << endl;
 			lostItems.push_back(Item("Ammuniton", tempNumber));
 		}
 		else if (m_Ammunition.GetQuantity() > 0) {
 			m_Ammunition.SetQuantity(m_Ammunition.GetQuantity() - 1);
 			tempNumber = 1;
-			//cout << "\t \t " << tempNumber << " bullets" << endl;
 			lostItems.push_back(Item("Ammunition", tempNumber));
 		}
 	}
@@ -545,13 +570,11 @@ vector<Item> Player::LoseItems() {
 	// Losing 2 "Extra wheels"
 	if (randomNumForItems == m_ExtraWheel.GetLoseItemNum() && randomNum > 25 && m_ExtraWheel.GetQuantity() >= 2) {
 		m_ExtraWheel.SetQuantity(m_ExtraWheel.GetQuantity() - 2);
-		//cout << "\t \t 2 wagon wheel" << endl;
 		lostItems.push_back(Item("Spare parts - wagon wheel", 2));
 	}
 	// Losing 1 "Extra wheel"
 	else if (randomNumForItems == m_ExtraWheel.GetLoseItemNum() && randomNum < 25 && m_ExtraWheel.GetQuantity() >= 1) {
 		m_ExtraWheel.SetQuantity(m_ExtraWheel.GetQuantity() - 1);
-		//cout << "\t \t 1 wagon wheel" << endl;
 		lostItems.push_back(Item("Spare parts - wagon wheel", 1));
 	}
 
@@ -561,13 +584,11 @@ vector<Item> Player::LoseItems() {
 	// Losing 2 "Extra axles"
 	if (randomNumForItems == m_ExtraAxle.GetLoseItemNum() && randomNum > 25 && m_ExtraAxle.GetQuantity() >= 2) {
 		m_ExtraAxle.SetQuantity(m_ExtraAxle.GetQuantity() - 2);
-		//cout << "\t \t 2 wagon axle" << endl;
 		lostItems.push_back(Item("Spare parts - wagon axle", 2));
 	}
 	// Losing 1 "Extra Axle"
 	else if (randomNumForItems == m_ExtraAxle.GetLoseItemNum() && randomNum < 25 && m_ExtraAxle.GetQuantity() >= 1) {
 		m_ExtraAxle.SetQuantity(m_ExtraAxle.GetQuantity() - 1);
-		//cout << "\t \t 1 wagon axle" << endl;
 		lostItems.push_back(Item("Spare parts - wagon axle", 1));
 	}
 
@@ -577,13 +598,11 @@ vector<Item> Player::LoseItems() {
 	// Losing 2 "Extra Tongues"
 	if (randomNumForItems == m_ExtraTongue.GetLoseItemNum() && randomNum > 25 && m_ExtraTongue.GetQuantity() >= 2) {
 		m_ExtraTongue.SetQuantity(m_ExtraTongue.GetQuantity() - 2);
-		//cout << "\t \t 2 wagon tongue" << endl;
 		lostItems.push_back(Item("Spare parts - wagon tongue", 2));
 	}
 	// Losing 1 "Extra Tongue"
 	else if (randomNumForItems == m_ExtraTongue.GetLoseItemNum() && randomNum < 25 && m_ExtraTongue.GetQuantity() >= 1) {
 		m_ExtraTongue.SetQuantity(m_ExtraTongue.GetQuantity() - 1);
-		//cout << "\t \t 1 wagon tongue" << endl;
 		lostItems.push_back(Item("Spare parts - wagon tongue", 1));
 	}
 
@@ -887,14 +906,96 @@ string Player::GetFoodRate() {
 	return m_foodRate;
 }
 
+/*
+	Player::GetWagonLeader()
+
+NAME
+
+	Player::GetWagonLeader - Returns wagon leader object
+
+SYNOPSIS
+
+	Member& Player::GetWagonLeader()
+
+DESCRIPTION
+
+	This function will return the member object that represents the wagon leader.
+
+RETURNS
+
+	Member&
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	11:19am 3/11/2019
+*/
 Member& Player::GetWagonLeader() {
 	return m_wagonLeader;
 }
 
+/*
+	Player::GetWagonParty()
+
+NAME
+
+	Player::GetWagonParty - Returns the wagon party members
+
+SYNOPSIS
+
+	vector<Member>& Player::GetWagonParty()
+
+DESCRIPTION
+
+	This function will return the party members of the player.
+
+RETURNS
+
+	vector<Member>&
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	11:20am 3/11/2019
+*/
 vector<Member>& Player::GetWagonParty() {
 	return m_wagonParty;
 }
 
+/*
+	Player::GetHealth()
+
+NAME
+
+	Player::GetHealth - Returns the player's current health
+
+SYNOPSIS
+
+	int Player::GetHealth()
+
+DESCRIPTION
+
+	This function will look at the current health out of a hundred rating and then return
+	the most up to date health.
+
+RETURNS
+
+	Int
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	11:25am 3/11/2019
+*/
 int Player::GetHealth() {
 
 	if (m_healthOutOfHundred > 75) {
@@ -911,15 +1012,108 @@ int Player::GetHealth() {
 	}
 	return m_health;
 }
+
+/*
+	Player::SetHealth(int a_health)
+
+NAME
+
+	Player::SetHealth - Sets the health to what was passed in
+
+SYNOPSIS
+
+	void Player::SetHealth(int a_health)
+
+	a_health --> the health value that the player should be set to
+
+DESCRIPTION
+
+	This function will return the rate the player eats food
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	11:26am 3/11/2019
+*/
 void Player::SetHealt(int a_health) {
 	m_health = a_health;
 }
 
+/*
+	Player::RemovePlayer(int a_memberNumber)
+
+NAME
+
+	Player::RemovePlayer - Removes a player from the wagon party
+
+SYNOPSIS
+
+	void Player::RemovePlayer(int a_memberNumber)
+
+	a_memberNumber --> the index where the player that should be removed is
+
+DESCRIPTION
+
+	This function remove a party member.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	11:30am 3/11/2019
+*/
 void Player::RemovePlayer(int a_memberNumber) {
 
-	m_wagonParty.erase(m_wagonParty.begin() + a_memberNumber);
+	if (m_utility.HasElement(m_wagonParty.size(), a_memberNumber)) {
+		m_wagonParty.erase(m_wagonParty.begin() + a_memberNumber);
+	}
+	else {
+		m_utility.DisplayError("ERROR: Invalid member.");
+	}
 }
 
+/*
+	Player::IncreaseHealthOutOfHundred(int a_increase)
+
+NAME
+
+	Player::IncreaseHealthOutOfHundred - Increases the player's health rating
+
+SYNOPSIS
+
+	void Player::IncreaseHealthOutOfHundred(int a_increase)
+
+	a_increase --> the value the health is increased at
+
+DESCRIPTION
+
+	This function will take in an increase value and apply it to the player's health value.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	2:55pm 3/3/2019
+*/
 void Player::IncreaseHealthOutOfHundred(int a_increase) {
 
 	if (m_healthOutOfHundred + a_increase < 100) {
@@ -930,6 +1124,35 @@ void Player::IncreaseHealthOutOfHundred(int a_increase) {
 	}
 }
 
+/*
+	Player::DecreaseHealthOutOfHundred(int a_decrease)
+
+NAME
+
+	Player::DecreaseHealthOutOfHundred - Decreases the player's health value.
+
+SYNOPSIS
+
+	void Player::DecreaseHealthOutOfHundred(int a_decrease)
+
+	a_decrease --> the value the health will get decreased by
+
+DESCRIPTION
+
+	This function will take in a value to decrease the player's health value.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	11:43am 3/11/2019
+*/
 void Player::DecreaseHealthOutOfHundred(int a_decrease) {
 
 	if (m_healthOutOfHundred - a_decrease > -1) {

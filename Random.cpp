@@ -73,13 +73,14 @@ void Random::RandomEvent(Player &a_player, Date &a_date) {
 		}
 	}
 
-	// If the weather is cold, higher chance for a blizzard
+	// If the weather is cold, there is a chance for a blizzard
 	if (a_date.GetWeather() == 0) {
 		if (randomNum >= 90) {
 			Blizzard(a_player, a_date);
 			return;
 		}
 	}
+	// If the weather is hot, there is a chance for a thunderstorm
 	else if (a_date.GetWeather() == 4) {
 		if (randomNum >= 90) {
 			Thunderstorm(a_player, a_date);
@@ -87,21 +88,27 @@ void Random::RandomEvent(Player &a_player, Date &a_date) {
 		}
 	}
 
+	// Get food from a wild fruit tree
 	if (randomNum >= 96) {
 		FindWildFruit(a_player);
 	}
+	// Thief steals goods
 	else if (randomNum >= 94) {
 		StolenGoods(a_player);
 	}
+	// Get a broken wagon part
 	else if (randomNum >= 92) {
 		BrokenWagonPart(a_player);
 	}
+	// Find supplies from an abandoned wagon
 	else if (randomNum >= 89) {
 		FindAbandonedWagon(a_player);
 	}
+	// Get lost on the bad trail
 	else if (randomNum >= 87) {
 		BadTrail(a_player, a_date);
 	}
+	// Small chance for developing a disease
 	else if (randomNum >= 85) {
 		DevelopeDisease(a_player);
 	}
@@ -530,10 +537,12 @@ void Random::DevelopeDisease(Player &a_player) {
 	string playersDisease;
 	string temp;
 
+	// Avoiding a divide by zero...
 	if (sizeOfParty > 0) {
 		randomNum = rand() % sizeOfParty;
 	}
 
+	// If there is a member in the wagon party, they develope a disease first
 	if (a_player.GetWagonParty().size() > 0) {
 		a_player.GetWagonParty()[randomNum].AddDisease(PickRandomDisease(a_player.GetWagonParty()[randomNum].GetDiseases()));
 		playersDisease = a_player.GetWagonParty()[randomNum].GetName() + " has " + a_player.GetWagonParty()[randomNum].GetLastDisease();
@@ -547,12 +556,14 @@ void Random::DevelopeDisease(Player &a_player) {
 			a_player.RemovePlayer(randomNum);
 		}
 	}
+	// Otherwise, all of the wagon members are dead and then the wagon leader develops a disease
 	else {
 		a_player.GetWagonLeader().AddDisease(PickRandomDisease(a_player.GetWagonLeader().GetDiseases()));
 		playersDisease = a_player.GetWagonLeader().GetName() + " has " + a_player.GetWagonLeader().GetLastDisease();
 		m_utility.BlueText(playersDisease);
 		cout << endl;
 
+		// If the wagon leader is dead, then that means all of the members are dead
 		if (a_player.GetWagonLeader().CheckIfDead()) {
 
 			temp = a_player.GetWagonLeader().GetName() + ", your wagon leader, has died.";
@@ -634,6 +645,35 @@ void Random::BrokenWagonPartHelper(Player &a_player, string a_itemName) {
 	}
 }
 
+/*
+	Random::PickRandomDisease(vector<string> a_currentDisease)
+
+NAME
+
+	Random::PickRandomDisease - Picks a random disease the player doesn't have
+
+SYNOPSIS
+
+	string Random::PickRandomDisease(vector<string> a_currentDiseases)
+
+	a_currentDiseases --> current disease a particular member has
+
+DESCRIPTION
+
+	This function will randomly pick a disease that a party member doesn't have and return it.
+
+RETURNS
+
+	String
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	11:51am 3/11/2019
+*/
 string Random::PickRandomDisease(vector<string> a_currentDiseases) {
 
 	vector<string> diseases = { "cholera", "exhaustion", "a broken arm", "a broken leg", "measles", "typhoid", "dysentery" };

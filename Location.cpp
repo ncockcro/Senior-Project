@@ -112,7 +112,7 @@ NAME
 
 SYNOPSIS
 
-	void Location::SetName(string a_name)
+	string Location::SetName(string a_name)
 
 	a_name --> the name of a location
 
@@ -122,7 +122,7 @@ DESCRIPTION
 
 RETURNS
 
-	Void
+	String
 
 AUTHOR
 
@@ -178,7 +178,7 @@ NAME
 
 SYNOPSIS
 
-	void Location::GetMilesNeeded()
+	int Location::GetMilesNeeded()
 
 DESCRIPTION
 
@@ -186,7 +186,7 @@ DESCRIPTION
 
 RETURNS
 
-	Void
+	Int
 
 AUTHOR
 
@@ -242,7 +242,7 @@ NAME
 
 SYNOPSIS
 
-	void Location::GetHasStore()
+	bool Location::GetHasStore()
 
 DESCRIPTION
 

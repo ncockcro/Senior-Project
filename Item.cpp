@@ -28,6 +28,7 @@ Date
 	1:40pm 1/14/2019
 */
 Item::Item() {
+
 	m_name = "NULL";
 	m_price = 0.0;
 	m_description = "NULL";
@@ -74,7 +75,7 @@ Item::Item(string a_name, int a_quantity) {
 }
 
 /*
-	Item::Item(string a_name, double a_price, string a_description)
+	Item::Item(string a_name, double a_price, string a_description, string a_capDescription, int a_capNumber)
 
 NAME
 
@@ -82,10 +83,13 @@ NAME
 
 SYNOPSIS
 
-	void Item::Item(string a_name, double, a_price, string a_description)
+	void Item::Item(string a_name, double, a_price, string a_description, string a_capDescription, int a_capNumber)
+
 		a_name        --> the name of an object
 		a_price       --> the price of an object
 		a_description --> the description of an object
+		a_capDescription --> description when the player tries to buy too much
+		a_capNumber --> the maximum amount of an item a player can buy
 
 DESCRIPTION
 
@@ -129,7 +133,7 @@ NAME
 
 SYNOPSIS
 
-	void Item::GetName()
+	string Item::GetName()
 
 DESCRIPTION
 
@@ -193,7 +197,7 @@ NAME
 
 SYNOPSIS
 
-	void Item::GetPrice()
+	double Item::GetPrice()
 
 DESCRIPTION
 
@@ -225,7 +229,8 @@ NAME
 SYNOPSIS
 
 	void Item::SetPrice(string a_price)
-		a_price      --> the price of an object
+
+		a_price  --> the price of an object
 
 DESCRIPTION
 
@@ -263,7 +268,7 @@ NAME
 
 SYNOPSIS
 
-	void Item::GetDescription()
+	string Item::GetDescription()
 
 DESCRIPTION
 
@@ -295,7 +300,8 @@ NAME
 SYNOPSIS
 
 	void Item::SetDescription(string a_description)
-		a_description      --> the description of an object
+
+	a_description  --> the description of an object
 
 DESCRIPTION
 
@@ -327,7 +333,7 @@ NAME
 
 SYNOPSIS
 
-	void Item::GetDescription()
+	string Item::GetDescription()
 
 DESCRIPTION
 
@@ -359,7 +365,8 @@ NAME
 SYNOPSIS
 
 	void Item::SetDescription(string a_description)
-		a_description      --> the description of an object
+
+	a_description  --> the description of an object
 
 DESCRIPTION
 
@@ -393,7 +400,7 @@ NAME
 
 SYNOPSIS
 
-	void Item::GetCapNumber()
+	int Item::GetCapNumber()
 
 DESCRIPTION
 
@@ -427,7 +434,8 @@ NAME
 SYNOPSIS
 
 	void Item::SetCapNumber(int a_capNumber)
-		a_capNumber      --> the number that an item caps out at
+
+	a_capNumber  --> the number that an item caps out at
 
 DESCRIPTION
 
@@ -464,7 +472,7 @@ NAME
 
 SYNOPSIS
 
-	void Item::GetQuantity()
+	int Item::GetQuantity()
 
 DESCRIPTION
 
@@ -497,7 +505,7 @@ SYNOPSIS
 
 	void Item::SetQuantity(string a_quantity)
 
-		a_quantity --> the quantity of an item
+	a_quantity --> the quantity of an item
 
 DESCRIPTION
 
@@ -536,7 +544,8 @@ NAME
 SYNOPSIS
 
 	void Item::AddToQuantity(int a_quantity)
-		a_quantity      --> the amount to be added to 
+
+	a_quantity  --> the amount to be added to 
 
 DESCRIPTION
 
@@ -659,7 +668,7 @@ SYNOPSIS
 
 	void Item::DecrementFood(int a_num)
 
-		a_num --> random number between 0 and 2
+	a_num --> random number between 0 and 2
 
 DESCRIPTION
 
