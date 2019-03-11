@@ -52,13 +52,13 @@ public:
 	int GetHealth();
 	void SetHealt(int a_health);
 	void RemovePlayer(int a_memberNumber);
+	void DecreaseHealthOutOfHundred(int a_decrease);
 
 
 private:
 	Utility m_utility = Utility();
 	void GenerateItemRandNums();
 	void IncreaseHealthOutOfHundred(int a_increase);
-	void DecreaseHealthOutOfHundred(int a_decrease);
 
 	Member m_wagonLeader;
 	vector <Member> m_wagonParty;

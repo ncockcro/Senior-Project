@@ -75,13 +75,13 @@ void Random::RandomEvent(Player &a_player, Date &a_date) {
 
 	// If the weather is cold, higher chance for a blizzard
 	if (a_date.GetWeather() == 0) {
-		if (randomNum >= 85) {
+		if (randomNum >= 90) {
 			Blizzard(a_player, a_date);
 			return;
 		}
 	}
 	else if (a_date.GetWeather() == 4) {
-		if (randomNum >= 85) {
+		if (randomNum >= 90) {
 			Thunderstorm(a_player, a_date);
 			return;
 		}

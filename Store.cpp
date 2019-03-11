@@ -188,8 +188,28 @@ void Store::MakeChoice(Player a_player) {
 		// If the user wanted to exit the store, this will set validChoice to true so it does not
 		// trigger an invalid option error
 		if (m_utility.CheckInput(m_choice) && stoi(m_choice) == m_userItems.size() + 1) {
+
+			// If the player doesn't have any oxen already...
+			if (a_player.GetItem("Oxen").GetQuantity() == 0) {
+
+				// Cycle through the list of items the player is buying and check if they bought any
+				for (size_t i = 0; i < m_userItems.size(); i++) {
+
+					// If the player didn't buy any, than tell the user that they need to buy oxen before
+					// leaving
+					if (m_userItems[i].GetName() == "Oxen" && m_userItems[i].GetQuantity() == 0) {
+						cout << endl;
+						m_utility.DisplayError("Don't forget, you'll need");
+						m_utility.DisplayError("oxen to pull your wagon.");
+						cout << endl;
+						m_choice = "0";
+						return;
+					}
+				}
+			}
 			validChoice = true;
 		}
+
 	}
 
 	// If the user typed in a number other than the ones listed for items, this will output

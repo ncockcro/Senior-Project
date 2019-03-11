@@ -318,6 +318,7 @@ Date
 void River::FordRiver(Player &a_player) {
 
 	vector<Item> lostItems;
+	bool didntCross = false;
 
 	for (int i = 0; i < ((int)m_riverWidth / 100); i++) {
 		m_utility.OutputMessage("Fording the river...");
@@ -331,12 +332,14 @@ void River::FordRiver(Player &a_player) {
 				if (lostItems.size() > 0) {
 					m_utility.OutputMessage("The river is too deep to");
 					m_utility.OutputMessage("ford. You lose:");
+
+					for (size_t i = 0; i < lostItems.size(); i++) {
+						cout << "\t \t " << lostItems[i].GetName() << ": " << lostItems[i].GetQuantity() << endl;
+					}
+					didntCross = true;
+					break;
 				}
 				
-				for (size_t i = 0; i < lostItems.size(); i++) {
-					cout << "\t \t " << lostItems[i].GetName() << ": " << lostItems[i].GetQuantity() << endl;
-				}
-				break;
 			}
 		}
 		else if (m_riverDepth < 7.00) {
@@ -346,12 +349,14 @@ void River::FordRiver(Player &a_player) {
 				if (lostItems.size() > 0) {
 					m_utility.OutputMessage("The river is too deep to");
 					m_utility.OutputMessage("ford. You lose:");
+
+					for (size_t i = 0; i < lostItems.size(); i++) {
+						cout << "\t \t " << lostItems[i].GetName() << ": " << lostItems[i].GetQuantity() << endl;
+					}
+					didntCross = true;
+					break;
 				}
 
-				for (size_t i = 0; i < lostItems.size(); i++) {
-					cout << "\t \t " << lostItems[i].GetName() << ": " << lostItems[i].GetQuantity() << endl;
-				}
-				break;
 			}
 		}
 		else {
@@ -361,14 +366,20 @@ void River::FordRiver(Player &a_player) {
 				if (lostItems.size() > 0) {
 					m_utility.OutputMessage("The river is too deep to");
 					m_utility.OutputMessage("ford. You lose:");
+
+					for (size_t i = 0; i < lostItems.size(); i++) {
+						cout << "\t \t " << lostItems[i].GetName() << ": " << lostItems[i].GetQuantity() << endl;
+					}
+					didntCross = true;
+					break;
 				}
 
-				for (size_t i = 0; i < lostItems.size(); i++) {
-					cout << "\t \t " << lostItems[i].GetName() << ": " << lostItems[i].GetQuantity() << endl;
-				}
-				break;
 			}
 		}
+	}
+
+	if (!didntCross) {
+		m_utility.OutputMessage("You succesfully cross the river.");
 	}
 
 }
@@ -404,6 +415,8 @@ Date
 void River::FloatRiver(Player &a_player) {
 
 	vector<Item> lostItems;
+	bool didntCross = false;
+
 	for (int i = 0; i < ((int)m_riverWidth / 100); i++) {
 		m_utility.OutputMessage("Floating on river...");
 		m_utility.Wait();
@@ -416,12 +429,14 @@ void River::FloatRiver(Player &a_player) {
 				if (lostItems.size() > 0) {
 					m_utility.OutputMessage("Your wagon tips over and");
 					m_utility.OutputMessage("you lose:");
+
+					for (size_t i = 0; i < lostItems.size(); i++) {
+						cout << "\t \t " << lostItems[i].GetName() << ": " << lostItems[i].GetQuantity() << endl;
+					}
+					didntCross = true;
+					break;
 				}
 
-				for (size_t i = 0; i < lostItems.size(); i++) {
-					cout << "\t \t " << lostItems[i].GetName() << ": " << lostItems[i].GetQuantity() << endl;
-				}
-				break;
 			}
 		}
 		else if (m_riverDepth < 7.00) {
@@ -431,12 +446,14 @@ void River::FloatRiver(Player &a_player) {
 				if (lostItems.size() > 0) {
 					m_utility.OutputMessage("Your wagon tips over and");
 					m_utility.OutputMessage("you lose:");
+
+					for (size_t i = 0; i < lostItems.size(); i++) {
+						cout << "\t \t " << lostItems[i].GetName() << ": " << lostItems[i].GetQuantity() << endl;
+					}
+					didntCross = true;
+					break;
 				}
 
-				for (size_t i = 0; i < lostItems.size(); i++) {
-					cout << "\t \t " << lostItems[i].GetName() << ": " << lostItems[i].GetQuantity() << endl;
-				}
-				break;
 			}
 		}
 		else {
@@ -446,14 +463,19 @@ void River::FloatRiver(Player &a_player) {
 				if (lostItems.size() > 0) {
 					m_utility.OutputMessage("Your wagon tips over and");
 					m_utility.OutputMessage("you lose:");
-				}
 
-				for (size_t i = 0; i < lostItems.size(); i++) {
-					cout << "\t \t " << lostItems[i].GetName() << ": " << lostItems[i].GetQuantity() << endl;
+					for (size_t i = 0; i < lostItems.size(); i++) {
+						cout << "\t \t " << lostItems[i].GetName() << ": " << lostItems[i].GetQuantity() << endl;
+					}
+					didntCross = true;
+					break;
 				}
-				break;
 			}
 		}
+	}
+
+	if (!didntCross) {
+		m_utility.OutputMessage("You succesfully cross the river.");
 	}
 
 }

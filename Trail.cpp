@@ -31,8 +31,8 @@ Date
 Trail::Trail()
 {
 
+	srand((unsigned int)time(0));
 	m_currentLocation = "Independence";
-
 	m_rateOfTravel = 10;
 	m_milesTraveled = 0;
 
@@ -43,8 +43,6 @@ Trail::Trail()
 	m_rate0_5dollars = 0;
 
 	m_totalScore = 0;
-
-	srand((unsigned int)time(0));
 
 	m_passedFortLaramie = false;
 }
@@ -85,6 +83,7 @@ void Trail::ActiveGame() {
 	string whichDirection;
 	bool goingToGreenRiver = true;
 
+	// These next few functions are used for the intro to Oregon Trail
 	PromptPosition();
 	PromptCharacterNames();
 	PromptStartingMonth();
@@ -92,6 +91,7 @@ void Trail::ActiveGame() {
 	DepartingStore();
 	m_dialogue.T_DepartingDialogue();
 
+	// Show the player where they are and the main trail menu
 	m_date.ShowLocation(m_currentLocation);
 	TrailMenu(m_Independence.GetHasStore(), m_Independence.GetName());
 
@@ -100,7 +100,7 @@ void Trail::ActiveGame() {
 
 		m_currentLocation = m_locations[i]->GetName();
 
-		// Once you arrive at a location, this will propt if you want to visit the location
+		// Once you arrive at a location, this will prompt if you want to visit the location
 		if (m_locations[i]->GetName() != "Independence") {
 			while (1) {
 				cout << "\t You are now at the " << endl;
@@ -150,17 +150,19 @@ void Trail::ActiveGame() {
 			}
 		}
 
+		// If the player is at Blue Mountains, then they have the option to travel to Fort Walla Walla,
+		// or go straight to the Dalles
 		if (m_locations[i]->GetName() == "Blue Mountains") {
 			while (1) {
 				m_dialogue.T_WhichDirectionChoice2();
 				cin >> whichDirection;
 
-				// Going to Green River
+				// Going to Fort Walla Walla
 				if (whichDirection == "1") {
 					m_locations[i]->SetMilesNeeded(55);
 					break;
 				}
-				// Going to Fort Bridger
+				// Going to The Dalles
 				else if (whichDirection == "2") {
 					m_locations[i]->SetMilesNeeded(125);
 					if (m_utility.HasElement(m_locations.size(), i + 1)) {
@@ -174,6 +176,7 @@ void Trail::ActiveGame() {
 			}
 		}
 
+		// So long as there is a "next location", show to the player how far the next location is
 		if (m_utility.HasElement(m_locations.size(), i + 1)) {
 			ShowMilesTo(m_locations[i]->GetName(), m_locations[i + 1]->GetName(), m_locations[i]->GetMilesNeeded());
 		}
@@ -187,8 +190,10 @@ void Trail::ActiveGame() {
 			ShowAndUpdateTrailInfo(m_rateOfTravel, milesNeededToTravel);
 			milesTraveled += m_rateOfTravel;
 
+			// Have the option for a random event to happen
 			m_randomEvent.RandomEvent(m_player, m_date);
 
+			// If the all of the party members are dead, break out
 			if (m_player.GetWagonLeader().CheckIfDead() && m_player.GetWagonParty().size() == 0) {
 				break;
 			}
@@ -196,16 +201,19 @@ void Trail::ActiveGame() {
 			m_utility.Wait();
 		}
 
+		// If the all of the party members are dead, break out again
 		if (m_player.GetWagonLeader().CheckIfDead() && m_player.GetWagonParty().size() == 0) {
 			break;
 		}
 
+		// Perform calculations on how far the player needs to travel
 		m_milesTraveled -= m_rateOfTravel;
 		milesTraveled -= m_rateOfTravel;
 		AddEndingMiles(m_locations[i]->GetMilesNeeded() - milesTraveled);
 
 	}
 
+	// If the player did not die and made it to the end of the trail, show the winning screen
 	if (!m_player.GetWagonLeader().CheckIfDead()) {
 		m_dialogue.T_End();
 		CalculateScore();
@@ -260,9 +268,11 @@ void Trail::PromptPosition() {
 		cout << "\t What is your choice? ";
 		cin >> positionChoice;
 
+		// Valid occupation choice
 		if (positionChoice == "1" || positionChoice == "2" || positionChoice == "3") {
 			break;
 		}
+		// Valid choice for getting an explanation
 		else if (positionChoice == "4") {
 			cout << endl;
 			m_utility.OutputMessage("Traveling to Oregon isn't easy! But if you're a banker,");
@@ -332,6 +342,7 @@ void Trail::PromptCharacterNames() {
 	string temp;
 	bool sameName = false;
 
+	// Keep cycling through until the player has picked the names they want for their party
 	while (1) {
 		cout << "\t What is the first name of the wagon leader? ";
 		cin >> temp;
@@ -355,6 +366,7 @@ void Trail::PromptCharacterNames() {
 				}
 			}
 
+			// If the name is a duplicate, inform the user and overwrite that name with a new one
 			if (sameName) {
 				m_utility.DisplayError("Name already used, pick another.");
 				i--;
@@ -696,6 +708,7 @@ void Trail::TrailMenu(bool a_hasStore, string a_locationName) {
 		else if (a_hasStore && choice == "8") {
 			VisitStore(a_locationName);
 		}
+		// Hunting
 		else if (!a_hasStore && choice == "8") {
 			if (!alreadyHunted) {
 				alreadyHunted = true;
@@ -837,7 +850,7 @@ void Trail::ChangePace() {
 		cout << "\t    1. a steady pace" << endl;
 		cout << "\t    2. a strenuous pace" << endl;
 		cout << "\t    3. a grueling pace" << endl;
-		cout << "\t    4. find out what these \n different paces mean" << endl << endl;
+		cout << "\t    4. find out what these \n \t       different paces mean" << endl << endl;
 
 		cout << "\t What is your choice? ";
 		cin >> choice;
@@ -914,8 +927,9 @@ void Trail::ChangeRations() {
 	string choice;
 
 	while (1) {
+		cout << endl;
 		m_utility.OutputMessage("\t Change food rations");
-		cout << "(currently \"" << m_player.GetFoodRate() << "\")" << endl << endl;
+		cout << "\t \t (currently \"" << m_player.GetFoodRate() << "\")" << endl << endl;
 
 		m_utility.OutputMessage("The amount of food the people in");
 		m_utility.OutputMessage("your party eat each day can");
@@ -999,10 +1013,11 @@ void Trail::Rest() {
 			continue;
 		}
 
-			// Only allowed to rest 9 days
+		// Only allowed to rest 9 days
 		if (stoi(numOfDays) > 9) {
 			m_utility.DisplayError("Can only rest at most 9 days.");
 		}
+		// Otherwise, cycle through the number of days the player wanted to rest
 		else {
 			for (int i = 0; i < stoi(numOfDays); i++) {
 				m_date.ShowDate();
@@ -1100,11 +1115,11 @@ void Trail::InitializeLocations() {
 	m_FortBoise.SetName("Fort Boise");
 	m_FortBoise.SetMilesNeeded(160);
 
-	m_BlueMountains.SetName("Blue Mountains"); // From here, has the choice to travel to Fort Walla Walla or Dalles
+	m_BlueMountains.SetName("Blue Mountains");
 	m_BlueMountains.SetMilesNeeded(55);
 	m_BlueMountains.SetHasStore(false); 
 
-	m_FortWallaWalla.SetName("Fort Walla Walla"); // Has the choice
+	m_FortWallaWalla.SetName("Fort Walla Walla");
 	m_FortWallaWalla.SetMilesNeeded(55);
 
 	m_TheDalles.SetName("The Dalles");
@@ -1124,7 +1139,6 @@ void Trail::InitializeLocations() {
 	m_locations.push_back(&m_IndependenceRock);
 	m_locations.push_back(&m_SouthPass);
 	m_locations.push_back(&m_GreenRiver);
-	//m_locations.push_back(&m_FortBridger);
 	m_locations.push_back(&m_SodaSprings);
 	m_locations.push_back(&m_FortHall);
 	m_locations.push_back(&m_SnakeRiver);
@@ -1599,7 +1613,7 @@ void Trail::ShowScoreDetails(int a_scores[]) {
 	cout << "\t " << "1 wagon " << a_scores[1] << endl;
 	cout << "\t " << m_player.GetItem("Oxen").GetQuantity() << " oxen " << a_scores[2] << endl;
 	cout << "\t " << m_player.GetItem("Spare parts - wagon wheel").GetQuantity() + m_player.GetItem("Spare parts - wagon axle").GetQuantity() +
-		m_player.GetItem("Spare parts - wagon tongue").GetQuantity() << " spare parts " << a_scores[3] << endl;
+	m_player.GetItem("Spare parts - wagon tongue").GetQuantity() << " spare parts " << a_scores[3] << endl;
 	cout << "\t " << m_player.GetItem("Clothing").GetQuantity() << " sets of clothing " << a_scores[4] << endl;
 	cout << "\t " << m_player.GetItem("Ammunition").GetQuantity() << " bullets " << a_scores[5] << endl;
 	cout << "\t " << m_player.GetItem("Food").GetQuantity() << " pounds of food " << a_scores[6] << endl;
@@ -1639,26 +1653,75 @@ int Trail::GetTotalScore() {
 	return m_totalScore;
 }
 
+/*
+	Trail::UpdateRateOfTravel()
+
+NAME
+
+	Trail::UpdateRateOfTravel - updates how many miles the player can travel at once
+
+SYNOPSIS
+
+	void Trail::UpdateRateOfTravel()
+
+DESCRIPTION
+
+	This function checks several parameters such as how many oxen the player has, where they are at in
+	the playthrough, the player's health, and the pace the player chose and updates how many miles
+	the player can travel at once.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	9:33pm 3/10/2019
+*/
 void Trail::UpdateRateOfTravel() {
 
+	// If the current location is Fort Laramie, this marks the second half of the trail and thus,
+	// should be more difficult for the player to travel
 	if (m_currentLocation == "Fort Laramie") {
 		m_passedFortLaramie = true;
 	}
+
+	// Based on the player's party health, that and along with how many oxen they have will dictate
+	// most of the way for how much they can travel.
 	if (m_player.GetHealth() == 3) {
-		m_rateOfTravel = 18 + m_player.GetItem("Oxen").GetQuantity();
-	}
-	else if (m_player.GetHealth() == 2) {
-		m_rateOfTravel = 15 + m_player.GetItem("Oxen").GetQuantity();
-	}
-	else if (m_player.GetHealth() == 1) {
 		m_rateOfTravel = 12 + m_player.GetItem("Oxen").GetQuantity();
 	}
-	else if (m_player.GetHealth() == 0) {
+	else if (m_player.GetHealth() == 2) {
 		m_rateOfTravel = 9 + m_player.GetItem("Oxen").GetQuantity();
 	}
+	else if (m_player.GetHealth() == 1) {
+		m_rateOfTravel = 6 + m_player.GetItem("Oxen").GetQuantity();
+	}
+	else if (m_player.GetHealth() == 0) {
+		m_rateOfTravel = 3 + m_player.GetItem("Oxen").GetQuantity();
+	}
 
+	// Depending on the pace the player chose, this also has an impact on how many miles the player
+	// can travel and the impact it has on the player's party health
+	if (m_player.GetPace() == "steady") {
+		m_rateOfTravel += 5;
+	}
+	else if (m_player.GetPace() == "strenuous") {
+		m_rateOfTravel += 10;
+		m_player.DecreaseHealthOutOfHundred(5);
+	}
+	else if (m_player.GetPace() == "grueling") {
+		m_rateOfTravel += 15;
+		m_player.DecreaseHealthOutOfHundred(10);
+	}
+
+	// If the player is passed Fort Laramie, half the amount of distance the player can travel
 	if (m_passedFortLaramie) {
-		m_rateOfTravel / 2;
+		m_rateOfTravel /= 2;
 	}
 
 }
