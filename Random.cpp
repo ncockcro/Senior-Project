@@ -369,7 +369,7 @@ void Random::BadTrail(Player &a_player, Date &a_date) {
 
 	int randomNum = (rand() % 5) + 1;
 
-	cout << "Lose trail. You lose " << randomNum << " days." << endl;
+	cout << "\t Lose trail. You lose " << randomNum << " days." << endl;
 
 	for (int i = 0; i < randomNum; i++) {
 

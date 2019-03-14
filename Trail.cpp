@@ -720,6 +720,7 @@ void Trail::TrailMenu(bool a_hasStore, string a_locationName) {
 			else {
 				cout << endl;
 				m_utility.DisplayError("You have already rested!");
+				cout << endl;
 			}
 		}
 		// Talk to local people to get advice
@@ -739,6 +740,7 @@ void Trail::TrailMenu(bool a_hasStore, string a_locationName) {
 			else {
 				cout << endl;
 				m_utility.DisplayError("You have already hunted!");
+				cout << endl;
 			}
 		}
 		// Anything else if invlaid input
@@ -790,6 +792,34 @@ void Trail::ShowSupplies() {
 	m_utility.Wait();
 }
 
+/*
+	Trail::LookAtMap()
+
+NAME
+
+	Trail::LookAtMap - Shows the map of where they player has been
+
+SYNOPSIS
+
+	void Trail::LookAtMap()
+
+DESCRIPTION
+
+	This function will output all of the locations the player has been to in green and all of the locations
+	they still need to get to in red.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	2:26pm 3/11/2019
+*/
 void Trail::LookAtMap() {
 
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -803,11 +833,6 @@ void Trail::LookAtMap() {
 		// Need to also show the other location the player can travel to
 		if (m_locations[i]->GetName() == "Green River") {
 			cout << " || Fort Bridger";
-		}
-
-		// Need to also show the other location the player can travel to
-		if (m_locations[i]->GetName() == "Fort Walla Walla") {
-			cout << " || The Dalles";
 		}
 
 		// Output an arrow so long as its not the last location
@@ -1070,7 +1095,7 @@ SYNOPSIS
 DESCRIPTION
 
 	This function will intialize the name, amount of miles required to get to, and various other information
-	that should be set at the start of the game for the locations in the game
+	that should be set at the start of the game for the locations in the game.
 
 RETURNS
 
@@ -1132,7 +1157,7 @@ void Trail::InitializeLocations() {
 	m_FortHall.SetMilesNeeded(182);
 
 	m_SnakeRiver.SetName("Snake River");
-	m_SnakeRiver.SetMilesNeeded(113); // Has the option to hire an Indian to cross
+	m_SnakeRiver.SetMilesNeeded(113);
 	m_SnakeRiver.SetHasIndianFerry(true);
 
 	m_FortBoise.SetName("Fort Boise");
@@ -1149,7 +1174,7 @@ void Trail::InitializeLocations() {
 	m_TheDalles.SetMilesNeeded(100);
 	m_TheDalles.SetHasStore(false);
 
-	m_WillametteValley.SetName("Willamette Valley"); // User must pay to get into this location
+	m_WillametteValley.SetName("Willamette Valley");
 	m_WillametteValley.SetMilesNeeded(0);
 	m_WillametteValley.SetHasStore(false); 
 	
