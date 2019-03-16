@@ -1427,6 +1427,14 @@ void Trail::Hunt() {
 	time_t afterTime;
 	int amountOfFoodEarned = 0;
 
+	// If the player has no bullets, then they can't hunt
+	if (m_player.GetItem("Ammunition").GetQuantity() <= 0) {
+		cout << endl;
+		m_utility.DisplayError("You have no bullets.");
+		cout << endl;
+		return;
+	}
+
 	// Opening intro
 	m_dialogue.T_ShowHuntingInstructions();
 
@@ -1439,28 +1447,34 @@ void Trail::Hunt() {
 	// Cycle through the amount of times the player has to hunt
 	for (int i = 0; i < amountOfTries; i++) {
 
-		// Amount of time to type word is between 2 and 7 seconds
-		amountOfTime = (rand() % 5) + 2;
-		bangOrPowNum = rand() % 2;
+		if (m_player.GetItem("Ammunition").GetQuantity() > 0) {
 
-		if (bangOrPowNum == 0) {
-			bangOrPowString = "BANG";
-		}
-		else {
-			bangOrPowString = "POW";
-		}
-		cout << "You have: " << amountOfTime << " seconds to type " << bangOrPowString << endl;
-		beforeTime = time(0);
-		cin >> userText;
-		afterTime = time(0);
+			// Have the player use up a bullet...
+			m_player.SetItemQuantity("Ammunition", m_player.GetItem("Ammunition").GetQuantity() - 1);
 
-		// If the user types the word correctly and in the correct amount of time, they get some food
-		if (userText == bangOrPowString && afterTime - beforeTime < amountOfTime) {
-			cout << "You got food!" << endl;
-			amountOfFoodEarned += 5 * (amountOfTime - (int)(afterTime - beforeTime + 1));
-		}
-		else {
-			cout << "Spelled wrong or ran out of time." << endl;
+			// Amount of time to type word is between 2 and 7 seconds
+			amountOfTime = (rand() % 5) + 2;
+			bangOrPowNum = rand() % 2;
+
+			if (bangOrPowNum == 0) {
+				bangOrPowString = "BANG";
+			}
+			else {
+				bangOrPowString = "POW";
+			}
+			cout << "You have: " << amountOfTime << " seconds to type " << bangOrPowString << endl;
+			beforeTime = time(0);
+			cin >> userText;
+			afterTime = time(0);
+
+			// If the user types the word correctly and in the correct amount of time, they get some food
+			if (userText == bangOrPowString && afterTime - beforeTime < amountOfTime) {
+				cout << "You got food!" << endl;
+				amountOfFoodEarned += 5 * (amountOfTime - (int)(afterTime - beforeTime + 1));
+			}
+			else {
+				cout << "Spelled wrong or ran out of time." << endl;
+			}
 		}
 
 	}
