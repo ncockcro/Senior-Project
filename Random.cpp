@@ -626,21 +626,39 @@ void Random::BrokenWagonPartHelper(Player &a_player, string a_itemName) {
 		else {
 			m_utility.OutputMessage("You were unsuccessful in repairing.");
 
-			if (a_player.GetItem("Spare parts - wagon wheel").GetQuantity() > 0) {
-				a_player.SetItemQuantity(a_itemName, a_player.GetItem("Spare parts - wagon wheel").GetQuantity() - 1);
+			if (a_player.GetItem(a_itemName).GetQuantity() > 0) {
+
+				a_player.SetItemQuantity(a_itemName, a_player.GetItem(a_itemName).GetQuantity() - 1);
+				cout << "\t You use a spare" << m_utility.GetExtraPartSimpleName(a_itemName) << "." << endl;
 			}
 			else {
 				// Broken wagon wheel - significantly hurt player's health
+				a_player.DecreaseHealthOutOfHundred(100);
+
+				cout << endl;
+				m_utility.OutputMessage("You get significantly hurt searching around");
+				cout << "\t for a " << m_utility.GetExtraPartSimpleName(a_itemName) << " since" << endl;
+				m_utility.OutputMessage("you did not have the extra part!");
+				cout << endl;
 			}
 		}
 	}
 	// If the player said no, the player will have to use a spare part if they have one
 	else {
-		if (a_player.GetItem("Spare parts - wagon wheel").GetQuantity() > 0) {
-			a_player.SetItemQuantity(a_itemName, a_player.GetItem("Spare parts - wagon wheel").GetQuantity() - 1);
+		if (a_player.GetItem(a_itemName).GetQuantity() > 0) {
+			a_player.SetItemQuantity(a_itemName, a_player.GetItem(a_itemName).GetQuantity() - 1);
+
+			cout << "\t You use a spare" << m_utility.GetExtraPartSimpleName(a_itemName) << "." << endl;
 		}
 		else {
 			// Broken wagon wheel - significantly hurt player's health
+			a_player.DecreaseHealthOutOfHundred(100);
+
+			cout << endl;
+			m_utility.OutputMessage("You get significantly hurt searching around");
+			cout << "\t for a " << m_utility.GetExtraPartSimpleName(a_itemName) << " since" << endl;
+			m_utility.OutputMessage("you did not have the extra part!");
+			cout << endl;
 		}
 	}
 }

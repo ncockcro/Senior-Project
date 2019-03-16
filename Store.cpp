@@ -147,7 +147,7 @@ void Store::MakeChoice(Player a_player) {
 	for (size_t i = 0; i < m_userItems.size(); i++) {
 		// If the user chose a valid item, then show the description and prompt for how many they want to buy
 		if (m_utility.CheckInput(m_choice) && (stoi(m_choice) - 1) == i) {
-			cout << m_userItems[i].GetDescription() << endl;
+			cout << fixed << setprecision(2) << m_userItems[i].GetDescription() << endl;
 
 			while (1) {
 				cout << "How many would you like to buy? ";

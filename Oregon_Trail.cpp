@@ -67,12 +67,14 @@ void Oregon_Trail::StartGame() {
 	ShowTitle();
 
 	while (1) {
+		Trail trail;
 		ShowChoices();
-		PickDecision();
+		PickDecision(trail);
 
 		if (m_choice == "1") {
-			AddToLeaderBoard();
+			AddToLeaderBoard(trail);
 		}
+
 	}
 }
 
@@ -187,14 +189,15 @@ Date
 
 	11:48am 1/8/2019
 */
-void Oregon_Trail::PickDecision() {
+void Oregon_Trail::PickDecision(Trail &a_trail) {
 
 	cout << "\t What is your choice: ";
 	cin >> m_choice;
 
 	// Play the actual game
 	if (m_choice == "1") {
-		m_trailGame.ActiveGame();
+		//m_trailGame.ActiveGame();
+		a_trail.ActiveGame();
 	}
 	// Show the description of what the game is about
 	else if (m_choice == "2") {
@@ -341,7 +344,7 @@ Date
 
 	1:41pm 3/3/2019
 */
-void Oregon_Trail::AddToLeaderBoard() {
+void Oregon_Trail::AddToLeaderBoard(Trail a_trail) {
 
 	fstream outputLeaderboardFile("leaderboard.txt");
 	string input;
@@ -385,18 +388,32 @@ void Oregon_Trail::AddToLeaderBoard() {
 		tempName = word;
 	}
 
-	gameScore.score = m_trailGame.GetTotalScore();
+	//gameScore.score = m_trailGame.GetTotalScore();
+	gameScore.score = a_trail.GetTotalScore();
 
 	// Cycle through leaderboard scores and if the player's is higher, insert it into the leaderboard
 	for (size_t i = 0; i < m_entries.size(); i++) {
-		if (m_trailGame.GetTotalScore() > m_entries[i].score) {
+		if (a_trail.GetTotalScore() > m_entries[i].score) {
 
+			m_utility.OutputMessage("You made the leaderboards!");
 			cout << "\t Enter your name: ";
 			cin >> name;
 			gameScore.name = name;
 			m_entries.insert(m_entries.begin() + i, gameScore);
 			break;
 		}
+	}
+
+	// If the player's score wasn't high enough to be better than the scores already in the leaderboards,
+	// but there were still extra spots that hadn't been filled yet
+	if (m_entries.size() < 10) {
+
+		m_utility.OutputMessage("You made the leaderboards!");
+		cout << "\t Enter your name: ";
+		cin >> name;
+		gameScore.name = name;
+
+		m_entries.push_back(gameScore);
 	}
 
 	inputLeaderboardFile.close();

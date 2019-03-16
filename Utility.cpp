@@ -362,3 +362,27 @@ void Utility::BlueText(string a_text) {
 	SetConsoleTextAttribute(m_hConsole, 7);
 
 }
+
+string Utility::GetExtraPartSimpleName(string a_partName) {
+
+	if (a_partName == "Spare parts - wagon wheel") {
+		return "wagon wheel";
+	}
+	else if (a_partName == "Spare parts - wagon axle") {
+		return "wagon axle";
+	}
+	else if (a_partName == "Spare parts - wagon tongue") {
+		return "wagon tongue";
+	}
+	else {
+		cerr << "ERROR: Unknown wagon part in utility class." << endl;
+	}
+}
+
+string Utility::toStringWithPrecision(const double a_value, const int n) {
+
+	ostringstream out;
+	out.precision(n);
+	out << fixed << a_value;
+	return out.str();
+}

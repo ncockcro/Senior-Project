@@ -37,15 +37,15 @@ public:
 
 private:
 	void ShowChoices();
-	void PickDecision();
+	void PickDecision(Trail &a_trail);
 	void ShowTitle();
 	void ShowDescription();
 	void ShowLeaderBoard();
-	void AddToLeaderBoard();
+	void AddToLeaderBoard(Trail a_trail);
 	bool IsPosition(string a_word);
 
-	Trail m_trailGame = Trail();
-	Utility m_utility = Utility();
+	//Trail m_trailGame = Trail();
+	Utility m_utility;
 	string m_choice;
 
 	vector<LeaderBoardEntry> m_entries;

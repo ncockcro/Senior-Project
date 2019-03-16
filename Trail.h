@@ -22,6 +22,7 @@ DESCRIPTION
 #include <cstdlib>
 #include <time.h>
 #include <Windows.h>
+#include <iomanip>
 #include "Utility.h"
 #include "Store.h"
 #include "Item.h"

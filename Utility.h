@@ -18,6 +18,7 @@ DESCRIPTION
 #include <string>
 #include <limits>
 #include <algorithm>
+#include <sstream>
 #include <Windows.h>
 #include <conio.h>
 
@@ -36,6 +37,8 @@ public:
 	string GetWeatherName(int a_weather);
 	string GetHealthName(int a_health);
 	void BlueText(string a_text);
+	string GetExtraPartSimpleName(string a_partName);
+	string toStringWithPrecision(const double a_value, const int n);
 
 private:
 	HANDLE m_hConsole;
