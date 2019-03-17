@@ -30,6 +30,10 @@ Every time the player stops at a location, they have several options available t
 - Talk to people
 - Either buy supplies OR hunt (depending on the location)
 
+### Weather
+
+The weather in Oregon Trail changes depending on the month and time of year the player is in. It can range from being cold to being hot, and all of the weather in between. The weather can effect some of the random events that go on in the trail aswell as harm the player if they do not have proper clothing during the winter months.
+
 ### Map
 When the player stops at a location, they have the option to look at the map and see which locations they have been to and which ones they need to go to. The locations in green mean they have been visited and the ones in red are the ones the player still needs to go to.
 
@@ -55,6 +59,10 @@ Throughout the trail, the player has the option to hunt for food when there is n
 - The user needs to type either "Bang" or "Pow" in a certain amount of time to be rewarded food
 - The amount of time the player has to type in the word can vary
 -  The amount of food is calculated each time by 5 * the amount of extra seconds the player had to type in the hunting word
+
+### Rivers
+
+Several of the locations the player will visit throughout the game are rivers which the player will have to cross. They have the option to ford the river if it is low enough, float across the river if it is high enough, and at some locations, pay for a ferry to take the player across the river. While at the river, the player also has the option to wait for river conditions to improve.
 
 ### End of Game
 The game can end in one of two ways. The first way, is that the player is successful in reaching Oregon, and they have completed the trail. The other way, is if all of the party members died on the trail, some time along the way. A party member dies when they have three or more diseases. Party members can be more susceptible to getting a disease if the party's health overall is in critical condition. 
@@ -83,3 +91,4 @@ Along with the multiplies, the scoring is determined by these factors:
 - 1 point for each multiple of 50 bullets
 - 1 point for each multiple of 25 pounds of food
 - 1 point for every $5
+
