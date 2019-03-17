@@ -67,6 +67,11 @@ void Random::RandomEvent(Player &a_player, Date &a_date) {
 
 	int randomNum = rand() % 100;
 
+	// If the temperature is cold outside, and the player doesn't have enough clothing for every member...
+	if (a_date.GetWeather() == 0 && (size_t)a_player.GetItem("Clothing").GetQuantity() < (a_player.GetWagonParty().size() + 1)) {
+		NotEnoughClothing(a_player);
+	}
+
 	if (a_player.GetHealth() == 0) {
 		if (randomNum >= 60) {
 			DevelopeDisease(a_player);
@@ -721,4 +726,22 @@ string Random::PickRandomDisease(vector<string> a_currentDiseases) {
 	// Finally, randomly pick a disease and return it
 	int randomNum = rand() % diseases.size();
 	return diseases[randomNum];
+}
+
+void Random::NotEnoughClothing(Player &a_player) {
+
+	// Depending on the rate the player is eating at, the player should still be losing health from the cold
+	if (a_player.GetFoodRate() == "filling") {
+		a_player.DecreaseHealthOutOfHundred(9);
+	}
+	else if (a_player.GetFoodRate() == "meager") {
+		a_player.DecreaseHealthOutOfHundred(6);
+	}
+	else {
+		a_player.DecreaseHealthOutOfHundred(4);
+	}
+
+	m_utility.OutputMessage("The freezing weather hurts your party members.");
+	m_utility.OutputMessage("You should buy more clothing.");
+	cout << endl;
 }
