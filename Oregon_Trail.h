@@ -43,10 +43,13 @@ private:
 	void ShowLeaderBoard();
 	void AddToLeaderBoard(Trail a_trail);
 	bool IsPosition(string a_word);
+	void ReadInPlayerLevel();
 
 	//Trail m_trailGame = Trail();
 	Utility m_utility;
 	string m_choice;
+	int m_playerLevel;
+	int m_playerXP;
 
 	vector<LeaderBoardEntry> m_entries;
 };

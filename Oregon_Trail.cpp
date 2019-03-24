@@ -66,6 +66,8 @@ void Oregon_Trail::StartGame() {
 
 	ShowTitle();
 
+	ReadInPlayerLevel();
+
 	while (1) {
 		Trail trail;
 		ShowChoices();
@@ -197,7 +199,7 @@ void Oregon_Trail::PickDecision(Trail &a_trail) {
 	// Play the actual game
 	if (m_choice == "1") {
 		//m_trailGame.ActiveGame();
-		a_trail.ActiveGame();
+		a_trail.ActiveGame(m_playerLevel, m_playerXP);
 	}
 	// Show the description of what the game is about
 	else if (m_choice == "2") {
@@ -476,4 +478,48 @@ bool Oregon_Trail::IsPosition(string a_word) {
 	else {
 		return false;
 	}
+}
+
+void Oregon_Trail::ReadInPlayerLevel() {
+
+	fstream outputPlayerLevelFile("level.txt");
+	string input;
+
+	// If there is no level file, this will initialize it
+	if (!outputPlayerLevelFile) {
+		outputPlayerLevelFile.open("level.txt", fstream::out);
+
+		outputPlayerLevelFile << "\t Level: 1" << endl << endl;
+		outputPlayerLevelFile << "\t XP: 0" << endl;
+	}
+
+	// After the level file was  initialized or if it already existed, this will output
+	// the contents of the file
+	ifstream inputPlayerLevelFile;
+	inputPlayerLevelFile.open("level.txt");
+
+	// While we are not at the end of file...
+	while (inputPlayerLevelFile >> input) {
+
+
+		if (input == "Level:") {
+			inputPlayerLevelFile >> input;
+
+			if (m_utility.CheckInput(input)) {
+				m_playerLevel = stoi(input);
+			}
+		}
+
+		if (input == "XP:") {
+			inputPlayerLevelFile >> input;
+
+			if (m_utility.CheckInput(input)) {
+				m_playerXP = stoi(input);
+			}
+		}
+	}
+
+	inputPlayerLevelFile.close();
+
+	outputPlayerLevelFile.close();
 }

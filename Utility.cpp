@@ -376,6 +376,7 @@ string Utility::GetExtraPartSimpleName(string a_partName) {
 	}
 	else {
 		cerr << "ERROR: Unknown wagon part in utility class." << endl;
+		return "NULL";
 	}
 }
 
@@ -385,4 +386,30 @@ string Utility::toStringWithPrecision(const double a_value, const int n) {
 	out.precision(n);
 	out << fixed << a_value;
 	return out.str();
+}
+
+string Utility::LowerCaseString(string a_string) { 
+
+	string lowerCaseString;
+
+	for (size_t i = 0; i < a_string.size(); i++) {
+		lowerCaseString += tolower(a_string[i]);
+	}
+
+	return lowerCaseString;
+}
+
+void Utility::SaveAndUpdateLevel(int a_level, int a_playerScore, int a_locationsVisited) {
+
+	// Increment the player's xp
+	a_playerScore += (100 * (a_locationsVisited + 1));
+
+	fstream playerLevelFile;
+
+	playerLevelFile.open("level.txt", fstream::out);
+
+	playerLevelFile << "\t Level:" << a_level << endl << endl;
+	playerLevelFile << "\t XP: " << a_playerScore << endl;
+
+	playerLevelFile.close();
 }

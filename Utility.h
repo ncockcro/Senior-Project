@@ -19,6 +19,7 @@ DESCRIPTION
 #include <limits>
 #include <algorithm>
 #include <sstream>
+#include <fstream>
 #include <Windows.h>
 #include <conio.h>
 
@@ -39,8 +40,11 @@ public:
 	void BlueText(string a_text);
 	string GetExtraPartSimpleName(string a_partName);
 	string toStringWithPrecision(const double a_value, const int n);
+	string LowerCaseString(string a_string);
+	void SaveAndUpdateLevel(int a_level, int a_playerScore, int a_locationsVisited);
 
 private:
+
 	HANDLE m_hConsole;
 };
 

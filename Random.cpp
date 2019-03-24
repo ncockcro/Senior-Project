@@ -378,13 +378,14 @@ void Random::BadTrail(Player &a_player, Date &a_date) {
 
 	for (int i = 0; i < randomNum; i++) {
 
+		m_utility.Wait();
+
 		if (randomNum - i == 1) {
 			cout << "\t Still lost for " << randomNum - i << " day..." << endl;
 		}
 		else {
 			cout << "\t Still lost for " << randomNum - i << " days..." << endl;
 		}
-		m_utility.Wait();
 
 		a_date.NextDay();
 		a_player.DeductFood();
@@ -621,7 +622,7 @@ void Random::BrokenWagonPartHelper(Player &a_player, string a_itemName) {
 	cin >> choice;
 
 	// If the player wants to try and fix the wagon part...
-	if (choice == "yes" || choice == "ye" || choice == "y") {
+	if (m_utility.LowerCaseString(choice) == "yes" || m_utility.LowerCaseString(choice) == "ye" || m_utility.LowerCaseString(choice) == "y") {
 
 		// If successful, they won't have to use a spare part
 		if (randomNum == 0) {

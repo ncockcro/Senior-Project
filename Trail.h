@@ -40,7 +40,7 @@ class Trail
 {
 public:
 	Trail();
-	void ActiveGame();
+	void ActiveGame(int a_playerLevel, int a_playerXP);
 	int GetTotalScore();
 
 private:
@@ -108,5 +108,8 @@ private:
 	Random m_randomEvent;
 
 	bool m_passedFortLaramie;
+
+	int m_playerLevel;
+	int m_playerXP;
 };
 

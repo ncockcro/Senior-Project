@@ -539,7 +539,7 @@ bool River::TakeFerry(Player &a_player) {
 		cout << "\t this? ";
 		cin >> choice;
 
-		if (choice == "yes" || choice == "ye" || choice == "y") {
+		if (m_utility.LowerCaseString(choice) == "yes" || m_utility.LowerCaseString(choice) == "ye" || m_utility.LowerCaseString(choice) == "y") {
 			takeFerry = true;
 			a_player.DeductMoney(5.0);
 			break;
@@ -587,7 +587,7 @@ bool River::TakeIndianFerry(Player &a_player) {
 		cout << "\t offer? ";
 		cin >> choice;
 
-		if (choice == "yes" || choice == "ye" || choice == "y") {
+		if (m_utility.LowerCaseString(choice) == "yes" || m_utility.LowerCaseString(choice) == "ye" || m_utility.LowerCaseString(choice) == "y") {
 			takeIndianFerry = true;
 			if (a_player.GetItem("Clothing").GetQuantity() >= 3) {
 				a_player.SetItemQuantity("Clothing", a_player.GetItem("Clothing").GetQuantity() - 3);

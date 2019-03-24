@@ -45,10 +45,13 @@ Trail::Trail()
 	m_totalScore = 0;
 
 	m_passedFortLaramie = false;
+
+	m_playerLevel = 1;
+	m_playerXP = 0;
 }
 
 /*
-	Trail::ActiveGame()
+	Trail::ActiveGame(int a_playerLevel)
 
 NAME
 
@@ -56,7 +59,9 @@ NAME
 
 SYNOPSIS
 
-	void Trail::ActiveGame()
+	void Trail::ActiveGame(int a_playerLevel)
+
+	a_playerLevel --> the player's level read in from file
 
 DESCRIPTION
 
@@ -75,7 +80,10 @@ Date
 
 	11:30am 1/9/2019
 */
-void Trail::ActiveGame() {
+void Trail::ActiveGame(int a_playerLevel, int a_playerXP) {
+
+	m_playerLevel = a_playerLevel;
+	m_playerXP = a_playerXP;
 
 	string choice;
 	int milesNeededToTravel;
@@ -99,6 +107,12 @@ void Trail::ActiveGame() {
 	// Cycle through the list of locations that the player has to travel to
 	for (size_t i = 0; i < m_locations.size(); i++) {
 
+		m_currentLocation = m_locations[i]->GetName();
+
+		if (m_currentLocation == "Willamette Valley") {
+			break;
+		}
+
 		// Now when the second The Dalles comes up in the iteration, it
 		// will be skipped since the player already went to the dalles
 		if (m_locations[i]->GetName() == "The Dalles" && skipDalles) {
@@ -111,7 +125,6 @@ void Trail::ActiveGame() {
 			skipDalles = true;
 		}
 
-		m_currentLocation = m_locations[i]->GetName();
 
 		// Once you arrive at a location, this will prompt if you want to visit the location
 		if (m_locations[i]->GetName() != "Independence") {
@@ -122,7 +135,7 @@ void Trail::ActiveGame() {
 				cin >> choice;
 				cout << endl;
 
-				if (choice == "yes" || choice == "ye" || choice == "y") {
+				if (m_utility.LowerCaseString(choice) == "yes" || m_utility.LowerCaseString(choice) == "ye" || m_utility.LowerCaseString(choice) == "y") {
 					m_date.ShowLocation(m_locations[i]->GetName());
 					TrailMenu(m_locations[i]->GetHasStore(), m_locations[i]->GetName());
 					break;
@@ -232,6 +245,7 @@ void Trail::ActiveGame() {
 		milesTraveled -= m_rateOfTravel;
 		AddEndingMiles(m_locations[i]->GetMilesNeeded() - milesTraveled);
 
+		m_utility.SaveAndUpdateLevel(m_playerLevel, m_playerXP, i);
 
 	}
 
@@ -402,7 +416,7 @@ void Trail::PromptCharacterNames() {
 		cout << "\t Are these names correct? Verify with yes or no. ";
 		cin >> verify;
 
-		if (verify == "yes" || verify == "ye" || verify == "y") {
+		if (m_utility.LowerCaseString(verify) == "yes" || m_utility.LowerCaseString(verify) == "ye" || m_utility.LowerCaseString(verify) == "y") {
 			break;
 		}
 		else {
