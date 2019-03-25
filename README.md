@@ -92,3 +92,19 @@ Along with the multiplies, the scoring is determined by these factors:
 - 1 point for each multiple of 25 pounds of food
 - 1 point for every $5
 
+### Progression System
+In my version of Oregon Trail, I added a progression system that gets saved locally to a player's device and gets saved locally every time the player visits a location. This way, even if the player closes the application mid way through a game, their most recent level and xp count will get saved. The ranks in the game go as follows:
+
+Level 1: 0 XP
+Level 2: 10,000 XP
+Level 3:  35,000 XP
+Level 4: 100,000 XP
+Level 5: 250,000 XP
+Level 6: 500,000 XP
+Level 7: 1,000,000 XP
+Level 8: 2,500,000 XP
+Level 9: 5,000,000 XP
+Level 10: 10,000,000 XP
+
+The rate at which you gain XP is determined by how far out the player is on the Oregon Trail. The XP starts at 100 XP when the player arrives at the first location. Each location they visit, the amount of XP goes up by 100 points. Playing through the entire game from start to finish will allow the player to gain 12,000 XP.
+
