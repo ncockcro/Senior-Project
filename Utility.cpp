@@ -399,17 +399,83 @@ string Utility::LowerCaseString(string a_string) {
 	return lowerCaseString;
 }
 
-void Utility::SaveAndUpdateLevel(int a_level, int a_playerScore, int a_locationsVisited) {
+void Utility::SaveAndUpdateLevel(int &a_level, int &a_playerXP, int a_locationsVisited) {
 
+	int increaseScore;
 	// Increment the player's xp
-	a_playerScore += (100 * (a_locationsVisited + 1));
+	increaseScore = (100 * (a_locationsVisited + 1));
+	a_playerXP += increaseScore;
+	CheckForLevelUp(a_level, a_playerXP);
+	cout << endl;
+
+	OutputWithColor("You gained " + to_string(increaseScore) + " points.", 15);
+	cout << endl;
 
 	fstream playerLevelFile;
 
 	playerLevelFile.open("level.txt", fstream::out);
 
-	playerLevelFile << "\t Level:" << a_level << endl << endl;
-	playerLevelFile << "\t XP: " << a_playerScore << endl;
+	playerLevelFile << "\t Level: " << a_level << endl << endl;
+	playerLevelFile << "\t XP: " << a_playerXP << endl;
 
 	playerLevelFile.close();
+}
+
+void Utility::CheckForLevelUp(int &a_level, int a_playerXP) {
+	
+	int currentLevel = a_level;
+
+	if (a_playerXP >= 10000000) {
+		a_level = 10;
+	}
+	else if (a_playerXP >= 5000000) {
+		a_level = 9;
+	}
+	else if (a_playerXP >= 2500000) {
+		a_level = 8;
+	}
+	else if (a_playerXP >= 1000000) {
+		a_level = 7;
+	}
+	else if (a_playerXP >= 500000) {
+		a_level = 6;
+	}
+	else if (a_playerXP >= 250000) {
+		a_level = 5;
+	}
+	else if (a_playerXP >= 100000) {
+		a_level = 4;
+	}
+	else if (a_playerXP >= 35000) {
+		a_level = 3;
+	}
+	else if (a_playerXP >= 10000) {
+		a_level = 2;
+	}
+	else {
+		a_level = 1;
+	}
+
+	if (currentLevel != a_level) {
+		OutputWithColor("Congratulations, you are now level " + to_string(a_level), 14);
+	}
+	/*
+	10,000,000
+	5,000,000
+	2,000,000
+	1,000,000
+	500,000
+	250,000
+	100,000
+	35,000
+	10,000
+	
+	*/
+}
+
+void Utility::OutputWithColor(string a_text, int a_color) {
+
+	SetConsoleTextAttribute(m_hConsole, a_color);
+	cout << "\t " << a_text << endl;
+	SetConsoleTextAttribute(m_hConsole, 7);
 }

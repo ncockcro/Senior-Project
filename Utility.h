@@ -41,7 +41,9 @@ public:
 	string GetExtraPartSimpleName(string a_partName);
 	string toStringWithPrecision(const double a_value, const int n);
 	string LowerCaseString(string a_string);
-	void SaveAndUpdateLevel(int a_level, int a_playerScore, int a_locationsVisited);
+	void SaveAndUpdateLevel(int &a_level, int &a_playerXP, int a_locationsVisited);
+	void CheckForLevelUp(int &a_level, int a_playerXP);
+	void OutputWithColor(string a_text, int a_color);
 
 private:
 
