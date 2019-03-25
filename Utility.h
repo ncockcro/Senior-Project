@@ -43,7 +43,7 @@ public:
 	string LowerCaseString(string a_string);
 	void SaveAndUpdateLevel(int &a_level, int &a_playerXP, int a_locationsVisited);
 	void CheckForLevelUp(int &a_level, int a_playerXP);
-	void OutputWithColor(string a_text, int a_color);
+	void OutputWithColor(string a_text, int a_color, bool a_tab = false);
 
 private:
 

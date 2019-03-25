@@ -156,6 +156,7 @@ Date
 */
 void Oregon_Trail::ShowChoices() {
 
+	m_utility.OutputWithColor("     Current level: " + to_string(m_playerLevel), 14, true);
 	cout << "     You may:" << endl;
 	m_utility.OutputMessage("1. Travel the trail");
 	m_utility.OutputMessage("2. Learn about the trail");

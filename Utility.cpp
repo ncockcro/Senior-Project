@@ -402,15 +402,18 @@ string Utility::LowerCaseString(string a_string) {
 void Utility::SaveAndUpdateLevel(int &a_level, int &a_playerXP, int a_locationsVisited) {
 
 	int increaseScore;
+
 	// Increment the player's xp
 	increaseScore = (100 * (a_locationsVisited + 1));
 	a_playerXP += increaseScore;
+
+	// Output amount of xp the player earned and if they leveled up
+	OutputWithColor("You gained " + to_string(increaseScore) + " points.", 15);
 	CheckForLevelUp(a_level, a_playerXP);
 	cout << endl;
 
-	OutputWithColor("You gained " + to_string(increaseScore) + " points.", 15);
-	cout << endl;
 
+	// Save the players level and xp to the level.txt
 	fstream playerLevelFile;
 
 	playerLevelFile.open("level.txt", fstream::out);
@@ -456,26 +459,22 @@ void Utility::CheckForLevelUp(int &a_level, int a_playerXP) {
 		a_level = 1;
 	}
 
+	// If the player leveled up, output it to the screen
 	if (currentLevel != a_level) {
-		OutputWithColor("Congratulations, you are now level " + to_string(a_level), 14);
+		OutputWithColor("Congratulations, you are now level " + to_string(a_level) + ".", 14);
 	}
-	/*
-	10,000,000
-	5,000,000
-	2,000,000
-	1,000,000
-	500,000
-	250,000
-	100,000
-	35,000
-	10,000
-	
-	*/
 }
 
-void Utility::OutputWithColor(string a_text, int a_color) {
+void Utility::OutputWithColor(string a_text, int a_color, bool a_tab) {
 
-	SetConsoleTextAttribute(m_hConsole, a_color);
-	cout << "\t " << a_text << endl;
-	SetConsoleTextAttribute(m_hConsole, 7);
+	if (a_tab) {
+		SetConsoleTextAttribute(m_hConsole, a_color);
+		cout << a_text << endl;
+		SetConsoleTextAttribute(m_hConsole, 7);
+	}
+	else {
+		SetConsoleTextAttribute(m_hConsole, a_color);
+		cout << "\t " << a_text << endl;
+		SetConsoleTextAttribute(m_hConsole, 7);
+	}
 }

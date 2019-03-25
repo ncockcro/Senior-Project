@@ -685,7 +685,9 @@ void Trail::TrailMenu(bool a_hasStore, string a_locationName) {
 		cout << "\t Weather: " << m_utility.GetWeatherName(m_date.GetWeather()) << endl;
 		cout << "\t Health: " << m_utility.GetHealthName(m_player.GetHealth()) << endl;
 		cout << "\t Pace: " << m_player.GetPace() << endl;
-		cout << "\t Rations: " << m_player.GetFoodRate() << endl << endl;
+		cout << "\t Rations: " << m_player.GetFoodRate() << endl;
+		m_utility.OutputWithColor("Current Level: " + to_string(m_playerLevel), 14);
+		cout << endl;
 
 		cout << "\t You May:" << endl;
 		m_utility.OutputMessage("    1. Continue on trail");

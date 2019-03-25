@@ -45,7 +45,6 @@ private:
 	bool IsPosition(string a_word);
 	void ReadInPlayerLevel();
 
-	//Trail m_trailGame = Trail();
 	Utility m_utility;
 	string m_choice;
 	int m_playerLevel;
