@@ -1464,6 +1464,7 @@ void Trail::Hunt() {
 
 	// Opening intro
 	m_dialogue.T_ShowHuntingInstructions();
+	cout << endl;
 
 	m_utility.OutputMessage("Ready...");
 	Sleep(1000);
@@ -1497,18 +1498,23 @@ void Trail::Hunt() {
 
 			// If the user types the word correctly and in the correct amount of time, they get some food
 			if (userText == bangOrPowString && afterTime - beforeTime < amountOfTime) {
-				m_utility.OutputWithColor("You got food!", 10, true);
+				m_utility.OutputWithColor("You got food!", 10);
 				amountOfFoodEarned += 10 * (amountOfTime - (int)(afterTime - beforeTime + 1));
 			}
+			else if (userText != bangOrPowString) {
+				m_utility.DisplayError("Spelled wrong.");
+			}
 			else {
-				cout << "\t Spelled wrong or ran out of time." << endl;
+				m_utility.DisplayError("Ran out of time.");
 			}
 		}
 
 	}
 
 	cout << endl;
-	m_utility.OutputMessage("You earned " + to_string(amountOfFoodEarned) + " pounds of food from hunting.");
+	cout << "\t You earned ";
+	m_utility.OutputWithColor(to_string(amountOfFoodEarned), 10, true, true);
+	cout << " pounds of food from hunting." << endl;
 	cout << endl;
 
 	m_player.AddItemQuantity("Food", amountOfFoodEarned); 

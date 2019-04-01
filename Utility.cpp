@@ -465,11 +465,21 @@ void Utility::CheckForLevelUp(int &a_level, int a_playerXP) {
 	}
 }
 
-void Utility::OutputWithColor(string a_text, int a_color, bool a_tab) {
+void Utility::OutputWithColor(string a_text, int a_color, bool a_tab, bool a_endl) {
 
-	if (a_tab) {
+	if (a_tab && !a_endl) {
 		SetConsoleTextAttribute(m_hConsole, a_color);
 		cout << a_text << endl;
+		SetConsoleTextAttribute(m_hConsole, 7);
+	}
+	else if (a_tab && a_endl) {
+		SetConsoleTextAttribute(m_hConsole, a_color);
+		cout << a_text;
+		SetConsoleTextAttribute(m_hConsole, 7);
+	}
+	else if (!a_tab && a_endl) {
+		SetConsoleTextAttribute(m_hConsole, a_color);
+		cout << "\t " << a_text;
 		SetConsoleTextAttribute(m_hConsole, 7);
 	}
 	else {
