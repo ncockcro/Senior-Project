@@ -174,6 +174,9 @@ void Store::MakeChoice(Player a_player) {
 				else if (m_itemPrices[i] > m_playerMoney) {
 					m_utility.DisplayError("You don't have enough money for that.");
 				}
+				else if (CalculateTotal() > a_player.GetPlayerMoney()) {
+					m_utility.DisplayError("With your other items, you cannot afford that many.");
+				}
 				else if (stoi(amount) < 0) {
 					m_utility.DisplayError("You can not buy a negative amount.");
 				}

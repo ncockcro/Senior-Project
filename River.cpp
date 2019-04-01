@@ -271,8 +271,8 @@ Date
 void River::ShowRiverMenu(string a_weather) {
 
 	cout << "\t Weather: " << a_weather << endl;
-	cout << "\t River width: " << m_riverWidth << endl;
-	cout << "\t River depth: " << m_riverDepth << endl << endl;
+	cout << "\t River width: " << m_riverWidth << " feet" << endl;
+	cout << "\t River depth: " << m_riverDepth << " feet" << endl << endl;
 	
 	cout << "\t You may:" << endl << endl;
 	
@@ -544,7 +544,7 @@ bool River::TakeFerry(Player &a_player) {
 			a_player.DeductMoney(5.0);
 			break;
 		}
-		else if (choice == "no" || choice == "n") {
+		else if (m_utility.LowerCaseString(choice) == "no" || m_utility.LowerCaseString(choice) == "n") {
 			break;
 		}
 		else {
@@ -599,7 +599,7 @@ bool River::TakeIndianFerry(Player &a_player) {
 				return false;
 			}
 		}
-		else if (choice == "no" || choice == "n") {
+		else if (m_utility.LowerCaseString(choice) == "no" || m_utility.LowerCaseString(choice) == "n") {
 			break;
 		}
 		else {

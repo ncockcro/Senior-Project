@@ -358,6 +358,8 @@ void Oregon_Trail::AddToLeaderBoard(Trail a_trail) {
 	int structCount = 0;
 	string name;
 	LeaderBoardEntry gameScore;
+	string leaderBoardName;
+	bool enteringLeaderBoard = false;
 
 	// If there is no leaderboard file after finishing a game, this will initialize it
 	if (!outputLeaderboardFile) {
@@ -394,27 +396,47 @@ void Oregon_Trail::AddToLeaderBoard(Trail a_trail) {
 	//gameScore.score = m_trailGame.GetTotalScore();
 	gameScore.score = a_trail.GetTotalScore();
 
+	cin.ignore();
 	// Cycle through leaderboard scores and if the player's is higher, insert it into the leaderboard
 	for (size_t i = 0; i < m_entries.size(); i++) {
 		if (a_trail.GetTotalScore() > m_entries[i].score) {
 
 			m_utility.OutputMessage("You made the leaderboards!");
 			cout << "\t Enter your name: ";
-			cin >> name;
-			gameScore.name = name;
+			getline(cin, name);
+
+			// Cycling through the name the player typeed in and only save the first word they typed
+			for (size_t j = 0; j < name.size(); j++) {
+				if (name[j] == ' ') {
+					break;
+				}
+
+				leaderBoardName += name[j];
+			}
+			gameScore.name = leaderBoardName;
 			m_entries.insert(m_entries.begin() + i, gameScore);
+			enteringLeaderBoard = true;
 			break;
 		}
 	}
 
 	// If the player's score wasn't high enough to be better than the scores already in the leaderboards,
 	// but there were still extra spots that hadn't been filled yet
-	if (m_entries.size() < 10) {
+	if (m_entries.size() < 10 && !enteringLeaderBoard) {
 
 		m_utility.OutputMessage("You made the leaderboards!");
 		cout << "\t Enter your name: ";
-		cin >> name;
-		gameScore.name = name;
+		getline(cin, name);
+
+		// Cycling through the name the player typeed in and only save the first word they typed
+		for (size_t j = 0; j < name.size(); j++) {
+			if (name[j] == ' ') {
+				break;
+			}
+
+			leaderBoardName += name[j];
+		}
+		gameScore.name = leaderBoardName;
 
 		m_entries.push_back(gameScore);
 	}

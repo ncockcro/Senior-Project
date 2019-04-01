@@ -140,7 +140,7 @@ void Trail::ActiveGame(int a_playerLevel, int a_playerXP) {
 					TrailMenu(m_locations[i]->GetHasStore(), m_locations[i]->GetName());
 					break;
 				}
-				else if (choice == "no" || choice == "n") {
+				else if (m_utility.LowerCaseString(choice) == "no" || m_utility.LowerCaseString(choice) == "n") {
 					break;
 				}
 			}
@@ -170,6 +170,9 @@ void Trail::ActiveGame(int a_playerLevel, int a_playerXP) {
 					}
 					break;
 				}
+				else if (whichDirection == "3") {
+					LookAtMap();
+				}
 				else {
 					m_utility.DisplayError("Invalid option.");
 				}
@@ -195,6 +198,9 @@ void Trail::ActiveGame(int a_playerLevel, int a_playerXP) {
 						m_locations[i + 1] = &m_TheDalles;
 					}
 					break;
+				}
+				else if (whichDirection == "3") {
+					LookAtMap();
 				}
 				else {
 					m_utility.DisplayError("Invalid option.");
@@ -381,7 +387,9 @@ void Trail::PromptCharacterNames() {
 	// Keep cycling through until the player has picked the names they want for their party
 	while (1) {
 		cout << "\t What is the first name of the wagon leader? ";
-		cin >> temp;
+		//cin >> temp;
+		cin.ignore();
+		getline(cin, temp);
 
 		m_player.GetWagonLeader().SetName(temp);
 
@@ -390,7 +398,8 @@ void Trail::PromptCharacterNames() {
 		// Cycling through four times to get the names of the four other members of the wagon party
 		for (int i = 0; i < 4; i++) {
 			cout << "\t " << i + 1 << ". ";
-			cin >> temp;
+			getline(cin, temp);
+			//cin >> temp;
 
 			if (temp == m_player.GetWagonLeader().GetName()) {
 				sameName = true;
@@ -560,11 +569,11 @@ void Trail::DepartingStore() {
 	storeItems.push_back(Item("Clothing", 10.0, "\t You'll need warm clothing in \n \t the mountains. I recommend \n \t taking at least \n \t "
 		"2 sets of \n \t clothes per person. Each \n \t set is $10.00", "NULL", INT_MAX));
 	storeItems.push_back(Item("Ammunition", 2.0, "\t I sell amunition in boxes \n \t of 20 bullets. Each box \n \t costs $2.00.", "NULL", INT_MAX));
-	storeItems.push_back(Item("Spare parts - wagon wheel", 10.0, "\t It's a good idea to have a \n \t few spare wheels for your \n \t wagon:", 
+	storeItems.push_back(Item("Spare parts - wagon wheel", 10.0, "\t It's a good idea to have a \n \t few spare wheels for your \n \t wagon. I charge $10 per part.", 
 		"Your wagon may only carry 3 \n \t wagon wheels.", 3));
-	storeItems.push_back(Item("Spare parts - wagon axle", 10.0, "\t It's a good idea to have a \n \t few spare axles for your \n \t wagon:", 
+	storeItems.push_back(Item("Spare parts - wagon axle", 10.0, "\t It's a good idea to have a \n \t few spare axles for your \n \t wagon. I charge $10 per part.", 
 		"Your wagon may only carry 3 \n \t wagon axles.", 3));
-	storeItems.push_back(Item("Spare parts - wagon tongue", 10.0, "\t It's a good idea to have a \n \t few spare tongues for your \n \t wagon:",
+	storeItems.push_back(Item("Spare parts - wagon tongue", 10.0, "\t It's a good idea to have a \n \t few spare tongues for your \n \t wagon. I charge $10 per part.",
 		"Your wagon may only carry 3 \n \t wagon tongues", 3));
 
 	// Creating the store, setting the initial information, and sending the items to be sold there
@@ -907,7 +916,8 @@ void Trail::ChangePace() {
 
 	while (1) {
 		// Outputting the options to console for the player
-		m_utility.OutputMessage("\t Change pace");
+		cout << endl;
+		m_utility.OutputMessage("     Change pace");
 		cout << "\t (currently \"" << m_player.GetPace() << "\")" << endl << endl;
 
 		cout << "\t    1. a steady pace" << endl;
@@ -1174,6 +1184,7 @@ void Trail::InitializeLocations() {
 
 	m_SnakeRiver.SetName("Snake River");
 	m_SnakeRiver.SetMilesNeeded(113);
+	m_SnakeRiver.SetHasStore(false);
 	m_SnakeRiver.SetHasIndianFerry(true);
 
 	m_FortBoise.SetName("Fort Boise");
@@ -1478,24 +1489,31 @@ void Trail::Hunt() {
 			else {
 				bangOrPowString = "POW";
 			}
-			cout << "You have: " << amountOfTime << " seconds to type " << bangOrPowString << endl;
+			cout << "\t You have: " << amountOfTime << " seconds to type " << bangOrPowString << endl;
+			cout << "\t ";
 			beforeTime = time(0);
 			cin >> userText;
 			afterTime = time(0);
 
 			// If the user types the word correctly and in the correct amount of time, they get some food
 			if (userText == bangOrPowString && afterTime - beforeTime < amountOfTime) {
-				cout << "You got food!" << endl;
-				amountOfFoodEarned += 5 * (amountOfTime - (int)(afterTime - beforeTime + 1));
+				m_utility.OutputWithColor("You got food!", 10, true);
+				amountOfFoodEarned += 10 * (amountOfTime - (int)(afterTime - beforeTime + 1));
 			}
 			else {
-				cout << "Spelled wrong or ran out of time." << endl;
+				cout << "\t Spelled wrong or ran out of time." << endl;
 			}
 		}
 
 	}
 
+	cout << endl;
+	m_utility.OutputMessage("You earned " + to_string(amountOfFoodEarned) + " pounds of food from hunting.");
+	cout << endl;
+
 	m_player.AddItemQuantity("Food", amountOfFoodEarned); 
+
+	m_utility.Wait();
 
 
 }

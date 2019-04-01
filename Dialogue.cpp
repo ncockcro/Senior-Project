@@ -1436,15 +1436,15 @@ void Dialogue::T_LeavingMessage(double a_playerMoney) {
 	cout << endl;
 	m_utility.OutputMessage("What about supplies? Well, if");
 	m_utility.OutputMessage("you're low on food you can hunt. You might get a buffalo...");
-	m_utility.OutputMessage("you might. And there are bear in the mountains.");
+	m_utility.OutputMessage("you might. And there are bears in the mountains.");
 	cout << endl;
 	m_utility.Wait();
 
 	cout << endl;
-	m_utility.OutputMessage("At the Dalles, you can try");
+	m_utility.OutputMessage("At The Dalles, you can try");
 	m_utility.OutputMessage("navigating the Columbia River,");
 	m_utility.OutputMessage("but if running the rapids with");
-	m_utility.OutputMessage("a makeshift raph makes you queasy,");
+	m_utility.OutputMessage("a makeshift raft makes you queasy,");
 	m_utility.OutputMessage("better take the Barlow Road.");
 	cout << endl;
 	m_utility.Wait();
