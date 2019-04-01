@@ -503,6 +503,35 @@ bool Oregon_Trail::IsPosition(string a_word) {
 	}
 }
 
+/*
+Oregon_Trail::ReadInPlayerLevel()
+
+NAME
+
+	Oregon_Trail::ReadInPlayerLevel - reads the player's level and xp from "level.txt"
+
+SYNOPSIS
+
+	bool Oregon_Trail::ReadInPlayerLevel()
+
+DESCRIPTION
+
+	This function will open and read from a file called "level.txt" or initialize it if there is no file
+	existing on the player's computer. It will look for the tags "Level:" and "XP:" and read in the values
+	that follow the colons. 
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	11:33am 4/1/2019
+*/
 void Oregon_Trail::ReadInPlayerLevel() {
 
 	fstream outputPlayerLevelFile("level.txt");
@@ -524,7 +553,7 @@ void Oregon_Trail::ReadInPlayerLevel() {
 	// While we are not at the end of file...
 	while (inputPlayerLevelFile >> input) {
 
-
+		// Getting the level
 		if (input == "Level:") {
 			inputPlayerLevelFile >> input;
 
@@ -533,6 +562,7 @@ void Oregon_Trail::ReadInPlayerLevel() {
 			}
 		}
 
+		// Getting the XP
 		if (input == "XP:") {
 			inputPlayerLevelFile >> input;
 

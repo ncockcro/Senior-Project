@@ -37,9 +37,8 @@ public:
 	bool CheckInput(string a_input);
 	string GetWeatherName(int a_weather);
 	string GetHealthName(int a_health);
-	void BlueText(string a_text);
 	string GetExtraPartSimpleName(string a_partName);
-	string toStringWithPrecision(const double a_value, const int n);
+	string ToStringWithPrecision(const double a_value, const int a_n);
 	string LowerCaseString(string a_string);
 	void SaveAndUpdateLevel(int &a_level, int &a_playerXP, int a_locationsVisited);
 	void CheckForLevelUp(int &a_level, int a_playerXP);

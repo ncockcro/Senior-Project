@@ -1386,14 +1386,14 @@ void Trail::VisitStore(string a_location) {
 
 	// Initializing the items to be put into the departing store
 	storeItems.push_back(Item("Oxen", 25.0 + m_rate5dollars, "\t " + to_string(25 + m_rate5dollars) + " per ox", "You can not bring more than 9 oxen with you.", 9));
-	storeItems.push_back(Item("Food", 0.25 + m_rate0_5dollars, "\t " + m_utility.toStringWithPrecision(0.25 + m_rate0_5dollars, 2) + " per pound", "Your wagon may only carry \n \t 2000 pounds of food.", 2000));
-	storeItems.push_back(Item("Clothing", 12.5 + m_rate2_5dollars, "\t " + m_utility.toStringWithPrecision(12.50 + m_rate2_5dollars, 2) + " per set", "NULL", INT_MAX));
-	storeItems.push_back(Item("Ammunition", 2.5 + m_rate0_5dollars, "\t " + m_utility.toStringWithPrecision(2.5 + m_rate0_5dollars, 2) + " per box", "NULL", INT_MAX));
-	storeItems.push_back(Item("Spare parts - wagon wheel", 12.5 + m_rate2_5dollars, "\t " + m_utility.toStringWithPrecision(12.50 + m_rate2_5dollars, 2) + " per wheel", 
+	storeItems.push_back(Item("Food", 0.25 + m_rate0_5dollars, "\t " + m_utility.ToStringWithPrecision(0.25 + m_rate0_5dollars, 2) + " per pound", "Your wagon may only carry \n \t 2000 pounds of food.", 2000));
+	storeItems.push_back(Item("Clothing", 12.5 + m_rate2_5dollars, "\t " + m_utility.ToStringWithPrecision(12.50 + m_rate2_5dollars, 2) + " per set", "NULL", INT_MAX));
+	storeItems.push_back(Item("Ammunition", 2.5 + m_rate0_5dollars, "\t " + m_utility.ToStringWithPrecision(2.5 + m_rate0_5dollars, 2) + " per box", "NULL", INT_MAX));
+	storeItems.push_back(Item("Spare parts - wagon wheel", 12.5 + m_rate2_5dollars, "\t " + m_utility.ToStringWithPrecision(12.50 + m_rate2_5dollars, 2) + " per wheel", 
 		"Your wagon may only carry 3 \n \t wagon wheels.", 3));
-	storeItems.push_back(Item("Spare parts - wagon axle", 12.5 + m_rate2_5dollars, "\t " + m_utility.toStringWithPrecision(12.50 + m_rate2_5dollars, 2) + " per axle",
+	storeItems.push_back(Item("Spare parts - wagon axle", 12.5 + m_rate2_5dollars, "\t " + m_utility.ToStringWithPrecision(12.50 + m_rate2_5dollars, 2) + " per axle",
 		"Your wagon may only carry 3 \n \t wagon axles.", 3));
-	storeItems.push_back(Item("Spare parts - wagon tongue", 12.5 + m_rate2_5dollars, "\t " + m_utility.toStringWithPrecision(12.50 + m_rate2_5dollars, 2) + " per tongue",
+	storeItems.push_back(Item("Spare parts - wagon tongue", 12.5 + m_rate2_5dollars, "\t " + m_utility.ToStringWithPrecision(12.50 + m_rate2_5dollars, 2) + " per tongue",
 		"Your wagon may only carry 3 \n \t wagon tongues", 3));
 
 	// Creating the store, setting the initial information, and sending the items to be sold there
@@ -1718,8 +1718,8 @@ void Trail::ShowScoreDetails(int a_scores[]) {
 	m_player.GetItem("Spare parts - wagon tongue").GetQuantity() << setw(32) << " spare parts: " << a_scores[3] << " points" << endl;
 	cout << "\t " << setw(33) << to_string(m_player.GetItem("Clothing").GetQuantity()) + " sets of clothing: " << a_scores[4] << " points" << endl;
 	cout << "\t " << m_player.GetItem("Ammunition").GetQuantity() << left << setw(31) << " bullets: " << a_scores[5] << " points" << endl;
-	cout << "\t " << setw(33) << m_utility.toStringWithPrecision(m_player.GetItem("Food").GetQuantity(), 2) + " pounds of food: " << a_scores[6] << " points" << endl;
-	cout << "\t $" << setw(32) << setprecision(2) << to_string(m_player.GetPlayerMoney()) + " cash: " << a_scores[7] << " points" << endl;
+	cout << "\t " << setw(33) << m_utility.ToStringWithPrecision(m_player.GetItem("Food").GetQuantity(), 2) + " pounds of food: " << a_scores[6] << " points" << endl;
+	cout << "\t $" << setw(32) << setprecision(2) << m_utility.ToStringWithPrecision(m_player.GetPlayerMoney(), 2) + " cash: " << a_scores[7] << " points" << endl;
 	cout << setw(35) << "\t Total: " << m_totalScore << " points" << endl;
 	cout << "-------------------------------------------------------" << endl;
 }

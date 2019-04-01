@@ -355,14 +355,36 @@ string Utility::GetHealthName(int a_health) {
 	}
 }
 
-void Utility::BlueText(string a_text) {
+/*
+	Utility:GetExtraPartSimpleName(string a_partName)
 
-	SetConsoleTextAttribute(m_hConsole, 11);
-	cout << "\t " << a_text << endl;
-	SetConsoleTextAttribute(m_hConsole, 7);
+NAME
 
-}
+	Utility::GetExtraPartSimpleName - Returns a more output friendly name for the extra part items
 
+SYNOPSIS
+
+	string Utility::GetExtraPartSimpleName(string a_partName)
+
+	a_partName  --> the name of the extra part
+
+DESCRIPTION
+
+	This function takes in the name of an extra part and returns a more simple version of it
+	to be outputted to the screen.
+
+RETURNS
+
+	String
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	12:27pm 4/1/2019
+*/
 string Utility::GetExtraPartSimpleName(string a_partName) {
 
 	if (a_partName == "Spare parts - wagon wheel") {
@@ -380,14 +402,74 @@ string Utility::GetExtraPartSimpleName(string a_partName) {
 	}
 }
 
-string Utility::toStringWithPrecision(const double a_value, const int n) {
+/*
+	Utility:ToStringWithPrecision(const double a_value, const int a_n)
+
+NAME
+
+	Utility::ToStringWithPrecision - Returns the number passed in with the precision passed in.
+
+SYNOPSIS
+
+	string Utility::ToStringWithPrecision(const double a_value, const in a_n)
+
+	a_value  --> the number to be outputted
+	a_n --> the number of digits for precision
+
+DESCRIPTION
+
+	This function takes in a decimal number and the number for how much precision is needed and returns
+	the string version of the decimal with the specified precision.
+
+RETURNS
+
+	String
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	12:27pm 4/1/2019
+*/
+string Utility::ToStringWithPrecision(const double a_value, const int a_n) {
 
 	ostringstream out;
-	out.precision(n);
+	out.precision(a_n);
 	out << fixed << a_value;
 	return out.str();
 }
 
+/*
+	Utility:LowerCaseString(string a_string)
+
+NAME
+
+	Utility::LowerCaseString - Returns the lowercase version of a string
+
+SYNOPSIS
+
+	string Utility::LowerCaseString(string a_string)
+
+	a_string  --> string to be converted to lowercase
+
+DESCRIPTION
+
+	This function takes in a string and returns the lower case version of it.
+
+RETURNS
+
+	String
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	12:35pm 4/1/2019
+*/
 string Utility::LowerCaseString(string a_string) { 
 
 	string lowerCaseString;
@@ -399,6 +481,38 @@ string Utility::LowerCaseString(string a_string) {
 	return lowerCaseString;
 }
 
+/*
+	Utility:SaveAndUpdateLevel(int &a_level, int &a_playerXP, int a_locationsVisited)
+
+NAME
+
+	Utility::SaveAndUpdateLevel - Saves the player's level/XP to file and updates it.
+
+SYNOPSIS
+
+	void Utility::SaveAndUpdateLevel(int &a_level, int &a_playerXP, int a_locationsVisited)
+
+	a_level  --> the player's level
+	a_playerXP --> the player's XP
+	a_locationsVisited --> the # of locations visited by the player
+
+DESCRIPTION
+
+	This function adds the XP to the player's overall XP count and checks if the player leveled up or not.
+	Then it will save the player's level and XP to the "level.txt".
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	12:39pm 4/1/2019
+*/
 void Utility::SaveAndUpdateLevel(int &a_level, int &a_playerXP, int a_locationsVisited) {
 
 	int increaseScore;
@@ -424,6 +538,37 @@ void Utility::SaveAndUpdateLevel(int &a_level, int &a_playerXP, int a_locationsV
 	playerLevelFile.close();
 }
 
+/*
+	Utility:CheckForLevelUp(int &a_level, int a_playerXP)
+
+NAME
+
+	Utility::CheckForLevelUp - Checks if the player leveled up or not
+
+SYNOPSIS
+
+	string Utility::GetExtraPartSimpleName(int &a_level, int a_playerXP)
+
+	a_level  --> the player's level
+	a_playerXP --> the player's XP
+
+DESCRIPTION
+
+	This function takes in the player's level and XP and checks if the player leveled up. There are specific
+	XP requirements that determine the player's level.
+
+RETURNS
+
+	String
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	12:45pm 4/1/2019
+*/
 void Utility::CheckForLevelUp(int &a_level, int a_playerXP) {
 	
 	int currentLevel = a_level;
@@ -465,23 +610,59 @@ void Utility::CheckForLevelUp(int &a_level, int a_playerXP) {
 	}
 }
 
+/*
+	Utility:OutputWithColor(string a_text, int a_color, bool a_tab, bool a_endl)
+
+NAME
+
+	Utility::OutputWithColor - Outputs text in the specified color
+
+SYNOPSIS
+
+	void Utility::OutputWithColor(string a_text, int a_color, bool a_tab, bool a_endl)
+
+	a_text  --> the text to be outputted to the screem
+	a_color --> the color the text will be outputted with
+	a_tab --> true/false if the outputted statement should be tabbed or not
+	a_endl --> true/false if the outputted statement should have an endl or not
+
+DESCRIPTION
+
+	This function takes text and a color option and outputs the text with the color that was passed in.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	12:57pm 4/1/2019
+*/
 void Utility::OutputWithColor(string a_text, int a_color, bool a_tab, bool a_endl) {
 
+	// If the statement should not be tabbed but have an endl
 	if (a_tab && !a_endl) {
 		SetConsoleTextAttribute(m_hConsole, a_color);
 		cout << a_text << endl;
 		SetConsoleTextAttribute(m_hConsole, 7);
 	}
+	// If the statement should not be tabbed and not have an endl
 	else if (a_tab && a_endl) {
 		SetConsoleTextAttribute(m_hConsole, a_color);
 		cout << a_text;
 		SetConsoleTextAttribute(m_hConsole, 7);
 	}
+	// If the statement should be tabbed and have an endl
 	else if (!a_tab && a_endl) {
 		SetConsoleTextAttribute(m_hConsole, a_color);
 		cout << "\t " << a_text;
 		SetConsoleTextAttribute(m_hConsole, 7);
 	}
+	// If the statement should be tabbed and have an endl
 	else {
 		SetConsoleTextAttribute(m_hConsole, a_color);
 		cout << "\t " << a_text << endl;

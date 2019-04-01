@@ -505,7 +505,7 @@ NAME
 
 SYNOPSIS
 
-	bool Trail::TakeFerry(Player &a_player)
+	bool River::TakeFerry(Player &a_player)
 
 	a_player --> player object with all of the player's items
 
@@ -570,11 +570,43 @@ bool River::TakeFerry(Player &a_player) {
 	return takeFerry;
 }
 
+/*
+	River::TakeIndianFerry
+
+NAME
+
+	River::TakeIndianFerry - Similar to regular ferry except the payment is in clothing
+
+SYNOPSIS
+
+	bool River::TakeIndianFerry(Player &a_player)
+
+	a_player --> player object with all of the player's items
+
+DESCRIPTION
+
+	This function is used when the player wants to take an Indian ferry which is unique
+	to one of the locations. The player must pay using 3 sets of clothing here which
+	is different from the regular ferry where you use money.
+
+RETURNS
+
+	Bool
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	12:12pm 4/1/2019
+*/
 bool River::TakeIndianFerry(Player &a_player) {
 
 	string choice;
 	bool takeIndianFerry = false;
 
+	// While the player is making a choice...
 	while (1) {
 		cout << endl;
 		m_utility.OutputMessage("A Shoshoni guide says that he");
@@ -587,6 +619,7 @@ bool River::TakeIndianFerry(Player &a_player) {
 		cout << "\t offer? ";
 		cin >> choice;
 
+		// If the player chose yes and they have 3 sets of clothing, break out of the loop and cross river
 		if (m_utility.LowerCaseString(choice) == "yes" || m_utility.LowerCaseString(choice) == "ye" || m_utility.LowerCaseString(choice) == "y") {
 			takeIndianFerry = true;
 			if (a_player.GetItem("Clothing").GetQuantity() >= 3) {
@@ -599,6 +632,8 @@ bool River::TakeIndianFerry(Player &a_player) {
 				return false;
 			}
 		}
+		// If the user chose no, it will break out of the loop and return false which will take the user back to
+		// selecting a different method for crossing the river
 		else if (m_utility.LowerCaseString(choice) == "no" || m_utility.LowerCaseString(choice) == "n") {
 			break;
 		}

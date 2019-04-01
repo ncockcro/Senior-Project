@@ -552,7 +552,7 @@ void Random::DevelopeDisease(Player &a_player) {
 	if (a_player.GetWagonParty().size() > 0) {
 		a_player.GetWagonParty()[randomNum].AddDisease(PickRandomDisease(a_player.GetWagonParty()[randomNum].GetDiseases()));
 		playersDisease = a_player.GetWagonParty()[randomNum].GetName() + " has " + a_player.GetWagonParty()[randomNum].GetLastDisease();
-		m_utility.BlueText(playersDisease);
+		m_utility.OutputWithColor(playersDisease, 11);
 		cout << endl;
 
 		if (a_player.GetWagonParty()[randomNum].CheckIfDead()) {
@@ -566,7 +566,7 @@ void Random::DevelopeDisease(Player &a_player) {
 	else {
 		a_player.GetWagonLeader().AddDisease(PickRandomDisease(a_player.GetWagonLeader().GetDiseases()));
 		playersDisease = a_player.GetWagonLeader().GetName() + " has " + a_player.GetWagonLeader().GetLastDisease();
-		m_utility.BlueText(playersDisease);
+		m_utility.OutputWithColor(playersDisease, 11);
 		cout << endl;
 
 		// If the wagon leader is dead, then that means all of the members are dead
@@ -729,17 +729,47 @@ string Random::PickRandomDisease(vector<string> a_currentDiseases) {
 	return diseases[randomNum];
 }
 
+/*
+	Random::NotEnoughClothing(Player &a_player)
+
+NAME
+
+	Random::NotEnoughClothing - Damages the player's health if they don't have clothing for each member
+
+SYNOPSIS
+
+	void Random::NotEnoughClothing(Player &a_player)
+
+	a_player --> the player object used in the main trail game
+
+DESCRIPTION
+
+	This function will check which rate the player is eating food at and decrease their health
+	accordingly.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	11:51am 4/1/2019
+*/
 void Random::NotEnoughClothing(Player &a_player) {
 
 	// Depending on the rate the player is eating at, the player should still be losing health from the cold
 	if (a_player.GetFoodRate() == "filling") {
-		a_player.DecreaseHealthOutOfHundred(9);
+		a_player.DecreaseHealthOutOfHundred(15);
 	}
 	else if (a_player.GetFoodRate() == "meager") {
-		a_player.DecreaseHealthOutOfHundred(6);
+		a_player.DecreaseHealthOutOfHundred(12);
 	}
 	else {
-		a_player.DecreaseHealthOutOfHundred(4);
+		a_player.DecreaseHealthOutOfHundred(9);
 	}
 
 	m_utility.OutputMessage("The freezing weather hurts your party members.");
