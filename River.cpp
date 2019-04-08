@@ -114,19 +114,25 @@ void River::CrossLocation(Player &a_player, Date &a_date) {
 			}
 		}
 		// If the river does not have a ferry, then option 3 is for waiting for conditions
-		else if (!m_hasFerry || !m_hasIndianFerry && choice == "3") {
+		else if (!m_hasFerry && !m_hasIndianFerry && choice == "3") {
 			WaitADay(a_date);
 		}
 		// If the river has a ferry, then option 4 is for waiting for conditions
-		else if (m_hasFerry || m_hasIndianFerry && choice == "4") {
+		else if (m_hasFerry && choice == "4") {
 			WaitADay(a_date);
 		}
+		else if (m_hasIndianFerry && choice == "4") {
+			RiverMoreInfoDialogue();
+		}
 		// If there is no ferry for the river, then option 4 is for getting more info
-		else if (!m_hasFerry || !m_hasIndianFerry && choice == "4") {
+		else if (!m_hasFerry && !m_hasIndianFerry && choice == "4") {
 			RiverMoreInfoDialogue();
 		}
 		// If there is a ferry at the river, then option 5 is for getting more info
-		else if (m_hasFerry || m_hasIndianFerry && choice == "5") {
+		else if (m_hasFerry && choice == "5") {
+			RiverMoreInfoDialogue();
+		}
+		else if (m_hasIndianFerry && choice == "5") {
 			RiverMoreInfoDialogue();
 		}
 		else {
@@ -548,7 +554,9 @@ bool River::TakeFerry(Player &a_player) {
 			break;
 		}
 		else {
-			m_utility.OutputMessage("Invalid choice.");
+			cout << endl;
+			m_utility.DisplayError("Invalide choice.");
+			cout << endl;
 		}
 	}
 
@@ -638,7 +646,9 @@ bool River::TakeIndianFerry(Player &a_player) {
 			break;
 		}
 		else {
-			m_utility.OutputMessage("Invalid choice.");
+			cout << endl;
+			m_utility.DisplayError("Invalide choice.");
+			cout << endl;
 		}
 	}
 
@@ -739,19 +749,19 @@ void River::RiverMoreInfoDialogue() {
 	m_utility.OutputMessage("\t attached.");
 	m_utility.Wait();
 
-	m_utility.OutputMessage("To caulk the wagon means to");
-	m_utility.OutputMessage("seal it so that no water can");
-	m_utility.OutputMessage("get in. The wagon can then");
-	m_utility.OutputMessage("be floated across like a");
-	m_utility.OutputMessage("boat.");
+	m_utility.OutputMessage("\t To caulk the wagon means to");
+	m_utility.OutputMessage("\t seal it so that no water can");
+	m_utility.OutputMessage("\t get in. The wagon can then");
+	m_utility.OutputMessage("\t be floated across like a");
+	m_utility.OutputMessage("\t boat.");
 	m_utility.Wait();
 
-	m_utility.OutputMessage("To use a ferry means to put");
-	m_utility.OutputMessage("your wagon on top of a flat");
-	m_utility.OutputMessage("boat that belongs to someone");
-	m_utility.OutputMessage("else. The owner of the");
-	m_utility.OutputMessage("ferry will take your wagon");
-	m_utility.OutputMessage("across the river.");
+	m_utility.OutputMessage("\t To use a ferry means to put");
+	m_utility.OutputMessage("\t your wagon on top of a flat");
+	m_utility.OutputMessage("\t boat that belongs to someone");
+	m_utility.OutputMessage("\t else. The owner of the");
+	m_utility.OutputMessage("\t ferry will take your wagon");
+	m_utility.OutputMessage("\t across the river.");
 	m_utility.Wait();
 
 }
