@@ -64,6 +64,18 @@ Throughout the trail, the player has the option to hunt for food when there is n
 
 Several of the locations the player will visit throughout the game are rivers which the player will have to cross. They have the option to ford the river if it is low enough, float across the river if it is high enough, and at some locations, pay for a ferry to take the player across the river. While at the river, the player also has the option to wait for river conditions to improve.
 
+### Random Events
+There are several random events that can occur throughout the playthrough of Oregon Trail which can drastically make the game very exciting. Some random events can help the player while other can significantly hurt one's supplies. The random events in the game include
+
+- Finding wild fruit
+- Finding an abandoned wagon with supplies
+- Having a thief come and steal the player's goods
+- Getting lost on a bad trail
+- Getting stuck in a blizzard
+- Getting stuck in a thunderstorm
+- Party members developing diseases
+- A wildfire starting in the player's wagon
+
 ### End of Game
 The game can end in one of two ways. The first way, is that the player is successful in reaching Oregon, and they have completed the trail. The other way, is if all of the party members died on the trail, some time along the way. A party member dies when they have three or more diseases. Party members can be more susceptible to getting a disease if the party's health overall is in critical condition. 
 
