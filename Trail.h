@@ -108,6 +108,7 @@ private:
 	Random m_randomEvent;
 
 	bool m_passedFortLaramie;
+	bool m_mapGreenRiver;
 
 	int m_playerLevel;
 	int m_playerXP;

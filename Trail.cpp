@@ -45,6 +45,7 @@ Trail::Trail()
 	m_totalScore = 0;
 
 	m_passedFortLaramie = false;
+	m_mapGreenRiver = false;
 
 	m_playerLevel = 1;
 	m_playerXP = 0;
@@ -863,8 +864,14 @@ void Trail::LookAtMap() {
 			continue;
 		}
 
+		// If the player decided to travel to "Green River", this will set a boolean
+		// so the "|| Fort Bridger" stops getting outputted to the map
+		if (m_currentLocation == "Green River") {
+			m_mapGreenRiver = true;
+		}
+
 		// Need to also show the other location the player can travel to
-		if (m_locations[i]->GetName() == "Green River") {
+		if (m_locations[i]->GetName() == "Green River" && !m_mapGreenRiver) {
 			cout << " || Fort Bridger";
 		}
 
