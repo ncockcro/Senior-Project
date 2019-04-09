@@ -43,7 +43,7 @@ private:
 	void FloatRiver(Player &a_player);
 	bool TakeFerry(Player &a_player, Date &a_date);
 	bool TakeIndianFerry(Player &a_player, Date &a_date);
-	void WaitADay(Date &a_date);
+	void WaitADay(Player &a_player, Date &a_date);
 	void RiverMoreInfoDialogue();
 	bool GenerateRandomNum(double a_percent);
 
@@ -53,5 +53,6 @@ private:
 	Utility m_utility = Utility();
 	bool m_hasFerry;
 	bool m_hasIndianFerry;
+	bool m_hasWaitedADay;
 };
 

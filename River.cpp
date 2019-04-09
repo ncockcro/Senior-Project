@@ -35,6 +35,7 @@ River::River()
 	m_riverDepth = 0.0;
 	m_riverWidth = 0.0;
 	m_hasFerry = false;
+	m_hasWaitedADay = false;
 }
 
 /*
@@ -115,11 +116,25 @@ void River::CrossLocation(Player &a_player, Date &a_date) {
 		}
 		// If the river does not have a ferry, then option 3 is for waiting for conditions
 		else if (!m_hasFerry && !m_hasIndianFerry && choice == "3") {
-			WaitADay(a_date);
+			if (!m_hasWaitedADay) {
+				WaitADay(a_player, a_date);
+			}
+			else {
+				cout << endl;
+				m_utility.DisplayError("You can't keep waiting!");
+				cout << endl;
+			}
 		}
 		// If the river has a ferry, then option 4 is for waiting for conditions
 		else if (m_hasFerry && choice == "4") {
-			WaitADay(a_date);
+			if (!m_hasWaitedADay) {
+				WaitADay(a_player, a_date);
+			}
+			else {
+				cout << endl;
+				m_utility.DisplayError("You can't keep waiting!");
+				cout << endl;
+			}
 		}
 		else if (m_hasIndianFerry && choice == "4") {
 			RiverMoreInfoDialogue();
@@ -674,7 +689,7 @@ bool River::TakeIndianFerry(Player &a_player, Date &a_date) {
 }
 
 /*
-	River::WaitADay()
+	River::WaitADay(Player &a_player, Date &a_date)
 
 NAME
 
@@ -682,8 +697,9 @@ NAME
 
 SYNOPSIS
 
-	void Trail::WaitADay(Date &a_date)
+	void Trail::WaitADay(Player &a_player, Date &a_date)
 
+	a_player --> player object
 	a_date --> date object which contains the current date
 
 DESCRIPTION
@@ -702,17 +718,30 @@ Date
 
 	12:01pm 1/6/2019
 */
-void River::WaitADay(Date &a_date) {
+void River::WaitADay(Player &a_player, Date &a_date) {
 
+	// Generating a random number for the depth of the river
+	uniform_real_distribution<double> unif(0.1, 10.0);
+	default_random_engine re;
+	re.seed((unsigned int)time(0));
+	m_riverDepth = unif(re);
+
+	// Generating a random number for the length of the river
+	uniform_real_distribution<double> unif2(100.0, 800.0);
+	default_random_engine re2;
+	re2.seed((unsigned int)time(0));
+	m_riverWidth = unif2(re2);
+
+	// Increment the day by one and use up the player's food
+	a_date.NextDay();
+	a_player.DeductFood();
+
+	m_hasWaitedADay = true;
+
+	cout << endl;
 	m_utility.OutputMessage("You camp near the river for a day.");
 	m_utility.Wait();
 
-	a_date.NextDay();
-
-	if (m_riverDepth > 0.0 && m_riverWidth > 0.0) {
-		m_riverDepth -= 0.01;
-		m_riverWidth -= 1.0;
-	}
 }
 
 /*

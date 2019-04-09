@@ -113,8 +113,11 @@ void Random::RandomEvent(Player &a_player, Date &a_date) {
 	else if (randomNum >= 87) {
 		BadTrail(a_player, a_date);
 	}
-	// Small chance for developing a disease
 	else if (randomNum >= 85) {
+		WagonFire(a_player);
+	}
+	// Small chance for developing a disease
+	else if (randomNum >= 83) {
 		DevelopeDisease(a_player);
 	}
 
@@ -777,6 +780,46 @@ void Random::NotEnoughClothing(Player &a_player) {
 	cout << endl;
 }
 
+/*
+	Random::WagonFire(Player &a_player)
+
+NAME
+
+	Random::WagonFire - Player will randomly lose items from a wagon fire
+
+SYNOPSIS
+
+	void Random::WagonFire(Player &a_player)
+
+	a_player --> the player object used in the main trail game
+
+DESCRIPTION
+
+	This function output that a wildfire broke out in the player's wagon and has
+	the player lose items.
+
+RETURNS
+
+	Void
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	10:06am 4/9/2019
+*/
 void Random::WagonFire(Player &a_player) {
 
+	vector<Item> lostItems = a_player.LoseItems();
+
+	if (lostItems.size() > 0) {
+		m_utility.OutputMessage("A wildfire broke out in");
+		m_utility.OutputMessage("your wagon! You lose: ");
+	}
+
+	for (size_t i = 0; i < lostItems.size(); i++) {
+		cout << "\t \t " << lostItems[i].GetName() << ": " << lostItems[i].GetQuantity() << endl;
+	}
 }
