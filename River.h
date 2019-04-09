@@ -41,8 +41,8 @@ private:
 	void ShowRiverMenu(string a_weather);
 	void FordRiver(Player &a_player);
 	void FloatRiver(Player &a_player);
-	bool TakeFerry(Player &a_player);
-	bool TakeIndianFerry(Player &a_player);
+	bool TakeFerry(Player &a_player, Date &a_date);
+	bool TakeIndianFerry(Player &a_player, Date &a_date);
 	void WaitADay(Date &a_date);
 	void RiverMoreInfoDialogue();
 	bool GenerateRandomNum(double a_percent);

@@ -1510,7 +1510,8 @@ void Dialogue::T_WhichDirectionChoice1() {
 
 	m_utility.OutputMessage("The trail divides here. You may: \n");
 	m_utility.OutputMessage("\t 1. head for Green River crossing");
-	m_utility.OutputMessage("\t 2. head for Fort Bridger \n");
+	m_utility.OutputMessage("\t 2. head for Fort Bridger");
+	m_utility.OutputMessage("\t 3. look at the map \n");
 	cout << "\t What is your choice? ";
 }
 
@@ -1547,6 +1548,7 @@ void Dialogue::T_WhichDirectionChoice2() {
 	m_utility.OutputMessage("The trail divides here. You may: \n");
 	m_utility.OutputMessage("\t 1. head for Fort Walla Walla");
 	m_utility.OutputMessage("\t 2. head for The Dalles");
+	m_utility.OutputMessage("\t 3. look at the map \n");
 	cout << "\t What is your choice? ";
 }
 

@@ -47,6 +47,7 @@ private:
 	void BrokenWagonPartHelper(Player &a_player, string a_itemName);
 	string PickRandomDisease(vector<string> a_currentDiseases);
 	void NotEnoughClothing(Player &a_player);
+	void WagonFire(Player &a_player);
 
 	vector<Item>m_itemsLost;
 	Utility m_utility;

@@ -806,14 +806,14 @@ Date
 void Trail::ShowSupplies() {
 
 	m_utility.OutputMessage("\t Your Supplies");
-	cout << "\t oxen     " << m_player.GetItem("Oxen").GetQuantity() << endl;
-	cout << "\t sets of clothing     " << m_player.GetItem("Clothing").GetQuantity() << endl;
-	cout << "\t bullets     " << m_player.GetItem("Ammunition").GetQuantity() << endl;
-	cout << "\t wagon wheels     " << m_player.GetItem("Spare parts - wagon wheel").GetQuantity() << endl;
-	cout << "\t wagon axles     " << m_player.GetItem("Spare parts - wagon axle").GetQuantity() << endl;
-	cout << "\t wagon tongue     " << m_player.GetItem("Spare parts - wagon tongue").GetQuantity() << endl;
-	cout << "\t pounds of food     " << m_player.GetItem("Food").GetQuantity() << endl;
-	cout << "\t money left     $" << m_player.GetPlayerMoney() << endl;
+	cout << left << setw(30) << "\t oxen     " << m_player.GetItem("Oxen").GetQuantity() << endl;
+	cout << left << setw(30) << "\t sets of clothing     " << m_player.GetItem("Clothing").GetQuantity() << endl;
+	cout << left << setw(30) << "\t bullets     " << m_player.GetItem("Ammunition").GetQuantity() << endl;
+	cout << left << setw(30) << "\t wagon wheels     " << m_player.GetItem("Spare parts - wagon wheel").GetQuantity() << endl;
+	cout << left << setw(30) << "\t wagon axles     " << m_player.GetItem("Spare parts - wagon axle").GetQuantity() << endl;
+	cout << left << setw(30) << "\t wagon tongue     " << m_player.GetItem("Spare parts - wagon tongue").GetQuantity() << endl;
+	cout << left << setw(30) << "\t pounds of food     " << m_player.GetItem("Food").GetQuantity() << endl;
+	cout << left << setw(30) << "\t money left     " << "$" << m_player.GetPlayerMoney() << endl;
 	m_utility.Wait();
 }
 
@@ -848,16 +848,29 @@ Date
 void Trail::LookAtMap() {
 
 	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	bool passDalles = false;
 
 	SetConsoleTextAttribute(hConsole, 2);
 	cout << endl << "\t ";
 	for (size_t i = 0; i < m_locations.size(); i++) {
 
-		cout << m_locations[i]->GetName();
+		// If statement is in place so there is no duplication of outputting
+		// "The Dalles" when the player looks at the map at The Dalles
+		if (!passDalles || m_locations[i]->GetName() != "The Dalles") {
+			cout << m_locations[i]->GetName();
+		}
+		else {
+			continue;
+		}
 
 		// Need to also show the other location the player can travel to
 		if (m_locations[i]->GetName() == "Green River") {
 			cout << " || Fort Bridger";
+		}
+
+		// Once 
+		if (m_locations[i]->GetName() == "The Dalles") {
+			passDalles = true;
 		}
 
 		// Output an arrow so long as its not the last location
@@ -865,10 +878,15 @@ void Trail::LookAtMap() {
 			cout << " --> ";
 		}
 
-		if (i % 3 == 0 && i > 0) {
+		if (((i + 1) % 3) == 0) {
 			cout << endl;
 			cout << "\t ";
 		}
+
+		/*if (i % 3 == 0 && i > 0) {
+			cout << endl;
+			cout << "\t ";
+		}*/
 
 		if (m_locations[i]->GetName() == m_currentLocation) {
 			SetConsoleTextAttribute(hConsole, 12);
@@ -1481,7 +1499,7 @@ void Trail::Hunt() {
 			m_player.SetItemQuantity("Ammunition", m_player.GetItem("Ammunition").GetQuantity() - 1);
 
 			// Amount of time to type word is between 2 and 7 seconds
-			amountOfTime = (rand() % 5) + 2;
+			amountOfTime = (rand() % 2) + 2;
 			bangOrPowNum = rand() % 2;
 
 			if (bangOrPowNum == 0) {
@@ -1490,7 +1508,8 @@ void Trail::Hunt() {
 			else {
 				bangOrPowString = "POW";
 			}
-			cout << "\t You have: " << amountOfTime << " seconds to type " << bangOrPowString << endl;
+			cout << "\t You have: " << amountOfTime << " seconds to type ";
+			m_utility.OutputWithColor(bangOrPowString, 11, true);
 			cout << "\t ";
 			beforeTime = time(0);
 			cin >> userText;
@@ -1711,7 +1730,7 @@ void Trail::ShowScoreDetails(int a_scores[]) {
 	m_utility.OutputMessage("Points for arriving in Oregon");
 
 	cout << "-------------------------------------------------------" << endl;
-	cout << "\t " << m_player.GetWagonParty().size() << " people in " << left << setw(21) << m_utility.GetHealthName(m_player.GetHealth()) + " health: " << a_scores[0] << " points" << endl;
+	cout << "\t " << m_player.GetWagonParty().size() + 1 << " people in " << left << setw(21) << m_utility.GetHealthName(m_player.GetHealth()) + " health: " << a_scores[0] << " points" << endl;
 	cout << "\t " << setw(33) << "1 wagon: " << a_scores[1] << " points" << endl;
 	cout << "\t " << m_player.GetItem("Oxen").GetQuantity() << setw(32) << " oxen: " << a_scores[2] << " points" << endl;
 	cout << "\t " << m_player.GetItem("Spare parts - wagon wheel").GetQuantity() + m_player.GetItem("Spare parts - wagon axle").GetQuantity() +

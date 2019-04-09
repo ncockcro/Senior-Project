@@ -776,3 +776,7 @@ void Random::NotEnoughClothing(Player &a_player) {
 	m_utility.OutputMessage("You should buy more clothing.");
 	cout << endl;
 }
+
+void Random::WagonFire(Player &a_player) {
+
+}

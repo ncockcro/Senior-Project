@@ -104,12 +104,12 @@ void River::CrossLocation(Player &a_player, Date &a_date) {
 		else if (m_hasFerry && choice == "3") {
 
 			// If TakeFerry returns true, then the player successfully crossed the river
-			if (TakeFerry(a_player)) {
+			if (TakeFerry(a_player, a_date)) {
 				break;
 			}
 		}
 		else if (m_hasIndianFerry && choice == "3") {
-			if (TakeIndianFerry(a_player)) {
+			if (TakeIndianFerry(a_player, a_date)) {
 				break;
 			}
 		}
@@ -511,9 +511,10 @@ NAME
 
 SYNOPSIS
 
-	bool River::TakeFerry(Player &a_player)
+	bool River::TakeFerry(Player &a_player, Date &a_date)
 
 	a_player --> player object with all of the player's items
+	a_date --> the date object which holds the current date
 
 DESCRIPTION
 
@@ -532,7 +533,7 @@ Date
 
 	11:58am 2/6/2019
 */
-bool River::TakeFerry(Player &a_player) {
+bool River::TakeFerry(Player &a_player, Date &a_date) {
 
 	string choice;
 	bool takeFerry = false;
@@ -561,14 +562,14 @@ bool River::TakeFerry(Player &a_player) {
 	}
 
 	if (takeFerry) {
-		m_utility.OutputMessage("Crossing river...");
-		m_utility.Wait();
+		for (int i = 0; i < 4; i++) {
 
-		m_utility.OutputMessage("Crossing river...");
-		m_utility.Wait();
+			m_utility.OutputMessage("Crossing river...");
+			m_utility.Wait();
 
-		m_utility.OutputMessage("Crossing river...");
-		m_utility.Wait();
+			a_date.NextDay();
+			a_player.DeductFood();
+		}
 
 		m_utility.OutputMessage("The ferry got your party");
 		m_utility.OutputMessage("and wagon safely across.");
@@ -587,9 +588,10 @@ NAME
 
 SYNOPSIS
 
-	bool River::TakeIndianFerry(Player &a_player)
+	bool River::TakeIndianFerry(Player &a_player, Date &a_date)
 
 	a_player --> player object with all of the player's items
+	a_date --> the date object which holds the current date
 
 DESCRIPTION
 
@@ -609,7 +611,7 @@ Date
 
 	12:12pm 4/1/2019
 */
-bool River::TakeIndianFerry(Player &a_player) {
+bool River::TakeIndianFerry(Player &a_player, Date &a_date) {
 
 	string choice;
 	bool takeIndianFerry = false;
@@ -653,14 +655,15 @@ bool River::TakeIndianFerry(Player &a_player) {
 	}
 
 	if (takeIndianFerry) {
-		m_utility.OutputMessage("Crossing river...");
-		m_utility.Wait();
 
-		m_utility.OutputMessage("Crossing river...");
-		m_utility.Wait();
+		for (int i = 0; i < 4; i++) {
 
-		m_utility.OutputMessage("Crossing river...");
-		m_utility.Wait();
+			m_utility.OutputMessage("Crossing river...");
+			m_utility.Wait();
+
+			a_date.NextDay();
+			a_player.DeductFood();
+		}
 
 		m_utility.OutputMessage("The Shoshoni guide got your");
 		m_utility.OutputMessage("party and wagon safely across.");
