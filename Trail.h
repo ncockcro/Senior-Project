@@ -63,7 +63,7 @@ private:
 	void Hunt();
 	void IncreaseRates();
 	void CalculateScore();
-	void ShowScoreDetails(int a_scores[]);
+	void ShowScoreDetails(int a_scores[], int a_multiplier);
 	void UpdateRateOfTravel();
 
 

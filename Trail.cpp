@@ -1703,12 +1703,12 @@ void Trail::CalculateScore() {
 	m_totalScore = m_totalScore * multiplier;
 
 	cout << "\t Total points earned: " << m_totalScore << " points" << endl;
-	ShowScoreDetails(scorePerItem);
+	ShowScoreDetails(scorePerItem, multiplier);
 
 }
 
 /*
-	Trail::ShowScoreDetails(int a_scores[])
+	Trail::ShowScoreDetails(int a_scores[], int a_multiplier)
 
 NAME
 
@@ -1716,9 +1716,10 @@ NAME
 
 SYNOPSIS
 
-	void Trail::ShowScoreDetails(int a_scores[])
+	void Trail::ShowScoreDetails(int a_scores[], int a_multiplier)
 
 	a_scores[] --> the various scores that the player earned
+	a_multiplier --> the multiplier depending on the position the player picked
 
 DESCRIPTION
 
@@ -1736,7 +1737,7 @@ Date
 
 	3:06pm 3/3/2019
 */
-void Trail::ShowScoreDetails(int a_scores[]) {
+void Trail::ShowScoreDetails(int a_scores[], int a_multiplier) {
 
 	m_utility.OutputMessage("Points for arriving in Oregon");
 
@@ -1750,6 +1751,7 @@ void Trail::ShowScoreDetails(int a_scores[]) {
 	cout << "\t " << m_player.GetItem("Ammunition").GetQuantity() << left << setw(31) << " bullets: " << a_scores[5] << " points" << endl;
 	cout << "\t " << setw(33) << m_utility.ToStringWithPrecision(m_player.GetItem("Food").GetQuantity(), 2) + " pounds of food: " << a_scores[6] << " points" << endl;
 	cout << "\t $" << setw(32) << setprecision(2) << m_utility.ToStringWithPrecision(m_player.GetPlayerMoney(), 2) + " cash: " << a_scores[7] << " points" << endl;
+	cout << setw(35) << "\t Multiplier: " << a_multiplier << "x" << endl;
 	cout << setw(35) << "\t Total: " << m_totalScore << " points" << endl;
 	cout << "-------------------------------------------------------" << endl;
 }
