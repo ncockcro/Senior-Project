@@ -1488,8 +1488,10 @@ void Trail::Hunt() {
 	}
 
 	// Opening intro
+	cout << endl;
 	m_dialogue.T_ShowHuntingInstructions();
 	cout << endl;
+	m_utility.Wait();
 
 	m_utility.OutputMessage("Ready...");
 	Sleep(1000);
@@ -1525,7 +1527,7 @@ void Trail::Hunt() {
 			// If the user types the word correctly and in the correct amount of time, they get some food
 			if (userText == bangOrPowString && afterTime - beforeTime < amountOfTime) {
 				m_utility.OutputWithColor("You got food!", 10);
-				amountOfFoodEarned += 10 * (amountOfTime - (int)(afterTime - beforeTime + 1));
+				amountOfFoodEarned += 10;
 			}
 			else if (userText != bangOrPowString) {
 				m_utility.DisplayError("Spelled wrong.");
@@ -1697,6 +1699,8 @@ void Trail::CalculateScore() {
 	// 1 point for each $5
 	m_totalScore += (int)(m_player.GetPlayerMoney() / 5);
 	scorePerItem[7] = (int)(m_player.GetPlayerMoney() / 5);
+
+	m_totalScore = m_totalScore * multiplier;
 
 	cout << "\t Total points earned: " << m_totalScore << " points" << endl;
 	ShowScoreDetails(scorePerItem);

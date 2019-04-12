@@ -156,12 +156,12 @@ Date
 void Random::FindWildFruit(Player &a_player) {
 
 	int randomNum = (rand() % 7) + 2;
+	int foodEarned = 20 * randomNum;
 
-	a_player.AddItemQuantity("Food", 20 * randomNum);
+	a_player.AddItemQuantity("Food", foodEarned);
 
-	m_utility.OutputMessage("You find a fruit tree.");
-	cout << "\t You managed to pick " << 20 * randomNum << endl;
-	cout << "\t pounds of food." << endl;
+	m_utility.OutputWithColor("You find a fruit tree.", 10);
+	m_utility.OutputWithColor("You managed to pick " + to_string(foodEarned) + " pounds of food.", 10);
 
 
 }
@@ -213,7 +213,7 @@ void Random::FindAbandonedWagon(Player &a_player) {
 	vector<string> itemNames = { "Oxen", "Food", "Clothing", "Ammunition", "Spare parts - wagon wheel" , "Spare parts - wagon axle",
 	"Spare parts - wagon tongue" };
 
-	cout << "\t You stumble upon a broken wagon. You find: " << endl; 
+	m_utility.OutputWithColor("You stumble upon a broken wagon. You find: ", 10);
 	for (int i = 0; i < amountOfItemsEarned; i++) {
 
 		// The amount of an item the player will earned is calculated by the maximum number the player can
@@ -229,7 +229,7 @@ void Random::FindAbandonedWagon(Player &a_player) {
 		// amount of items the play is allowed to have
 		a_player.AddItemQuantity(itemNames[randomNum], itemsEarned);
 
-		cout << "\t \t "<< itemNames[randomNum] << ": " << itemsEarned << endl; 
+		m_utility.OutputWithColor("\t " + itemNames[randomNum] + ": " + to_string(itemsEarned), 10);
 
 		// Re calculate a new item for the player to earn
 		randomNum = rand() % (7 - (i + 1));
@@ -271,12 +271,12 @@ void Random::StolenGoods(Player &a_player) {
 	vector<Item> lostItems = a_player.LoseItems();
 
 	if (lostItems.size() > 0) {
-		m_utility.OutputMessage("A thief came in the middle");
-		m_utility.OutputMessage("of the night and took: ");
+		m_utility.OutputWithColor("A thief came in the middle", 12);
+		m_utility.OutputWithColor("of the night and took: ", 12);
 	}
 	
 	for (size_t i = 0; i < lostItems.size(); i++) {
-		cout << "\t \t " << lostItems[i].GetName() << ": " << lostItems[i].GetQuantity() << endl;
+		m_utility.OutputWithColor("\t " + lostItems[i].GetName() + ": " + to_string(lostItems[i].GetQuantity()), 12);
 	}
 }
 
@@ -377,17 +377,17 @@ void Random::BadTrail(Player &a_player, Date &a_date) {
 
 	int randomNum = (rand() % 5) + 1;
 
-	cout << "\t Lose trail. You lose " << randomNum << " days." << endl;
+	m_utility.OutputWithColor("Lose trail. You lose " + to_string(randomNum) + " days.", 12);
 
 	for (int i = 0; i < randomNum; i++) {
 
 		m_utility.Wait();
 
 		if (randomNum - i == 1) {
-			cout << "\t Still lost for " << randomNum - i << " day..." << endl;
+			m_utility.OutputWithColor("Still lost for " + to_string(randomNum - i) + " day...", 12);
 		}
 		else {
-			cout << "\t Still lost for " << randomNum - i << " days..." << endl;
+			m_utility.OutputWithColor("Still lost for " + to_string(randomNum - i) + " days...", 12);
 		}
 
 		a_date.NextDay();
@@ -431,17 +431,18 @@ void Random::Blizzard(Player &a_player, Date &a_date) {
 
 	int randomNum = (rand() % 7) + 1;
 
-	m_utility.OutputMessage("Due to the freezing weather, you get");
-	cout << "\t delayed by a blizzard. Lose " << randomNum << " days." << endl << endl;
+	m_utility.OutputWithColor("Due to the freezing weather, you get", 12);
+	m_utility.OutputWithColor("delayed by a blizzard. Lose " + to_string(randomNum) + " days.", 12);
+	cout << endl;
 
 	// Advance the day and have the player eat food for however many random number of days
 	for (int i = 0; i < randomNum; i++) {
 
 		if (randomNum - i == 1) {
-			cout << "\t Trapped in the blizzard for " << randomNum - i << " day..." << endl;
+			m_utility.OutputWithColor("Trapped in the blizzard for " + to_string(randomNum - i) + " day...", 12);
 		}
 		else {
-			cout << "\t Trapped in the blizzard for " << randomNum - i << " days..." << endl;
+			m_utility.OutputWithColor("Trapped in the blizzard for " + to_string(randomNum - i) + " days...", 12);
 		}
 		m_utility.Wait();
 
@@ -488,16 +489,16 @@ void Random::Thunderstorm(Player &a_player, Date &a_date) {
 
 	int randomNum = (rand() % 7) + 1;
 
-	m_utility.OutputMessage("Due to the brutal weather, you get");
-	cout << "\t delayed by thunderstorm. Lose " << randomNum << " days." << endl;
+	m_utility.OutputWithColor("Due to the brutal weather, you get", 12);
+	m_utility.OutputWithColor("delayed by thunderstorm. Lose " + to_string(randomNum) + "days.", 12);
 
 	for (int i = 0; i < randomNum; i++) {
 
 		if (randomNum - i == 1) {
-			cout << "\t Trapped in the storm for " << randomNum - i << " day..." << endl;
+			m_utility.OutputWithColor("Trapped in the storm for " + to_string(randomNum - i) + " day...", 12);
 		}
 		else {
-			cout << "\t Trapped in the storm for " << randomNum - i << " days..." << endl;
+			m_utility.OutputWithColor("Trapped in the storm for " + to_string(randomNum - i) + " days...", 12);
 		}
 		m_utility.Wait();
 
@@ -629,25 +630,26 @@ void Random::BrokenWagonPartHelper(Player &a_player, string a_itemName) {
 
 		// If successful, they won't have to use a spare part
 		if (randomNum == 0) {
-			m_utility.OutputMessage("You were able to fix the broken wagon wheel.");
+			m_utility.OutputWithColor("You were able to fix the broken wagon wheel.", 10);
 		}
 		// Otherwise, they will have to use a spare part if they have one
 		else {
-			m_utility.OutputMessage("You were unsuccessful in repairing.");
+			m_utility.OutputWithColor("You were unsuccessful in repairing.", 12);
 
 			if (a_player.GetItem(a_itemName).GetQuantity() > 0) {
 
 				a_player.SetItemQuantity(a_itemName, a_player.GetItem(a_itemName).GetQuantity() - 1);
-				cout << "\t You use a spare" << m_utility.GetExtraPartSimpleName(a_itemName) << "." << endl;
+				m_utility.OutputWithColor("You use a spare " + m_utility.GetExtraPartSimpleName(a_itemName) + ".", 11);
+				cout << endl;
 			}
 			else {
 				// Broken wagon wheel - significantly hurt player's health
 				a_player.DecreaseHealthOutOfHundred(100);
 
 				cout << endl;
-				m_utility.OutputMessage("You get significantly hurt searching around");
-				cout << "\t for a " << m_utility.GetExtraPartSimpleName(a_itemName) << " since" << endl;
-				m_utility.OutputMessage("you did not have the extra part!");
+				m_utility.OutputWithColor("You get significantly hurt searching around", 12);
+				m_utility.OutputWithColor("for a " + m_utility.GetExtraPartSimpleName(a_itemName) + " since", 12);
+				m_utility.OutputWithColor("you did not have the extra part!", 12);
 				cout << endl;
 			}
 		}
@@ -657,16 +659,17 @@ void Random::BrokenWagonPartHelper(Player &a_player, string a_itemName) {
 		if (a_player.GetItem(a_itemName).GetQuantity() > 0) {
 			a_player.SetItemQuantity(a_itemName, a_player.GetItem(a_itemName).GetQuantity() - 1);
 
-			cout << "\t You use a spare" << m_utility.GetExtraPartSimpleName(a_itemName) << "." << endl;
+			m_utility.OutputWithColor("You use a spare " + m_utility.GetExtraPartSimpleName(a_itemName) + ".", 11);
+			cout << endl;
 		}
 		else {
 			// Broken wagon wheel - significantly hurt player's health
 			a_player.DecreaseHealthOutOfHundred(100);
 
 			cout << endl;
-			m_utility.OutputMessage("You get significantly hurt searching around");
-			cout << "\t for a " << m_utility.GetExtraPartSimpleName(a_itemName) << " since" << endl;
-			m_utility.OutputMessage("you did not have the extra part!");
+			m_utility.OutputWithColor("You get significantly hurt searching around", 12);
+			m_utility.OutputWithColor("for a " + m_utility.GetExtraPartSimpleName(a_itemName) + " since", 12);
+			m_utility.OutputWithColor("you did not have the extra part!", 12);
 			cout << endl;
 		}
 	}
@@ -775,8 +778,8 @@ void Random::NotEnoughClothing(Player &a_player) {
 		a_player.DecreaseHealthOutOfHundred(9);
 	}
 
-	m_utility.OutputMessage("The freezing weather hurts your party members.");
-	m_utility.OutputMessage("You should buy more clothing.");
+	m_utility.OutputWithColor("The freezing weather hurts your party members.", 12);
+	m_utility.OutputWithColor("You should buy more clothing.", 12);
 	cout << endl;
 }
 
@@ -815,11 +818,11 @@ void Random::WagonFire(Player &a_player) {
 	vector<Item> lostItems = a_player.LoseItems();
 
 	if (lostItems.size() > 0) {
-		m_utility.OutputMessage("A wildfire broke out in");
-		m_utility.OutputMessage("your wagon! You lose: ");
+		m_utility.OutputWithColor("A wildfire broke out in", 12);
+		m_utility.OutputWithColor("your wagon! You lose: ", 12);
 	}
 
 	for (size_t i = 0; i < lostItems.size(); i++) {
-		cout << "\t \t " << lostItems[i].GetName() << ": " << lostItems[i].GetQuantity() << endl;
+		m_utility.OutputWithColor("\t " + lostItems[i].GetName() + ": " + to_string(lostItems[i].GetQuantity()), 12);
 	}
 }

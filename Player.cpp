@@ -351,7 +351,7 @@ Date
 void Player::DeductMoney(double a_money) {
 
 	// If the player's money subtracted with what was passed in was greater than 0, subtract the money
-	if (m_playerMoney - a_money > 0) {
+	if (m_playerMoney - a_money >= 0) {
 		m_playerMoney = m_playerMoney - a_money;
 	}
 	// Otherwise, report an error since there should never be subtracting of more money than the player has
