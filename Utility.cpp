@@ -482,7 +482,7 @@ string Utility::LowerCaseString(string a_string) {
 }
 
 /*
-	Utility:SaveAndUpdateLevel(int &a_level, int &a_playerXP, int a_locationsVisited)
+	Utility:SaveAndUpdateLevel(int &a_level, int &a_playerXP, int a_locationsVisited, string a_position)
 
 NAME
 
@@ -490,11 +490,12 @@ NAME
 
 SYNOPSIS
 
-	void Utility::SaveAndUpdateLevel(int &a_level, int &a_playerXP, int a_locationsVisited)
+	void Utility::SaveAndUpdateLevel(int &a_level, int &a_playerXP, int a_locationsVisited, string a_position)
 
 	a_level  --> the player's level
 	a_playerXP --> the player's XP
 	a_locationsVisited --> the # of locations visited by the player
+	a_position --> the position the player picked at the beginning of the game
 
 DESCRIPTION
 
@@ -513,12 +514,27 @@ Date
 
 	12:39pm 4/1/2019
 */
-void Utility::SaveAndUpdateLevel(int &a_level, int &a_playerXP, int a_locationsVisited) {
+void Utility::SaveAndUpdateLevel(int &a_level, int &a_playerXP, int a_locationsVisited, string a_position) {
 
 	int increaseScore;
+	int multiplier;
+
+	if (a_position == "Banker") {
+		multiplier = 1;
+	}
+	else if (a_position == "Carpenter") {
+		multiplier = 2;
+	}
+	else if (a_position == "Farmer") {
+		multiplier = 3;
+	}
+	else {
+		multiplier = 0;
+		DisplayError("Invalid position for saving level and XP.");
+	}
 
 	// Increment the player's xp
-	increaseScore = (100 * (a_locationsVisited + 1));
+	increaseScore = ((100 * (a_locationsVisited + 1)) * multiplier);
 	a_playerXP += increaseScore;
 
 	// Output amount of xp the player earned and if they leveled up

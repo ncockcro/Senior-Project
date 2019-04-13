@@ -252,7 +252,7 @@ void Trail::ActiveGame(int a_playerLevel, int a_playerXP) {
 		milesTraveled -= m_rateOfTravel;
 		AddEndingMiles(m_locations[i]->GetMilesNeeded() - milesTraveled);
 
-		m_utility.SaveAndUpdateLevel(m_playerLevel, m_playerXP, i);
+		m_utility.SaveAndUpdateLevel(m_playerLevel, m_playerXP, i, m_player.GetPlayerPosition());
 
 	}
 
@@ -1744,12 +1744,17 @@ void Trail::ShowScoreDetails(int a_scores[], int a_multiplier) {
 	cout << "-------------------------------------------------------" << endl;
 	cout << "\t " << m_player.GetWagonParty().size() + 1 << " people in " << left << setw(21) << m_utility.GetHealthName(m_player.GetHealth()) + " health: " << a_scores[0] << " points" << endl;
 	cout << "\t " << setw(33) << "1 wagon: " << a_scores[1] << " points" << endl;
-	cout << "\t " << m_player.GetItem("Oxen").GetQuantity() << setw(32) << " oxen: " << a_scores[2] << " points" << endl;
+	if (m_player.GetItem("Oxen").GetQuantity() < 10) {
+		cout << "\t " << m_player.GetItem("Oxen").GetQuantity() << setw(32) << " oxen: " << a_scores[2] << " points" << endl;
+	}
+	else {
+		cout << "\t " << m_player.GetItem("Oxen").GetQuantity() << setw(31) << " oxen: " << a_scores[2] << " points" << endl;
+	}
 	cout << "\t " << m_player.GetItem("Spare parts - wagon wheel").GetQuantity() + m_player.GetItem("Spare parts - wagon axle").GetQuantity() +
 	m_player.GetItem("Spare parts - wagon tongue").GetQuantity() << setw(32) << " spare parts: " << a_scores[3] << " points" << endl;
 	cout << "\t " << setw(33) << to_string(m_player.GetItem("Clothing").GetQuantity()) + " sets of clothing: " << a_scores[4] << " points" << endl;
-	cout << "\t " << m_player.GetItem("Ammunition").GetQuantity() << left << setw(31) << " bullets: " << a_scores[5] << " points" << endl;
-	cout << "\t " << setw(33) << m_utility.ToStringWithPrecision(m_player.GetItem("Food").GetQuantity(), 2) + " pounds of food: " << a_scores[6] << " points" << endl;
+	cout << "\t " << left << setw(33) << to_string(m_player.GetItem("Ammunition").GetQuantity()) + " bullets: " << a_scores[5] << " points" << endl;
+	cout << "\t " << setw(33) << to_string(m_player.GetItem("Food").GetQuantity()) + " pounds of food: " << a_scores[6] << " points" << endl;
 	cout << "\t $" << setw(32) << setprecision(2) << m_utility.ToStringWithPrecision(m_player.GetPlayerMoney(), 2) + " cash: " << a_scores[7] << " points" << endl;
 	cout << setw(35) << "\t Multiplier: " << a_multiplier << "x" << endl;
 	cout << setw(35) << "\t Total: " << m_totalScore << " points" << endl;

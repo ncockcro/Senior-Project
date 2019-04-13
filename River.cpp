@@ -362,11 +362,11 @@ void River::FordRiver(Player &a_player) {
 			if (GenerateRandomNum(0.1)) {
 				lostItems = a_player.LoseItems();
 				if (lostItems.size() > 0) {
-					m_utility.OutputMessage("The river is too deep to");
-					m_utility.OutputMessage("ford. You lose:");
+					m_utility.OutputWithColor("The river is too deep to", 12);
+					m_utility.OutputWithColor("ford. You lose:", 12);
 
 					for (size_t i = 0; i < lostItems.size(); i++) {
-						cout << "\t \t " << lostItems[i].GetName() << ": " << lostItems[i].GetQuantity() << endl;
+						m_utility.OutputWithColor("\t " + lostItems[i].GetName() + ": " + to_string(lostItems[i].GetQuantity()), 12);
 					}
 					didntCross = true;
 					break;
@@ -380,11 +380,11 @@ void River::FordRiver(Player &a_player) {
 			if (GenerateRandomNum(0.5)) {
 				lostItems = a_player.LoseItems();
 				if (lostItems.size() > 0) {
-					m_utility.OutputMessage("The river is too deep to");
-					m_utility.OutputMessage("ford. You lose:");
+					m_utility.OutputWithColor("The river is too deep to", 12);
+					m_utility.OutputWithColor("ford. You lose:", 12);
 
 					for (size_t i = 0; i < lostItems.size(); i++) {
-						cout << "\t \t " << lostItems[i].GetName() << ": " << lostItems[i].GetQuantity() << endl;
+						m_utility.OutputWithColor("\t " + lostItems[i].GetName() + ": " + to_string(lostItems[i].GetQuantity()), 12);
 					}
 					didntCross = true;
 					break;
@@ -398,11 +398,11 @@ void River::FordRiver(Player &a_player) {
 			if (GenerateRandomNum(0.4)) {
 				lostItems = a_player.LoseItems();
 				if (lostItems.size() > 0) {
-					m_utility.OutputMessage("The river is too deep to");
-					m_utility.OutputMessage("ford. You lose:");
+					m_utility.OutputWithColor("The river is too deep to", 12);
+					m_utility.OutputWithColor("ford. You lose:", 12);
 
 					for (size_t i = 0; i < lostItems.size(); i++) {
-						cout << "\t \t " << lostItems[i].GetName() << ": " << lostItems[i].GetQuantity() << endl;
+						m_utility.OutputWithColor("\t " + lostItems[i].GetName() + ": " + to_string(lostItems[i].GetQuantity()), 12);
 					}
 					didntCross = true;
 					break;
@@ -413,7 +413,7 @@ void River::FordRiver(Player &a_player) {
 	}
 
 	if (!didntCross) {
-		m_utility.OutputMessage("You succesfully cross the river.");
+		m_utility.OutputWithColor("You succesfully cross the river.", 10);
 	}
 
 }
@@ -462,11 +462,11 @@ void River::FloatRiver(Player &a_player) {
 			if (GenerateRandomNum(0.5)) {
 				lostItems = a_player.LoseItems();
 				if (lostItems.size() > 0) {
-					m_utility.OutputMessage("Your wagon tips over and");
-					m_utility.OutputMessage("you lose:");
+					m_utility.OutputWithColor("Your wagon tips over and", 12);
+					m_utility.OutputWithColor("you lose:", 12);
 
 					for (size_t i = 0; i < lostItems.size(); i++) {
-						cout << "\t \t " << lostItems[i].GetName() << ": " << lostItems[i].GetQuantity() << endl;
+						m_utility.OutputWithColor("\t " + lostItems[i].GetName() + ": " + to_string(lostItems[i].GetQuantity()), 12);
 					}
 					didntCross = true;
 					break;
@@ -480,11 +480,11 @@ void River::FloatRiver(Player &a_player) {
 			if (GenerateRandomNum(0.1)) {
 				lostItems = a_player.LoseItems();
 				if (lostItems.size() > 0) {
-					m_utility.OutputMessage("Your wagon tips over and");
-					m_utility.OutputMessage("you lose:");
+					m_utility.OutputWithColor("Your wagon tips over and", 12);
+					m_utility.OutputWithColor("you lose:", 12);
 
 					for (size_t i = 0; i < lostItems.size(); i++) {
-						cout << "\t \t " << lostItems[i].GetName() << ": " << lostItems[i].GetQuantity() << endl;
+						m_utility.OutputWithColor("\t " + lostItems[i].GetName() + ": " + to_string(lostItems[i].GetQuantity()), 12);
 					}
 					didntCross = true;
 					break;
@@ -498,11 +498,11 @@ void River::FloatRiver(Player &a_player) {
 			if (GenerateRandomNum(0.4)) {
 				lostItems = a_player.LoseItems();
 				if (lostItems.size() > 0) {
-					m_utility.OutputMessage("Your wagon tips over and");
-					m_utility.OutputMessage("you lose:");
+					m_utility.OutputWithColor("Your wagon tips over and", 12);
+					m_utility.OutputWithColor("you lose:", 12);
 
 					for (size_t i = 0; i < lostItems.size(); i++) {
-						cout << "\t \t " << lostItems[i].GetName() << ": " << lostItems[i].GetQuantity() << endl;
+						m_utility.OutputWithColor("\t " + lostItems[i].GetName() + ": " + to_string(lostItems[i].GetQuantity()), 12);
 					}
 					didntCross = true;
 					break;
@@ -512,7 +512,7 @@ void River::FloatRiver(Player &a_player) {
 	}
 
 	if (!didntCross) {
-		m_utility.OutputMessage("You succesfully cross the river.");
+		m_utility.OutputWithColor("You succesfully cross the river.", 10);
 	}
 
 }
@@ -586,8 +586,8 @@ bool River::TakeFerry(Player &a_player, Date &a_date) {
 			a_player.DeductFood();
 		}
 
-		m_utility.OutputMessage("The ferry got your party");
-		m_utility.OutputMessage("and wagon safely across.");
+		m_utility.OutputWithColor("The ferry got your party", 10);
+		m_utility.OutputWithColor("and wagon safely across.", 10);
 		m_utility.Wait();
 	}
 
@@ -652,8 +652,10 @@ bool River::TakeIndianFerry(Player &a_player, Date &a_date) {
 				break;
 			}
 			else {
+				cout << endl;
 				m_utility.DisplayError("You do not have enough clothing");
 				m_utility.DisplayError("to pay the Shoshoni guide.");
+				cout << endl;
 				return false;
 			}
 		}
@@ -680,8 +682,8 @@ bool River::TakeIndianFerry(Player &a_player, Date &a_date) {
 			a_player.DeductFood();
 		}
 
-		m_utility.OutputMessage("The Shoshoni guide got your");
-		m_utility.OutputMessage("party and wagon safely across.");
+		m_utility.OutputWithColor("The Shoshoni guide got your", 10);
+		m_utility.OutputWithColor("party and wagon safely across.", 10);
 		m_utility.Wait();
 	}
 

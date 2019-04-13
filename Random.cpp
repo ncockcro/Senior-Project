@@ -92,7 +92,7 @@ void Random::RandomEvent(Player &a_player, Date &a_date) {
 			return;
 		}
 	}
-
+	randomNum = 90;
 	// Get food from a wild fruit tree
 	if (randomNum >= 96) {
 		FindWildFruit(a_player);
@@ -232,6 +232,7 @@ void Random::FindAbandonedWagon(Player &a_player) {
 		m_utility.OutputWithColor("\t " + itemNames[randomNum] + ": " + to_string(itemsEarned), 10);
 
 		// Re calculate a new item for the player to earn
+		itemNames.erase(itemNames.begin() + randomNum);
 		randomNum = rand() % (7 - (i + 1));
 
 	}

@@ -40,7 +40,7 @@ public:
 	string GetExtraPartSimpleName(string a_partName);
 	string ToStringWithPrecision(const double a_value, const int a_n);
 	string LowerCaseString(string a_string);
-	void SaveAndUpdateLevel(int &a_level, int &a_playerXP, int a_locationsVisited);
+	void SaveAndUpdateLevel(int &a_level, int &a_playerXP, int a_locationsVisited, string a_position);
 	void CheckForLevelUp(int &a_level, int a_playerXP);
 	void OutputWithColor(string a_text, int a_color, bool a_tab = false, bool a_endl = false);
 
