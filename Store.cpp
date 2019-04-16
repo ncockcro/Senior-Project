@@ -140,20 +140,22 @@ void Store::MakeChoice(Player a_player) {
 	string amount;
 	bool validChoice = false;
 
-	cout << "Which item would you like to buy? ";
+	cout << endl << "Which item would you like to buy? ";
 	cin >> m_choice;
 
 	// Cycle through the list of items being sold to find which one the user selected...
 	for (size_t i = 0; i < m_userItems.size(); i++) {
 		// If the user chose a valid item, then show the description and prompt for how many they want to buy
 		if (m_utility.CheckInput(m_choice) && (stoi(m_choice) - 1) == i) {
-			cout << fixed << setprecision(2) << m_userItems[i].GetDescription() << endl;
+			cout << endl << fixed << setprecision(2) << m_userItems[i].GetDescription() << endl;
 
 			while (1) {
+				cout << endl;
 				cout << "How many would you like to buy? ";
 				cin >> amount;
 
 				if (!m_utility.CheckInput(amount)) {
+					cout << endl;
 					m_utility.DisplayError("Invalid input.");
 					continue;
 				}
@@ -164,6 +166,7 @@ void Store::MakeChoice(Player a_player) {
 				// If the user tries to buy more of an item when they already have some in their inventory, this will
 				// deny them
 				if (a_player.GetItem(m_userItems[i].GetName()).GetQuantity() + stoi(amount) > m_userItems[i].GetCapNumber()) {
+					cout << endl;
 					m_utility.DisplayError("Your wagon does not support that many.");
 				}
 				// If the user tries to buy more than the limited amount...
@@ -172,12 +175,15 @@ void Store::MakeChoice(Player a_player) {
 				}
 				// If the user tries to buy more of a product than the amount of money they have...
 				else if (m_itemPrices[i] > m_playerMoney) {
+					cout << endl;
 					m_utility.DisplayError("You don't have enough money for that.");
 				}
 				else if (CalculateTotal() > a_player.GetPlayerMoney()) {
+					cout << endl;
 					m_utility.DisplayError("With your other items, you cannot afford that many.");
 				}
 				else if (stoi(amount) < 0) {
+					cout << endl;
 					m_utility.DisplayError("You can not buy a negative amount.");
 				}
 				// Otherwise everything is good
@@ -218,7 +224,9 @@ void Store::MakeChoice(Player a_player) {
 	// If the user typed in a number other than the ones listed for items, this will output
 	// an invalid option error
 	if (!validChoice) {
+		cout << endl;
 		m_utility.DisplayError("Invalid Option!");
+		cout << endl;
 		m_choice = "0";
 	}
 

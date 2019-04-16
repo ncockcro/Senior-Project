@@ -385,6 +385,7 @@ void Trail::PromptCharacterNames() {
 	string temp;
 	bool sameName = false;
 
+	cout << endl;
 	// Keep cycling through until the player has picked the names they want for their party
 	while (1) {
 		cout << "\t What is the first name of the wagon leader? ";
@@ -433,6 +434,7 @@ void Trail::PromptCharacterNames() {
 			m_player.GetWagonParty().clear();
 		}
 	}
+	cout << endl;
 
 }
 
@@ -489,7 +491,6 @@ void Trail::PromptStartingMonth() {
 		}
 		// If they want to see a description, print it out and still continue the loop
 		else if (choice == "6") {
-			cout << endl;
 			m_utility.OutputMessage("You attend a public meeting held for \"folks with the California - Oregon fever.\"");
 			m_utility.OutputMessage("You're told:");
 			cout << endl;
@@ -806,6 +807,7 @@ Date
 */
 void Trail::ShowSupplies() {
 
+	cout << endl;
 	m_utility.OutputMessage("\t Your Supplies");
 	cout << left << setw(30) << "\t oxen     " << m_player.GetItem("Oxen").GetQuantity() << endl;
 	cout << left << setw(30) << "\t sets of clothing     " << m_player.GetItem("Clothing").GetQuantity() << endl;
@@ -967,6 +969,7 @@ void Trail::ChangePace() {
 			break;
 		}
 		else if (choice == "4") {
+			cout << endl;
 			m_utility.OutputMessage("steady - You travel about 8 hours a");
 			m_utility.OutputMessage("day, taking frequent rests. You take");
 			m_utility.OutputMessage("care not to get too tired.");
@@ -1105,15 +1108,18 @@ void Trail::Rest() {
 		cout << "\t How many days would you" << endl;
 		cout << "\t like to rest? ";
 		cin >> numOfDays;
+		cout << endl;
 
 		if (!m_utility.CheckInput(numOfDays)) {
 			m_utility.DisplayError("Invalid input.");
+			cout << endl;
 			continue;
 		}
 
 		// Only allowed to rest 9 days
 		if (stoi(numOfDays) > 9) {
 			m_utility.DisplayError("Can only rest at most 9 days.");
+			cout << endl;
 		}
 		// Otherwise, cycle through the number of days the player wanted to rest
 		else {

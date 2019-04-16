@@ -255,7 +255,6 @@ void Oregon_Trail::ShowDescription() {
 	m_utility.OutputMessage("and water - filled ruts or will you plod through");
 	m_utility.OutputMessage("dust six inches deep?");
 	cout << endl;
-	cout << "\t ";
 	m_utility.Wait();
 }
 

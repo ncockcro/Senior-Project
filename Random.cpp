@@ -92,7 +92,7 @@ void Random::RandomEvent(Player &a_player, Date &a_date) {
 			return;
 		}
 	}
-	randomNum = 90;
+
 	// Get food from a wild fruit tree
 	if (randomNum >= 96) {
 		FindWildFruit(a_player);
@@ -632,6 +632,7 @@ void Random::BrokenWagonPartHelper(Player &a_player, string a_itemName) {
 		// If successful, they won't have to use a spare part
 		if (randomNum == 0) {
 			m_utility.OutputWithColor("You were able to fix the broken wagon wheel.", 10);
+			cout << endl;
 		}
 		// Otherwise, they will have to use a spare part if they have one
 		else {

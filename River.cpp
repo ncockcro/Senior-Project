@@ -667,7 +667,6 @@ bool River::TakeIndianFerry(Player &a_player, Date &a_date) {
 		else {
 			cout << endl;
 			m_utility.DisplayError("Invalide choice.");
-			cout << endl;
 		}
 	}
 
@@ -776,11 +775,13 @@ Date
 */
 void River::RiverMoreInfoDialogue() {
 
+	cout << endl;
 	m_utility.OutputMessage("\t To ford a river means to");
 	m_utility.OutputMessage("\t pull your wagon across a");
 	m_utility.OutputMessage("\t shallow part of the river,");
 	m_utility.OutputMessage("\t with the oxen still");
 	m_utility.OutputMessage("\t attached.");
+	cout << endl;
 	m_utility.Wait();
 
 	m_utility.OutputMessage("\t To caulk the wagon means to");
@@ -788,6 +789,7 @@ void River::RiverMoreInfoDialogue() {
 	m_utility.OutputMessage("\t get in. The wagon can then");
 	m_utility.OutputMessage("\t be floated across like a");
 	m_utility.OutputMessage("\t boat.");
+	cout << endl;
 	m_utility.Wait();
 
 	m_utility.OutputMessage("\t To use a ferry means to put");
@@ -796,6 +798,7 @@ void River::RiverMoreInfoDialogue() {
 	m_utility.OutputMessage("\t else. The owner of the");
 	m_utility.OutputMessage("\t ferry will take your wagon");
 	m_utility.OutputMessage("\t across the river.");
+	cout << endl;
 	m_utility.Wait();
 
 }

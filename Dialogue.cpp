@@ -129,6 +129,7 @@ void Dialogue::TalkToPeople(string a_location) {
 		m_randomNum++;
 	}
 
+	cout << endl;
 	m_utility.Wait();
 }
 
@@ -1381,7 +1382,7 @@ Date
 */
 void Dialogue::T_DepartingDialogue() {
 
-	cout << endl << endl;
+	cout << endl;
 	m_utility.OutputMessage("Well then, you're ready");
 	m_utility.OutputMessage("to start. Good luck!");
 	m_utility.OutputMessage("You have a long and");
