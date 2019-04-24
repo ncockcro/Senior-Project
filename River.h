@@ -12,7 +12,9 @@ DESCRIPTION
 	The prupose of this class is to give further functionality to a location, specifically a river, and provides
 	further functions and variables that are needed for when a player is crossing a river.
 */
-#pragma once
+
+#ifndef RIVER_H
+#define RIVER_H
 
 #include <iostream>
 #include <string>
@@ -56,3 +58,4 @@ private:
 	bool m_hasWaitedADay;
 };
 
+#endif

@@ -13,7 +13,9 @@ The purpose of this class is to make up all of the objects of an in game object.
 price, and description of the item which is used in the in game store. Some of the items of "Oregon Trail" include
 oxen, food, clothing, ammunition, and many more. Item objects will be the basis of all of the items in the game.
 */
-#pragma once
+
+#ifndef ITEM_H
+#define ITEM_H
 
 #include <iostream>
 #include <string>
@@ -56,3 +58,4 @@ private:
 	int m_loseItemNum;
 };
 
+#endif

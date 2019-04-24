@@ -13,7 +13,9 @@ DESCRIPTION
 	an active game of Oregon Trail and traversing the trail. Everything that is defined in this class is for when the player
 	is playing an active game of Oregon Trail.
 */
-#pragma once
+
+#ifndef TRAIL_H
+#define TRAIL_H
 
 #include <iostream>
 #include <string>
@@ -114,3 +116,4 @@ private:
 	int m_playerXP;
 };
 
+#endif

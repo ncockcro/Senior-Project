@@ -12,7 +12,9 @@ DESCRIPTION
 	The purpose of this class is to handle various utility functions used throughout the program for Oregon Trail.
 	Some incluce handling errors, outputting specially formatted messages, and other useful functions.
 */
-#pragma once
+
+#ifndef UTILITY_H
+#define UTILITY_H
 
 #include <iostream>
 #include <string>
@@ -49,3 +51,4 @@ private:
 	HANDLE m_hConsole;
 };
 
+#endif

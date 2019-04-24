@@ -14,7 +14,8 @@ DESCRIPTION
 	player tries to traverse a river.
 */
 
-#pragma once
+#ifndef PLAYER_H
+#define PLAYER_H
 
 #include <iostream>
 #include <string>
@@ -82,3 +83,4 @@ private:
 	string m_foodRate;
 };
 
+#endif

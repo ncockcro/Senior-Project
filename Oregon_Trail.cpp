@@ -115,7 +115,7 @@ void Oregon_Trail::ShowTitle() {
 
 	// If title file doesn't exist, show a simple title instead
 	if (!file) {
-		cout << "Welcome to Oregon Trail" << endl << endl;
+		cout << endl << "     Welcome to Oregon Trail" << endl << endl;
 	}
 	else {
 		while (getline(file, input)) {

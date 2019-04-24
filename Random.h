@@ -14,7 +14,9 @@ DESCRIPTION
 	fruit tree. However, some are bad such as getting stuck in a blizzard and constantly eating food without
 	making any progress.
 */
-#pragma once
+
+#ifndef RANDOM_H
+#define RANDOM_H
 
 #include <iostream>
 #include <string>
@@ -53,3 +55,4 @@ private:
 	Utility m_utility;
 };
 
+#endif

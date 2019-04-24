@@ -13,7 +13,8 @@ DESCRIPTION
 	the date but also the functionality to increment by a day and show the current location of where the player is.
 */
 
-#pragma once
+#ifndef DATE_H
+#define DATE_H
 
 #include <iostream>
 #include <string>
@@ -55,3 +56,4 @@ private:
 	HANDLE m_hConsole;
 };
 
+#endif

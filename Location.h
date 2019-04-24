@@ -13,7 +13,9 @@ DESCRIPTION
 	name of the location, distance needed to travel to the location, and any other useful information about
 	a place.
 */
-#pragma once
+
+#ifndef LOCATION_H
+#define LOCATION_H
 
 #include <iostream>
 #include <string>
@@ -44,3 +46,4 @@ private:
 
 };
 
+#endif

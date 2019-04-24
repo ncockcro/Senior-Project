@@ -13,7 +13,9 @@ DESCRIPTION
 	has access to the store to buy various items and across their journey, there are other stores for them to visit. This class
 	will serve as a template for all of the stores to share.
 */
-#pragma once
+
+#ifndef STORE_H
+#define STORE_H
 
 #include <limits>
 #include <iostream>
@@ -60,3 +62,4 @@ private:
 
 };
 
+#endif

@@ -14,7 +14,8 @@ DESCRIPTION
 	anything pertaining to a wagon party member.
 */
 
-#pragma once
+#ifndef MEMBER_H
+#define MEMBER_H
 
 #include <iostream>
 #include <string>
@@ -41,3 +42,4 @@ private:
 	bool isDead;
 };
 
+#endif

@@ -12,7 +12,9 @@ DESCRIPTION
 	The purpose of this class is to serve as the main running environment for Oregon Trail. This holds the start menu, leaderboard
 	functionality, and any other functions that handle taks outside of an active running game.
 */
-#pragma once
+
+#ifndef OREGON_TRAIL_H
+#define OREGON_TRAIL_H
 
 #include <iostream>
 #include <string>
@@ -53,3 +55,4 @@ private:
 	vector<LeaderBoardEntry> m_entries;
 };
 
+#endif

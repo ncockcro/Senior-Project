@@ -12,7 +12,9 @@ DESCRIPTION
 	The prupose of this class is to house all of the dialogue that is displayed at the various locations throughout
 	the game.
 */
-#pragma once
+
+#ifndef DIALOGUE_H
+#define DIALOGUE_H
 
 #include <iostream>
 #include <string>
@@ -60,3 +62,4 @@ private:
 
 };
 
+#endif
