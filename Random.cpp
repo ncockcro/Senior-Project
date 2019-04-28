@@ -491,7 +491,7 @@ void Random::Thunderstorm(Player &a_player, Date &a_date) {
 	int randomNum = (rand() % 7) + 1;
 
 	m_utility.OutputWithColor("Due to the brutal weather, you get", 12);
-	m_utility.OutputWithColor("delayed by thunderstorm. Lose " + to_string(randomNum) + "days.", 12);
+	m_utility.OutputWithColor("delayed by thunderstorm. Lose " + to_string(randomNum) + " days.", 12);
 
 	for (int i = 0; i < randomNum; i++) {
 
