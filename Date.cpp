@@ -15,10 +15,6 @@ DESCRIPTION
 
 	Default constructor for intializing Date values.
 
-RETURNS
-
-	None
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -52,10 +48,6 @@ DESCRIPTION
 	Takes in the year, month, and day as function parameters and will increment the date by one day. If it is
 	December 31, it will increment the year and set it to be January 1. If it is the last day in a month,
 	then it will increment the month and start the day at 1. Otherwise, it will just increment the day.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -283,10 +275,6 @@ DESCRIPTION
 
 	Takes in the year and sets it to the member variable of the Date object.
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -347,10 +335,6 @@ DESCRIPTION
 
 	Takes in the month and sets it to the member function of the Date object.
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -381,7 +365,7 @@ DESCRIPTION
 
 RETURNS
 
-	Void
+	Int
 
 AUTHOR
 
@@ -412,10 +396,6 @@ DESCRIPTION
 
 	Takes in the day and sets the member variable to what was passed in for a Date object.
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -444,10 +424,6 @@ SYNOPSIS
 DESCRIPTION
 
 	Outputs the splash screen of showing the location the player is in and the date
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -484,10 +460,6 @@ SYNOPSIS
 DESCRIPTION
 
 	Outputs the splash screen of showing the date.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -550,10 +522,6 @@ DESCRIPTION
 
 	Checks which month range the current month is in and changes the weather type depending
 	on which season of the year the game is in.
-
-RETURNS
-
-	Void
 
 AUTHOR
 

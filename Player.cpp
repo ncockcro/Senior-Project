@@ -15,10 +15,6 @@ DESCRIPTION
 
 	This function initializes the items for the player and seeds the random number generator
 
-RETURNS
-
-	None
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -57,10 +53,6 @@ DESCRIPTION
 
 	This function initializes the player's items by setting each item's name, description, default price, default
 	cap price, and cap price description. This initializes all of the items in the game for the player.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -120,10 +112,6 @@ DESCRIPTION
 	This function takes in a double which represents how much money the player should have and assigns it
 	to the player.
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -153,10 +141,6 @@ DESCRIPTION
 
 	This function takes in the position of the player (banker, carpenter, or farmer) and assigns it to the
 	player.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -188,10 +172,6 @@ DESCRIPTION
 
 	This function takes in an item name and the quantity and will set that quantity to the item for the
 	player.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -336,10 +316,6 @@ DESCRIPTION
 	This function will deduct the amount of money passed in from the money the player has in a game of
 	Oregon Trail.
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -374,10 +350,6 @@ SYNOPSIS
 DESCRIPTION
 
 	This function will deduct food from the player based on the rate of decrementing.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -422,10 +394,6 @@ DESCRIPTION
 	parameter which is true or false if the player is currently resting. If the player is resting, the rates at
 	which the player is healed is different by them being healed faster since they are resting and not
 	travelling.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -625,10 +593,6 @@ DESCRIPTION
 	This function will randomly generate a number between 0 and 2 and assign it to each of the items
 	for a player object.
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -679,10 +643,6 @@ DESCRIPTION
 
 	This function will take in an item name and quantity and cycle through the list of items that exist
 	in the game, once the item is found, it will add the quantity to the item.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -770,10 +730,6 @@ DESCRIPTION
 
 	This function will take in a string and set it to be the pace the player moves at.
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -846,10 +802,6 @@ DESCRIPTION
 
 	This function will take in a string which represents the rate the player eats food and sets it
 	to the member variable.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -1030,10 +982,6 @@ DESCRIPTION
 
 	This function will return the rate the player eats food
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -1062,10 +1010,6 @@ SYNOPSIS
 DESCRIPTION
 
 	This function remove a party member.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -1102,10 +1046,6 @@ DESCRIPTION
 
 	This function will take in an increase value and apply it to the player's health value.
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -1140,10 +1080,6 @@ SYNOPSIS
 DESCRIPTION
 
 	This function will take in a value to decrease the player's health value.
-
-RETURNS
-
-	Void
 
 AUTHOR
 

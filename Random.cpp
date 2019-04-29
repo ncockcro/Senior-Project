@@ -15,10 +15,6 @@ DESCRIPTION
 
 	Default constructor for the random class.
 
-RETURNS
-
-	None
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -50,10 +46,6 @@ DESCRIPTION
 	This function will generate a random number and if it falls within the range of a random event
 	to happen, it will call the appropriate function to cause the random event. There is a greater
 	chance that nothing will happen that way there aren't random events always happening throughout the game.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -141,10 +133,6 @@ DESCRIPTION
 	This function will randomly generate a multiplier between 2 and 9 and times that by 20 to give the
 	player a certain amount of food
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -183,10 +171,6 @@ DESCRIPTION
 
 	This function will randomly select 1 to 3 items that the player can gain from finding
 	an abandoned wagon.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -255,10 +239,6 @@ DESCRIPTION
 
 	This function will cause the player to lose a certain amount of items from their inventory.
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -297,10 +277,6 @@ SYNOPSIS
 DESCRIPTION
 
 	This function will randomly pick a piece from the player's wagon to break.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -362,10 +338,6 @@ DESCRIPTION
 	This function will randomly pick a number of days the player must wait because they
 	were on a bad trail
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -415,10 +387,6 @@ DESCRIPTION
 
 	This function will randomly pick a number of days the player must wait because they
 	were trapped in a blizzard
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -474,10 +442,6 @@ DESCRIPTION
 	This function will randomly pick a number of days the player must wait because they
 	were stuck in a thunderstorm.
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -528,10 +492,6 @@ DESCRIPTION
 
 	This function will randomly pick a member of the player's party and assign them some kind of disease.
 	Some of them include dysentary, broken arm, ect.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -606,10 +566,6 @@ DESCRIPTION
 
 	This function will prompt the user if they want to fix a part of their wagon that broke. It will
 	then randomly pick if the player can repair the part or not. 
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -755,10 +711,6 @@ DESCRIPTION
 	This function will check which rate the player is eating food at and decrease their health
 	accordingly.
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -802,10 +754,6 @@ DESCRIPTION
 
 	This function output that a wildfire broke out in the player's wagon and has
 	the player lose items.
-
-RETURNS
-
-	Void
 
 AUTHOR
 

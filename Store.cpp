@@ -16,10 +16,6 @@ DESCRIPTION
 
 	This is the default constructor for the Store class. Sets default values for the member variables
 
-RETURNS
-
-	None
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -55,10 +51,6 @@ DESCRIPTION
 	The function is used for showing what is in a store object with the different items and prices.
 	When a user tpyes in a number for one of the items, the description of the items is displayed and
 	the user is able to purchase a certain amount of that item. 
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -122,10 +114,6 @@ DESCRIPTION
 	Once an option has been selected, this will cycle through and make sure that the choice the user picks
 	is a valid one. It will then set the quantity of how much of an item a user wants and will calculate
 	the price to be shown on the main view of the store.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -289,10 +277,6 @@ DESCRIPTION
 	This function will take in a string which is the date of the store and will be displayed at the top when
 	the store is outputted.
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -331,10 +315,6 @@ DESCRIPTION
 	This function will take in a string that represents the location of a store object and is displayed when
 	the store gets outputted.
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -364,10 +344,6 @@ DESCRIPTION
 
 	This function will take the money the player currently has and store it in the store object
 	to be displayed with the store.
-
-RETURNS
-
-	Void
 
 AUTHOR
 

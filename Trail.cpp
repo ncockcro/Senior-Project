@@ -16,10 +16,6 @@ DESCRIPTION
 	This is the default constructor for the Trail class. Anything that needs to be intialized at the start
 	of an active game will be done so here.
 
-RETURNS
-
-	None
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -68,10 +64,6 @@ DESCRIPTION
 
 	This function handles the main playthrough of an active game from the start of prompting them for wagon party members
 	to the end when they reach the end of the trail.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -280,10 +272,6 @@ DESCRIPTION
 	This function will prompt the user for which position they want to play as and save it so the appropriate amount of money
 	will be applied to the player
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -366,10 +354,6 @@ SYNOPSIS
 DESCRIPTION
 
 	This function will prompt the user for the names of their party and ask to confirm if those are correct.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -454,10 +438,6 @@ DESCRIPTION
 	This function will prompt the user for the month to start from and will have an impact on how the game will play out.
 	If the user starts the game too early, there won't be any grass for the oxen to eat. If they start the game too late,
 	then they will be playing the game during winter.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -545,10 +525,6 @@ DESCRIPTION
 
 	This function initializes the items and the store for when the player is departing from Independence, Missouri
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -611,10 +587,6 @@ DESCRIPTION
 	This function will cycle through all of the items in game and add to the player's pile if they bought
 	any from the store.
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -673,10 +645,6 @@ DESCRIPTION
 
 	This function provides various functions for the player to use while on the trail, able to change
 	the pace at which they are using rations and pace, and other uses.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -793,10 +761,6 @@ DESCRIPTION
 
 	This function will output all of the player's supplies to the screen for them to see.
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -835,10 +799,6 @@ DESCRIPTION
 
 	This function will output all of the locations the player has been to in green and all of the locations
 	they still need to get to in red.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -925,10 +885,6 @@ DESCRIPTION
 	party. The less they walk per day, the healthier they will be. The more they walk per day, the greater
 	the chance they will get sick.
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -1011,10 +967,6 @@ DESCRIPTION
 	"filling" they will consume 15 pounds of food per day, "meager" will consume 10 pounds, and "bare bones" will
 	consume 5 pounds per day.
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -1087,10 +1039,6 @@ DESCRIPTION
 	This function allows the player rest for a couple of days to regenerate the members of the party's health. 
 	The player is at most allowed to rest 9 days at a time.
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -1153,10 +1101,6 @@ DESCRIPTION
 
 	This function will intialize the name, amount of miles required to get to, and various other information
 	that should be set at the start of the game for the locations in the game.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -1276,10 +1220,6 @@ DESCRIPTION
 	This function shows essential information while the player is traveling to Oregon and updates
 	all of the information after being displayed such as the date and miles traveled.
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -1323,10 +1263,6 @@ DESCRIPTION
 	if the rate the player is travelling at is 10 miles per increment, and they have to travel
 	102 miles, the last 2 miles will be added using this function.
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -1358,10 +1294,6 @@ SYNOPSIS
 DESCRIPTION
 
 	This function outputs a short description of where the player will travel to next.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -1398,10 +1330,6 @@ DESCRIPTION
 	This function provides the functionality for setting up a store for the player to visit,
 	initializsing the items inside of it, and calling the function from the Store class for the
 	player to buy supplies.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -1461,10 +1389,6 @@ DESCRIPTION
 	The idea of hunting is that they need to enter "BANG" or "POW" in a certain amount of time
 	that is randomly determined. Also the amount of times they are able to enter "BANG" or "POW"
 	is between 1 and 10 times for varying amount of foods for the player to earn. 
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -1574,10 +1498,6 @@ DESCRIPTION
 	This function increases the rates by various amounts so the next time the player visits a location,
 	the prices will be slightly higher than the previous.
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -1609,10 +1529,6 @@ DESCRIPTION
 	This function cycle through the various ways the player is able to earn points for their
 	score such as the position they picked, how many items they have at the end of the game,
 	how much money they have, and other factors.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -1731,10 +1647,6 @@ DESCRIPTION
 
 	This function outputs to the console all of the various ways the player earned their score.
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -1814,10 +1726,6 @@ DESCRIPTION
 	This function checks several parameters such as how many oxen the player has, where they are at in
 	the playthrough, the player's health, and the pace the player chose and updates how many miles
 	the player can travel at once.
-
-RETURNS
-
-	Void
 
 AUTHOR
 

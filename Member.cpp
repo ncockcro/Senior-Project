@@ -15,10 +15,6 @@ DESCRIPTION
 
 	This is the default constructor and initializes any members of the Member class.
 
-RETURNS
-
-	None
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -50,10 +46,6 @@ DESCRIPTION
 
 	This is an overloaded version of the constructor which sets the name of the member to what was passed
 	in.
-
-RETURNS
-
-	None
 
 AUTHOR
 
@@ -116,10 +108,6 @@ DESCRIPTION
 
 	This function will set the name of the member to what was passed in
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -148,10 +136,6 @@ SYNOPSIS
 DESCRIPTION
 
 	This function takes in a disease and adds it to the vector of diseases a member has.
-
-RETURNS
-
-	Void
 
 AUTHOR
 

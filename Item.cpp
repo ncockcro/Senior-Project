@@ -15,10 +15,6 @@ DESCRIPTION
 
 	This function is the default constructor for Item class
 
-RETURNS
-
-	None
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -56,10 +52,6 @@ DESCRIPTION
 
 	This is an overloaded constructor which sets the name and quantity of an item.
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -94,10 +86,6 @@ SYNOPSIS
 DESCRIPTION
 
 	This function will set the name of an item object.
-
-RETURNS
-
-	None
 
 AUTHOR
 
@@ -171,10 +159,6 @@ DESCRIPTION
 
 	This function will set the name of an item object.
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -235,10 +219,6 @@ SYNOPSIS
 DESCRIPTION
 
 	This function will set the price of an item object
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -307,10 +287,6 @@ DESCRIPTION
 
 	This function will set the description of an item object.
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -374,10 +350,6 @@ DESCRIPTION
 	to buy too much of an item. For example, a player tries to buy 10 oxen but the cap is 9 oxen, then this cap
 	description is going to be shown.
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -440,10 +412,6 @@ SYNOPSIS
 DESCRIPTION
 
 	This function will set the cap number of an item. That is, the max amount of a particular item a place can buy
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -511,10 +479,6 @@ DESCRIPTION
 
 	This function will set the amount of an item that is passed in.
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -550,10 +514,6 @@ SYNOPSIS
 DESCRIPTION
 
 	This function will set the description of an item object.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -595,10 +555,6 @@ SYNOPSIS
 DESCRIPTION
 
 	This function will subtract the proper amount of food from the rate that was passed in
-
-RETURNS
-
-	Void
 
 AUTHOR
 

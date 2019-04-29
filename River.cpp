@@ -15,10 +15,6 @@ DESCRIPTION
 
 	This is the default constructor for the river class, sets the initial values for the width and depth of the river
 
-RETURNS
-
-	None
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -55,10 +51,6 @@ DESCRIPTION
 	seeding the width and depth of a river with random values, and houses the main menu for a river for if the
 	player wants to take a certain way to cross a river, take a ferry if available, wait a day, or get some
 	advice.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -197,7 +189,7 @@ NAME
 
 SYNOPSIS
 
-	void River::GetRiverDepth()
+	double River::GetRiverDepth()
 
 DESCRIPTION
 
@@ -205,7 +197,7 @@ DESCRIPTION
 
 RETURNS
 
-	Void
+	Double
 
 AUTHOR
 
@@ -233,10 +225,6 @@ SYNOPSIS
 DESCRIPTION
 
 	This function outputs the opening dialogue, river width and depth, to the console.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -276,10 +264,6 @@ DESCRIPTION
 
 	This function outputs to the console the menu options for the player. It will also show if there is a ferry
 	to take or not depending on what was set.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -333,10 +317,6 @@ DESCRIPTION
 	This function handles when the player picks the option to ford the river with their oxen. If
 	the depth of a river is shallow enough, than they will be successfull in crossing this way, otherwise,
 	the player's wagon may sink and lose items.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -433,10 +413,6 @@ DESCRIPTION
 
 	This function handles when the player chooses the option to float across the river. If the river has a very high
 	depth, then they will be more successful in floating across then if they tried to ford the river.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -707,10 +683,6 @@ DESCRIPTION
 
 	This function increments the day by 1 and lessens the river conditions slightly
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -760,10 +732,6 @@ DESCRIPTION
 
 	This function outputs to the console the dialogue for when the player wants to learn more info
 	about crossing the river.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -820,10 +788,6 @@ DESCRIPTION
 
 	This function sets the boolean value for whether of not a river object has a ferry or not.
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -837,6 +801,31 @@ void River::SetHasFerry(bool a_hasFerry) {
 	m_hasFerry = a_hasFerry;
 }
 
+/*
+	River::SetHasIndianFerry(bool a_hasIndianFerry)
+
+NAME
+
+	River::SetHasIndianFerry - Sets the boolean value for if there is an Indian ferry at a river
+
+SYNOPSIS
+
+	void Trail::SetHasIndianFerry(bool a_hasIndianFerry)
+
+	a_hasFerry --> boolean value for if the river has a ferry
+
+DESCRIPTION
+
+	This function sets the boolean value for whether of not a river object has an Indian ferry or not.
+
+AUTHOR
+
+	Nicholas Cockcroft
+
+Date
+
+	12:07pm 3/6/2019
+*/
 void River::SetHasIndianFerry(bool a_hasIndianFerry) {
 
 	m_hasIndianFerry = a_hasIndianFerry;

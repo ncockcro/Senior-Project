@@ -15,10 +15,6 @@ DESCRIPTION
 
 	Default constructor for the Utility class.
 
-RETURNS
-
-	None
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -47,10 +43,6 @@ SYNOPSIS
 DESCRIPTION
 
 	When an error needs to be thrown, this function will output the error message passed in
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -83,10 +75,6 @@ DESCRIPTION
 	When the user is reading a description or doing something in the application where they need time to think about what they
 	want to do, this function is called to wait for the player to press a key to continue. This serves as a better option 
 	compared to using System("pause") which is platform dependent.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -153,10 +141,6 @@ SYNOPSIS
 DESCRIPTION
 
 	Outputs a specially formatted message with whatever was passed in to match the overall output of the application.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -502,10 +486,6 @@ DESCRIPTION
 	This function adds the XP to the player's overall XP count and checks if the player leveled up or not.
 	Then it will save the player's level and XP to the "level.txt".
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -563,7 +543,7 @@ NAME
 
 SYNOPSIS
 
-	string Utility::GetExtraPartSimpleName(int &a_level, int a_playerXP)
+	void Utility::CheckForLevelUp(int &a_level, int a_playerXP)
 
 	a_level  --> the player's level
 	a_playerXP --> the player's XP
@@ -575,7 +555,7 @@ DESCRIPTION
 
 RETURNS
 
-	String
+	Void
 
 AUTHOR
 
@@ -645,10 +625,6 @@ SYNOPSIS
 DESCRIPTION
 
 	This function takes text and a color option and outputs the text with the color that was passed in.
-
-RETURNS
-
-	Void
 
 AUTHOR
 

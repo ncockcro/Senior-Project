@@ -16,10 +16,6 @@ DESCRIPTION
 	This function serves as the default constructor for the Oregon_Trail class. This initializes any member variables
 	used for the class.
 
-RETURNS
-
-	None
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -49,10 +45,6 @@ DESCRIPTION
 	This function is the only function called by main and serves to be the main running of Oregon Trail. It will
 	show a title which is saved to a local file, and run in an infinite loop to prompt the user with options for
 	the game.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -94,10 +86,6 @@ SYNOPSIS
 DESCRIPTION
 
 	This function is to open the "title.txt" file and output everything that is inside which is for the title of the game.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -142,10 +130,6 @@ DESCRIPTION
 
 	This function will output the several menu choices to the console.
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -179,10 +163,6 @@ DESCRIPTION
 
 	This function has the user enter in a decision for the start menu and will cycle through to find the choice that
 	they picked. If they didn't pick one of the choices, then an error message will be outputted
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -234,10 +214,6 @@ DESCRIPTION
 
 	This function will show the description of the game when the user picks the choice from the main menu
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -273,10 +249,6 @@ DESCRIPTION
 
 	This function will show the leaderboards from a text file. If there is no text file, this function will initialize it, otherwise,
 	it will be read from.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -333,10 +305,6 @@ DESCRIPTION
 
 	This function is called at the end of a game of Oregon Trail and checks to see if the player made enough
 	score to be added to the leaderboards.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -518,10 +486,6 @@ DESCRIPTION
 	This function will open and read from a file called "level.txt" or initialize it if there is no file
 	existing on the player's computer. It will look for the tags "Level:" and "XP:" and read in the values
 	that follow the colons. 
-
-RETURNS
-
-	Void
 
 AUTHOR
 

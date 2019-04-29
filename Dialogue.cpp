@@ -15,10 +15,6 @@ DESCRIPTION
 
 	Default constructor seeding random number generator and assigning random number.
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -52,10 +48,6 @@ DESCRIPTION
 	This function takes in a location and cycles through all of the location names in the game
 	and once the name is found, it will call another function to show the dialogue for a specific
 	location.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -149,10 +141,6 @@ DESCRIPTION
 	This function outputs dialogue for "Independence" and randomly cycles through the
 	three sets of dialogue.
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -222,10 +210,6 @@ DESCRIPTION
 	This function outputs dialogue for "Kansas River Crossing" and randomly cycles through the
 	three sets of dialogue.
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -294,10 +278,6 @@ DESCRIPTION
 
 	This function outputs dialogue for "BBRiverCrossing" and randomly cycles through the
 	three sets of dialogue.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -369,10 +349,6 @@ DESCRIPTION
 	This function outputs dialogue for "Fort Kearney" and randomly cycles through the
 	three sets of dialogue.
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -439,10 +415,6 @@ DESCRIPTION
 
 	This function outputs dialogue for "Chimney Rock" and randomly cycles through the
 	three sets of dialogue.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -511,10 +483,6 @@ DESCRIPTION
 	This function outputs dialogue for "Fort Laramie" and randomly cycles through the
 	three sets of dialogue.
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -581,10 +549,6 @@ DESCRIPTION
 
 	This function outputs dialogue for "Independence Rock" and randomly cycles through the
 	three sets of dialogue.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -653,10 +617,6 @@ DESCRIPTION
 	This function outputs dialogue for "South Pass" and randomly cycles through the
 	three sets of dialogue.
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -722,10 +682,6 @@ DESCRIPTION
 
 	This function outputs dialogue for "Fort Bridger" and randomly cycles through the
 	three sets of dialogue.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -795,10 +751,6 @@ DESCRIPTION
 	This function outputs dialogue for "Green River" and randomly cycles through the
 	three sets of dialogue.
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -865,10 +817,6 @@ DESCRIPTION
 
 	This function outputs dialogue for "Soda Springs" and randomly cycles through the
 	three sets of dialogue.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -937,10 +885,6 @@ DESCRIPTION
 	This function outputs dialogue for "Fort Hall" and randomly cycles through the
 	three sets of dialogue.
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -1008,10 +952,6 @@ DESCRIPTION
 	This function outputs dialogue for "Snake River" and randomly cycles through the
 	three sets of dialogue.
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -1078,10 +1018,6 @@ DESCRIPTION
 
 	This function outputs dialogue for "Fort Boise" and randomly cycles through the
 	three sets of dialogue.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -1151,10 +1087,6 @@ DESCRIPTION
 	This function outputs dialogue for "Blue Mountains" and randomly cycles through the
 	three sets of dialogue.
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -1222,10 +1154,6 @@ DESCRIPTION
 
 	This function outputs dialogue for "Fort Walla Walla" and randomly cycles through the
 	three sets of dialogue.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -1297,10 +1225,6 @@ DESCRIPTION
 	This function outputs dialogue for "The Dalles" and randomly cycles through the
 	three sets of dialogue.
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -1368,10 +1292,6 @@ DESCRIPTION
 
 	This function outputs dialogue for when the player is departing "Independence".
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -1407,10 +1327,6 @@ SYNOPSIS
 DESCRIPTION
 
 	This function will output all of the dialouge after they picked the month they are starting at.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -1495,10 +1411,6 @@ DESCRIPTION
 	This function outputs dialogue for when the trail first splits and the player can either go
 	to "Green River crossing" or "Fort Bridger". 
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -1532,10 +1444,6 @@ DESCRIPTION
 	This function outputs dialogue for "Independence" and randomly cycles through the
 	three sets of dialogue.
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -1567,10 +1475,6 @@ SYNOPSIS
 DESCRIPTION
 
 	This function outputs dialogue for how the player is supposed to hunt.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -1606,10 +1510,6 @@ SYNOPSIS
 DESCRIPTION
 
 	This function outputs dialogue for when the player finished the game.
-
-RETURNS
-
-	Void
 
 AUTHOR
 

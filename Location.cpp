@@ -15,10 +15,6 @@ DESCRIPTION
 
 	Default constructor for the location class and sets default values for some of the member variables.
 
-RETURNS
-
-	None
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -52,11 +48,7 @@ SYNOPSIS
 DESCRIPTION
 
 	This is a virtual function which is primarily used for the class "River" that is inherited from this
-	class. 
-
-RETURNS
-
-	None
+	class.
 
 AUTHOR
 
@@ -86,10 +78,6 @@ SYNOPSIS
 DESCRIPTION
 
 	Sets the name of a location to what was passed in
-
-RETURNS
-
-	Void
 
 AUTHOR
 
@@ -153,10 +141,6 @@ DESCRIPTION
 
 	Sets the amount of miles needed to travel to a location.
 
-RETURNS
-
-	Void
-
 AUTHOR
 
 	Nicholas Cockcroft
@@ -216,10 +200,6 @@ SYNOPSIS
 DESCRIPTION
 
 	Sets the boolean value that represents if a location has a store or not.
-
-RETURNS
-
-	Void
 
 AUTHOR
 
